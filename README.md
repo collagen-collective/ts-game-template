@@ -4,7 +4,8 @@
 > template; anything in angle brackets is a placeholder. Answer the prompts and delete them.
 > ``rg '`<' README.md CLAUDE.md docs/`` lists whatever is still unfilled. Two placeholders it will
 > not list, because they are not Markdown: the `name` field in `package.json` and the page `title`
-> in `index.html`. Delete this block when the repo is your own.
+> in `index.html`. **In Claude Code, `/gettingstarted` walks you through all of it** — it interviews
+> you, fills in what is settled, and files what isn't. Delete this block when the repo is your own.
 
 *One paragraph. What the player does, where they do it, and what the loop is. Concrete enough that
 a stranger could picture a minute of play, and short enough to read before deciding whether to keep

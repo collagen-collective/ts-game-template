@@ -1,0 +1,232 @@
+---
+name: gettingstarted
+description: Walk a new user from this template to a project seed — name the game, fill in the parts of the Charter that are actually settled, file everything unsettled as an open question, and write the first design-log entry. Use when someone has just created a repo from this template, asks how to get started, asks what to do first, or asks how to fill in the placeholders.
+user-invocable: true
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - AskUserQuestion
+  - Bash(rg *)
+  - Bash(grep *)
+  - Bash(git remote *)
+  - Bash(git log *)
+  - Bash(date *)
+---
+
+# /gettingstarted — from template to project seed
+
+This walks one person through turning the scaffold into their project. The output is documents: a
+named repo, a Charter holding only what is genuinely settled, an OPEN-QUESTIONS file holding
+everything that is not, and a first design-log entry. No code.
+
+## The rule that governs everything below
+
+**You are interviewing, not designing.** Every noun in the finished Charter should be traceable to
+something the user said out loud. You may tighten their prose, cut a hedge, or ask them to say it
+again shorter. You may not introduce design content they did not give you — not a mechanic, not a
+genre convention, not a "games like this usually…" suggestion offered as a fill-in.
+
+When the user does not know the answer, that is a real and expected outcome, not a gap to paper
+over. **File it in `docs/OPEN-QUESTIONS.md` under the right tag and move on.** A Charter that is
+three sentences long and entirely true is a better seed than a full one that is half invented. The
+user will not remember which half you made up, and by the time it matters they will be treating all
+of it as settled.
+
+If the user asks you to make something up anyway, say once that it will read as settled later, and
+then do what they asked — and log in `docs/DESIGN-LOG.md` that the entry was agent-drafted rather
+than decided.
+
+## Before you start
+
+1. Read `README.md`, `CLAUDE.md`, `docs/CHARTER.md`, `docs/OPEN-QUESTIONS.md`, and
+   `docs/DESIGN-LOG.md`. All five are short. The Charter's framing notes explain why it says *what*
+   and *why* but never *how*; you have to hold that line while transcribing.
+2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
+3. **Check whether this has been run before.** If placeholders are already gone or
+   `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
+   what you found already filled, and pick up at the first thing that is not.
+
+Ask open design questions **one at a time, in conversation**, and let the user answer in prose.
+Save `AskUserQuestion` for genuinely discrete choices — the tier checkpoints and the housekeeping
+decisions at the end.
+
+---
+
+## Tier 1 — required. This is the seed.
+
+### 1. The name
+
+Ask what the game is called. A working title is fine; say so, and note it in the log entry at the
+end so nobody later mistakes a placeholder for a decision.
+
+Then make the mechanical edits — these are the only find-and-replace steps in the whole process:
+
+- `README.md` — the `# <project>` heading
+- `docs/CHARTER.md` — the `# <project> Charter` heading and the `## 1. What <project> is` heading
+- `package.json` — the `name` field. Must be npm-valid: lowercase, no spaces, no leading dot or
+  underscore. Derive a slug and show it to the user before writing it.
+- `index.html` — the `<title>` tag
+
+The last two carry no backticks, so the `rg` inventory will never remind you about them. Do them
+now or they get missed.
+
+### 2. The premise
+
+One paragraph: what the player does, where they do it, and what the loop is. It goes in two places
+— `README.md` under the title, and `CLAUDE.md` under `## The project`. Same content; the CLAUDE.md
+one can be tighter.
+
+**The test the README states:** concrete enough that a stranger could picture a minute of play. If
+the answer needs a second paragraph, the premise is not settled — write down the part that is, and
+file the rest. Do not accept genre labels as a premise. "A roguelike deckbuilder" describes a shelf,
+not a minute.
+
+### 3. The founding commitments
+
+One to three. These are the things that were true before anything else was decided, and that
+everything downstream is an attempt to satisfy at once. They go in `docs/CHARTER.md` §1.
+
+For each, ask what it means and what feeling it is chasing — then ask **what it costs**. The Charter
+states the test plainly: a commitment that cannot be contradicted is not one. If the user cannot
+name anything it rules out or anything it makes harder, you have a mood rather than a commitment.
+Push back once, in a sentence. If it still will not sharpen, file it under DECIDE and leave §1
+shorter.
+
+Most of the interesting design work on a game is the tension between its commitments. If two of
+them already pull against each other, that is a good sign — note the tension in the log entry at the
+end rather than smoothing it away.
+
+### 4. What a session actually is
+
+The loop, in the second person, in five or six sentences: what the player does, in what order, and
+what they come back with. Then the shape of time — how long one session runs, and what a stack of
+them adds up to. Goes under the `### What a session actually is` heading in §1.
+
+"What they come back with" is the part that gets skipped and the part that constrains everything
+downstream. If the user cannot answer it, that is a PLAY question, not a blank.
+
+### Checkpoint
+
+Stop here and tell the user plainly: **they now have a valid seed.** A named repo, a premise, the
+commitments, and the loop is enough to start playing with. The tiers below are worth doing only if
+the answers already exist.
+
+Then ask whether to continue to Tier 2, jump to the housekeeping and first log entry, or stop for
+now and resume later.
+
+---
+
+## Tier 2 — recommended. What it has to be.
+
+Three to five criteria in `docs/CHARTER.md` §2, each concrete enough to reject a proposal.
+
+The useful half of each is the **`*Rules out:*`** line, and it is the half that gets skipped.
+Suggest writing that line first: ask what proposals this criterion kills, by name, including the
+expensive ones — the cost is what makes it a criterion rather than a preference. If the user cannot
+name anything it kills, do not write it down. Either sharpen it with them or drop it.
+
+Before moving on, read the criteria back against the commitments from Tier 1. If one contradicts
+another, that is a COLLISIONS entry, not something to reconcile quietly on their behalf.
+
+---
+
+## Tier 3 — only if the answers already exist.
+
+**Do not run this tier speculatively.** On a young project the honest answer to both sections is
+usually "nothing yet," and an empty section is correct. Ask whether the user already has these; if
+they hesitate, skip the tier and move on.
+
+**§3, the laws.** Only rules that bind everywhere, with no exceptions anywhere. A rule that governs
+one system belongs with that system in §4, not here. Each law needs its *Why* — the failure it
+exists to prevent — because a law without one gets re-argued the first time it is inconvenient. If
+there is an operational test, some question easier to apply than the law itself, capture it; that is
+the part that actually gets used.
+
+**§4, the building blocks.** One block per system large enough that a decision about it constrains
+other systems. **The problem** before **The shape**, always, because the problem statement is how a
+reader six months out can tell a better answer from a different question. The shape is behaviour and
+consequence, never mechanism — if the user starts describing implementation, that is not a Charter
+entry; capture it as a design-log entry instead.
+
+Leave the **What we learned** heading out entirely until something has actually been played.
+
+---
+
+## Always — run these regardless of how far the tiers got.
+
+### The open-questions sweep
+
+Everything deflected during the session becomes an entry in `docs/OPEN-QUESTIONS.md`. Delete the
+template example entries as you go. Each entry is a bolded question and three or four sentences on
+why it matters — nothing else. An entry that grows a plan has stopped being a question.
+
+Tag each one by **how it gets resolved**, which is the whole point of the file:
+
+- **PLAY** — only a person playing it can settle this. Do not decide it at a desk and **do not
+  decompose it into tasks.** Include the sub-question: the specific thing to watch for while
+  playing, so the session produces an answer rather than an impression. Most load-bearing questions
+  about a game land here. If this section is empty on a young project, you have miscategorized
+  something as DECIDE — go back and check.
+- **DECIDE** — settleable by argument, at a desk, today. If you can write down the options and what
+  each costs, you can usually settle it in the same sitting. Offer to: settle it, log it in
+  `DESIGN-LOG.md`, delete the entry.
+- **COLLISIONS** — not unknowns. Two things already decided that conflict. Say where each was
+  decided and which one you expect to give.
+- **DEFER** — real, not blocking, deliberately not being worked. Needs an un-parking condition or it
+  is a deletion waiting to happen.
+
+Keep the file to about a page. If it runs longer, say so — it means questions are being collected
+instead of answered.
+
+### Housekeeping
+
+Use `AskUserQuestion` for these; they are discrete choices.
+
+- **The template banners.** Delete the `> **Scaffolded from a shared TypeScript game-project
+  template.**` block in `README.md`, and the `*This file arrived as a template…*` note in each of
+  the three docs — each one as its file gets real content. In `CLAUDE.md`, delete the **This repo
+  was scaffolded from a template** paragraph once the placeholders it refers to are gone.
+- **The four inherited rules.** Ask: keep, argue with, or delete. The README is explicit that they
+  are inherited defaults rather than this project's findings, and that the decision should be made
+  deliberately and logged. Whatever the answer, log it. They appear in both `README.md` and
+  `CLAUDE.md` — keep the two in sync.
+- **RTK.** `README.md` has an "Optional: the RTK agent tooling" section listing the three files it
+  touches and how to remove it. Ask whether to keep or remove, then do it.
+- **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
+- **The remote.** `git remote -v` should point at the user's own repo. If it still points at the
+  template, they cloned instead of using "Use this template" — tell them, and let them decide.
+
+### The first design-log entry
+
+Get the real date with `date +%F` rather than guessing it.
+
+`docs/DESIGN-LOG.md` says the good first entry is the founding commitments, written down the day
+they are chosen, while the reasoning still seems too obvious to record. Write that entry using the
+form already in the file, then delete the form block.
+
+Fill it honestly. **Outcome** for a founding entry is "still in progress" — say that. If there is
+nothing transferable under **Learned** yet, write that there isn't, rather than manufacturing a
+lesson. If any commitment was a working title, an agent-drafted line, or a tension the user chose to
+leave standing, this entry is where it gets recorded.
+
+### Verify
+
+Re-run ``rg '`<' README.md CLAUDE.md docs/``. Report what is left and confirm each remaining
+placeholder is deliberate rather than forgotten. Check `package.json` and `index.html` by eye — the
+sweep cannot see them.
+
+Close by telling the user what the next step actually is: **playing something.** Not scaffolding.
+
+---
+
+## Do not, in this skill
+
+- Create `src/`, `tests/`, or `scripts/`, or write any game code, or write any tests.
+- Choose an architecture, a file layout, or a state-management pattern — and never record one as an
+  established convention. `index.html` naming `/src/runtime/main.ts` is a line to change, not a
+  convention to obey.
+- Put mechanism into the Charter. It is upstream of the implementation and stays that way.
+- Decompose a PLAY question into tasks. That is the specific mistake the file exists to prevent.
+- Invent ticket IDs or reference an issue tracker. There isn't one.
+- Fill in **What we learned** on a block that has never been played.

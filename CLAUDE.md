@@ -37,7 +37,9 @@ and in the session you are working in. Don't reference or fabricate ticket ident
 **This repo was scaffolded from a template.** Prompts in *italics*, and placeholders in angle
 brackets, are unanswered template text rather than design decisions. Don't treat them as settled
 and don't quietly write around them — if a plan depends on one, resolving it is the first step of
-the plan. ``rg '`<' README.md CLAUDE.md docs/`` lists what is still unfilled.
+the plan. ``rg '`<' README.md CLAUDE.md docs/`` lists what is still unfilled. The `/gettingstarted`
+skill walks the user through resolving them; suggest it if a session opens against an unfilled
+template, and don't answer the prompts on the user's behalf in the meantime.
 
 **Don't rewrite the Charter to match the code you just wrote.** It is upstream of the
 implementation. If the implementation forces a design change, raise it.
