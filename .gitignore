@@ -1,0 +1,11 @@
+test-results/
+dist/
+node_modules/
+
+.DS_Store
+
+# Claude Code agent worktree scratch space
+.claude/worktrees/
+
+# Per-developer Claude Code settings. Local to whoever cloned this; never shared.
+.claude/settings.local.json
