@@ -144,9 +144,11 @@ exists, tsc has nothing to check and reports that as an error; the hook lets a c
 that is all tsc has to say, so a new project can commit its documents from the first day. CI
 (`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
 end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
-for a week. CI is not let off the same way: until there is code, its typecheck, lint and
-end-to-end jobs fail, which is the template's starting state rather than a defect in a change to
-the documents.
+for a week. CI is let off the same way, and says so: until the repository has TypeScript besides
+its root config files, its typecheck-and-lint job and its end-to-end job are skipped, and show as
+skipped rather than passed. TypeScript in any folder counts, so a project that moves its code out
+of `src/` is checked rather than skipped. Once there is source they run, and the end-to-end job
+fails until the boot test exists.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
 the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and
