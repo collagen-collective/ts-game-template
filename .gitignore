@@ -9,3 +9,11 @@ node_modules/
 
 # Per-developer Claude Code settings. Local to whoever cloned this; never shared.
 .claude/settings.local.json
+
+# Agent scratch scripts (traces, probes, frame captures) live at the root while in use; never
+# committed. And what they write: a measurement pass leaves scripts and the frames they captured
+# side by side, and both are working notes. The design log is where the finding goes, and a script
+# that proves itself is committed under its own name. Every extension, not a list of them: in
+# dragon, when only .ts, .mjs and directories were covered, a probe's JSON output was committed by
+# accident and sat at the root for two days.
+scratch-*
