@@ -139,9 +139,14 @@ watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved while the s
 reload the page under whichever test is running: a run tests the code as it stood when it began.
 `playwright.config.ts` says why each of these is so.
 
-A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. CI (`.github/workflows/ci.yml`)
-runs typecheck, a Prettier check, ESLint, the unit tests, and the end-to-end suite on pull requests,
-and keeps what a failed end-to-end run left in `test-results/` for a week.
+A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the first source file
+exists, tsc has nothing to check and reports that as an error; the hook lets a commit through when
+that is all tsc has to say, so a new project can commit its documents from the first day. CI
+(`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
+end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
+for a week. CI is not let off the same way: until there is code, its typecheck, lint and
+end-to-end jobs fail, which is the template's starting state rather than a defect in a change to
+the documents.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
 the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and

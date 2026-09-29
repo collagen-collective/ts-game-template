@@ -1,2 +1,14 @@
-npx tsc --noEmit
+# Until the first source file exists, tsc has nothing to check and says so as an error, TS18003,
+# which would refuse every commit a new project makes to its documents. When that one error is the
+# whole of what tsc has to say, the commit goes ahead; anything else it says still refuses it. tsc
+# is asked rather than a list of paths kept here, so this cannot drift from tsconfig.json. CI's
+# typecheck is unchanged and still fails on an empty src/, so nothing reports it as a pass.
+if ! npx tsc --noEmit; then
+  only=$(npx tsc --noEmit --listFilesOnly 2>&1 || true)
+  if [ "$(printf '%s\n' "$only" | grep -c .)" = 1 ] && printf '%s\n' "$only" | grep -q 'error TS18003'; then
+    echo "pre-commit: that is tsc finding no source files yet, so there is nothing to typecheck; going ahead."
+  else
+    exit 1
+  fi
+fi
 npx lint-staged

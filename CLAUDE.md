@@ -210,11 +210,13 @@ npm run verify:play # typecheck + the boot test (a build a person can sit down t
 ```
 
 With `src/` and `tests/` empty, most of these have nothing to act on, and several exit non-zero on
-"no input files". Until the first source file exists, the typecheck, Prettier and ESLint fail, in
-the pre-commit hook and in CI alike, and the end-to-end job fails until the boot test exists. That
-is the template's starting state, not a defect in a change that only touches the documents, and a
-stub file written to turn them green is not the fix. It resolves as soon as real source and tests
-exist. The unit tests run from the start, because the merge driver's tests are there.
+"no input files". Until the first source file exists, CI's typecheck, Prettier and ESLint fail, and
+its end-to-end job fails until the boot test exists. That is the template's starting state, not a
+defect in a change that only touches the documents, and a stub file written to turn them green is
+not the fix. It resolves as soon as real source and tests exist. The pre-commit hook lets a commit
+through while tsc has no source file to check, so the documents can be committed from the first
+day, and refuses on anything else tsc reports. The unit tests run from the start, because the merge
+driver's tests are there.
 
 The Playwright config is ready, and the first end-to-end test to write is `tests/e2e/boot.spec.ts`,
 which `verify:play` names. It boots the game, fails on any page or console error, draws one frame
@@ -230,8 +232,9 @@ them what broke before they report on it, then fix it. Once there is code, a pul
 the whole gate green, and CI read after the push: in dragon, *"CI: will run on this PR"* went into a
 description three times and was not looked at again.
 
-A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`; CI runs typecheck, Prettier,
-ESLint, the unit tests, and the end-to-end suite in a booted game on pull requests.
+A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
+source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
+tests, and the end-to-end suite in a booted game on pull requests.
 
 When you merge main, the three documents resolve themselves where both sides only added text
 (`scripts/merge-docs.mjs`, registered by `npm ci`). A conflict left in one of them is a real
