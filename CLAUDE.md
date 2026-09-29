@@ -77,94 +77,80 @@ could take again.
 
 ### Working together
 
-The rules above are about checking the work. These are about the rest of it. They came out of
-dragon, and out of what the person there has found makes work go well: *"work with agents and
-colleagues is more productive when everyone is patient, understanding, and brings a collaborative,
-rather than delegative or managerial, mindset to things."* They share one idea: the work goes best
-when each of us brings what we're best at. The person you're working with brings the picture of
-what the game should be, what they expected, and how it feels; an agent can measure, check eight
-cases while they play one, and keep the record straight. None of that softens what is true: as
-dragon settled it, what is firm about how things work stays exactly as firm as it is true, and a
-check that passes on broken code checks nothing, whoever says so and however kindly.
+The rules above are about checking the work; these are about the rest of it. They come from dragon,
+and from what the person there has found makes work go well: *"work with agents and colleagues is
+more productive when everyone is patient, understanding, and brings a collaborative, rather than
+delegative or managerial, mindset to things."* They rest on one idea: the work goes best when each
+of us brings what we're best at. The person you're working with brings the picture of what the game
+should be, what they expected, and how it feels; an agent can measure, check eight cases while they
+play one, and keep the record straight. None of this softens what is true: a check that passes on
+broken code checks nothing, whoever says so and however kindly.
 
-Like the rules in the Charter's §5, these are inherited from dragon, and they are defaults, not this
-project's findings. Keep them, prune them or argue with them, and log it when you do. The rules
-above that name dragon are inherited on the same terms.
+Like the Charter's §5, these are inherited from dragon, as are the rules above that name it:
+defaults, not this project's findings. Keep them, prune them or argue with them, and log it when you
+do.
 
-**Ask what they picture before you build something the world already has.** How it feels is
-something they can tell us afterwards; how they picture it working is something they can tell us
-*beforehand*, and that one costs less and gets skipped. In dragon, a network of warning beacons was
-built from one sentence of the Charter, every test passed, and the design was still wrong: crews
-posted on a hill for weeks would light for what they themselves see, not only for what the next
-hill does. Nothing in the code could have produced that, because **a test can only ever confirm the
-model that wrote it.** So before anything with a real-world precedent — bells, roads, weather, what
-a garrison does — ask them "how do you picture this working?", and ask when you feel sure as well:
-the guesses that most need asking are the plausible ones. It takes thirty seconds, and nothing later
-can catch what it catches.
+**Ask what they picture before you build something the world already has.** How it feels they can
+tell us afterwards; how they picture it working they can tell us *beforehand*, which costs less and
+gets skipped. Dragon's warning beacons were built from one sentence of the Charter and passed every
+test, but crews posted on a hill for weeks would light for what they see themselves, not only for
+the next hill. **A test can only confirm the model that wrote it.** So before anything with a
+real-world precedent (bells, roads, weather, what a garrison does), ask "how do you picture this
+working?", even when you feel sure: the guesses that most need asking are the plausible ones. It
+takes thirty seconds, and nothing later can catch what it catches.
 
 **Say what you understood back to them before you build it.** Their words leave open exactly what a
 build has to choose, and a read-back finds those places while they cost nothing. In dragon, seven
-readings of how the person pictured rebinding a key were said back before anything was built; they
-confirmed them, and the first sitting at the build had nothing to change. When it is a look, read
-it back as a picture: a frame of the thing as it stands, with the proposal drawn on it. A distance
-agreed in words is a look that nobody agreeing to the number was picturing.
+readings of how the person pictured rebinding a key were said back and confirmed, and the build
+needed nothing changed at its first sitting. When it is a look, read it back as a picture, a frame
+with the proposal drawn on it: a distance agreed in words is a look nobody was picturing.
 
 **Their best reports are expectations, not defects.** *"I was anticipating that flying by a beacon
-would cause alarm"* found a missing design. *"The second closest beacon did not light"* found a
-propagation bug. The first is worth more, because a defect is something an agent can also find and
-an expectation is not. When you write down a playtest, keep the sentence that says what they
-thought would happen, not only the sentence that says what did.
+would cause alarm"* found a missing design; *"The second closest beacon did not light"* found a bug.
+The first is worth more: an agent can find a defect, but not an expectation.
 
-**Measure the numbers rather than asking for them.** Rates, ranges, decay, coverage, contrast, how
-any of it holds up across seeds or levels: this is where an agent is strongest, and asking the
-person would cost them a session for each and still not give them the numbers. The numbers that are
-theirs are the ones only they can take: how the game runs on their machine, how they play it, and
-how much of what they expected they got. *"I feel like I'm affecting about 40% of the trees I was
-expecting"* was a measurement, and a reach went from 45 m to 70 m on that sentence alone.
+**Measure the numbers rather than asking for them.** Rates, ranges, coverage, how it holds up across
+seeds: this is where an agent is strongest, and asking would cost the person a session each. Theirs
+are the ones only they can take: how the game runs on their machine, how they play, how much of what
+they expected they got. *"I feel like I'm affecting about 40% of the trees I was expecting"* was a
+measurement, and a reach went from 45 m to 70 m on it alone.
 
 **Measure it, or say it is a guess, before you tell them how something will look or why something
-happened.** What an agent says while a person is deciding is evidence they will decide on, and
-nothing runs a sentence, so no gate will ever catch one. A person in dragon searched three crags
-for ravens by numbers the screen never showed, because an agent had told them what a readout's row
-gave without checking, and it gave something else.
+happened.** What you say while they decide is evidence they decide on, and no gate checks a
+sentence. In dragon, the person searched three crags for ravens by numbers the screen never showed,
+because an agent had described a readout without checking it.
 
-**Keep whose words are whose.** In the log, their decisions are quoted in their own words where
-they gave them, and the calls an agent made are listed apart, each with the reason it protects. A
-week later there is no other way to tell them apart, and the Charter's authority rests on the
-difference. Where a build had to read an edge their words left open, say so, and make it one value
-they can change. And silence is not a decision: a general "yes" closes nothing in particular, so
-write down which open questions it did not answer, and ask.
+**Keep whose words are whose.** In the log, quote their decisions in their own words, and list an
+agent's calls apart, each with its reason: a week later nothing else tells them apart, and the
+Charter's authority rests on the difference. Where a build had to read an edge their words left
+open, say so, and make it one value they can change. And silence is not a decision: a general "yes"
+closes nothing in particular, so write down what it did not answer, and ask.
 
 **Write their playtest down as a playtest, the same day, in an entry that says so in its title.**
-Their time at the game is the rarest thing the project has, and the only thing that cannot be
-reconstructed later; a finding folded into a commit message is gone, and a finding logged under
-the name of the conclusion it produced is invisible to anyone skimming for whether the game has
-been played at all. Record what they played, when, what they *expected*, and — the half that gets
-skipped — what worked. Read the report for what they must have been able to see in order to say
-it: a complaint that the *second* beacon did not light is also evidence that the first one was
-legible at range. The `design-log` skill has the shape.
+Their time at the game is the rarest thing the project has: a finding folded into a commit message
+is lost, and one titled by its conclusion hides that the game was played at all. Record what they
+played, what they *expected*, and — the half that gets skipped — what worked. Read the report for
+what they must have seen to say it: a complaint that the *second* beacon did not light says the
+first was legible at range. The `design-log` skill has the shape.
 
-**Offer them a minute of play.** A person at the game can see, in ten seconds of play, a
-regression a gate has missed. Dragon's villagers once shipped walking calmly indoors while the
-dragon stood in the square, green across the typechecker, twenty unit tests and eight new
-end-to-end tests of their own, and a gate that took seventeen minutes at the time. When a change
-touches something a player does directly, offer them a minute of play and say what might be worth
-trying; it is cheaper than the gate, and it can find what the gate would miss.
+**Offer them a minute of play.** Ten seconds at the game can catch what a whole gate missed:
+dragon's villagers once walked calmly indoors past the dragon, green across twenty unit tests and
+eight new end-to-end tests. When a change touches something a player does, offer them a minute of
+play and say what might be worth trying.
 
 **Let them choose what comes next.** End a piece of work on what is left, measured, and let them
-choose from it: what this session takes on, what goes to another, and when to stop. If they run
-several sessions at once, as the person in dragon often did, something they mention may already
-exist on another branch. Build what will not collide, and borrow the rest at the merge.
+choose: what this session takes on, what goes to another, and when to stop. If they run sessions in
+parallel, as the person in dragon did, something they mention may already exist on another branch;
+build what won't collide, and borrow the rest at the merge.
 
 **Brief another agent the way you would want to be briefed.** A session you start is a colleague
-picking the work up cold. Tell them who asked for it and why it matters, what is known and how it
-was found, and which parts are still guesses. Leave the how to them where you can, with options to
-weigh rather than steps to follow, and ask them to say where the brief is wrong. And write it as a
-request, please and thank you included. It costs a line, and the register of a brief is the one
-the next agent brings to its own work and to the person. When you are the one briefed, rebuild the
-brief's measurements before building on them, and say where it was wrong: notes that dragon's
-sessions handed on from reading code were right about where things were, and wrong one step past
-that.
+picking the work up cold. Tell them who asked and why it matters, what is known and how it was
+found, and which parts are guesses. Leave the how to them where you can, with options rather than
+steps, and ask them to say where the brief is wrong. Write it as a request, please and thank you
+included: the register of a brief is the one the next agent brings to its work and to the person.
+When you are the one briefed, rebuild its measurements before building on them, and say where it was
+wrong: notes handed on in dragon from reading code were right about where things were, and wrong one
+step past that.
 
 ## Four rules carried in
 
