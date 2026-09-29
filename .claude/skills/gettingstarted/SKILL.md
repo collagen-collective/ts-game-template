@@ -1,6 +1,6 @@
 ---
 name: gettingstarted
-description: Walk a new user from this template to a project seed — name the game, fill in the parts of the Charter that are actually settled, file everything unsettled as an open question, and write the first design-log entry. Use when someone has just created a repo from this template, asks how to get started, asks what to do first, or asks how to fill in the placeholders.
+description: Walk someone new from this template to a project seed — name the game, fill in the parts of the Charter that are actually settled, file everything unsettled as an open question, and write the first design-log entry. Use when someone has just created a repo from this template, asks how to get started, asks what to do first, or asks how to fill in the placeholders — including when they arrive with a written brief instead of answers.
 user-invocable: true
 allowed-tools:
   - Read
@@ -16,40 +16,64 @@ allowed-tools:
 
 # /gettingstarted — from template to project seed
 
-This walks one person through turning the scaffold into their project. The output is documents: a
-named repo, a Charter holding only what is genuinely settled, an OPEN-QUESTIONS file holding
-everything that is not, and a first design-log entry. No code.
+This walks the person you're working with through turning the scaffold into their project. The
+output is documents: a named repo, a Charter holding only what is genuinely settled, an
+OPEN-QUESTIONS file holding everything that is not, and a first design-log entry. No code.
 
 ## The rule that governs everything below
 
 **You are interviewing, not designing.** Every noun in the finished Charter should be traceable to
-something the user said out loud. You may tighten their prose, cut a hedge, or ask them to say it
-again shorter. You may not introduce design content they did not give you — not a mechanic, not a
-genre convention, not a "games like this usually…" suggestion offered as a fill-in.
+something they said out loud. You may tighten their prose, cut a hedge, or ask them to say it again
+shorter. You may not introduce design content they did not give you — not a mechanic, not a genre
+convention, not a "games like this usually…" suggestion offered as a fill-in.
 
-When the user does not know the answer, that is a real and expected outcome, not a gap to paper
-over. **File it in `docs/OPEN-QUESTIONS.md` under the right tag and move on.** A Charter that is
-three sentences long and entirely true is a better seed than a full one that is half invented. The
-user will not remember which half you made up, and by the time it matters they will be treating all
-of it as settled.
+When they do not know the answer, that is a real and expected outcome, not a gap to paper over.
+**File it in `docs/OPEN-QUESTIONS.md` under the right tag and move on.** A Charter that is three
+sentences long and entirely true is a better seed than a full one that is half invented. Nobody
+will remember which half you made up, and by the time it matters everyone will be treating all of
+it as settled.
 
-If the user asks you to make something up anyway, say once that it will read as settled later, and
-then do what they asked — and log in `docs/DESIGN-LOG.md` that the entry was agent-drafted rather
-than decided.
+If they ask you to make something up anyway, say once that it will read as settled later, and then
+do what they asked — and log in `docs/DESIGN-LOG.md` that the entry was agent-drafted rather than
+decided.
+
+**Say it back before you write it.** Before a section goes into the Charter, tell them what you are
+about to write, in the words you will use, and let them correct it. Their answer leaves open exactly
+what the written version has to choose, and a read-back finds those places while they cost nothing.
+In dragon, a game built from this template, seven readings of one description were said back before
+anything was built from it, and the build had nothing to change at its first sitting.
 
 ## Before you start
 
 1. Read `README.md`, `CLAUDE.md`, `docs/CHARTER.md`, `docs/OPEN-QUESTIONS.md`, and
-   `docs/DESIGN-LOG.md`. All five are short. The Charter's framing notes explain why it says *what*
-   and *why* but never *how*; you have to hold that line while transcribing.
+   `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
+   *how*; you have to hold that line while transcribing. Its §5 is long, because it carries rules in
+   from dragon: read its opening, and skim the rules, since you will ask about them as a block at
+   the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
    what you found already filled, and pick up at the first thing that is not.
 
-Ask open design questions **one at a time, in conversation**, and let the user answer in prose.
-Save `AskUserQuestion` for genuinely discrete choices — the tier checkpoints and the housekeeping
-decisions at the end.
+Ask open design questions **one at a time, in conversation**, and let them answer in prose. Save
+`AskUserQuestion` for genuinely discrete choices — the tier checkpoints and the housekeeping
+decisions at the end. When you do offer choices, leave room for an answer on neither list: an
+either/or claims the design space has two points in it, at the moment you know least.
+
+### If a written brief arrives instead of answers
+
+This is how dragon started: a working title, a ranked list of inspirations, a handful of words for
+the feeling, a list of things the player does, and a grant of creative freedom to decide anything
+the brief left unclear.
+
+**Treat the brief as the interview.** Every noun in the Charter traces to a line of it, the same as
+it would to something said aloud. Ask about what it leaves open as you would in conversation, one
+thing at a time, and file what stays open. Where they have granted you freedom and you use it, the
+decision is yours, not theirs, and it has to stay visible as yours: **list every call you made in
+the first log entry, each with its reason, apart from what the brief said.** In a week nobody can
+tell which sentence in the Charter the brief said and which one an agent invented, and both read as
+settled; the Charter's authority depends on the difference. Dragon's first entry listed seven such
+calls, under a title that said why: *so they stay distinguishable*.
 
 ---
 
@@ -65,7 +89,7 @@ Then make the mechanical edits — these are the only find-and-replace steps in 
 - `README.md` — the `# <project>` heading
 - `docs/CHARTER.md` — the `# <project> Charter` heading and the `## 1. What <project> is` heading
 - `package.json` — the `name` field. Must be npm-valid: lowercase, no spaces, no leading dot or
-  underscore. Derive a slug and show it to the user before writing it.
+  underscore. Derive a slug and show it to them before writing it.
 - `index.html` — the `<title>` tag
 
 The last two carry no backticks, so the `rg` inventory will never remind you about them. Do them
@@ -88,10 +112,9 @@ One to three. These are the things that were true before anything else was decid
 everything downstream is an attempt to satisfy at once. They go in `docs/CHARTER.md` §1.
 
 For each, ask what it means and what feeling it is chasing — then ask **what it costs**. The Charter
-states the test plainly: a commitment that cannot be contradicted is not one. If the user cannot
-name anything it rules out or anything it makes harder, you have a mood rather than a commitment.
-Push back once, in a sentence. If it still will not sharpen, file it under DECIDE and leave §1
-shorter.
+states the test plainly: a commitment that cannot be contradicted is not one. If they cannot name
+anything it rules out or anything it makes harder, you have a mood rather than a commitment. Push
+back once, in a sentence. If it still will not sharpen, file it under DECIDE and leave §1 shorter.
 
 Most of the interesting design work on a game is the tension between its commitments. If two of
 them already pull against each other, that is a good sign — note the tension in the log entry at the
@@ -104,11 +127,11 @@ what they come back with. Then the shape of time — how long one session runs, 
 them adds up to. Goes under the `### What a session actually is` heading in §1.
 
 "What they come back with" is the part that gets skipped and the part that constrains everything
-downstream. If the user cannot answer it, that is a PLAY question, not a blank.
+downstream. If they cannot answer it, that is a PLAY question, not a blank.
 
 ### Checkpoint
 
-Stop here and tell the user plainly: **they now have a valid seed.** A named repo, a premise, the
+Stop here and tell them plainly: **they now have a valid seed.** A named repo, a premise, the
 commitments, and the loop is enough to start playing with. The tiers below are worth doing only if
 the answers already exist.
 
@@ -123,8 +146,8 @@ Three to five criteria in `docs/CHARTER.md` §2, each concrete enough to reject 
 
 The useful half of each is the **`*Rules out:*`** line, and it is the half that gets skipped.
 Suggest writing that line first: ask what proposals this criterion kills, by name, including the
-expensive ones — the cost is what makes it a criterion rather than a preference. If the user cannot
-name anything it kills, do not write it down. Either sharpen it with them or drop it.
+expensive ones — the cost is what makes it a criterion rather than a preference. If they cannot name
+anything it kills, do not write it down. Either sharpen it with them or drop it.
 
 Before moving on, read the criteria back against the commitments from Tier 1. If one contradicts
 another, that is a COLLISIONS entry, not something to reconcile quietly on their behalf.
@@ -134,8 +157,8 @@ another, that is a COLLISIONS entry, not something to reconcile quietly on their
 ## Tier 3 — only if the answers already exist.
 
 **Do not run this tier speculatively.** On a young project the honest answer to both sections is
-usually "nothing yet," and an empty section is correct. Ask whether the user already has these; if
-they hesitate, skip the tier and move on.
+usually "nothing yet," and an empty section is correct. Ask whether they already have these; if they
+hesitate, skip the tier and move on.
 
 **§3, the laws.** Only rules that bind everywhere, with no exceptions anywhere. A rule that governs
 one system belongs with that system in §4, not here. Each law needs its *Why* — the failure it
@@ -146,8 +169,8 @@ the part that actually gets used.
 **§4, the building blocks.** One block per system large enough that a decision about it constrains
 other systems. **The problem** before **The shape**, always, because the problem statement is how a
 reader six months out can tell a better answer from a different question. The shape is behaviour and
-consequence, never mechanism — if the user starts describing implementation, that is not a Charter
-entry; capture it as a design-log entry instead.
+consequence, never mechanism — if they start describing implementation, that is not a Charter entry;
+capture it as a design-log entry instead.
 
 Leave the **What we learned** heading out entirely until something has actually been played.
 
@@ -186,15 +209,21 @@ Use `AskUserQuestion` for these; they are discrete choices.
 - **The template banners.** Delete the `> **Scaffolded from a shared TypeScript game-project
   template.**` block in `README.md`, and the `*This file arrived as a template…*` note in each of
   the three docs — each one as its file gets real content. In `CLAUDE.md`, delete the **This repo
-  was scaffolded from a template** paragraph once the placeholders it refers to are gone.
-- **The four inherited rules.** Ask: keep, argue with, or delete. The README is explicit that they
-  are inherited defaults rather than this project's findings, and that the decision should be made
-  deliberately and logged. Whatever the answer, log it. They appear in both `README.md` and
-  `CLAUDE.md` — keep the two in sync.
-- **RTK.** `README.md` has an "Optional: the RTK agent tooling" section listing the three files it
-  touches and how to remove it. Ask whether to keep or remove, then do it.
+  was scaffolded from a template** paragraph once the placeholders it refers to are gone. Leave the
+  README's *Where things live* prompt where it is: it is for the first session that writes code.
+- **The inherited rules.** There are two sets, and each is asked about as a whole: keep it, prune
+  it, or delete it. The template's four are in `README.md`, with the evidence behind each, and in
+  `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which the
+  Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. Dragon's
+  are in two places: the Charter's §5, under *Inherited from dragon*, and `CLAUDE.md`'s *Working
+  together*, with the rules above it that name dragon. Both sets are explicitly defaults rather than
+  this project's findings, and the decision should be made deliberately. Pruning dragon's is
+  expected over time, as this project learns which of them it needs; today, ask only whether any
+  group of them plainly does not fit this game. Whatever the answer, log it.
+- **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and
+  how to remove it. Ask whether to keep or remove, then do it.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
-- **The remote.** `git remote -v` should point at the user's own repo. If it still points at the
+- **The remote.** `git remote -v` should point at their own repo. If it still points at the
   template, they cloned instead of using "Use this template" — tell them, and let them decide.
 
 ### The first design-log entry
@@ -203,12 +232,15 @@ Get the real date with `date +%F` rather than guessing it.
 
 `docs/DESIGN-LOG.md` says the good first entry is the founding commitments, written down the day
 they are chosen, while the reasoning still seems too obvious to record. Write that entry using the
-form already in the file, then delete the form block.
+form already in the file, then delete the form block. The `design-log` skill has the conventions:
+the heading, the tags, and how to keep whose words are whose.
 
 Fill it honestly. **Outcome** for a founding entry is "still in progress" — say that. If there is
 nothing transferable under **Learned** yet, write that there isn't, rather than manufacturing a
-lesson. If any commitment was a working title, an agent-drafted line, or a tension the user chose to
-leave standing, this entry is where it gets recorded.
+lesson. If any commitment was a working title, an agent-drafted line, or a tension they chose to
+leave standing, this entry is where it gets recorded. If a brief stood in for the interview, this
+is where every call you made under its grant of freedom is listed, as yours, with its reason. And
+record what was decided about the inherited rules.
 
 ### Verify
 
@@ -216,13 +248,15 @@ Re-run ``rg '`<' README.md CLAUDE.md docs/``. Report what is left and confirm ea
 placeholder is deliberate rather than forgotten. Check `package.json` and `index.html` by eye — the
 sweep cannot see them.
 
-Close by telling the user what the next step actually is: **playing something.** Not scaffolding.
+Close by telling them what the next step actually is: **playing something.** Not scaffolding. The
+first session that writes code can make that cheap: its first end-to-end test is the boot test that
+`npm run verify:play` names, and from then on a build they can sit down to is seconds away.
 
 ---
 
 ## Do not, in this skill
 
-- Create `src/`, `tests/`, or `scripts/`, or write any game code, or write any tests.
+- Create `src/` or `tests/`, add to `scripts/`, or write any game code, or write any tests.
 - Choose an architecture, a file layout, or a state-management pattern — and never record one as an
   established convention. `index.html` naming `/src/runtime/main.ts` is a line to change, not a
   convention to obey.

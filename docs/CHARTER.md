@@ -106,10 +106,189 @@ is a feature that wandered in.>`*
 
 *The rules this project has learned about its own construction.*
 
-*It starts with four inherited from the template, stated in [`../CLAUDE.md`](../CLAUDE.md) and in
-the [README](../README.md). Those are defaults rather than findings — they came out of a different
-project. As this one earns rules of its own, write them here and say plainly which is which. A rule
-you have paid for outranks one you were handed.*
+It starts with rules carried in, and none of them is this project's own finding yet. Four are the
+template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../README.md) with the
+evidence behind each. The rest are below: what dragon, a game built from this template, paid for in
+its first two weeks and wrote down, wherever the lesson applies to any game rather than to dragon's
+own technology. Its rules about three.js, terrain generation and sound stayed behind in its own
+Charter. Each rule here keeps a line of what it cost there, because a rule without its why gets
+argued with the first time it is inconvenient. How we work with the person, in every session, is in
+`CLAUDE.md` under *Working together*; the rules here are for particular moments.
 
-*Read this section, and the last three entries of [`DESIGN-LOG.md`](./DESIGN-LOG.md), before
-proposing a plan.*
+They are defaults, not findings. Keep them, prune them or argue with them, deliberately, and log it
+when you do. As this project pays for rules of its own, write them under *This project's own*, in
+the same shape, and say plainly which is which. A rule you have paid for outranks one you were
+handed, and an inherited rule this project pays for again moves to *This project's own*, with its
+own story.
+
+The shape is load-bearing: a trigger and a verb, then what it cost. In dragon, a session that
+checked found its rules in that shape obeyed without reminding, and a lesson written three times as
+a retrospective never once acted on. *After a scripted edit, grep for the new text* is something to
+obey; *the instrument was missing what the question needed* is not.
+
+### Inherited from dragon
+
+#### When you are about to ask the person something
+
+- **Before putting a choice to them, ask whether both are wanted and what orders them, and leave
+  room for an answer on neither list.** An either/or claims the design space has two points in it,
+  at the moment you know least, and a list of three makes the same claim with one more point. Asked
+  in dragon whether resistance should read as antagonism or as inconvenience, the person answered
+  both, as a ladder; a question that ended *or something else* got the reading nobody had offered.
+- **When the question is how something looks, moves or sounds, ask in that medium, and vary one
+  thing at a time.** A drawing settled in one look what two rounds of *bat*, *pterosaur* and
+  *Smaug* had not. Frame every option at the same moments, and match a compared pair on everything
+  but the thing compared: amber and violet were put side by side at different brightness, and the
+  person's eye went by the brightness. When they choose from close-ups, show what they would notice
+  in play as well: a ridge chosen from frames of summits close to doubled the high ground once
+  built, and shown that, they chose again.
+- **When only play can judge between options, build them into the game behind a switch, and let
+  them compare in one sitting.** Give them the whole URL to open, not a parameter to add to one, and
+  put what the game actually read on the readout: one comparison dragon sent came back as two
+  identical loads, because the switch had been added to an address that did not read it, and the
+  readout's line was all that caught it. Once they have chosen, delete the others or keep the
+  switch as an instrument, and say which.
+- **When a tell fires, ask what they were trying to do before acting on the answer filed with it.**
+  A tell is an act agreed beforehand to mean something when it happens in play. Reaching for
+  dragon's debug map was filed as a sign that the island was not legible. The person was reaching
+  for it to find out whether the far side had been built at all, and a count found four villages of
+  seven on the seed they played, with half its land empty. Same act, two defects.
+- **When they cannot find something, find out whether they could not get there or could not see it
+  there, and fix the first before asking about the second.** The first is ours, a direction or an
+  instrument; the second may be the design. In dragon the person looked for ravens at three crags
+  and found none, and a measurement of how hard a raven is to see went to them as a question. They
+  had never reached the crags: the numbers they had been given were for something else. Given the
+  right ones, they found the ravens, and said a raven is something you come across by chance.
+  *Easier to see* would have been a change nobody wanted.
+- **When you measure their suggestion, check that the quantity you measured is the one they
+  proposed it for.** In dragon, the person asked for denser forest so that a player would lose
+  track of fleeing villagers; a census measured whether a covered route existed, and ranked the
+  forest last. A borrowed reason on your own metric tests neither, and it arrives with a table.
+- **When you set an option aside for what it costs, ask first what else could pay that cost.** An
+  objection is a price, not a verdict. The opening an agent set aside for dragon's tutorial was the
+  one the person chose, and both halves of its price turned out to be payable.
+
+#### When you are about to build something
+
+- **Build player-forward: a system earns its place by what the player will see, hear or have to do
+  differently because of it, and it is modelled that far.** Simulating a fair bit is fine; starting
+  from the world's model and hanging the player on it is not. In dragon, the person said of what
+  *not a simulation* meant: *"we specifically should not put that first, then figure out how to
+  bolt being a dragon on top of that."*
+- **When a new verb or motion reaches where nothing went before, trace the old systems there, and
+  decide what every other verb does wherever one holds the player still.** Old terms answer
+  confidently in corners nothing had reached. Dragon's backward wingbeat was right the first time it
+  was written and wrong in two old places, its lift and its thrust, neither of them in the new code.
+  And a verb that held the dragon at a cave's mouth was built around the breath; the first sitting
+  there roared, and watched the head go up.
+- **When two copies of one thing disagree, delete one rather than keep them in step.** A pair kept
+  in step is a rule to learn again for the next pair, and twenty-five of dragon's log entries were
+  seams between two copies of one thing on its island. The person's reason, there: *"you keep the
+  game WYSIWYG and honest. And if we needed that to change, we would know exactly where to go."*
+  Ask it of a library before adopting one, too: a library that brings its own copy adds a pair.
+- **When a third tuning of a heuristic has failed, look for the algorithm with a correctness
+  argument.** A second session that read dragon's whole log found that every tuned rule which gave
+  way to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the
+  agent's*.
+
+#### When you are about to trust a measurement
+
+- **A null result is not a result until something in the same run has come back non-null.** An
+  instrument cannot tell you it is blind. Set the effect absurdly high, confirm the instrument sees
+  that, then dial back and read the real number. Dragon paid for it six times in one round, and a
+  bad null pushes the design as well as costing the time, because *nothing happened* always reads
+  as *not enough*.
+- **Two wrong guesses mean the instrument is missing, not the answer.** Build a way to see the
+  thing, a readout, a count, a distance, before a third fix; two right guesses that are not the
+  cause mean the same. When a stage produces too few of something, count what exists before tuning
+  what rejects it. And after two wrong guesses at a design, ask for their picture, or for how other
+  games, old or new, have done it. Dragon paid for it three times in three rounds before it became
+  a rule: the last time, three staged approaches missed, and a readout answered in one run.
+- **Draw anything with a shape before you tune it, and reduce the scene before you read the
+  frame.** A summary statistic is a projection, and the defect is usually in the dimension it threw
+  away: a river of 12.5 km and a river going round in circles are the same number. A frame that
+  differs is not evidence until you know what else in it could have. Take the frame from the camera
+  the player has, reach a posed state by a second route before trusting it, and judge anything with
+  a front while it moves: every animal on dragon's island ran tail first from the day it was drawn,
+  through a sequence of stills.
+- **When a thing has a destination, instrument the gap to it, not the state it is in.** A count by
+  state said every fleeing villager was correctly *leaving*; metres still to go said two of them had
+  dithered 350 m short of a cave for eleven minutes.
+- **When the design promises what happens if the player does nothing, trace the nothing, for longer
+  than anything else waits.** No test waits twenty minutes, and nobody spends a sitting staying
+  away. Twenty minutes of dragon's island left alone broke two of its promises.
+- **Try a change on cases it was not developed against.** The cases a change is traced on become
+  the cases it is right about. Dragon's routes were fixed and counted on four seeds, and on a fifth
+  that nobody had counted, a whole township stood at a wall 85 m from home.
+
+#### When you are about to trust a test or a check
+
+- **A test earns trust by failing: show that each new one fails with the fix taken out, on an
+  assertion rather than a timeout.** Assert the relationship that has stopped changing, not the
+  number still being tuned, and a motion by its course as well as by where it ends: a test named
+  for a motion and asserted on an end state passes every motion that ends there. A game in dragon
+  that threw before its test hook was installed failed the boot test only at its timeout, 97 s
+  later, and would have taken the whole suite about half an hour to go red.
+- **After adding a state to something other features already read, run their tests, not only
+  yours.** The tests written beside a new state all ask whether the new thing works. Dragon's
+  sheltering villagers walked calmly indoors past the dragon, green across twenty unit tests and
+  eight new end-to-end ones, and a round-one test of the villagers caught it.
+- **Booted is not drawn: before a test draws a frame, ask whether it could fail with nothing wrong
+  on the screen.** How the picture looks is found at the game; a test checks state. Draw only for
+  what a playtest cannot see, a shader that fails to compile, a GL error. Dragon's eight tests that
+  drew were 7% of its suite, a third of its time and every one of CI's timeouts. The person put it
+  this way: *"we only need a test to draw something when we need to check 'does this look
+  correct?' … that's what our playtest sessions are for."*
+- **When a test needs a thing from the world, ask for it by the property it needs, and fail with
+  that property's name when there is none.** *The first village* stood for people in their yards,
+  on level ground; when the world moved, the test failed on an assertion about something else.
+  Dragon counted about twenty-five such failures against eight real defects caught.
+- **When a failure has been put down to whoever ran the check, change the check so that it cannot
+  happen, and make a check that could borrow something already running start its own.** Running it
+  again untouched turns the gate green and leaves the trap. Dragon's suite lost runs five times to a
+  dev server reloading pages under it, and passed a checkout with a bug in it because another
+  checkout's server answered on the port; the end-to-end setup that ships here carries both fixes.
+  Nor is a timeout a flake until it has been timed on both commits: one ran 48 s before a fix and
+  66 s after.
+- **Grep for the new text after a scripted edit, after one that was reported as stopped, and after
+  the context has been summarised.** An edit that silently matches nothing is worse than one that
+  fails, and a command reported as stopped may have run partway, so read the file before saying
+  what it holds. After one compaction, the summary expected nine changed files and `git status`
+  showed four.
+
+#### When you are about to plan, merge or hand over
+
+- **When you plan a round, read the parked questions as dependencies rather than as a backlog.**
+  They are in two places: `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
+  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). A parking note is a photograph of the day it was
+  written, and what makes it stale is usually work scheduled afterwards, so nothing edits it. Ask of
+  each parked entry which of the new work makes it blocking. Dragon's note on how the dragon comes
+  down said it was waiting on appetite rather than on a dependency, one session before a plan that
+  needed the dragon to land on a ledge.
+- **When two branches meet, read each side's log for what it said the other would need, and read
+  main's log as it stands before writing that nothing has recorded something.** A note in *Changed
+  elsewhere* about another session's work is a task with no owner. In dragon, one session wrote
+  that the other's villagers would walk the floors of lochs until that session's map asked about
+  water; the merge fixed the two tests that failed and nothing that had only been written down, and
+  a review found a township walking sixteen metres down a loch's bed. And an afternoon of measuring
+  reported as unrecorded a finding that had reached main's log four hours before.
+- **When you write words an agent will read before it works with someone, write them in the voice
+  you want it to use with them, and say where the ideas in them came from.** An agent takes the
+  register of its instructions along with their rules, and a word travels by itself: nothing told
+  dragon's agents to treat the person as a judge, and a log label, *The ruling*, copied from entry
+  to entry, did it anyway.
+- **When the same instrument has been built twice, make it a skill, and test the skill against a
+  planted defect, with it and without it.** Plant the defect as a parentless commit so no history
+  gives it away, and compare time as well as verdicts: dragon's animation skill found a planted
+  defect in 37 minutes against 64 without it, and on a case it was blind to took 71 against 61,
+  because the run believed it first. What the eval runs built for themselves is what the skill
+  should have shipped with, and a true negative is a claim like any other: the gulls it passed as
+  healthy were spinning on the spot.
+
+### This project's own
+
+*None yet. The first rule this project pays for goes here, in the shape above, with the design-log
+entry it came from.*
+
+Read this section, and the last three entries of [`DESIGN-LOG.md`](./DESIGN-LOG.md), before
+proposing a plan.

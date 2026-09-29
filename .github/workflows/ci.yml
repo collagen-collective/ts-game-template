@@ -9,8 +9,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # A new project has no source until its first coding session, and on this template's own repo
+  # there never is any: the typecheck, lint and end-to-end jobs would fail on "no input files" and
+  # "No tests found" on every change to the documents. So they wait on this job, and are skipped,
+  # visibly, until there is something to check. Only the root config files are left out of the
+  # count: TypeScript anywhere else counts, whatever folder it is in, so a project that moves its
+  # code out of src/ is checked rather than skipped. The unit tests always run.
+  source:
+    name: Look for source
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    permissions:
+      contents: read
+
+    outputs:
+      found: ${{ steps.look.outputs.found }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Look for TypeScript besides the root config files
+        id: look
+        run: |
+          if [ -n "$(git ls-files -- '*.ts' '*.tsx' '*.mts' '*.cts' ':(exclude,glob)*.config.ts')" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No source yet: the typecheck, lint and end-to-end jobs are skipped until there is."
+          fi
+
   pre-commit-checks:
     name: Pre-commit checks
+    needs: source
+    if: needs.source.outputs.found == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 8
 
@@ -62,3 +95,40 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+  end-to-end:
+    name: End-to-end (booted game)
+    needs: source
+    if: needs.source.outputs.found == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Boot the game and drive it
+        run: npx playwright test
+
+      - name: Keep failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failures
+          path: test-results/
+          retention-days: 7
