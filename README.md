@@ -35,13 +35,29 @@ with it.
 
 ## What ships here, and what does not
 
-`src/`, `tests/`, and `scripts/` are empty. There is no implementation to read, no architecture to
-conform to, and no issue tracker. That is the starting condition, not an accident.
+`src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
+and no issue tracker. That is the starting condition, not an accident. `scripts/` holds one thing,
+the merge driver for the three documents, because it is about the documents rather than the game.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
-not exist yet — it is the one file-layout assumption the scaffold makes, and it is a line to change
-rather than a convention to obey.
+not exist yet; the Playwright config looks for tests in `tests/e2e/`, and Vitest runs any
+`*.test.ts` under `src/` or `tests/` outside it. Those are the file-layout assumptions the scaffold
+makes, and each is a line to change rather than a convention to obey.
+
+Some of what ships was carried back from dragon, a game built from this template, after its first
+two weeks. The Charter's §5 holds the rules it paid for that apply to any game. `CLAUDE.md` holds
+what it found about working with the person and with other agents. The `design-log` skill holds
+how its log came to be written, playtests above all. And the end-to-end setup, the play gate, the
+documents' merge driver and the pull-request template are its tooling, each with the reason it
+exists written beside it.
+
+## Where things live
+
+*Empty until there is code. When a session settles a layout, record it here in a paragraph or two
+(what lives where, and what may read or write what), and log why in the design log. Whatever the
+layout, one property is worth choosing on purpose: a way to step the game's state without drawing
+it. Dragon's traces, and most of its tests, depended on that.*
 
 ## Four rules carried in
 
@@ -69,36 +85,70 @@ what *worked*. Defect lists are the easy half, and they are not the half that te
 protect.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
-proxy for a judgment, and a person has to play it and render the verdict. Feel-shaped questions
+proxy for a judgment, and it takes a person playing it to make that judgment. Feel-shaped questions
 routed through a queue come back as correct fragments that do not compose, verified by gates that
 cannot see the thing you were actually asking about.
 
 **Test what has stopped changing.** Every test written against a system you are still tuning is a
 bet you will pay to unwind. About six thousand lines of that bet came due at once.
 
+Dragon, a game built from this template, kept all four: its brief asked for the same things in its
+own words. In its first two weeks it paid for more, and the ones that apply to any game are in
+[`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited from dragon*, each with a line of what
+it cost. They are inherited on the same terms as these four.
+
 ## Toolchain
 
 Requires Node 22+.
 
 ```bash
-npm ci            # install
-npm run dev       # vite dev server on :3000
-npm run build     # tsc --noEmit && vite build
-npm run typecheck # tsc --noEmit
-npm run lint      # eslint src tests
-npm run format    # prettier --write src tests
-npm test          # vitest run
-npm run test:e2e  # playwright test
-npm run verify    # typecheck + lint + unit + e2e
+npm ci              # install
+npm run dev         # vite dev server on :3000
+npm run build       # tsc --noEmit && vite build
+npm run typecheck   # tsc --noEmit
+npm run lint        # eslint src tests
+npm run format      # prettier --write src tests
+npm test            # vitest run
+npm run test:e2e    # playwright test: boots the real game in headless Chromium
+npm run verify      # typecheck + lint + unit + e2e
+npm run verify:play # typecheck + the boot test: a build a person can sit down to
 ```
 
-`npm run verify` is the gate. With `src/` and `tests/` empty it does not pass yet: every step has
-nothing to act on, and several tools treat "no input files" as an error. A Playwright config still
-needs to be added before `test:e2e` can run. Adding the first source file and the first test is
-what makes any of it meaningful.
+`npm run verify` is the gate. With `src/` and `tests/` empty it does not pass yet: most steps have
+nothing to act on, and several tools treat "no input files" as an error. The unit tests pass from
+the start, because the merge driver's tests are there. Adding the first source file and the first
+test is what makes the rest of it meaningful.
+
+The end-to-end tests are the ones that say a player can do a thing: they boot the real game in
+headless Chromium and drive it. Headless Chromium ran WebGL 2, drawing in software, in dragon's
+cloud sessions and its CI, and again in a cloud session when these files were written, so a 3D game
+can boot there. Check it where you work before planning on it, as dragon did: the whole test
+strategy turned on it, the check took two minutes, and it would have cost a day the other way. The
+first test to write is `tests/e2e/boot.spec.ts`, which boots the game, fails on any page or console
+error, draws one frame with everything that has a shader in it, and reads the GL error flag, since
+GL errors reach the console late and as warnings. `npm run verify:play` is the typecheck and that
+test, and a build pushed for a person to play waits on it rather than on the gate: dragon's gate
+took five minutes even after it had been cut from fifteen, and every sitting used to wait for it.
+The gate runs while they play, anything it finds is said and fixed rather than left for the next
+push, and once there is code, nothing goes into a pull request without it.
+
+Every end-to-end run starts its own Vite server, on a port taken from the checkout's path and off
+the dev server's 3000, so worktrees can each run the suite at once and a run never tests another
+checkout's server. `E2E_PORT` chooses the port; two runs in one checkout need one each. That server
+watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved while the suite runs does not
+reload the page under whichever test is running: a run tests the code as it stood when it began.
+`playwright.config.ts` says why each of these is so.
 
 A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. CI (`.github/workflows/ci.yml`)
-runs typecheck, a Prettier check, ESLint, and the unit tests on pull requests.
+runs typecheck, a Prettier check, ESLint, the unit tests, and the end-to-end suite on pull requests,
+and keeps what a failed end-to-end run left in `test-results/` for a week.
+
+The three documents merge themselves where both sides only added to them. Every branch appends to
+the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and
+often in the Charter's §5 as well. `scripts/merge-docs.mjs` keeps both sides' additions, the log's
+entries in date order, and leaves anything else as an ordinary conflict: a passage both sides
+changed is still there to be read. `npm ci` registers it, through `prepare`. Where it is not
+registered, GitHub's merge button included, the documents merge as they always did.
 
 ## Optional: the RTK agent tooling
 

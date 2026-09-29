@@ -18,6 +18,11 @@ cannot answer it:
 An entry that has sat here for months without being answered or deleted is telling you it does not
 block anything. Delete it.
 
+A question about something that does not exist yet goes to the design log instead, as an entry
+tagged `[later]` that says what good and bad would look like and what has to exist first; the
+`design-log` skill has the form. The exception is the premise's own questions before anything is
+built: they live here, because answering them is what the first build is for.
+
 *This file arrived as a template with no entries. The headings below show the form; replace them.
 An entry is a bolded question, then three or four sentences on why the answer matters and what
 turns on it. Nothing else — an entry that grows a plan has stopped being a question.*
