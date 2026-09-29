@@ -45,8 +45,10 @@ Four tags transfer to any project and are worth using from the first entry: `[pr
 work itself is done, `[build]` for tooling and pipeline, `[play]` for anything a person playing it
 told you, and `[feel]` for the texture of a system rather than its rules. The rest of the vocabulary
 is this project's own and accumulates one system at a time — coin a tag when a second entry wants
-it, not in advance. Dragon's log grew `[playtest]` beside `[play]` in its first week, and a search
-for its sittings has had to ask for both ever since.
+it, not in advance. And when two that look alike mean different things, say so here: in dragon,
+`[playtest]` marks a sitting, whose title begins *Playtest:*, and `[play]` anything a person
+playing it told you, in a sitting or out of one. Its log kept the two apart for a week before
+anything wrote down which was which.
 
 ## Two status tags, and they describe the new entry
 
@@ -162,7 +164,8 @@ caught.
 
 **A playtest.** By its second week, dragon's playtests had settled into a shape worth starting from:
 
-- **Played.** When, by whom, which build (the commit), and where in the game.
+- **Resolves.**, first, when the sitting answers a question a build entry left for it.
+- **What they played.** When, which build (the commit), and where in the game.
 - **What worked, and it is the half to protect.** In their words, one thing at a time. It is the
   half that gets skipped, and the only half that tells the next change what not to break.
 - **What they expected.** What they thought would happen, before what did. It is the sentence worth
