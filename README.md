@@ -107,21 +107,31 @@ compresses command output to cut an LLM agent's token consumption. **It is optio
 needs it.** If you are not running a coding agent against this repo, it changes nothing about how
 the game builds or runs.
 
-It lives in three places:
+It lives in three places, none of which is a document:
 
-- **`CLAUDE.md`** — a generated block between the `<!-- rtk-instructions -->` markers, telling an
-  agent to prefix its commands with `rtk`. This is the part worth a decision: an agent that reads it
-  without RTK installed will try to run a command that isn't there.
+- **`.claude/hooks/rtk-rewrite.sh`**, wired to `PreToolUse`/`Bash` in `.claude/settings.json` —
+  rewrites each shell command to run under `rtk`. This is deliberately a mechanism rather than an
+  instruction: no document has to tell an agent to type `rtk` in front of things, and an agent that
+  never heard of RTK gets the benefit anyway. When `rtk` is not installed the hook exits silently
+  and the command runs exactly as written, so a local checkout without RTK behaves normally. (The
+  template used to put a generated block of instructions in `CLAUDE.md` instead; dragon replaced it
+  with this hook, and an agent without RTK no longer reads an instruction it cannot follow.)
 - **`.rtk/filters.toml`** — project-local output filters. Ships with commented examples only.
-- **`.claude/hooks/cloud-session-start.sh`** — installs RTK by piping the vendor's install script to
-  `sh`. It runs only when `CLAUDE_CODE_REMOTE=true`, so a local session never reaches it.
+- **`.claude/hooks/cloud-session-start.sh`** — installs RTK in Claude Code Cloud sessions, building
+  it from a tag-pinned git checkout (the vendor's install script cannot reach its own release
+  metadata from inside the sandbox; the script's comments explain why at length). It runs only when
+  `CLAUDE_CODE_REMOTE=true`, so a local session never reaches it, and it needs `cargo` — without
+  one it warns and continues without RTK. Once RTK is built, the script runs `rtk init -g`, which
+  writes a ten-line note about the hook into the container's own Claude config, outside the
+  repository.
 
 To remove it:
 
 ```bash
-rm -rf .rtk
-# then delete the block between the <!-- rtk-instructions --> markers in CLAUDE.md,
-# and the "Install rtk" block in .claude/hooks/cloud-session-start.sh
+rm -rf .rtk .claude/hooks/rtk-rewrite.sh
+# then delete the "PreToolUse" block from .claude/settings.json,
+# and the "Install rtk" block, with the `rtk init -g` block after it,
+# in .claude/hooks/cloud-session-start.sh
 ```
 
 Separately, `.claude/settings.json` sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. That is an
