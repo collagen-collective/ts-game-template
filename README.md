@@ -36,8 +36,10 @@ with it.
 ## What ships here, and what does not
 
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
-and no issue tracker. That is the starting condition, not an accident. `scripts/` holds one thing,
-the merge driver for the three documents, because it is about the documents rather than the game.
+and no issue tracker. That is the starting condition, not an accident. `scripts/` holds the merge
+driver for the three documents, and two instruments that know nothing about any game:
+`shots.mjs`, which captures posed frames, and `e2e-slow.mjs`, which runs the end-to-end suite at
+about CI's speed. The game supplies what they drive.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
@@ -51,6 +53,12 @@ what it found about working with the person and with other agents. The `design-l
 how its log came to be written, playtests above all. And the end-to-end setup, the play gate, the
 documents' merge driver and the pull-request template are its tooling, each with the reason it
 exists written beside it.
+
+Extra Sapien, a second game built from it, carried back more after its first two days:
+- the frame harness, which it and dragon had each built for themselves;
+- CI on every push;
+- the slow run;
+- §5's rules for running builders side by side.
 
 ## Where things live
 
@@ -95,7 +103,8 @@ bet you will pay to unwind. About six thousand lines of that bet came due at onc
 Dragon, a game built from this template, kept all four: its brief asked for the same things in its
 own words. In its first two weeks it paid for more, and the ones that apply to any game are in
 [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited from dragon*, each with a line of what
-it cost. They are inherited on the same terms as these four.
+it cost. Extra Sapien, a second game, added a few of its own under *Inherited from Extra Sapien*.
+They are inherited on the same terms as these four.
 
 ## Toolchain
 
@@ -112,6 +121,8 @@ npm test            # vitest run
 npm run test:e2e    # playwright test: boots the real game in headless Chromium
 npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test: a build a person can sit down to
+npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
+npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
 ```
 
 `npm run verify` is the gate. With `src/` and `tests/` empty it does not pass yet: most steps have
@@ -139,16 +150,32 @@ watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved while the s
 reload the page under whichever test is running: a run tests the code as it stood when it began.
 `playwright.config.ts` says why each of these is so.
 
+CI's runner draws more slowly than a development machine, so a test's time limit set from a run
+there is set for the faster machine. In Extra Sapien, a game built from this template, two tests
+passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
+`npm run test:e2e:slow` runs the suite on two workers sharing one core, a little slower than CI,
+and failed the same two tests the same way. Run it before setting a time limit, and before a pull
+request.
+
+Screenshots are part of verification, and `npm run shots` takes them. A script of the game's own
+drives the game into each state worth seeing and names the frame. The harness serves the game, says
+what breaks in the page, and lays the frames out on one sheet. With `--tree before=@<commit>`, it
+puts an older commit's frames beside this checkout's, a row a shot. `scripts/shots.mjs` says what
+the game's script exports. What the game offers it to drive is the game's choice. Dragon and Extra
+Sapien each built one of these before it shipped here, and in Extra Sapien a tour of the whole game
+in frames found 22 defects with every test green.
+
 A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the first source file
 exists, tsc has nothing to check and reports that as an error; the hook lets a commit through when
 that is all tsc has to say, so a new project can commit its documents from the first day. CI
 (`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
-end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
-for a week. CI is let off the same way, and says so: until the repository has TypeScript besides
-its root config files, its typecheck-and-lint job and its end-to-end job are skipped, and show as
-skipped rather than passed. TypeScript in any folder counts, so a project that moves its code out
-of `src/` is checked rather than skipped. Once there is source they run, and the end-to-end job
-fails until the boot test exists.
+end-to-end suite on every push, and again on a pull request, where it tests the branch merged with
+its base. It keeps what a failed end-to-end run left in `test-results/` for a week. CI is let off
+the same way, and says so: until the repository has TypeScript besides its root config files, its
+typecheck-and-lint job and its end-to-end job are skipped, and show as skipped rather than passed.
+TypeScript in any folder counts, so a project that moves its code out of `src/` is checked rather
+than skipped. Once there is source they run, and the end-to-end job fails until the boot test
+exists.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
 the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and

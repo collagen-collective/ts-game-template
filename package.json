@@ -12,8 +12,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:e2e:slow": "node scripts/e2e-slow.mjs",
     "verify": "npm run typecheck && npm run lint && npm run test && npm run test:e2e",
     "verify:play": "npm run typecheck && playwright test tests/e2e/boot.spec.ts",
+    "shots": "node scripts/shots.mjs",
     "prepare": "husky && node scripts/merge-docs.mjs --install"
   },
   "lint-staged": {

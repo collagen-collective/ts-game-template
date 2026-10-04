@@ -1,11 +1,21 @@
 name: CI
 
 on:
+  # Every push, so that a branch is checked from its first commit rather than from the day its pull
+  # request opens. In Extra Sapien, a game built from this template, a branch went two days and 112
+  # commits before CI first ran, on its pull request, and failed two end-to-end tests whose time
+  # limits had been set on a machine that draws 2.8 times faster than CI's runner.
+  push:
+    branches: ["**"]
+  # And again for a pull request, because it tests something else: the branch merged with its base,
+  # where a push tests the branch alone. So while a pull request is open its branch runs twice a
+  # push, and the checks are labelled (push) and (pull_request).
   pull_request:
     types: [opened, synchronize, reopened]
 
 concurrency:
-  group: ci-${{ github.event.pull_request.number }}
+  # One run of each kind per branch or pull request: a newer push cancels the run it replaces.
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
