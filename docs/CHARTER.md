@@ -111,9 +111,10 @@ template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../READ
 evidence behind each. The rest are below: what dragon, a game built from this template, paid for in
 its first two weeks and wrote down, wherever the lesson applies to any game rather than to dragon's
 own technology. Its rules about three.js, terrain generation and sound stayed behind in its own
-Charter. Each rule here keeps a line of what it cost there, because a rule without its why gets
-argued with the first time it is inconvenient. How we work with the person, in every session, is in
-`CLAUDE.md` under *Working together*; the rules here are for particular moments.
+Charter. After them come the few that Extra Sapien, a second game, paid for in its first two days,
+on the same terms. Each rule here keeps a line of what it cost there, because a rule without its
+why gets argued with the first time it is inconvenient. How we work with the person, in every
+session, is in `CLAUDE.md` under *Working together*; the rules here are for particular moments.
 
 They are defaults, not findings. Keep them, prune them or argue with them, deliberately, and log it
 when you do. As this project pays for rules of its own, write them under *This project's own*, in
@@ -284,6 +285,43 @@ obey; *the instrument was missing what the question needed* is not.
   because the run believed it first. What the eval runs built for themselves is what the skill
   should have shipped with, and a true negative is a claim like any other: the gulls it passed as
   healthy were spinning on the spot.
+
+### Inherited from Extra Sapien
+
+A recreation of a slice of another game, built in two days with agents working side by side. Most
+of what it learned was about that game and stayed behind. These apply to any game.
+
+#### When you are about to fan out builders
+
+- **Run no more at once than the machine can draw for: two, on four cores.** Each builder boots
+  its own browser for frames and for the suite. Four at once on a four-core session put the load at
+  16 to 23 and made every frame capture three to ten times slower. End-to-end tests failed on their
+  time limits, and the four took longer than two rounds of two would have.
+- **Have each builder commit as it goes, on a branch of its own.** A container restart stopped two
+  of Extra Sapien's builders with their work uncommitted. It survived only because the disk did,
+  and two more agents finished it from the files and the transcripts.
+- **Name every shared thing in the brief, and give each builder its share.** All of Extra Sapien's
+  tangles between agents were about sharing:
+  - six researchers spent one search budget in the order they were launched;
+  - two prototypes wrote to one scratch folder;
+  - a message resumed a second copy of an agent that was still running.
+
+  Builders split by what they read, each shared file with one owner, merged without a conflict.
+
+#### When you are about to set a test's time limit
+
+- **Set it from a run at CI's speed, not from a run here: `npm run test:e2e:slow`.** A development
+  machine draws faster than CI's runner. Extra Sapien's CI first ran 112 commits into a branch. Two
+  tests whose limits had been set in a four-core session failed there, on a runner that drew 2.8
+  times slower, with nothing wrong in the game. Pinned to one core, the session failed them the same
+  way.
+
+#### When you are about to merge branches built apart
+
+- **Tour the whole game in frames on the merged head, and look at every sheet.** It is the seams
+  between branches that break, and no test sits on a seam. With every test green, Extra Sapien's
+  first tour after a merge found 22 defects where four places built apart had met. A second tour
+  found 10 more where their separate fixes met.
 
 ### This project's own
 

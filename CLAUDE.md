@@ -24,8 +24,9 @@ section, and the last three log entries, before proposing a plan.
 ## How to work in this repo
 
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
-holds only the documents' merge driver. Do not assume a missing module was deleted by mistake, and
-do not go looking for prior art in the tree.
+holds the documents' merge driver and two instruments that know no game (`shots.mjs` and
+`e2e-slow.mjs`). Do not assume a missing module was deleted by mistake, and do not go looking for
+prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout rules, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
@@ -70,10 +71,15 @@ we can easily go back to it as needed."*
 
 **Look at the frame.** Screenshots are part of verification. Early on, give the game a handle the
 end-to-end tests can drive it by, one that can step the simulation, place the camera, and read the
-state the screen does not show, and a scratch script that captures posed frames; then look at
-them. Several of dragon's defects existed only on screen, and the day its readout said where the
-camera was, *"this looks wrong from here"* stopped being a description and became a frame anyone
-could take again.
+state the screen does not show. Then write a shots script that poses it, run it with `npm run
+shots`, and look at the sheet (`scripts/shots.mjs` says what the script exports). Several of
+dragon's defects existed only on screen, and the day its readout said where the camera was, *"this
+looks wrong from here"* stopped being a description and became a frame anyone could take again.
+Both dragon and Extra Sapien built a harness for this, and in Extra Sapien it was the last check
+built and the most productive. With `--tree before=@<commit>`, the same script puts an older
+commit's frames beside this checkout's: the before and after of anything that is looked at rather
+than measured. The `frame-check` skill has the rest: what to ask, what to pose, how to read a
+sheet, and the control.
 
 ### Working together
 
@@ -193,6 +199,8 @@ npm test            # vitest run
 npm run test:e2e    # playwright test (boots the real game in headless Chromium)
 npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test (a build a person can sit down to)
+npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
+npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
 ```
 
 With `src/` and `tests/` empty, most of these have nothing to act on, and several exit non-zero on
@@ -222,6 +230,10 @@ A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only 
 source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
 tests, and the end-to-end suite in a booted game on pull requests, all but the unit tests once
 there is source to check.
+
+CI's runner draws more slowly than a cloud session: Extra Sapien's drew 2.8 times slower, and two
+tests whose time limits were set in a session failed there. `npm run test:e2e:slow` runs the suite
+a little slower than CI. Set a time limit from it, and run it before a pull request.
 
 When you merge main, the three documents resolve themselves where both sides only added text
 (`scripts/merge-docs.mjs`, registered by `npm ci`). A conflict left in one of them is a real
