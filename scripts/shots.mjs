@@ -22,7 +22,9 @@
  * `ready` and `draw` may be left out. A game that draws only when asked, under
  * test, needs `draw`, or every frame is of the last one it drew; one whose
  * posing draws its own frame, as dragon's camera does, leaves `draw` out and
- * draws where it needs to. `--query` is added to `path` as written.
+ * draws where it needs to. `--query` is added to `path` as written. The page's
+ * errors are printed and its `console.log` is not: a script that measures
+ * returns what it measured from `page.evaluate` and prints it itself.
  *
  * Every frame goes to `<out-dir>/<name>.png`, or with more than one tree to
  * `<out-dir>/<name>-<label>.png`, and every run lays them out on

@@ -17,6 +17,12 @@ is showing, where the camera is) and **what the frame shows**. The instrument is
 `scripts/shots.mjs`; its header has every option and the reason for each choice. Outputs go to
 `scratch-*` paths, which git ignores.
 
+It was tried before it shipped. Two agents were given one report, *"Riding the lift up out of the
+galleries, it looked like Baldur wasn't standing on anything"*, on copies of Extra Sapien in which
+a lift's deck had been drawn 1.1 m under him while it moved, with every test green. With this skill
+the defect was found, fixed and shown fixed in 16 minutes; without it, in 21. Both were right, and
+what both built for themselves is in it now.
+
 ## 1. Start with what they saw
 
 Before the code, the report. Ask the person you're working with what they saw, where they were,
@@ -29,13 +35,18 @@ If a frame disagrees with what they saw, suspect the frame: the pose, the camera
 the build it was taken from. If nobody is around to ask, write down the questions you would have
 asked, and bring them back with what you found.
 
+**Then rule the state in or out.** If the game's state runs without a browser, a trace of it in
+Node says in a minute whether the fault is in the state or in the drawing (`CLAUDE.md`, *Trace
+before you test*). The agent without this skill did that first, and knew within a minute that the
+game had Baldur on the deck and only the picture did not.
+
 ## 2. Give the game a handle, once
 
 A shots script drives the game through a handle the game offers to tests. Its shape is the game's
 choice, and the README's *Where things live* records it. What a script needs from it:
 
 - **Booted:** a way to know the game can be driven. Usually the handle existing on `window`.
-- **Drawn:** a way to draw a frame on demand, if the game under test draws only when asked.
+- **A frame:** a way to draw one on demand, if the game under test draws only when asked.
 - **A moment:** a way to reach a named place or beat by the game's own route, and to step time
   with an input held.
 - **A camera:** a way to place the camera for a frame, and to say where it is. The day dragon's
@@ -43,6 +54,10 @@ choice, and the README's *Where things live* records it. What a script needs fro
   take again.
 - **The state:** a way to read what the screen does not show, so each frame can be checked
   against it.
+- **What was drawn:** where the renderer put a thing, not only where the state has it. The gap
+  between the two is the measurement a report like *"he wasn't standing on anything"* asks for:
+  1.10 m on every frame of the ride, and 0 at rest. Both agents in the trial had to read
+  it out of the renderer's private fields.
 
 If the handle cannot do one of these, add it to the handle, once, rather than reaching into the
 game's state or the renderer from a script: the next script will need it too. The first agent to
@@ -88,8 +103,9 @@ The handle's names above are placeholders; use the game's. Then:
   first through a sequence of stills.
 - **Keep the HUD in at least one frame.** Half the defects in Extra Sapien's first tour were in the
   page's HTML over the picture, which a frame with the HUD hidden cannot show.
-- **Print the state beside each frame** (`console.log` goes to the run's output), and say where
-  the camera was.
+- **Print the state beside each frame,** and say where the camera was. Return it from
+  `page.evaluate` and print it in the script, as above: the harness passes on the page's errors,
+  not its `console.log`.
 
 ## 4. Run it, and read the sheet
 
@@ -113,8 +129,12 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> 2>&1 | tee scr
   - Is the camera inside geometry, or looking at the back of something?
   - Is anything left over from before? In Extra Sapien, a second game in the same page drew the
     first game's cart, because a kept place read the objects it was built from.
-- **Measure what you can before describing it.** If a thing looks out of place, read its position
-  and the camera's from the state, rather than guessing from the picture.
+- **Measure what you can before describing it.** If a thing looks out of place, read where it was
+  drawn and where the state has it, and the camera's position, rather than guessing from the
+  picture.
+- **Then sweep for every other place the same code draws.** A report names the one moment the
+  person saw. Both agents found the planted defect on four other rides besides the one reported,
+  and one found it under the Wolves riding a lift down as well.
 
 ## 5. Before and after, and the control
 
