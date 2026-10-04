@@ -181,9 +181,10 @@ let failed = false;
 try {
     for (const tree of trees) {
         const say = (m) => console.log(many ? `${tree.label}: ${m}` : m);
+        let page = null;
         try {
             const port = await serve(tree.dir);
-            const page = await browser.newPage({ viewport: { width, height } });
+            page = await browser.newPage({ viewport: { width, height } });
             // A frame of a broken game looks like a frame, so what breaks is said as it happens.
             page.on("pageerror", (e) => say(`page error: ${e.message}`));
             page.on("console", (m) => {
@@ -211,11 +212,11 @@ try {
                 console.log(join(outDir, file));
             };
             await script.default(shoot, page, tree);
-            await page.close();
         } catch (e) {
             failed = true;
             say(`FAILED: ${e instanceof Error ? e.message : e}`);
         } finally {
+            await page?.close().catch(() => {});
             stop();
         }
     }
@@ -280,7 +281,7 @@ body{margin:0;background:#1d1f22;color:#eee;font:14px/1.35 system-ui,sans-serif;
                     `${r.label ? `<div class="t">${esc(r.label)}</div>` : ""}<div class="g">${r.images
                         .map((m) =>
                             m.file
-                                ? `<div class="c"><img src="${esc(encodeURI(m.file))}"><span>${esc(m.caption)}</span></div>`
+                                ? `<div class="c"><img src="${esc(encodeURIComponent(m.file))}"><span>${esc(m.caption)}</span></div>`
                                 : `<div class="c"><i>${esc(m.caption)}: no frame</i></div>`,
                         )
                         .join("")}</div>`,
@@ -289,7 +290,7 @@ body{margin:0;background:#1d1f22;color:#eee;font:14px/1.35 system-ui,sans-serif;
         const name = pages === 1 ? "sheet" : `sheet-${p + 1}`;
         const htmlFile = resolve(outDir, `${name}.html`);
         writeFileSync(htmlFile, html);
-        const page = await browser.newPage({ viewport: { width: sheetWidth, height: 900 } });
+        const page = await browser.newPage({ viewport: { width: sheetWidth, height: 100 } });
         await page.goto(pathToFileURL(htmlFile).href);
         await page.waitForFunction(() => [...document.images].every((i) => i.complete));
         await page.screenshot({ path: join(outDir, `${name}.png`), fullPage: true });

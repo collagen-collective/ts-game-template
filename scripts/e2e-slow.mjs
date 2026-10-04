@@ -8,13 +8,18 @@
  *
  * Carried back from Extra Sapien, a game built from this template, where CI
  * first ran 112 commits into a branch and failed two end-to-end tests on their
- * time limits, with nothing wrong in the game. Its runner, for a private
- * repository, had two cores (Playwright ran 2 workers there at "100%") and drew
- * 2.8 times slower than a four-core cloud session: the boot test took 42.6 s
- * there and 15.1 s here. Pinned like this, the session ran the same suite 3.8
- * times slower than unpinned, and both tests failed as they had on CI. A test
- * that passes here has room to spare there. (Design log, 2026-10-04, *CI's
- * runner draws 2.8 times slower than here*.)
+ * time limits, with nothing wrong in the game. Pinned like this, a cloud
+ * session failed the same two the same way. CI's runner, for a private
+ * repository, had two cores: Playwright ran 2 workers there at "100%". Its
+ * whole suite, at one commit, took:
+ *
+ *   - 2.0 min in a four-core cloud session, on 4 workers;
+ *   - 6.0 min on CI, on 2 workers and 2 cores;
+ *   - 7.8 min pinned like this, on 2 workers and 1 core: 1.3 times CI.
+ *
+ * So a test that passes here has room to spare on CI. One that fails here may
+ * still pass there, but with less than a third in hand: Extra Sapien's
+ * folk-score test took 1.5 min on CI against a 90 s limit, and failed here.
  *
  * Linux only: it pins with `taskset` (util-linux), and every process the suite
  * starts, the server and the browsers, inherits the pin. The cloud sessions are

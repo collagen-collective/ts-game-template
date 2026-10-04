@@ -153,9 +153,10 @@ reload the page under whichever test is running: a run tests the code as it stoo
 CI's runner draws more slowly than a development machine, so a test's time limit set from a run
 there is set for the faster machine. In Extra Sapien, a game built from this template, two tests
 passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
-`npm run test:e2e:slow` runs the suite on two workers sharing one core, a little slower than CI,
-and failed the same two tests the same way. Run it before setting a time limit, and before a pull
-request.
+`npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
+CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
+was passing with almost nothing in hand: 1.5 minutes against a limit of 90 seconds. Run it before
+setting a time limit, and before a pull request.
 
 Screenshots are part of verification, and `npm run shots` takes them. A script of the game's own
 drives the game into each state worth seeing and names the frame. The harness serves the game, says
