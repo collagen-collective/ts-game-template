@@ -28,12 +28,13 @@
  * `<out-dir>/<name>-<label>.png`, and every run lays them out on
  * `<out-dir>/sheet.png`: a row a shot and a column a tree, or with one tree a
  * contact sheet in shot order. A long run's sheet is cut into `sheet-1.png`,
- * `sheet-2.png` and so on. An out-dir named `scratch-...` is ignored by git.
+ * `sheet-2.png` and so on, each short enough to read as one picture. An
+ * out-dir named `scratch-...` is ignored by git.
  *
  * A tree is `label=DIR`, a checkout of the game, or `label=@COMMIT`, which is
  * exported with `git archive` into a folder of its own under the system's temp
- * directory, with node_modules of its own; the copy is kept for the next run,
- * and `rm -rf` takes it away. With no `--tree`, the one tree is this checkout,
+ * directory (`TMPDIR` moves it), with node_modules of its own; the copy is kept
+ * for the next run, and `rm -rf` takes it away. With no `--tree`, the one tree is this checkout,
  * `now=.`. The same script drives every tree, so a commit older than the
  * handle it uses fails, says so, and leaves its column empty.
  *
@@ -230,8 +231,11 @@ process.exit(failed ? 1 : 0);
 /**
  * The sheet is laid out as a page beside the frames and photographed by the
  * same browser: the browser is the one image tool every checkout has, and
- * dragon's cloud container had no ImageMagick. Cut into pages, because a
- * screenshot of a page much taller than 12,000 pixels is not to be relied on.
+ * dragon's cloud container had no ImageMagick. Cut into pages of about 2,400
+ * pixels, so that each can be read as one picture: an agent trying this on
+ * Extra Sapien got a before-and-after of 33 rows on two pages of about 5,900
+ * pixels each, shrunk to an unreadable strip when looked at, and built a
+ * shorter sheet of its own to read it.
  */
 async function sheets() {
     if (frames.size === 0) return [];
@@ -264,7 +268,7 @@ async function sheets() {
             out.push({ label: i === 0 ? c.label : "", images: c.images.slice(i, i + cols) });
         return out;
     });
-    const perPage = Math.max(1, Math.floor(12_000 / cellHeight));
+    const perPage = Math.max(1, Math.floor(2_400 / cellHeight));
     const files = [];
     const pages = Math.ceil(rows.length / perPage);
     for (let p = 0; p < pages; p++) {

@@ -44,6 +44,11 @@ choice, and the README's *Where things live* records it. What a script needs fro
 - **The state:** a way to read what the screen does not show, so each frame can be checked
   against it.
 
+If the handle cannot do one of these, add it to the handle, once, rather than reaching into the
+game's state or the renderer from a script: the next script will need it too. The first agent to
+try this skill, on Extra Sapien, found no way to place the camera, wrote one into the game's state
+from its script, and read the camera back out of the renderer's internals.
+
 Watch for two drawing calls that undo each other. In dragon, placing the camera draws its own
 frame, and the call that draws the play camera would have drawn over it: a script there leaves
 `draw` out and draws where it needs to.
@@ -89,13 +94,17 @@ The handle's names above are placeholders; use the game's. Then:
 ## 4. Run it, and read the sheet
 
 ```bash
-npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing>
+npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> 2>&1 | tee scratch-frames-<thing>.log
 ```
 
+- **Keep the whole output.** Page errors come first, and a `tail` drops them: the first agent to
+  try this skill lost them that way on its first run.
 - **Read the run's output before any frame.** A frame of a broken game looks like a frame. Page
   errors, console errors, and *THE PAGE RELOADED* are printed as they happen, and a reload means
   every frame after it is of a fresh game.
-- **Look at the sheet, then at every frame you have any doubt about, full size.** Ask of each:
+- **Look at the sheet, then at every frame you have any doubt about, full size.** A long run's
+  sheet comes in pages of about 2,400 pixels, each short enough to read as one picture. Ask of
+  each frame:
   - Is the subject in frame, and not behind a wall, the HUD or the camera's near plane?
   - Is everything where the state says it is? Look for things under the floor, inside walls,
     floating above their ground, or drawn twice.
@@ -115,7 +124,8 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> --tree before=
 
 The same script runs on an older commit, exported with its own `node_modules`, and the sheet puts
 the two side by side, a row a shot. The first copy of a commit takes about a minute; later runs
-reuse it.
+reuse it. The copy goes under the system's temp directory: set `TMPDIR` to a `scratch-*` folder to
+keep it inside the checkout.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
   in the before, or in this checkout with the fix taken out. A null result is not a result until
