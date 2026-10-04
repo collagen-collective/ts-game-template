@@ -55,8 +55,7 @@ documents' merge driver and the pull-request template are its tooling, each with
 exists written beside it.
 
 Extra Sapien, a second game built from it, carried back more after its first two days:
-- the frame harness, which it and dragon had each built for themselves;
-- CI on every push;
+- the frame harness, which it and dragon had each built for themselves, and the `frames` skill;
 - the slow run;
 - §5's rules for running builders side by side.
 
@@ -162,7 +161,8 @@ Screenshots are part of verification, and `npm run shots` takes them. A script o
 drives the game into each state worth seeing and names the frame. The harness serves the game, says
 what breaks in the page, and lays the frames out on one sheet. With `--tree before=@<commit>`, it
 puts an older commit's frames beside this checkout's, a row a shot. `scripts/shots.mjs` says what
-the game's script exports. What the game offers it to drive is the game's choice. Dragon and Extra
+the game's script exports. What the game offers it to drive is the game's choice. The
+`frame-check` skill is how to use it on a report of something that looks wrong. Dragon and Extra
 Sapien each built one of these before it shipped here, and in Extra Sapien a tour of the whole game
 in frames found 22 defects with every test green.
 
@@ -170,13 +170,13 @@ A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the firs
 exists, tsc has nothing to check and reports that as an error; the hook lets a commit through when
 that is all tsc has to say, so a new project can commit its documents from the first day. CI
 (`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
-end-to-end suite on every push, and again on a pull request, where it tests the branch merged with
-its base. It keeps what a failed end-to-end run left in `test-results/` for a week. CI is let off
-the same way, and says so: until the repository has TypeScript besides its root config files, its
-typecheck-and-lint job and its end-to-end job are skipped, and show as skipped rather than passed.
-TypeScript in any folder counts, so a project that moves its code out of `src/` is checked rather
-than skipped. Once there is source they run, and the end-to-end job fails until the boot test
-exists.
+end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
+for a week. It runs on pull requests only, since every push in a session is already gated on
+`npm run verify`; on GitHub it is the check before a merge. CI is let off the same way, and says
+so: until the repository has TypeScript besides its root config files, its typecheck-and-lint job
+and its end-to-end job are skipped, and show as skipped rather than passed. TypeScript in any
+folder counts, so a project that moves its code out of `src/` is checked rather than skipped. Once
+there is source they run, and the end-to-end job fails until the boot test exists.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
 the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and

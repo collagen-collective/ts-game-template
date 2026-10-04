@@ -78,7 +78,8 @@ looks wrong from here"* stopped being a description and became a frame anyone co
 Both dragon and Extra Sapien built a harness for this, and in Extra Sapien it was the last check
 built and the most productive. With `--tree before=@<commit>`, the same script puts an older
 commit's frames beside this checkout's: the before and after of anything that is looked at rather
-than measured.
+than measured. The `frame-check` skill has the rest: what to ask, what to pose, how to read a
+sheet, and the control.
 
 ### Working together
 
@@ -227,9 +228,8 @@ description three times and was not looked at again.
 
 A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
 source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
-tests, and the end-to-end suite in a booted game on every push, and again on a pull request merged
-with its base, all but the unit tests once there is source to check. So CI can be read from a
-branch's first push, not only from its pull request.
+tests, and the end-to-end suite in a booted game on pull requests, all but the unit tests once
+there is source to check.
 
 CI's runner draws more slowly than a cloud session: Extra Sapien's drew 2.8 times slower, and two
 tests whose time limits were set in a session failed there. `npm run test:e2e:slow` runs the suite
