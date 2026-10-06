@@ -123,6 +123,10 @@ try {
     await page.keyboard.type("Typed: z, and Escape after");
     await key("Escape");
     expect((await demo()).marks === 2, "a z typed in the box is a letter, not an undo");
+    await page.click('.fb-part[data-part="browser"]');
+    await page.waitForTimeout(50);
+    const ticks = await page.evaluate(() => [...document.querySelectorAll(".fb-part")].map((e) => e.getAttribute("aria-checked")));
+    expect(ticks.join() === "true,true,false", `a click unticks a part, and the box says so (${ticks.join()})`);
     await shot("3-tell");
     await key("Control+Enter");
     await page.waitForTimeout(500);

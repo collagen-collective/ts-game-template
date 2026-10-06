@@ -35,10 +35,11 @@ export const CSS = `
 .fb-page textarea { display:block; box-sizing:border-box; width:100%; height:92px; margin:14px 0 18px; padding:12px 14px; resize:none; border:1px solid rgba(160,210,255,.25); background:rgba(0,0,0,.35); color:var(--fb-text); font:15px/1.5 var(--fb-font); outline:none; }
 .fb-page textarea::placeholder { color:var(--fb-dim); font-style:italic; }
 .fb-page textarea.fb-on, .fb-page textarea:focus { border-color:var(--fb-accent); box-shadow:0 0 16px var(--fb-accent); }
-.fb-page .fb-part { margin:2px 0; padding:3px 14px; font-size:13px; letter-spacing:.02em; }
-.fb-page .fb-part::before { content:"\\2713  "; color:var(--fb-mark); }
-.fb-page .fb-part.fb-off { color:var(--fb-faint); text-decoration:line-through; }
-.fb-page .fb-part.fb-off::before { content:"\\2013  "; color:var(--fb-faint); }
+.fb-page h2 .fb-note { margin-left:10px; font-size:12px; letter-spacing:.04em; font-style:italic; color:var(--fb-faint); }
+.fb-page .fb-part { display:flex; align-items:center; gap:12px; margin:2px 0; padding:5px 14px; font-size:13.5px; letter-spacing:.02em; }
+.fb-page .fb-part::before { content:"\\2713"; flex:none; box-sizing:border-box; width:20px; height:20px; display:inline-grid; place-items:center; border:2px solid var(--fb-mark); border-radius:3px; background:var(--fb-mark); color:var(--fb-shade); font:700 14px/1 system-ui, sans-serif; }
+.fb-page .fb-part.fb-off { color:var(--fb-dim); }
+.fb-page .fb-part.fb-off::before { content:""; background:transparent; border-color:var(--fb-dim); }
 .fb-page .fb-status { position:absolute; left:0; right:0; bottom:68px; text-align:center; font-size:15px; letter-spacing:.14em; color:var(--fb-chosen); text-shadow:0 2px 6px #000; }
 .fb-page .fb-k { display:inline-block; font-family:system-ui, sans-serif; font-weight:600; font-size:12px; padding:1px 7px; border:1px solid var(--fb-key); border-radius:4px; margin:0 4px 0 14px; letter-spacing:0; }
 .fb-page .fb-act { cursor:pointer; }

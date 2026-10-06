@@ -210,7 +210,7 @@ export class FeedbackPage {
 <div class="fb-mark"><img alt=""><canvas></canvas><div class="fb-ctx"></div>
 <div class="fb-bar"><b class="fb-t">MARK WHAT YOU MEAN</b><span class="fb-mhints"></span></div></div>
 <div class="fb-tell"><div class="fb-frame"><img alt=""><div class="fb-cap"></div></div>
-<div class="fb-form"><h2>WHAT IS IT?</h2><div class="fb-kinds"></div><textarea spellcheck="true"></textarea><h2>SENT WITH IT</h2><div class="fb-parts"></div></div>
+<div class="fb-form"><h2>WHAT IS IT?</h2><div class="fb-kinds"></div><textarea spellcheck="true"></textarea><h2>SENT WITH IT<span class="fb-note">untick anything you would rather keep</span></h2><div class="fb-parts"></div></div>
 <div class="fb-status"></div><div class="fb-hints"></div></div>`;
         (options.parent ?? document.body).appendChild(this.el);
         const q = <T extends Element>(s: string): T => this.el.querySelector<T>(s)!;
@@ -300,7 +300,7 @@ export class FeedbackPage {
         this.partsEl.innerHTML = ["frame", ...this.parts.map((p) => p.id)]
             .map(
                 (id, i) =>
-                    `<div class="fb-row fb-part" data-part="${id}" data-line="${this.firstPart + i}"></div>`,
+                    `<div class="fb-row fb-part" role="checkbox" data-part="${id}" data-line="${this.firstPart + i}"></div>`,
             )
             .join("");
         this.padWas = this.padButtons();
@@ -899,7 +899,9 @@ export class FeedbackPage {
                           ? "this frame, with your marks and without"
                           : "this frame, as you paused it"
                     : (this.parts.find((p) => p.id === id)?.label ?? id);
-            el.classList.toggle("fb-off", !this.sent[id] || (id === "frame" && !this.snap.frame));
+            const off = !this.sent[id] || (id === "frame" && !this.snap.frame);
+            el.classList.toggle("fb-off", off);
+            el.setAttribute("aria-checked", String(!off));
         }
         const shown = marked ? (this.marked?.url ?? null) : this.frameUrl;
         if (shown && this.img.getAttribute("src") !== shown) this.img.src = shown;
