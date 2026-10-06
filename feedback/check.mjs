@@ -205,7 +205,7 @@ try {
         () => document.querySelector(".fb-kind.fb-chosen")?.textContent,
     );
     expect(
-        chosen === "THIS FELT RIGHT",
+        chosen === "I LIKED THIS",
         `keys pressed faster than frames are each taken, in order (${chosen})`,
     );
     await page.click(".fb-page textarea");

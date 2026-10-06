@@ -20,7 +20,7 @@ export interface Kind {
 export const KINDS: readonly Kind[] = [
     { id: "wrong", label: "SOMETHING WENT WRONG", title: "Something went wrong" },
     { id: "idea", label: "AN IDEA", title: "An idea" },
-    { id: "right", label: "THIS FELT RIGHT", title: "This felt right" },
+    { id: "liked", label: "I LIKED THIS", title: "I liked this" },
     { id: "else", label: "SOMETHING ELSE", title: "Something else" },
 ];
 
