@@ -69,6 +69,10 @@ Kyle on Duty, a third, carried back more after its first two days and its first 
   before it starts, playing the whole game with a bot before frames, and keeping what the person
   called right in the run as the control, most of them paid for by the other games too.
 
+And at its first update, when they came home: the `template-sync` skill's step of writing a rule
+into the project's own Charter before sending it, and what to do when one comes home that never
+was.
+
 ## Where things live
 
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two

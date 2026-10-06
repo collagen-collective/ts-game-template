@@ -60,7 +60,10 @@ entry.
 <this game>*, rules this project already has under *This project's own*. Keep this project's own
 copy, which carries its own story, and delete the inherited copy. The update remembers deletions,
 so it will not come back. If the template's wording is better, take the wording into the project's
-own copy first.
+own copy first. A rule that was sent from the design log, and never written under *This project's
+own*, has no copy to keep: write it there now, in the project's words and citing the entry that
+paid for it, and then delete the inherited copy. If the project also holds it inherited from
+another game, it has paid for that rule again, so it moves to *This project's own* too.
 
 ## Sending a finding to the template
 
@@ -83,6 +86,12 @@ project only suspects is not yet.
 
 Say in the README, where the template keeps its record of what each game carried back, what this
 game brought.
+
+**Write it into the project first.** Before a rule goes to the template, put it under *This
+project's own* in the project's Charter, with its story, and send that. A rule sent from the design
+log comes home with no copy of its own to keep: Kyle on Duty sent four rules to §5, three of them
+only ever written in its log, and its first update had to write all three into its Charter while
+resolving the conflicts.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief
