@@ -56,12 +56,12 @@ Those are subject tags. Two more sit on a different axis and say what an entry *
 
 - **`[later]`** — this entry parks a question. `OPEN-QUESTIONS.md` is for questions about what
   exists, whether to play, decide or defer, so a real question about something that does not exist
-  yet lands here instead. It must carry **the tell** — what good and bad look like — and
-  **what has to exist first**, because that second thing is the trigger that makes it findable at
-  the right moment. A parked question with no tell is a note to self, and the tell was the whole
-  reason it was worth writing down. (Before anything is built, the premise's own open questions are
-  the exception: `/gettingstarted` files them in `OPEN-QUESTIONS.md`, because answering them is
-  what the first build is for.)
+  yet lands here instead. It must carry **what good and bad would look like** and **what has to
+  exist first**, because that second thing is the trigger that makes it findable at the right
+  moment. A parked question that does not say what good looks like is a note to self, and saying
+  that was the whole reason it was worth writing down. (Before anything is built, the premise's own
+  open questions are the exception: `/gettingstarted` files them in `OPEN-QUESTIONS.md`, because
+  answering them is what the first build is for.)
 - **`[resolved]`** — this entry closes a question an earlier entry left open, and it names which.
   Not only `[later]` ones: an entry that ends by naming what it did not settle, or that writes a
   cost down as a deferred bill, has left a question open just as squarely.

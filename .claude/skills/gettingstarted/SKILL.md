@@ -42,7 +42,7 @@ decided.
 about to write, in the words you will use, and let them correct it. Their answer leaves open exactly
 what the written version has to choose, and a read-back finds those places while they cost nothing.
 In dragon, a game built from this template, seven readings of one description were said back before
-anything was built from it, and the build had nothing to change at its first sitting.
+anything was built from it, and the build needed no changes the first time the person played it.
 
 ## Before you start
 
@@ -50,7 +50,8 @@ anything was built from it, and the build had nothing to change at its first sit
    `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
    *how*; you have to hold that line while transcribing. Its §5 is long, because it carries rules in
    from dragon: read its opening, and skim the rules, since you will ask about them as a block at
-   the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself.
+   the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself, and the
+   README's *Words we use* defines the shorthand these documents use.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
@@ -121,11 +122,11 @@ Most of the interesting design work on a game is the tension between its commitm
 them already pull against each other, that is a good sign — note the tension in the log entry at the
 end rather than smoothing it away.
 
-### 4. What a session actually is
+### 4. What a play session is
 
 The loop, in the second person, in five or six sentences: what the player does, in what order, and
-what they come back with. Then the shape of time — how long one session runs, and what a stack of
-them adds up to. Goes under the `### What a session actually is` heading in §1.
+what they come back with. Then the shape of time — how long one play session runs, and what many
+of them add up to. Goes under the `### What a play session is` heading in §1.
 
 "What they come back with" is the part that gets skipped and the part that constrains everything
 downstream. If they cannot answer it, that is a PLAY question, not a blank.
@@ -187,18 +188,18 @@ why it matters — nothing else. An entry that grows a plan has stopped being a 
 
 Tag each one by **how it gets resolved**, which is the whole point of the file:
 
-- **PLAY** — only a person playing it can settle this. Do not decide it at a desk and **do not
-  decompose it into tasks.** Include the sub-question: the specific thing to watch for while
-  playing, so the session produces an answer rather than an impression. Most load-bearing questions
+- **PLAY** — only a person playing it can settle this. Do not decide it by argument, and **do not
+  break it down into tasks.** Include the sub-question: the specific thing to watch for while
+  playing, so the sitting produces an answer rather than an impression. Most load-bearing questions
   about a game land here. If this section is empty on a young project, you have miscategorized
   something as DECIDE — go back and check.
-- **DECIDE** — settleable by argument, at a desk, today. If you can write down the options and what
-  each costs, you can usually settle it in the same sitting. Offer to: settle it, log it in
-  `DESIGN-LOG.md`, delete the entry.
+- **DECIDE** — can be settled by discussion, without playing, today. If you can write down the
+  options and what each costs, you can usually settle it in the same sitting. Offer to: settle it,
+  log it in `DESIGN-LOG.md`, delete the entry.
 - **COLLISIONS** — not unknowns. Two things already decided that conflict. Say where each was
   decided and which one you expect to give.
-- **DEFER** — real, not blocking, deliberately not being worked. Needs an un-parking condition or it
-  is a deletion waiting to happen.
+- **DEFER** — real, not blocking, deliberately not being worked. Needs a condition for coming back
+  or it is a deletion waiting to happen.
 
 Keep the file to about a page. If it runs longer, say so — it means questions are being collected
 instead of answered.
@@ -207,7 +208,7 @@ instead of answered.
 
 Use `AskUserQuestion` for these; they are discrete choices.
 
-- **The template banners.** Delete the `> **Scaffolded from a shared TypeScript game-project
+- **The template banners.** Delete the `> **Made from a shared TypeScript game-project
   template.**` block in `README.md`, and the `*This file arrived as a template…*` note in each of
   the three docs — each one as its file gets real content. In `CLAUDE.md`, delete the **This repo
   was scaffolded from a template** paragraph once the placeholders it refers to are gone. Leave the
@@ -267,6 +268,6 @@ first session that writes code can make that cheap: its first end-to-end test is
   established convention. `index.html` naming `/src/runtime/main.ts` is a line to change, not a
   convention to obey.
 - Put mechanism into the Charter. It is upstream of the implementation and stays that way.
-- Decompose a PLAY question into tasks. That is the specific mistake the file exists to prevent.
+- Break a PLAY question down into tasks. That is the specific mistake the file exists to prevent.
 - Invent ticket IDs or reference an issue tracker. There isn't one.
 - Fill in **What we learned** on a block that has never been played.

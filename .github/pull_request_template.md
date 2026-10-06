@@ -1,6 +1,6 @@
 ## What changed
 
-<!-- What a player can now do that they could not (for tooling, what a session can), one point per commit, with its hash. -->
+<!-- What a player can now do that they could not (for tooling, what an agent session can), one point per commit, with its hash. -->
 
 ## Needs a person
 
@@ -8,7 +8,7 @@
 
 ## Played
 
-<!-- Whether a person has played this build: what they expected, what it did, and what worked. If not yet, what a sitting should look at. -->
+<!-- Whether a person has played this build: what they expected, what it did, and what worked. If not yet, what someone playing it should look at. -->
 
 ## Measured
 
@@ -16,7 +16,7 @@
 
 ## Verification
 
-<!-- The gate on the final commit (`npm run verify`), and CI, read after the push. -->
+<!-- `npm run verify` on the final commit, and CI's result, read after the push. -->
 
 ## Not in this PR
 

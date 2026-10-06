@@ -1,90 +1,129 @@
 # `<project>`
 
-> **Scaffolded from a shared TypeScript game-project template.** Italic text is a prompt from the
-> template; anything in angle brackets is a placeholder. Answer the prompts and delete them.
-> ``rg '`<' README.md CLAUDE.md docs/`` lists whatever is still unfilled. Two placeholders it will
-> not list, because they are not Markdown: the `name` field in `package.json` and the page `title`
-> in `index.html`. **In Claude Code, `/gettingstarted` walks you through all of it** — it interviews
-> you, fills in what is settled, and files what isn't. `npm run template:link`, once, lets the repo
-> take in the template's later improvements (*Staying in step with the template*, below). Delete
-> this block when the repo is your own.
+> **Made from a shared TypeScript game-project template.** Italic text is a prompt from the
+> template, and anything in angle brackets is a placeholder: answer each one and delete it.
+> ``rg '`<' README.md CLAUDE.md docs/`` lists whatever is still unfilled, except for two
+> placeholders outside the Markdown: the `name` field in `package.json` and the page `title` in
+> `index.html`. *Getting started*, below, has the steps. Delete this block when the repo is your
+> own.
 
 *One paragraph. What the player does, where they do it, and what the loop is. Concrete enough that
 a stranger could picture a minute of play, and short enough to read before deciding whether to keep
 reading. If it needs a second paragraph, the premise is not settled yet — say so in
 [`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md) and move on.*
 
-## Read this first
+## Getting started
 
-Three documents, and they divide by tense. That is the whole filing rule: anything you write either
-fits one of them or replaces one of them.
+This template is a starting point for a browser game built with a coding agent, such as Claude
+Code, doing most of the typing and a person deciding what the game is and how it should feel. It
+ships no game code: it ships three design documents, a configured toolchain, a few game-agnostic
+tools, and the rules earlier games learned the hard way.
+
+1. **Make your repository** with GitHub's *Use this template* button, clone it, and run `npm ci`
+   (Node 22 or later).
+2. **Fill in the premise.** In Claude Code, run `/gettingstarted`: it interviews you, writes down
+   what is settled, files what isn't as an open question, and records the first design-log entry.
+   Without Claude Code, answer the italic prompts in this README and in `docs/` by hand. Either
+   way, expect most of it to be open questions at first; that is the right answer for a new game.
+3. **Link it to the template,** once: `npm run template:link`, then commit `.copier-answers.yml`.
+   From then on the project can take in what the template learns later (*Staying in step with the
+   template*, below).
+4. **Build something playable.** The first code session chooses the layout (*Where things live*)
+   and writes the first end-to-end test, `tests/e2e/boot.spec.ts` (*Toolchain*). After that, a
+   build you can sit down and play is seconds away, and playing it is the point.
+
+## The three documents
+
+They divide by tense, and that is the whole filing rule: anything you write either fits one of them
+or replaces one of them.
 
 - **[`docs/CHARTER.md`](./docs/CHARTER.md)** is present tense: what is settled. What the game wants
-  to be, what it has to be, the laws that bind everywhere, and the building blocks. Each block
+  to be, what it has to be, the rules that hold everywhere, and the main systems. Each system
   states the problem it exists to solve before it states the answer.
 - **[`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md)** is future tense: what you still have to
-  find out. Every entry says *how it gets resolved*, because that is the part that gets skipped,
-  and skipping it is how a question about how something feels ends up in a task queue that cannot
-  answer it.
+  find out. Every entry says *how it gets answered*: by playing (PLAY), by discussion (DECIDE), or
+  later (DEFER). That part matters most, because a question only playing can answer, such as
+  whether a jump feels heavy, cannot be settled by handing someone a task.
 - **[`docs/DESIGN-LOG.md`](./docs/DESIGN-LOG.md)** is past tense: what was tried and what happened,
-  oldest first. Append only. Read end to end it is the problem-solving narrative, including the
-  places where solving one problem changed the answer to another one upstream.
+  oldest first. Append only. Read end to end, it is the story of how the design got where it is,
+  including the places where solving one problem changed the answer to another.
 
-The Charter is deliberately a *what* and a *why*. It does not say how to build any of it. That
-omission is the point: a charter that specifies mechanism goes stale the first time the mechanism
-changes, and once one section is known to be stale, the load-bearing ones stop being trusted along
-with it.
+The Charter says *what* and *why*, never *how* to build it. That is deliberate: a charter that
+describes the code goes out of date the first time the code changes, and once readers know one
+section is out of date, they stop trusting the rest.
+
+## Words we use
+
+These documents were written over several games, mostly to be read by coding agents, and they use
+some shorthand of their own. In order of how soon you will meet it:
+
+- **The person** (or *the person you're working with*): the human designing the game, as against
+  the agents writing code. Instructions to agents call you this. How the game feels is yours to
+  judge; agents measure, and you decide.
+- **Session**: one working conversation with a coding agent. Not a stretch of playing the game,
+  which the Charter calls a *play session*.
+- **Sitting**: one stretch of the person playing a build. *The first sitting* is the first time
+  you played it. A sitting written up in the design log is a **playtest**.
+- **Build**: a version of the game pushed for the person to play.
+- **The gate**: `npm run verify`, everything a change must pass before a pull request. **The play
+  gate** is `npm run verify:play`, the few seconds of checks a build needs before someone plays it.
+- **Wired** (in *done means wired in*): reachable from the running game. A module with passing
+  tests that nothing in the game calls is not wired in.
+- **PLAY, DECIDE, COLLISIONS, DEFER**: the four kinds of entry in `OPEN-QUESTIONS.md`, by how each
+  gets resolved. A *collision* is two decisions already made that contradict each other.
+- **§5**: section 5 of the Charter, *How to build anything here*, where the project's working rules
+  live.
+- **Instrument**: anything built to show or measure what the game is doing, such as a debug
+  overlay, a count, a trace or a screenshot script. *The instrument is missing* means nobody can
+  yet see the thing being argued about.
+- **Readout**: an on-screen debug overlay that shows state the game otherwise doesn't (where the
+  camera is, the world's seed, the value being tuned).
+- **Trace**: a record of the game's state over a few seconds, made by running the simulation in
+  Node without drawing it.
+- **Frames, shots and the sheet**: screenshots of the game posed in a chosen state; `npm run shots`
+  takes them and lays them out side by side on one image, the sheet.
+- **Takes**: the same for sound. `npm run takes` renders the game's sounds to audio files and
+  measures them, since an agent cannot listen.
+- **The control**: the part of a scene or sound the person has said is right, measured beside the
+  change so that nobody breaks it by accident.
+- **Seed**: the number a generated world is built from, so the same world can be built again.
+- **Builder**: a sub-agent a session starts to build one piece of the work alongside others, usually
+  in a git worktree of its own. *Fanning out* is starting several at once.
+- **Brief**: the written handover to another agent: what to do, why, and what is known.
+- **Round**: one cycle of plan, build and play.
+- **Tell**: something a player does in play that was agreed in advance to mean something (opening
+  the map often enough to mean *I'm lost*, say).
+- **Paid for**: learned at a cost. A rule a game *paid for* is one it wrote down after a mistake
+  cost it time, and each such rule says what it cost.
+- **Carried back**: sent from a game to the template, so that every game gets it. A rule that
+  *comes home* is one this project sent that returns in a template update.
+- **Dragon, Extra Sapien, Kyle on Duty, sandworm**: earlier games built from this template, whose
+  lessons it carries. *Where the inherited rules came from*, below, says what each was.
 
 ## What ships here, and what does not
 
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
-and no issue tracker. That is the starting condition, not an accident. `scripts/` holds the merge
-driver for the three documents; `template.mjs`, which keeps the project in step with the template;
-and three instruments that know nothing about any game: `shots.mjs`, which captures posed frames,
-`takes.mjs`, which renders and measures the game's own sound, and `e2e-slow.mjs`, which runs the
-end-to-end suite at about CI's speed. The game supplies what they drive. `feedback/` and `infra/`
-are a feedback page a game mounts, the function that takes a player's report from the hosted game
-and commits it to a private repository, the dev server's stand-in for it, and the function's AWS
-side as code (*Feedback from inside the game*, below). They know nothing about any game either: the
-game hands the page its canvas and what it knows.
+and no issue tracker. That is the starting point, not an accident.
+
+- **`scripts/`** holds the merge driver for the three documents; `template.mjs`, which keeps the
+  project in step with the template; and three tools that work with any game: `shots.mjs`, which
+  takes posed screenshots, `takes.mjs`, which renders and measures the game's own sound, and
+  `e2e-slow.mjs`, which runs the end-to-end tests at about CI's speed. The game supplies a small
+  script for each that says what to capture.
+- **`feedback/` and `infra/`** are an in-game feedback page, the function that takes a player's
+  report from the hosted game and commits it to a private repository, a stand-in for that function
+  on the dev server, and the function's AWS setup as code (*Feedback from inside the game*,
+  below). They know nothing about any game either: the game hands the page its canvas and whatever
+  state it wants to send.
+- **`.claude/skills/`** holds the agent workflows: `gettingstarted`, `design-log`, `frame-check`,
+  `sound-check` and `template-sync`. In Claude Code each runs as a slash command or when the
+  situation calls for it.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
 not exist yet; the Playwright config looks for tests in `tests/e2e/`, and Vitest runs any
-`*.test.ts` under `src/` or `tests/` outside it. Those are the file-layout assumptions the scaffold
-makes, and each is a line to change rather than a convention to obey.
-
-Some of what ships was carried back from dragon, a game built from this template, after its first
-two weeks. The Charter's §5 holds the rules it paid for that apply to any game. `CLAUDE.md` holds
-what it found about working with the person and with other agents. The `design-log` skill holds
-how its log came to be written, playtests above all. And the end-to-end setup, the play gate, the
-documents' merge driver and the pull-request template are its tooling, each with the reason it
-exists written beside it.
-
-Extra Sapien, a second game built from it, carried back more after its first two days:
-- the frame harness, which it and dragon had each built for themselves, and the `frame-check` skill;
-- the slow run;
-- §5's rules for running builders side by side.
-
-Kyle on Duty, a third, carried back more after its first two days and its first sitting:
-- the sound harness, `takes.mjs`, and the `sound-check` skill: all four games built from the
-  template had each built a renderer and a measurer of their own sound;
-- §5's rules for putting several questions to the person at once, checking a builder's worktree
-  before it starts, playing the whole game with a bot before frames, and keeping what the person
-  called right in the run as the control, most of them paid for by the other games too.
-
-And at its first update, when they came home: the `template-sync` skill's step of writing a rule
-into the project's own Charter before sending it, and what to do when one comes home that never
-was.
-
-And after it: `takes.mjs`'s `hrtf`, for an offline render that waits for ever on Chromium's HRTF
-database, which cost Kyle on Duty every full render of its sound board for a day.
-
-Extra Sapien, once its hosted game had a second player, carried back its feedback inbox: the page
-that player marks a frame and writes on, on a pad or the keys and mouse; the function that commits
-the report to a private repository; the dev server's inbox; and the CDK app that deploys the
-function, which replaced a page of console steps after three of their defaults broke its first live
-send.
+`*.test.ts` under `src/` or `tests/` outside it. Those are the only assumptions the scaffold makes
+about file layout, and each is a line to change rather than a convention to obey.
 
 ## Feedback from inside the game
 
@@ -158,17 +197,17 @@ and the last ten seconds ten times a second. The kinds a player picks from, the 
 box, and how the frame is kept are options too (`FeedbackOptions`). The key is kept under
 `storageKey`, which games that share an origin should each set.
 
-**What the page sends,** for a game that would rather make its own. One `POST` with a JSON body, sent as `text/plain` so that the browser asks
-no preflight: `{ "key": "…", "stamp": "2026-10-06_213105", "files": { "report.md": "<base64>", … } }`.
-`report.md` is required; up to six files, each a plain name such as `frame.jpg` or `state.json`
-(`LIMITS` in the handler), five megabytes in all. The answer is `{ "ok": true, "folder": "…" }`, or
-`{ "ok": false, "error": "…" }` with what was wrong in words, worth showing the player as it is. A
-page sends to `/__feedback` when `import.meta.env.DEV` is true, and otherwise to
-`import.meta.env.VITE_FEEDBACK_URL`, offering feedback only when that is set and it holds a key.
-The key reaches it in the player's link, `?key=`; the page keeps it in `localStorage` and takes it
-out of the address bar, so a bookmark of the open game holds none, and the player keeps the link
-itself. `stamp` is the sender's clock, which names the folder; a missing one takes the
-function's.
+**What the page sends,** for a game that would rather make its own. One `POST` with a JSON body,
+sent as `text/plain` so that the browser asks no preflight: `{ "key": "…", "stamp":
+"2026-10-06_213105", "files": { "report.md": "<base64>", … } }`. `report.md` is required; up to six
+files, each a plain name such as `frame.jpg` or `state.json` (`LIMITS` in the handler), five
+megabytes in all. The answer is `{ "ok": true, "folder": "…" }`, or `{ "ok": false, "error": "…" }`
+with what was wrong in words, worth showing the player as it is. A page sends to `/__feedback` when
+`import.meta.env.DEV` is true, and otherwise to `import.meta.env.VITE_FEEDBACK_URL`, offering
+feedback only when that is set and it holds a key. The key reaches it in the player's link, `?key=`;
+the page keeps it in `localStorage` and takes it out of the address bar, so a bookmark of the open
+game holds none, and the player keeps the link itself. `stamp` is the sender's clock, which names
+the folder; a missing one takes the function's.
 
 **Setting it up** is two things made by hand in GitHub, and the rest is code:
 
@@ -235,27 +274,29 @@ writing down how, and only then let a scheduled agent sort what arrives.
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two
 (what lives where, and what may read or write what), and log why in the design log. Whatever the
 layout, one property is worth choosing on purpose: a way to step the game's state without drawing
-it. Dragon's traces, and most of its tests, depended on that.*
+it, so that tests and traces can run the game in Node with no browser. Dragon's traces, and most
+of its tests, depended on that.*
 
-## Four rules carried in
+## Four inherited rules
 
 *These came out of a previous project that reached a thousand commits and fifty thousand lines of
-production code, with an equal weight of tests, before anyone had established whether it was fun.
-The build at the end booted into two zones and one quest that shipped already finished. Every
-automated gate was green throughout.*
+production code, with as much again in tests, before anyone had checked whether it was fun. The
+build at the end booted into two zones and one quest that was already complete when it loaded.
+Every automated check passed throughout.*
 
 *They are inherited defaults, not this project's findings. Keep them, argue with them, or delete
 this section — but do it deliberately, and log the decision.*
 
-**Done is the wire, not the module.** A feature is finished when a booted game lets a player do the
+**Done means wired in, not written.** A feature is finished when a booted game lets a player do the
 thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
-the type-checker can tell you so: unit tests import modules directly, so a module keeps a green
-test long after nothing in the running game reaches it. The audit that produced this rule found
-forty unreachable modules under six thousand lines of passing tests, a combat HUD with zero
-importers, and an enemy damage event nothing subscribed to — which had left the player invulnerable
-in every green build for weeks.
+the type-checker can tell you so: unit tests import modules directly, so a module keeps a green test
+long after nothing in the running game reaches it. The audit that produced this rule found forty
+unreachable modules under six thousand lines of passing tests, a combat HUD with zero importers, and
+an enemy damage event nothing subscribed to — which had left the player invulnerable in every green
+build for weeks.
 
-**Play it.** A system whose feel you are still finding has earned nothing but being played. A
+**Play it.** While you are still finding out how a system should feel, it needs playing, not tests
+or documents. A
 throwaway prototype of under nine hundred lines, written in one pass and judged on nothing but
 whether it was fun, was a better game than the fifty thousand lines it was prototyping — it had no
 tickets, no tests, and no design docs to conform to. When you write down a playtest, write down
@@ -263,18 +304,18 @@ what *worked*. Defect lists are the easy half, and they are not the half that te
 protect.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
-proxy for a judgment, and it takes a person playing it to make that judgment. Feel-shaped questions
-routed through a queue come back as correct fragments that do not compose, verified by gates that
-cannot see the thing you were actually asking about.
+stand-in for a judgment, and it takes a person playing it to make that judgment. A question about
+how something feels, split into tasks and handed out, comes back as pieces that each pass their
+check and do not add up to the thing you were asking about.
 
 **Test what has stopped changing.** Every test written against a system you are still tuning is a
 bet you will pay to unwind. About six thousand lines of that bet came due at once.
 
-Dragon, a game built from this template, kept all four: its brief asked for the same things in its
-own words. In its first two weeks it paid for more, and the ones that apply to any game are in
-[`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited from dragon*, each with a line of what
-it cost. Extra Sapien, a second game, added a few of its own under *Inherited from Extra Sapien*.
-They are inherited on the same terms as these four.
+Dragon, the first game built from this template, kept all four: its brief asked for the same things
+in its own words. In its first two weeks it learned more the hard way, and the lessons that apply to
+any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited from dragon*, each with
+a line of what it cost. The games after it added theirs under their own headings there. They are
+inherited on the same terms as these four.
 
 ## Toolchain
 
@@ -300,10 +341,11 @@ npm run template:update  # bring in what the template has gained since
 cd infra && npm ci && npm run typecheck && npm test  # the feedback function's AWS side, as code
 ```
 
-`npm run verify` is the gate. With `src/` and `tests/` empty it does not pass yet: most steps have
-nothing to act on, and several tools treat "no input files" as an error. The unit tests pass from
-the start, because the merge driver's tests are there. Adding the first source file and the first
-test is what makes the rest of it meaningful.
+`npm run verify` is the gate: every check a change passes before it goes into a pull request. With
+`src/` and `tests/` empty it does not pass yet: most steps have nothing to act on, and several tools
+treat "no input files" as an error. The unit tests pass from the start, because the merge driver's
+tests are there. Adding the first source file and the first test is what makes the rest of it
+meaningful.
 
 The end-to-end tests are the ones that say a player can do a thing: they boot the real game in
 headless Chromium and drive it. Headless Chromium ran WebGL 2, drawing in software, in dragon's
@@ -313,10 +355,11 @@ strategy turned on it, the check took two minutes, and it would have cost a day 
 first test to write is `tests/e2e/boot.spec.ts`, which boots the game, fails on any page or console
 error, draws one frame with everything that has a shader in it, and reads the GL error flag, since
 GL errors reach the console late and as warnings. `npm run verify:play` is the typecheck and that
-test, and a build pushed for a person to play waits on it rather than on the gate: dragon's gate
-took five minutes even after it had been cut from fifteen, and every sitting used to wait for it.
-The gate runs while they play, anything it finds is said and fixed rather than left for the next
-push, and once there is code, nothing goes into a pull request without it.
+test, and a build pushed for a person to play waits only on that, not on the whole gate: dragon's
+gate took five minutes even after it had been cut from fifteen, and every time someone sat down to
+play, they used to wait for it. The full gate runs while they play; anything it finds is reported
+and fixed rather than left for the next push, and once there is code, nothing goes into a pull
+request without it.
 
 Every end-to-end run starts its own Vite server, on a port taken from the checkout's path and off
 the dev server's 3000, so worktrees can each run the suite at once and a run never tests another
@@ -325,28 +368,29 @@ watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved while the s
 reload the page under whichever test is running: a run tests the code as it stood when it began.
 `playwright.config.ts` says why each of these is so.
 
-CI's runner draws more slowly than a development machine, so a test's time limit set from a run
-there is set for the faster machine. In Extra Sapien, a game built from this template, two tests
+CI's runner draws more slowly than a development machine, so a time limit that is comfortable
+locally can be too tight on CI. In Extra Sapien, a game built from this template, two tests
 passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
 `npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
 CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
-was passing with almost nothing in hand: 1.5 minutes against a limit of 90 seconds. Run it before
+was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before
 setting a time limit, and before a pull request.
 
-Screenshots are part of verification, and `npm run shots` takes them. A script of the game's own
-drives the game into each state worth seeing and names the frame. The harness serves the game, says
-what breaks in the page, and lays the frames out on one sheet. With `--tree before=@<commit>`, it
-puts an older commit's frames beside this checkout's, a row a shot. `scripts/shots.mjs` says what
-the game's script exports. What the game offers it to drive is the game's choice. The
-`frame-check` skill is how to use it on a report of something that looks wrong. Dragon and Extra
+Screenshots are part of verification, and `npm run shots` takes them. A script the game provides
+puts the game into each state worth seeing and names the frame. The tool serves the game on its own
+port, reports anything that breaks in the page, and lays the frames out side by side on one image,
+the sheet. With `--tree before=@<commit>`, it puts an older commit's frames beside this checkout's,
+one row per shot, for a before-and-after. `scripts/shots.mjs` says what the game's script exports;
+what hooks the game offers it is the game's choice. The `frame-check` skill is how an agent uses it
+on a report of something that looks wrong. Dragon and Extra
 Sapien each built one of these before it shipped here, and in Extra Sapien a tour of the whole game
 in frames found 22 defects with every test green.
 
-An agent cannot hear, so the sound gets the same treatment, and `npm run takes` gives it. A script
-of the game's own renders each sound worth hearing into an `OfflineAudioContext`, through the
-game's own code, and names the take. The harness serves the game as `shots.mjs` does (the two share
-`scripts/lib/trees.mjs`), writes each take as a WAV, measures it (loudness by ITU-R BS.1770, peak
-and clipping, when it starts and how long it rings, its octaves, how wide it is:
+An agent cannot hear, so the sound gets the same treatment, from `npm run takes`. A script the game
+provides renders each sound worth hearing into an `OfflineAudioContext`, through the game's own
+audio code, and names the recording, the take. The tool serves the game as `shots.mjs` does (the two
+share `scripts/lib/trees.mjs`), writes each take as a WAV, measures it (loudness by ITU-R BS.1770,
+peak and clipping, when it starts and how long it rings, its energy by octave, its stereo width:
 `scripts/lib/listen.mjs`), and lays the takes out on a sheet of waveforms and spectrograms. With
 `--tree before=@<commit>` it prints the numbers side by side, and `--match -20` writes copies of
 equal loudness for the person to compare by ear. The `sound-check` skill is how to use it on a
@@ -358,12 +402,13 @@ exists, tsc has nothing to check and reports that as an error; the hook lets a c
 that is all tsc has to say, so a new project can commit its documents from the first day. CI
 (`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
 end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
-for a week. It runs on pull requests only, since every push in a session is already gated on
-`npm run verify`; on GitHub it is the check before a merge. CI is let off the same way, and says
-so: until the repository has TypeScript besides its root config files, its typecheck-and-lint job
-and its end-to-end job are skipped, and show as skipped rather than passed. TypeScript in any
-folder counts, so a project that moves its code out of `src/` is checked rather than skipped. Once
-there is source they run, and the end-to-end job fails until the boot test exists.
+for a week. It runs on pull requests only, since every push in a session is already checked with
+`npm run verify`; on GitHub it is the check before a merge. CI makes the same allowance as the hook,
+and shows it: until the repository has TypeScript besides its root config files, its
+typecheck-and-lint job and its end-to-end job are skipped, and show as skipped rather than passed.
+TypeScript in any folder counts, so a project that moves its code out of `src/` is checked rather
+than skipped. Once there is source they run, and the end-to-end job fails until the boot test
+exists.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
 the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and
@@ -374,9 +419,9 @@ registered, GitHub's merge button included, the documents merge as they always d
 
 ## Staying in step with the template
 
-Several games are built from this template, and each finds things the others need: dragon and
-Extra Sapien each carried rules and tools back to it. The template is how a finding travels, and
-both directions are meant to be routine.
+Several games are built from this template, and each finds things the others need: each of the
+games under *Where the inherited rules came from* sent rules and tools back to it. The template is
+how a lesson travels from one game to the others, and both directions are meant to be routine.
 
 **From the template to a project.** `npm run template:update` brings in what the template has
 gained since the project last did, as a three-way merge, file by file, through
@@ -400,15 +445,51 @@ what came in, conflicts listed in its description, so a project hears of a findi
 remembering to look. It needs a repository setting and, for CI to run on that pull request, a
 token; the workflow's header says which.
 
-**From a project to the template.** A finding goes back as a pull request to the template, written
-the way the template's carried-back rules are: what applies to any game, under the name of the game
-that paid for it, with what it cost there, and with that game's own technology left behind. Once
-merged, every other project receives it at its next update. The `template-sync` skill has both
-directions in detail, including what to do when a project's own finding comes home.
+**From a project to the template.** A lesson goes back as a pull request to the template, written
+the way the rules already there are: only what applies to any game, under the name of the game that
+learned it, with what it cost there, and without that game's own engine or libraries. Once merged,
+every other project receives it at its next update. The `template-sync` skill has both directions in
+detail, including what to do when the update brings a project's own rule back to it.
 
 The template's own repository is
 [`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
 `copier.yml` there says what is copied and what is not; projects never see it.
+
+## Where the inherited rules came from
+
+Most of what ships here beyond the toolchain was sent back by games built from the template, each
+time with the reason it exists written beside it. The games are named throughout these documents,
+so here is what each was:
+
+- **Dragon**, the first: a 3D game in three.js on a generated island, in which the player is a
+  dragon and the island's villages react to it.
+- **Extra Sapien**, the second: a recreation of a slice of another game, built in two days with
+  several agents working side by side.
+- **Kyle on Duty**, the third: a recreation of *Nacht der Untoten*, the first zombies map from
+  *Call of Duty: World at War*, built in two days.
+- **Sandworm**: a game of a single encounter, which the sound tools were also tried against.
+
+What each sent back:
+
+- **Dragon**, after its first two weeks: the rules in the Charter's §5 under *Inherited from
+  dragon*; what `CLAUDE.md` says about working with the person and with other agents; the
+  `design-log` skill, playtest entries above all; the end-to-end setup, the play gate, the
+  documents' merge driver and the pull-request template.
+- **Extra Sapien**, after its first two days: the screenshot tool, which it and dragon had each
+  built for themselves, and the `frame-check` skill; the slow end-to-end run; and §5's rules for
+  running builders side by side. Later, once its hosted game had a second player, its feedback
+  inbox: the page, the function, the dev server's inbox, and the CDK app that deploys the
+  function, which replaced a page of console steps after three of the console's defaults broke its
+  first live send.
+- **Kyle on Duty**, after its first two days and first sitting: the sound tool, `takes.mjs`, and
+  the `sound-check` skill, since all four games had each built their own; and §5's rules for
+  putting several questions to the person at once, checking a builder's worktree before it starts,
+  playing the whole game with a bot before looking at screenshots, and measuring the part the
+  person called right as a control. At its first template update, when those rules came back to
+  it, it added the `template-sync` skill's step of writing a rule into the project's own Charter
+  before sending it. And after that, `takes.mjs`'s `hrtf` option, for an offline render that
+  waits forever on Chromium's HRTF database, which cost it every full render of its sounds for a
+  day.
 
 ## Optional: the RTK agent tooling
 

@@ -2,6 +2,13 @@
 
 This file exists for agent platforms that read `CLAUDE.md`.
 
+Throughout, *the person you're working with* (or *the person*) is the human designing the game.
+They decide what the game is and judge how it feels; you build, measure and keep the record. These
+documents use some shorthand of their own (*sitting*, *the gate*, *instrument*, *builder*, *paid
+for*); the README's *Words we use* defines each. Dragon, Extra Sapien, Kyle on Duty and sandworm,
+named below, are earlier games built from this template; the README's *Where the inherited rules
+came from* says what each was.
+
 ## The project
 
 *`<One paragraph: what the game is, what the player does, and what the loop is. Replace this
@@ -24,12 +31,12 @@ section, and the last three log entries, before proposing a plan.
 ## How to work in this repo
 
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
-holds the documents' merge driver, the template's update script (`template.mjs`), and three
-instruments that know no game (`shots.mjs`, `takes.mjs` and `e2e-slow.mjs`). `feedback/` and
-`infra/` are a feedback page that knows no game either, which a game mounts and hands its canvas
-to, the function that commits a player's report to a private repository, and its AWS side as code
-(README, *Feedback from inside the game*). Do not assume a missing module was deleted by mistake,
-and do not go looking for prior art in the tree.
+holds the documents' merge driver, the template's update script (`template.mjs`), and three tools
+that work with any game (`shots.mjs`, `takes.mjs` and `e2e-slow.mjs`). `feedback/` and `infra/` are
+an in-game feedback page that also works with any game (the game mounts it and hands it its canvas),
+the function that commits a player's report to a private repository, and that function's AWS setup
+as code (README, *Feedback from inside the game*). Do not assume a missing module was deleted by
+mistake, and do not go looking for prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout rules, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
@@ -54,16 +61,17 @@ against an unfilled template, and don't answer the prompts on their behalf in th
 implementation. If the implementation forces a design change, raise it with the person you're
 working with.
 
-**How it feels is found by playing it.** An agent's playtest is telemetry and screenshots; it can
+**How it feels is found by playing it.** An agent's playtest is numbers and screenshots; it can
 establish that something turns in eight seconds, not whether eight seconds feels heavy or merely
 slow. That judgment comes from the person you're working with, at the game, and the telemetry is
 there to support it. Write both down, and say which is which. And before asking them how something
 feels, check that the screen shows the difference you are asking about: in dragon, a village braced
 for the dragon and a village abandoned were the same picture, so nobody could have answered.
 
-**Trace before you test.** In dragon, a one-second trace of the state under a held input found
-every defect in the flight model and the fire, where their passing tests found none. Traces were
-cheap there because the simulation ran in Node with no renderer. A trace is only as good as its
+**Trace before you test.** A trace is a record of the game's state over a few seconds, printed by
+running the simulation in Node. In dragon, a one-second trace of the state while a key was held
+found every defect in the flight model and the fire, where their passing tests found none. Traces
+were cheap there because the simulation ran in Node with no renderer. A trace is only as good as its
 setup, though: when a trace disagrees with the game, suspect the trace first, and call the real
 setup rather than rebuilding it by hand. A hand-made copy of one function, missing the body's
 orientation, produced three plausible stories about a broken game before the fault turned out to be
@@ -74,22 +82,22 @@ we can easily go back to it as needed."*
 
 **Look at the frame.** Screenshots are part of verification. Early on, give the game a handle the
 end-to-end tests can drive it by, one that can step the simulation, place the camera, and read the
-state the screen does not show. Then write a shots script that poses it, run it with `npm run
-shots`, and look at the sheet (`scripts/shots.mjs` says what the script exports). Several of
-dragon's defects existed only on screen, and the day its readout said where the camera was, *"this
-looks wrong from here"* stopped being a description and became a frame anyone could take again.
-Both dragon and Extra Sapien built a harness for this, and in Extra Sapien it was the last check
-built and the most productive. With `--tree before=@<commit>`, the same script puts an older
-commit's frames beside this checkout's: the before and after of anything that is looked at rather
-than measured. The `frame-check` skill has the rest: what to ask, what to pose, how to read a
-sheet, and the control.
+state the screen does not show. Then write a shots script that puts the game into each state worth
+seeing, run it with `npm run shots`, and look at the sheet, the one image it lays the frames out on
+(`scripts/shots.mjs` says what the script exports). Several of dragon's defects existed only on
+screen, and the day its debug readout said where the camera was, *"this looks wrong from here"*
+stopped being a description and became a frame anyone could take again. Both dragon and Extra Sapien
+built a harness for this, and in Extra Sapien it was the last check built and the most productive.
+With `--tree before=@<commit>`, the same script puts an older commit's frames beside this
+checkout's: the before and after of anything that is looked at rather than measured. The
+`frame-check` skill has the rest: what to ask, what to pose, how to read a sheet, and the control.
 
 **Measure the sound, and give them takes to hear.** An agent cannot hear: what a session knows of
 its game's sound it knows from numbers and pictures of the samples. `npm run takes` renders the
 game's own sound offline, through a script of the game's own, measures each take and lays them out
 beside any older commit's; whether a sound is right is the person's, on copies matched in loudness
 so that the louder one does not win for being louder. All four games built from this template made
-an instrument like it for themselves first. The `sound-check` skill has the rest.
+a tool like it for themselves first. The `sound-check` skill has the rest.
 
 ### Working together
 
@@ -99,8 +107,9 @@ more productive when everyone is patient, understanding, and brings a collaborat
 delegative or managerial, mindset to things."* They rest on one idea: the work goes best when each
 of us brings what we're best at. The person you're working with brings the picture of what the game
 should be, what they expected, and how it feels; an agent can measure, check eight cases while they
-play one, and keep the record straight. None of this softens what is true: a check that passes on
-broken code checks nothing, whoever says so and however kindly.
+play one, and keep the record straight. A *sitting*, below, is one stretch of them playing a build.
+None of this softens what is true: a check that passes on broken code checks nothing, whoever says
+so and however kindly.
 
 Like the Charter's §5, these are inherited from dragon, as are the rules above that name it:
 defaults, not this project's findings. Keep them, prune them or argue with them, and log it when you
@@ -168,34 +177,34 @@ When you are the one briefed, rebuild its measurements before building on them, 
 wrong: notes handed on in dragon from reading code were right about where things were, and wrong one
 step past that.
 
-## Four rules carried in
+## Four inherited rules
 
 Inherited from the template, out of a previous project that reached a thousand commits and fifty
 thousand lines before anyone had established whether it was fun. They are defaults rather than this
 project's own findings, and the README states the evidence behind each. Argue with them
 deliberately or keep them, but don't ignore them silently.
 
-**Done is the wire, not the module.** A feature is finished when a booted game lets a player do the
+**Done means wired in, not written.** A feature is finished when a booted game lets a player do the
 thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
 the type-checker can tell you so: unit tests import modules directly, so a module keeps a green
 test long after nothing in the running game reaches it. This is the specific way the previous
 attempt failed, repeatedly.
 
-**Play it.** A system whose feel is still being found has earned nothing but being played. When you
-write down a playtest, write down what *worked* — the defect list is the easy half, and it is not
-the half that tells you what to protect.
+**Play it.** While a system's feel is still being found, it needs playing, not tests or documents.
+When you write down a playtest, write down what *worked* — the defect list is the easy half, and it
+is not the half that tells you what to protect.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
-proxy for a judgment, and it takes the person you're working with, playing it, to make that
-judgment. Feel-shaped questions routed through a queue come back as correct fragments that do not
-compose.
+stand-in for a judgment, and it takes the person you're working with, playing it, to make that
+judgment. A question about how something feels, split into tasks and handed out, comes back as
+pieces that each pass their check and do not add up.
 
 **Test what has stopped changing.** Every test written against a system whose feel is still being
 found is a bet you will pay to unwind.
 
-Dragon kept all four, and paid for more of its own. The ones that apply to any game are in the
-Charter's §5, under *Inherited from dragon*, on the same terms: defaults to keep, prune or argue
-with, and read before proposing a plan.
+Dragon kept all four, and learned more of its own the hard way. The ones that apply to any game are
+in the Charter's §5, under *Inherited from dragon*, on the same terms: defaults to keep, prune or
+argue with, and read before proposing a plan.
 
 ## Verification
 
@@ -232,13 +241,13 @@ with everything that has a shader in it, and then reads the GL error flag in the
 that fails to compile is logged rather than thrown, and GL errors reach the console late, from
 another process and as warnings, where a listener for errors does not see them.
 
-**When the person wants to play, give them a build on `npm run verify:play`, not the whole gate.**
-It typechecks and boots and draws the game in seconds, which is what their sitting needs. Dragon's
-gate took five minutes even after it had been cut from fifteen, and every sitting used to wait for
-it. Push, tell them it is there, and run `npm run verify` while they play. If it goes red, tell
-them what broke before they report on it, then fix it. Once there is code, a pull request needs
-the whole gate green, and CI read after the push: in dragon, *"CI: will run on this PR"* went into a
-description three times and was not looked at again.
+**When the person wants to play, give them a build on `npm run verify:play`, not the whole gate**
+(`npm run verify`). It typechecks and boots and draws the game in seconds, which is what their
+sitting needs. Dragon's gate took five minutes even after it had been cut from fifteen, and every
+sitting used to wait for it. Push, tell them it is there, and run `npm run verify` while they play.
+If it goes red, tell them what broke before they report on it, then fix it. Once there is code, a
+pull request needs the whole gate green, and CI read after the push: in dragon, *"CI: will run on
+this PR"* went into a description three times and was not looked at again.
 
 A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
 source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
