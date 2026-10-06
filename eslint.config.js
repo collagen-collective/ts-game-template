@@ -51,8 +51,37 @@ export default [
       ],
     },
   },
+  {
+    // The feedback function's AWS side, a package of its own (infra/package.json).
+    files: ["infra/**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: "./infra/tsconfig.json",
+      },
+      globals: {
+        ...globals.node,
+      },
+    },
+    plugins: {
+      "@typescript-eslint": tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs["recommended"].rules,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
+  },
   prettierConfig,
   {
-    ignores: ["dist/**", "node_modules/**", "tests/e2e/__screenshots__/**"],
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "tests/e2e/__screenshots__/**",
+      "infra/node_modules/**",
+      "infra/cdk.out/**",
+    ],
   },
 ];

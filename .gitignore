@@ -17,3 +17,7 @@ node_modules/
 # dragon, when only .ts, .mjs and directories were covered, a probe's JSON output was committed by
 # accident and sat at the root for two days.
 scratch-*
+
+# The dev server's feedback inbox: reports sent from `npm run dev` and the end-to-end suite
+# (vite.config.ts). The hosted game's go to the inbox repository instead.
+feedback-inbox/

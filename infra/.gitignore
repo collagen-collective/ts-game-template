@@ -1,0 +1,3 @@
+# What `cdk synth` and `cdk deploy` write: the template, the function's zip and the outputs.
+cdk.out/
+cdk.context.json
