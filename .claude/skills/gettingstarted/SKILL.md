@@ -11,6 +11,7 @@ allowed-tools:
   - Bash(grep *)
   - Bash(git remote *)
   - Bash(git log *)
+  - Bash(npm run template:link*)
   - Bash(date *)
 ---
 
@@ -225,6 +226,11 @@ Use `AskUserQuestion` for these; they are discrete choices.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
 - **The remote.** `git remote -v` should point at their own repo. If it still points at the
   template, they cloned instead of using "Use this template" — tell them, and let them decide.
+- **The link to the template.** If there is no `.copier-answers.yml`, run `npm run template:link`
+  and commit what it writes: it records which template commit this project began from, so that
+  `npm run template:update` and the weekly workflow can bring in what the template learns later.
+  Say what it found. If it reports a commit only close to the first commit rather than exact,
+  tell them, since the first update will then show differences that were never the template's.
 
 ### The first design-log entry
 

@@ -1,0 +1,19 @@
+# Copier reads this file; projects never see it. It makes this repo a template that a project can
+# be updated from (`npm run template:update`), as well as one it can be created from. README.md,
+# under *Staying in step with the template*, says how both directions work.
+#
+# There are no questions. Everything in the template is copied as it stands: Copier renders only
+# files ending in `.jinja`, and the one such file is the record of which template commit a project
+# was last brought up to. A project is named, and its placeholders answered, by /gettingstarted.
+
+_min_copier_version: "9.4"
+
+# Projects keep their own lockfile: a three-way merge of one is never right. After an update,
+# `npm install` brings it into line with whatever package.json now says.
+_skip_if_exists:
+  - package-lock.json
+
+# How to maintain the template, which is no use inside a project made from it.
+_exclude:
+  - copier.yml
+  - .git
