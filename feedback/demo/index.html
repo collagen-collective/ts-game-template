@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback page: demo</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+      #game { display: block; width: 100vw; height: 100vh; }
+      #hud { position: fixed; inset: 0; pointer-events: none; font: 16px system-ui, sans-serif; color: #eaf2ff; }
+      #hud .where { position: absolute; left: 24px; top: 20px; letter-spacing: .2em; }
+      #hud .health { position: absolute; left: 24px; bottom: 24px; width: 220px; height: 10px; border: 1px solid #9fd2ff; }
+      #hud .health i { display: block; height: 100%; width: 70%; background: #9fd2ff; }
+      #menu { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.6); font: 18px system-ui, sans-serif; color: #eaf2ff; letter-spacing: .2em; }
+      #menu.open { display: grid; }
+      #menu button { display: block; margin: 10px auto; min-width: 220px; padding: 10px; font: inherit; color: inherit; background: none; border: 1px solid #9fd2ff; cursor: pointer; }
+      #menu button:disabled { opacity: .4; cursor: default; }
+    </style>
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+    <div id="hud"><div class="where">THE BRIDGE</div><div class="health"><i></i></div></div>
+    <div id="menu"><div>
+      <button data-do="resume">RESUME</button>
+      <button data-do="feedback">FEEDBACK</button>
+    </div></div>
+    <script type="module" src="./demo.ts"></script>
+  </body>
+</html>

@@ -43,9 +43,10 @@ driver for the three documents; `template.mjs`, which keeps the project in step 
 and three instruments that know nothing about any game: `shots.mjs`, which captures posed frames,
 `takes.mjs`, which renders and measures the game's own sound, and `e2e-slow.mjs`, which runs the
 end-to-end suite at about CI's speed. The game supplies what they drive. `feedback/` and `infra/`
-are the far end of a feedback page: a function that takes a player's report from the hosted game
+are a feedback page a game mounts, the function that takes a player's report from the hosted game
 and commits it to a private repository, the dev server's stand-in for it, and the function's AWS
-side as code (*Feedback from inside the game*, below). The page itself is the game's to make.
+side as code (*Feedback from inside the game*, below). They know nothing about any game either: the
+game hands the page its canvas and what it knows.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
@@ -79,19 +80,28 @@ was.
 And after it: `takes.mjs`'s `hrtf`, for an offline render that waits for ever on Chromium's HRTF
 database, which cost Kyle on Duty every full render of its sound board for a day.
 
-Extra Sapien, once its hosted game had a second player, carried back its feedback inbox: the
-function that commits a player's report to a private repository, the dev server's inbox, and the
-CDK app that deploys the function, which replaced a page of console steps after three of their
-defaults broke its first live send.
+Extra Sapien, once its hosted game had a second player, carried back its feedback inbox: the page
+that player marks a frame and writes on, on a pad or the keys and mouse; the function that commits
+the report to a private repository; the dev server's inbox; and the CDK app that deploys the
+function, which replaced a page of console steps after three of their defaults broke its first live
+send.
 
 ## Feedback from inside the game
 
 A player at the hosted game, away from the session, can send a report from inside it: their words,
 the frame they were looking at, and whatever of the world's state the game chooses to send. Each
 report lands as one folder, `inbox/<when>_<who>/`, in a private repository of the project's
-making, where a session can read it. The page that makes the report is the game's; what ships here
-is the far end of it, which knows nothing about any game:
+making, where a session can read it. All of it ships here, and none of it knows any game:
 
+- **`feedback/page/`** is the page. At the pause it keeps the frame the player is looking at, HUD
+  and all; from the game's menu it opens over the game, first to mark the frame (a ring, a stroke,
+  undo) and then to say what kind of thing it is, write as much or as little as they like, and
+  untick anything they would rather not send. Nothing on it is required. It reads a gamepad (the
+  browser's standard mapping) and the keys and mouse itself while it is open, keeps the keys from
+  the game, and closes only once every press made on it is let go. It looks neutral, and a game
+  restyles it from its own stylesheet (`style.ts` lists the custom properties).
+  `feedback/demo/` is a stand-in game that uses it, to try on `npm run dev` at `/feedback/demo/`,
+  and `npm run feedback:check` drives the demo in a browser, on both devices and through a refusal.
 - **`feedback/handler.mjs`** is an AWS Lambda function, reached at its function URL. It holds the
   GitHub token, which a page must never hold, takes a report only with a key it knows, and commits
   it to the inbox as one commit. It needs no packages, so it seldom changes: in Extra Sapien, a
@@ -109,19 +119,55 @@ is the far end of it, which knows nothing about any game:
 
 A game that wants none of it deletes `feedback/`, `infra/`, the `devInbox` plugin in
 `vite.config.ts`, and the lines naming them in `vitest.config.ts`, `eslint.config.js`,
-`package.json`'s `lint` and `format`, and `.gitignore`; CI skips its infrastructure job once
-`infra/package.json` is gone.
+`package.json` and `.gitignore`; CI skips its checks of each once its folder is gone.
 
-**What the page sends.** One `POST` with a JSON body, sent as `text/plain` so that the browser asks
+**Putting it in a game.** The game makes one page, hands it the frame and what it knows at the
+pause, and opens it from a menu that offers FEEDBACK only where `available` says it can be sent:
+
+```ts
+import { FeedbackPage, Trace } from "../feedback/page/index.ts";
+
+const feedback = new FeedbackPage({ build: __BUILD__, onClose: () => pauseMenu.focus() });
+const trace = new Trace<Sample>(10, 0.1); // each step: trace.offer(time, () => sampleOf(world))
+
+function pause(): void {
+    // Before the menu covers the HUD. A WebGL canvas needs preserveDrawingBuffer: true for this.
+    feedback.keep(canvas, {
+        title: "The Bridge",
+        subtitle: "4:12 into the run · the world is paused",
+        parts: [
+            {
+                id: "where",
+                label: "the bridge, 4:12 into the run, and the last ten seconds",
+                lines: ["**Where:** the bridge, 4:12 into the run"],
+                data: { player: { x, y }, seed },
+                file: { name: "trace.json", data: trace.all() },
+            },
+        ],
+    }, hud);
+    pauseMenu.open({ feedback: feedback.available });
+}
+// FEEDBACK in the pause menu: feedback.open(). While feedback.isOpen, the menu takes no input.
+```
+
+Each part is a line on the page the player can untick, its `lines` go into `report.md`, its `data`
+into `state.json` under its `id`, and its `file` beside them; a part saying which build and which
+browser is added unless `browser: false`. What the parts hold is the game's to choose: Extra
+Sapien sent the place and the run, the world as its tests read it, the settings and the frame rate,
+and the last ten seconds ten times a second. The kinds a player picks from, the words in the empty
+box, and how the frame is kept are options too (`FeedbackOptions`). The key is kept under
+`storageKey`, which games that share an origin should each set.
+
+**What the page sends,** for a game that would rather make its own. One `POST` with a JSON body, sent as `text/plain` so that the browser asks
 no preflight: `{ "key": "…", "stamp": "2026-10-06_213105", "files": { "report.md": "<base64>", … } }`.
 `report.md` is required; up to six files, each a plain name such as `frame.jpg` or `state.json`
 (`LIMITS` in the handler), five megabytes in all. The answer is `{ "ok": true, "folder": "…" }`, or
 `{ "ok": false, "error": "…" }` with what was wrong in words, worth showing the player as it is. A
 page sends to `/__feedback` when `import.meta.env.DEV` is true, and otherwise to
 `import.meta.env.VITE_FEEDBACK_URL`, offering feedback only when that is set and it holds a key.
-The key reaches it in the player's link, `?key=`; Extra Sapien's page kept it in `localStorage`
-and took it out of the address bar, so a bookmark of the open game holds none, and the player keeps
-the link itself. `stamp` is the sender's clock, which names the folder; a missing one takes the
+The key reaches it in the player's link, `?key=`; the page keeps it in `localStorage` and takes it
+out of the address bar, so a bookmark of the open game holds none, and the player keeps the link
+itself. `stamp` is the sender's clock, which names the folder; a missing one takes the
 function's.
 
 **Setting it up** is two things made by hand in GitHub, and the rest is code:
@@ -248,6 +294,7 @@ npm run verify:play # typecheck + the boot test: a build a person can sit down t
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
 npm run takes -- <takes.mjs> <out-dir>  # the game's own sound, rendered and measured
+npm run feedback:check [-- <out-dir>]  # the feedback page, driven in a browser
 npm run template:link    # once: record which template commit this project began from
 npm run template:update  # bring in what the template has gained since
 cd infra && npm ci && npm run typecheck && npm test  # the feedback function's AWS side, as code

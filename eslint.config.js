@@ -52,6 +52,48 @@ export default [
     },
   },
   {
+    // The feedback page, which a game imports, and its demo and tests (feedback/tsconfig.json).
+    files: ["feedback/**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: "./feedback/tsconfig.json",
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      "@typescript-eslint": tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs["recommended"].rules,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
+  },
+  {
+    // The feedback function, which runs on Node in Lambda, and its tests.
+    files: ["feedback/**/*.mjs"],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  {
+    // The page's check, which hands functions to the browser to run.
+    files: ["feedback/check.mjs"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
+  },
+  {
     // The feedback function's AWS side, a package of its own (infra/package.json).
     files: ["infra/**/*.ts"],
     languageOptions: {

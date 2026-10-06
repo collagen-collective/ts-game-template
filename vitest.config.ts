@@ -13,6 +13,7 @@ export default defineConfig({
             "tests/**/*.test.ts",
             "scripts/**/__tests__/**/*.test.mjs",
             "feedback/**/__tests__/**/*.test.mjs",
+            "feedback/**/__tests__/**/*.test.ts",
         ],
         exclude: [...configDefaults.exclude, "tests/e2e/**"],
     },

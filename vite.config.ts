@@ -10,14 +10,16 @@ import { folderOf, parseReport, Refused } from "./feedback/handler.mjs";
  * (`feedback/handler.mjs`) and sent nowhere. So a game's feedback page can be
  * played and tested before the function exists, and nothing a session tries
  * reaches the real inbox. A page tells the two apart by `import.meta.env.DEV`
- * (README, *Feedback from inside the game*).
+ * (README, *Feedback from inside the game*). `FEEDBACK_INBOX` names another
+ * folder, as `npm run feedback:check` does for its own.
  */
 function devInbox(): Plugin {
     return {
         name: "feedback-dev-inbox",
         apply: "serve",
         configureServer(server) {
-            const root = join(server.config.root, "feedback-inbox");
+            const root =
+                process.env["FEEDBACK_INBOX"] || join(server.config.root, "feedback-inbox");
             server.middlewares.use("/__feedback", (req, res) => {
                 const answer = (status: number, body: object): void => {
                     res.statusCode = status;

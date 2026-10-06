@@ -26,10 +26,10 @@ section, and the last three log entries, before proposing a plan.
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
 holds the documents' merge driver, the template's update script (`template.mjs`), and three
 instruments that know no game (`shots.mjs`, `takes.mjs` and `e2e-slow.mjs`). `feedback/` and
-`infra/` are the far end of a feedback page that knows no game either: a function that commits a
-player's report to a private repository, and its AWS side as code (README, *Feedback from inside
-the game*). Do not assume a missing module was deleted by mistake, and do not go looking for prior
-art in the tree.
+`infra/` are a feedback page that knows no game either, which a game mounts and hands its canvas
+to, the function that commits a player's report to a private repository, and its AWS side as code
+(README, *Feedback from inside the game*). Do not assume a missing module was deleted by mistake,
+and do not go looking for prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout rules, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
@@ -212,6 +212,7 @@ npm run verify:play # typecheck + the boot test (a build a person can sit down t
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
 npm run takes -- <takes.mjs> <out-dir>  # the game's own sound, rendered and measured
+npm run feedback:check [-- <out-dir>]  # the feedback page, driven in a browser
 npm run template:update  # bring in what the template has gained (`template-sync` skill)
 cd infra && npm ci && npm run typecheck && npm test  # the feedback function's AWS side, as code
 ```

@@ -14,8 +14,9 @@ jobs:
   # "No tests found" on every change to the documents. So they wait on this job, and are skipped,
   # visibly, until there is something to check. Only the root config files are left out of the
   # count: TypeScript anywhere else counts, whatever folder it is in, so a project that moves its
-  # code out of src/ is checked rather than skipped, except infra/, the feedback function's AWS side,
-  # which ships with the template and has a job of its own. The unit tests always run.
+  # code out of src/ is checked rather than skipped, except feedback/ and infra/, the feedback page and
+  # function and the function's AWS side, which ship with the template and are checked on their own:
+  # feedback/ with the unit tests, infra/ in a job of its own. The unit tests always run.
   source:
     name: Look for source
     runs-on: ubuntu-latest
@@ -35,7 +36,7 @@ jobs:
       - name: Look for TypeScript besides the root config files
         id: look
         run: |
-          if [ -n "$(git ls-files -- '*.ts' '*.tsx' '*.mts' '*.cts' ':(exclude,glob)*.config.ts' ':(exclude)infra')" ]; then
+          if [ -n "$(git ls-files -- '*.ts' '*.tsx' '*.mts' '*.cts' ':(exclude,glob)*.config.ts' ':(exclude)infra' ':(exclude)feedback')" ]; then
             echo "found=true" >> "$GITHUB_OUTPUT"
           else
             echo "found=false" >> "$GITHUB_OUTPUT"
@@ -74,7 +75,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Prettier check
-        run: npx prettier --check "src/**/*.ts" "tests/**/*.ts" "infra/**/*.ts"
+        run: npx prettier --check "src/**/*.ts" "tests/**/*.ts" "infra/**/*.ts" "feedback/**/*.ts"
 
       - name: ESLint
         run: npm run lint
@@ -102,6 +103,15 @@ jobs:
 
       - name: Run unit tests
         run: npm test
+
+      # The feedback page ships with the template, so it is checked here, where a project with no
+      # source yet is checked too. A project that deletes feedback/ skips it.
+      - name: Typecheck, format-check and lint the feedback page
+        if: hashFiles('feedback/tsconfig.json') != ''
+        run: |
+          npx tsc --noEmit -p feedback
+          npx prettier --check "feedback/**/*.ts"
+          npx eslint feedback
 
   # The feedback function's AWS side, a package of its own so that its 250 MB of CDK is installed
   # here and on the machine that deploys, and nowhere else: not by the game's `npm ci`, the other
