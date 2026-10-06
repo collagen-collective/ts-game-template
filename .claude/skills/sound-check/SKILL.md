@@ -105,7 +105,10 @@ export default async function (take, page) {
 ```
 
 The handle's names are placeholders; use the game's. `__takes.pack` is the harness's, in the page
-before the game loads. Then:
+before the game loads. If any of the game's panners is `panningModel = "HRTF"`, add
+`export const hrtf = 48000;` with the rate its takes render at (an array for more than one), and
+the harness loads the HRTF database before the first take: see *An HRTF panner, offline*, below.
+Then:
 
 - **Take the whole sound, and a little either side.** Start the render before the sound begins and
   end it after it has rung out, or a late start and a cut-off tail are invisible.
@@ -215,5 +218,15 @@ The numbers find defects; the person decides what sounds right.
   mix's.
 - **`TMPDIR` for the tree copies.** It moves Chromium's profile too, and from a long path Chromium
   crashed on launch. `TREES_DIR` moves only the copies.
+- **An HRTF panner, offline.** A render that reaches its first `"HRTF"` panner waits for Chromium
+  to load the HRTF database, and now and then the load never finishes: the render waits for ever,
+  with nothing said, and so does every later one on that page. In Kyle on Duty it stopped every
+  full render of its sound board at a different zombie voice; under load, every run stalled within
+  four renders. It looked like the game's bug for a day, and three guesses were wrong before the
+  renderer's threads named it (`OfflineAudioRender`, waiting, and `HRTF database loader`). A take
+  that hangs at random, on sounds that are placed, is this until shown otherwise: `export const
+  hrtf` in the script, and the harness loads the database first and opens a fresh page when it
+  does not load. In a live `AudioContext`, in the same headless Chromium, the panner sounded within
+  20 ms on 40 of 40 pages, with and without load: the hang is the offline render's wait.
 - **A fix that reads quieter.** Restoring a tail lowered the sting's integrated loudness by 1.4 LU,
   because the gate let more of its quiet blocks in. More sound, a smaller number.
