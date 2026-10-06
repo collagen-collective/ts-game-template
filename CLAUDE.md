@@ -24,9 +24,9 @@ section, and the last three log entries, before proposing a plan.
 ## How to work in this repo
 
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
-holds the documents' merge driver, the template's update script (`template.mjs`), and two
-instruments that know no game (`shots.mjs` and `e2e-slow.mjs`). Do not assume a missing module
-was deleted by mistake, and do not go looking for prior art in the tree.
+holds the documents' merge driver, the template's update script (`template.mjs`), and three
+instruments that know no game (`shots.mjs`, `takes.mjs` and `e2e-slow.mjs`). Do not assume a
+missing module was deleted by mistake, and do not go looking for prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout rules, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
@@ -80,6 +80,13 @@ built and the most productive. With `--tree before=@<commit>`, the same script p
 commit's frames beside this checkout's: the before and after of anything that is looked at rather
 than measured. The `frame-check` skill has the rest: what to ask, what to pose, how to read a
 sheet, and the control.
+
+**Measure the sound, and give them takes to hear.** An agent cannot hear: what a session knows of
+its game's sound it knows from numbers and pictures of the samples. `npm run takes` renders the
+game's own sound offline, through a script of the game's own, measures each take and lays them out
+beside any older commit's; whether a sound is right is the person's, on copies matched in loudness
+so that the louder one does not win for being louder. All four games built from this template made
+an instrument like it for themselves first. The `sound-check` skill has the rest.
 
 ### Working together
 
@@ -201,6 +208,7 @@ npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test (a build a person can sit down to)
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
+npm run takes -- <takes.mjs> <out-dir>  # the game's own sound, rendered and measured
 npm run template:update  # bring in what the template has gained (`template-sync` skill)
 ```
 

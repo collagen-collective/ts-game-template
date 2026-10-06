@@ -40,9 +40,9 @@ with it.
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
 and no issue tracker. That is the starting condition, not an accident. `scripts/` holds the merge
 driver for the three documents; `template.mjs`, which keeps the project in step with the template;
-and two instruments that know nothing about any game: `shots.mjs`, which captures posed frames, and
-`e2e-slow.mjs`, which runs the end-to-end suite at about CI's speed. The game supplies what they
-drive.
+and three instruments that know nothing about any game: `shots.mjs`, which captures posed frames,
+`takes.mjs`, which renders and measures the game's own sound, and `e2e-slow.mjs`, which runs the
+end-to-end suite at about CI's speed. The game supplies what they drive.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
@@ -58,9 +58,16 @@ documents' merge driver and the pull-request template are its tooling, each with
 exists written beside it.
 
 Extra Sapien, a second game built from it, carried back more after its first two days:
-- the frame harness, which it and dragon had each built for themselves, and the `frames` skill;
+- the frame harness, which it and dragon had each built for themselves, and the `frame-check` skill;
 - the slow run;
 - §5's rules for running builders side by side.
+
+Kyle on Duty, a third, carried back more after its first two days and its first sitting:
+- the sound harness, `takes.mjs`, and the `sound-check` skill: all four games built from the
+  template had each built a renderer and a measurer of their own sound;
+- §5's rules for putting several questions to the person at once, checking a builder's worktree
+  before it starts, playing the whole game with a bot before frames, and keeping what the person
+  called right in the run as the control, most of them paid for by the other games too.
 
 ## Where things live
 
@@ -125,6 +132,7 @@ npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test: a build a person can sit down to
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
+npm run takes -- <takes.mjs> <out-dir>  # the game's own sound, rendered and measured
 npm run template:link    # once: record which template commit this project began from
 npm run template:update  # bring in what the template has gained since
 ```
@@ -170,6 +178,17 @@ the game's script exports. What the game offers it to drive is the game's choice
 `frame-check` skill is how to use it on a report of something that looks wrong. Dragon and Extra
 Sapien each built one of these before it shipped here, and in Extra Sapien a tour of the whole game
 in frames found 22 defects with every test green.
+
+An agent cannot hear, so the sound gets the same treatment, and `npm run takes` gives it. A script
+of the game's own renders each sound worth hearing into an `OfflineAudioContext`, through the
+game's own code, and names the take. The harness serves the game as `shots.mjs` does (the two share
+`scripts/lib/trees.mjs`), writes each take as a WAV, measures it (loudness by ITU-R BS.1770, peak
+and clipping, when it starts and how long it rings, its octaves, how wide it is:
+`scripts/lib/listen.mjs`), and lays the takes out on a sheet of waveforms and spectrograms. With
+`--tree before=@<commit>` it prints the numbers side by side, and `--match -20` writes copies of
+equal loudness for the person to compare by ear. The `sound-check` skill is how to use it on a
+report of something that sounds wrong. Dragon, Extra Sapien, sandworm and Kyle on Duty each built a
+renderer and a measurer of their own before this one; it was tried on two of them before it shipped.
 
 A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the first source file
 exists, tsc has nothing to check and reports that as an error; the hook lets a commit through when

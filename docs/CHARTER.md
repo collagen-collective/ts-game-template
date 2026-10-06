@@ -112,7 +112,8 @@ evidence behind each. The rest are below: what dragon, a game built from this te
 its first two weeks and wrote down, wherever the lesson applies to any game rather than to dragon's
 own technology. Its rules about three.js, terrain generation and sound stayed behind in its own
 Charter. After them come the few that Extra Sapien, a second game, paid for in its first two days,
-on the same terms. Each rule here keeps a line of what it cost there, because a rule without its
+on the same terms, and then Kyle on Duty's, a third, most of which the games beside it had paid for
+too. Each rule here keeps a line of what it cost there, because a rule without its
 why gets argued with the first time it is inconvenient. How we work with the person, in every
 session, is in `CLAUDE.md` under *Working together*; the rules here are for particular moments.
 
@@ -322,6 +323,54 @@ of what it learned was about that game and stayed behind. These apply to any gam
   between branches that break, and no test sits on a seam. With every test green, Extra Sapien's
   first tour after a merge found 22 defects where four places built apart had met. A second tour
   found 10 more where their separate fixes met.
+
+### Inherited from Kyle on Duty
+
+A recreation of Nacht der Untoten, built in two days by a session with builders beside it, and
+played once, to round 8. Its rules about the original stayed behind. These four apply to any game,
+and three of them were paid for again, separately, by the games beside it, which are named.
+
+#### When you are about to ask the person something
+
+- **When there are several questions only the person can answer, send them together: ranked by how
+  much each answer changes the game, each with your guess, and each naming the value it sets.**
+  Kyle on Duty put eight to the person at once, ranked out of the eighty-odd its research and its
+  builders had asked. They answered all eight in one message after a sitting, with more than was
+  asked, and every answer had set its value within the hour. Dragon sends three to six at a time
+  with a guess beside each (*"they took all four guesses"*), and Extra Sapien sends them with
+  options. One at a time is right for the founding interview (`gettingstarted`), where each answer
+  shapes the next question; questions the person answers from memory or from a sitting do not wait
+  on each other that way, and asked one by one they cost a message each.
+
+#### When you are about to fan out builders
+
+- **Before a builder starts in a worktree, have it check that the worktree holds your latest
+  commits.** An agent's worktree is cut from the default branch, not from the branch the session is
+  on. Every one of Kyle on Duty's builders started from the template's first commit, and had to
+  move itself onto the session's branch; one move was refused by a permission check. Sandworm paid
+  for it too and made it a rule of its own, and Extra Sapien's worktrees were cut from main twice in
+  one day, so that one builder measured code that was no longer there.
+
+#### When you are about to tune how something plays
+
+- **Play the whole game with a bot in Node before looking at a frame of it.** Every beat is a wait
+  on a condition, and a wait that can never come true is invisible until something reaches it.
+  Extra Sapien's first full run found a shut door that could be walked round, in under a second.
+  Kyle on Duty's first whole game found zombies standing still on a crate and on sandbags, and a
+  path field that could not climb a stair; later the same bot, run with each of two rule changes
+  undone in turn, said which of them had cost it three rounds. A game that cannot be lost
+  (sandworm's is one encounter) traces a whole sitting instead.
+
+#### When you are about to change how something looks or sounds
+
+- **When the person says one part is right and another is not, take the right part beside the wrong
+  one as the control, and measure both before and after.** One value often feeds both. Kyle on
+  Duty's person found the house *"pretty much spot on"* and the yard *"a little brighter than the
+  original"*; the fog's colour also greys a room's far end, and lowering it for the yard took 4 to
+  6 points off every room. The rooms were in the same run, so the numbers caught it before the
+  person's yes was spent. Dragon keeps *"the half that already reads as reasonable: it is the part
+  a fix can break"*, and Extra Sapien compared its great hall pixel by pixel while changing what
+  stood beside it; neither had written it down.
 
 ### This project's own
 

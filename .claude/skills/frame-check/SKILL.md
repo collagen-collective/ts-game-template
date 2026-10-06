@@ -144,8 +144,9 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> --tree before=
 
 The same script runs on an older commit, exported with its own `node_modules`, and the sheet puts
 the two side by side, a row a shot. The first copy of a commit takes about a minute; later runs
-reuse it. The copy goes under the system's temp directory: set `TMPDIR` to a `scratch-*` folder to
-keep it inside the checkout.
+reuse it. The copy goes under the system's temp directory: set `TREES_DIR` to a `scratch-*` folder
+to keep it inside the checkout. Not `TMPDIR`, which moves Chromium's own files as well, and crashed
+it on launch from a long path.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
   in the before, or in this checkout with the fix taken out. A null result is not a result until
@@ -153,6 +154,10 @@ keep it inside the checkout.
   defect where it is known to be, they cannot see it: change the pose, not the conclusion.
 - **Match the pair on everything but the change.** Same seed, same moment, same camera. A pair
   that differs in anything else is not evidence until you know what that difference did.
+- **Keep what the person called right in the run.** When they say one part is right and another is
+  not, shoot the right part too, and check it did not move (Charter §5). In Kyle on Duty, darkening
+  the yard took 4 to 6 points off every room the person had called right, and only the rooms being
+  in the same run caught it.
 - **A commit older than the handle a script uses fails,** says why, and its column reads *no
   frame*.
 
