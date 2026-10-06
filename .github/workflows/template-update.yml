@@ -1,0 +1,90 @@
+name: Template update
+
+# Once a week, brings in what the template has gained since this project was last brought up to it,
+# and opens a pull request with it: `npm run template:update`, run where nobody has to remember to.
+# README.md, under *Staying in step with the template*, says how it works and what it needs.
+#
+# Where both this project and the template changed the same lines, the pull request carries the
+# conflict markers, and its description lists the files: resolve them on the branch, as after any
+# merge. A pull request already open is updated in place rather than opened again.
+#
+# Two settings, once per repository. GitHub Actions may open pull requests only where Settings →
+# Actions → General allows it ("Allow GitHub Actions to create and approve pull requests"). And a
+# pull request opened with the workflow's own token does not start CI, by GitHub's design: give the
+# repository a secret named TEMPLATE_UPDATE_TOKEN (a fine-grained token with contents and pull
+# requests write) and it is opened with that instead, and CI runs on it as on any other.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: template-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Bring in the template
+    # The template itself has nothing to update from.
+    if: github.repository != 'collagen-collective/ts-game-template'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Look for the link to the template
+        id: linked
+        run: |
+          if [ -f .copier-answers.yml ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Not linked to the template yet: run \`npm run template:link\` once and commit what it writes."
+          fi
+
+      - name: Setup Node.js
+        if: steps.linked.outputs.found == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Setup uv
+        if: steps.linked.outputs.found == 'true'
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        if: steps.linked.outputs.found == 'true'
+        # Also registers the documents' merge driver, which the update runs over the three documents.
+        run: npm ci
+
+      - name: Bring in the template
+        if: steps.linked.outputs.found == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          npm run template:update -- --lock-only --summary "$RUNNER_TEMP/summary.md"
+          # Files left with conflict markers are unmerged in the index; staging them is what lets
+          # the pull request carry them, markers and all, for a person or a session to resolve.
+          git add -A
+
+      - name: Open or update the pull request
+        if: steps.linked.outputs.found == 'true'
+        uses: peter-evans/create-pull-request@v7
+        env:
+          # The pre-commit hook typechecks, and a conflict marker in a .ts file would stop the commit.
+          HUSKY: "0"
+        with:
+          token: ${{ secrets.TEMPLATE_UPDATE_TOKEN || github.token }}
+          branch: template-update
+          delete-branch: true
+          commit-message: Bring in the template
+          title: Bring in the template
+          body-path: ${{ runner.temp }}/summary.md
