@@ -24,9 +24,9 @@ section, and the last three log entries, before proposing a plan.
 ## How to work in this repo
 
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
-holds the documents' merge driver and two instruments that know no game (`shots.mjs` and
-`e2e-slow.mjs`). Do not assume a missing module was deleted by mistake, and do not go looking for
-prior art in the tree.
+holds the documents' merge driver, the template's update script (`template.mjs`), and two
+instruments that know no game (`shots.mjs` and `e2e-slow.mjs`). Do not assume a missing module
+was deleted by mistake, and do not go looking for prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout rules, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
@@ -201,6 +201,7 @@ npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test (a build a person can sit down to)
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
+npm run template:update  # bring in what the template has gained (`template-sync` skill)
 ```
 
 With `src/` and `tests/` empty, most of these have nothing to act on, and several exit non-zero on
@@ -238,3 +239,10 @@ a little slower than CI. Set a time limit from it, and run it before a pull requ
 When you merge main, the three documents resolve themselves where both sides only added text
 (`scripts/merge-docs.mjs`, registered by `npm ci`). A conflict left in one of them is a real
 collision, two edits to one passage, so read both sides rather than taking one.
+
+The template this repo was made from keeps learning from the other games built from it, and
+`npm run template:update` brings that in: a three-way merge that keeps this project's changes and
+leaves conflict markers where both changed one passage. A weekly workflow opens it as a pull
+request. Resolve it as you would a merge of main, read both sides, and log what it changed about how
+this project works. A finding of this project's that would serve any game goes back to the template
+as a pull request there. The `template-sync` skill has both directions.

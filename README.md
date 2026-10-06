@@ -5,7 +5,9 @@
 > ``rg '`<' README.md CLAUDE.md docs/`` lists whatever is still unfilled. Two placeholders it will
 > not list, because they are not Markdown: the `name` field in `package.json` and the page `title`
 > in `index.html`. **In Claude Code, `/gettingstarted` walks you through all of it** — it interviews
-> you, fills in what is settled, and files what isn't. Delete this block when the repo is your own.
+> you, fills in what is settled, and files what isn't. `npm run template:link`, once, lets the repo
+> take in the template's later improvements (*Staying in step with the template*, below). Delete
+> this block when the repo is your own.
 
 *One paragraph. What the player does, where they do it, and what the loop is. Concrete enough that
 a stranger could picture a minute of play, and short enough to read before deciding whether to keep
@@ -37,9 +39,10 @@ with it.
 
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
 and no issue tracker. That is the starting condition, not an accident. `scripts/` holds the merge
-driver for the three documents, and two instruments that know nothing about any game:
-`shots.mjs`, which captures posed frames, and `e2e-slow.mjs`, which runs the end-to-end suite at
-about CI's speed. The game supplies what they drive.
+driver for the three documents; `template.mjs`, which keeps the project in step with the template;
+and two instruments that know nothing about any game: `shots.mjs`, which captures posed frames, and
+`e2e-slow.mjs`, which runs the end-to-end suite at about CI's speed. The game supplies what they
+drive.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
 Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
@@ -122,6 +125,8 @@ npm run verify      # typecheck + lint + unit + e2e
 npm run verify:play # typecheck + the boot test: a build a person can sit down to
 npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
 npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
+npm run template:link    # once: record which template commit this project began from
+npm run template:update  # bring in what the template has gained since
 ```
 
 `npm run verify` is the gate. With `src/` and `tests/` empty it does not pass yet: most steps have
@@ -184,6 +189,44 @@ often in the Charter's §5 as well. `scripts/merge-docs.mjs` keeps both sides' a
 entries in date order, and leaves anything else as an ordinary conflict: a passage both sides
 changed is still there to be read. `npm ci` registers it, through `prepare`. Where it is not
 registered, GitHub's merge button included, the documents merge as they always did.
+
+## Staying in step with the template
+
+Several games are built from this template, and each finds things the others need: dragon and
+Extra Sapien each carried rules and tools back to it. The template is how a finding travels, and
+both directions are meant to be routine.
+
+**From the template to a project.** `npm run template:update` brings in what the template has
+gained since the project last did, as a three-way merge, file by file, through
+[Copier](https://copier.readthedocs.io) (the same idea as `cruft`, for templates that are themselves
+working repositories). What the project changed is kept; what the template changed comes in; where
+both changed the same lines, the file is left with conflict markers and marked unmerged, as after a
+`git merge`, to be read and resolved. A file or a passage the project deleted stays deleted. The
+three documents get their merge driver here too, so a rule the template added beside one the
+project added keeps both. `package-lock.json` is never merged: `npm install` rebuilds it from the
+merged `package.json`. The update needs [uv](https://docs.astral.sh/uv/) or pipx to run Copier,
+and nothing else installed; it prints what came in, by the template's commit messages, and what is
+left to resolve.
+
+`.copier-answers.yml` records the template commit the project was last brought up to. A project
+made with GitHub's "Use this template" button, or before the template could be updated from, has
+none: `npm run template:link` writes it, once, by finding the template commit the project's first
+commit was made from. Commit it, and every update after that is one command.
+
+`.github/workflows/template-update.yml` runs the update once a week and opens a pull request with
+what came in, conflicts listed in its description, so a project hears of a finding without anyone
+remembering to look. It needs a repository setting and, for CI to run on that pull request, a
+token; the workflow's header says which.
+
+**From a project to the template.** A finding goes back as a pull request to the template, written
+the way the template's carried-back rules are: what applies to any game, under the name of the game
+that paid for it, with what it cost there, and with that game's own technology left behind. Once
+merged, every other project receives it at its next update. The `template-sync` skill has both
+directions in detail, including what to do when a project's own finding comes home.
+
+The template's own repository is
+[`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
+`copier.yml` there says what is copied and what is not; projects never see it.
 
 ## Optional: the RTK agent tooling
 
