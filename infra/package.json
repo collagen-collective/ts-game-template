@@ -1,0 +1,29 @@
+{
+  "name": "game-feedback-infra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The feedback function's AWS side, as code: the function, its address, and the secret it reads (README, Feedback from inside the game).",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "cdk": "cdk",
+    "synth": "cdk synth --quiet",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy --outputs-file cdk.out/outputs.json && node scripts/endpoint.ts",
+    "destroy": "cdk destroy",
+    "secret": "node scripts/secret.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"test/**/*.test.ts\""
+  },
+  "devDependencies": {
+    "@aws-sdk/client-cloudformation": "^3.1146.0",
+    "@aws-sdk/client-secrets-manager": "^3.1146.0",
+    "@types/node": "^26.0.1",
+    "aws-cdk": "^2.1144.0",
+    "aws-cdk-lib": "^2.272.0",
+    "constructs": "^10.8.1",
+    "typescript": "6.0.3"
+  }
+}

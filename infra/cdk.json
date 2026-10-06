@@ -1,0 +1,5 @@
+{
+  "app": "node bin/feedback.ts",
+  "watch": { "include": ["bin", "lib", "config.ts", "../feedback/handler.mjs"] },
+  "context": {}
+}
