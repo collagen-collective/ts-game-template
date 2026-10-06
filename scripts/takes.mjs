@@ -13,6 +13,7 @@
  *
  *   export const path = "/?test=1";       // what to open, "/" if left out
  *   export async function ready(page) {}  // wait until the game can be driven
+ *   export const hrtf = 48000;            // if any panner is "HRTF": its rate (or rates)
  *   export default async function (take, page, tree) {
  *       // set the game up with page.evaluate(...), then, for every take worth keeping:
  *       await take("name", () =>
@@ -39,6 +40,19 @@
  * that loudness, so that a pair compared by ear is not decided by its level:
  * Extra Sapien matched its listening pairs that way. An out-dir named
  * `scratch-...` is ignored by git.
+ *
+ * `hrtf` is for a gotcha of Chromium's. An offline render that reaches its
+ * first panner with `panningModel = "HRTF"` waits for Chromium to load the HRTF
+ * database, and now and then that load never finishes: the render waits for
+ * ever, with nothing said, and so does every later one on that page. Kyle on
+ * Duty's renders stopped at a different take each run, and under load every
+ * run stalled within four. Given `hrtf`, this loads the database in the page
+ * before the first take, through a render of its own that the page then holds
+ * (a loaded database is shared while a context holds it), and on a page where
+ * the load has not finished in five seconds it opens the page again under the
+ * machine's other name: another site to Chromium, so a fresh renderer. A
+ * reload waits on the stuck page, and timed out. Without `hrtf`, nothing of
+ * this runs.
  *
  * Trees, their copies and their servers are `shots.mjs`'s, in `lib/trees.mjs`.
  * The same script drives every tree, so a commit older than the handle it
@@ -90,8 +104,46 @@ const helper = () => {
             }
             return { sampleRate: buffer.sampleRate, channels };
         },
+        /** Load the HRTF database at a rate and hold it; false if the load did not finish. */
+        hrtf(rate) {
+            const held = (window.__takesHrtf ??= new Map());
+            if (!held.has(rate)) {
+                const c = new OfflineAudioContext(1, 1024, rate);
+                const p = c.createPanner();
+                p.panningModel = "HRTF";
+                const src = c.createConstantSource();
+                src.connect(p).connect(c.destination);
+                src.start();
+                held.set(
+                    rate,
+                    Promise.race([
+                        c.startRendering().then(() => c),
+                        new Promise((ok) => setTimeout(() => ok(null), 5000)),
+                    ]),
+                );
+            }
+            return held.get(rate).then((c) => c !== null);
+        },
     };
 };
+
+const LOADS = 10;
+/** Make the page ready to render, loading it again where the HRTF database did not load. */
+async function readyToRender(page, say) {
+    const rates = script.hrtf === undefined ? [] : [script.hrtf].flat();
+    for (let k = 1; ; k++) {
+        if (script.ready) await script.ready(page);
+        let loaded = true;
+        for (const rate of rates)
+            loaded &&= await page.evaluate((r) => window.__takes.hrtf(r), rate);
+        if (loaded) return;
+        if (k === LOADS) throw new Error(`the HRTF database did not load in ${LOADS} page loads`);
+        say(`the HRTF database did not load; opening the page again (${k} of ${LOADS - 1})`);
+        const u = new URL(page.url());
+        u.hostname = u.hostname === "localhost" ? "127.0.0.1" : "localhost";
+        await page.goto(u.href, { timeout: 120_000 });
+    }
+}
 
 const unpack = (r) => ({
     rate: r.sampleRate,
@@ -121,7 +173,7 @@ try {
             await page.goto(`http://127.0.0.1:${port}${script.path ?? "/"}${opt.query ?? ""}`, {
                 timeout: 120_000,
             });
-            if (script.ready) await script.ready(page);
+            await readyToRender(page, say);
             watching.booted = true;
             const take = async (name, render) => {
                 const t0 = performance.now();

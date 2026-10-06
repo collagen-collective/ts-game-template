@@ -73,6 +73,9 @@ And at its first update, when they came home: the `template-sync` skill's step o
 into the project's own Charter before sending it, and what to do when one comes home that never
 was.
 
+And after it: `takes.mjs`'s `hrtf`, for an offline render that waits for ever on Chromium's HRTF
+database, which cost Kyle on Duty every full render of its sound board for a day.
+
 ## Where things live
 
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two
