@@ -48,7 +48,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { chromium } from "@playwright/test";
-import { BANDS, matched, measure, spectrogram, wav } from "./lib/listen.mjs";
+import { BANDS, compare, matched, measure, spectrogram, wav } from "./lib/listen.mjs";
 import { parseTrees, serve, stop, watch } from "./lib/trees.mjs";
 
 const argv = process.argv.slice(2);
@@ -127,7 +127,8 @@ try {
                 const t0 = performance.now();
                 const { rate, channels } = unpack(await render());
                 const ms = performance.now() - t0;
-                if (!channels.length || !channels[0].length) throw new Error(`take ${name} came back empty`);
+                if (!channels.length || !channels[0].length)
+                    throw new Error(`take ${name} came back empty`);
                 const base = many ? `${name}-${tree.label}` : name;
                 writeFileSync(join(outDir, `${base}.wav`), wav(channels, rate));
                 if (match !== null)
@@ -138,6 +139,8 @@ try {
                 const m = { ...measure(channels, rate), renderMs: Math.round(ms) };
                 if (!takes.has(name)) takes.set(name, new Map());
                 takes.get(name).set(tree.label, {
+                    channels,
+                    rate,
                     file: `${base}.wav`,
                     m,
                     grid: spectrogram(channels, rate),
@@ -157,7 +160,8 @@ try {
         }
     }
     const record = {};
-    for (const [name, by] of takes) record[name] = Object.fromEntries([...by].map(([l, t]) => [l, t.m]));
+    for (const [name, by] of takes)
+        record[name] = Object.fromEntries([...by].map(([l, t]) => [l, t.m]));
     writeFileSync(join(outDir, "takes.json"), JSON.stringify(record, null, 1));
     if (many) table();
     for (const file of await sheets()) console.log(file);
@@ -201,6 +205,34 @@ function table() {
                     .map((s) => s.padStart(14))
                     .join(""),
             );
+        // Against the first tree: from when the take differs, and what changed after.
+        const first = by.get(trees[0].label);
+        for (const t of trees.slice(1)) {
+            const other = by.get(t.label);
+            if (!first || !other) continue;
+            if (first.rate !== other.rate) {
+                console.log(`  ${t.label} against ${trees[0].label}: rendered at another rate`);
+                continue;
+            }
+            const c = compare(first.channels, other.channels, first.rate);
+            if (c.from === null) {
+                console.log(
+                    `  ${t.label} against ${trees[0].label}: the same take (within -100 dBFS)`,
+                );
+                continue;
+            }
+            const moved = c.octaves
+                .filter((o) => Math.abs(o.change) >= 3)
+                .map(
+                    (o) =>
+                        `${o.band >= 1000 ? `${o.band / 1000}k` : o.band} ${o.change > 0 ? "+" : ""}${o.change.toFixed(0)}`,
+                )
+                .join(", ");
+            console.log(
+                `  ${t.label} against ${trees[0].label}: differs from ${c.from.toFixed(2)} s; ` +
+                    `after that, octaves in dB: ${moved || "none moved 3 dB"}`,
+            );
+        }
     }
 }
 
@@ -237,7 +269,9 @@ async function sheets() {
         name,
         cells: trees.map((t) => {
             const v = by.get(t.label);
-            return v ? { label: t.label, wave: v.wave, grid: v.grid, text: line(v.m), bands: v.m.bands } : { label: t.label };
+            return v
+                ? { label: t.label, wave: v.wave, grid: v.grid, text: line(v.m), bands: v.m.bands }
+                : { label: t.label };
         }),
     }));
     const perPage = Math.max(1, Math.floor(2_400 / (cell + 30)));

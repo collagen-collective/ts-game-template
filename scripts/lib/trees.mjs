@@ -18,8 +18,12 @@ export function parseTrees(given, prefix) {
     return (given.length ? given : ["now=."]).map((t) => {
         const at = t.indexOf("=");
         const [label, where] = [t.slice(0, at), t.slice(at + 1)];
-        if (at < 1 || !where) throw new Error(`--tree wants label=DIR or label=@COMMIT, not "${t}"`);
-        return { label, dir: where.startsWith("@") ? copyAt(where.slice(1), prefix) : resolve(where) };
+        if (at < 1 || !where)
+            throw new Error(`--tree wants label=DIR or label=@COMMIT, not "${t}"`);
+        return {
+            label,
+            dir: where.startsWith("@") ? copyAt(where.slice(1), prefix) : resolve(where),
+        };
     });
 }
 
@@ -32,8 +36,11 @@ export function parseTrees(given, prefix) {
  * one re-bundling reloads the other's pages mid-run ("504 Outdated Optimize
  * Dep"), and the frames come back empty or wrong with nothing said. Install
  * scripts are skipped, so the copy registers no hooks and no merge driver.
- * The copy is kept for the next run, under the system's temp directory
- * (`TMPDIR` moves it), and `rm -rf` takes it away.
+ * The copy is kept for the next run, under `TREES_DIR` if it is set and the
+ * system's temp directory if not, and `rm -rf` takes it away. Not `TMPDIR`:
+ * Chromium keeps its profile there too, and with `TMPDIR` set to a long path
+ * in a session's scratch folder it crashed on launch (SIGTRAP), in the trial
+ * the sound harness had before it shipped.
  */
 export function copyAt(commit, prefix = "tree") {
     // The repository the run is made from, as `now=.` is this directory.
@@ -42,7 +49,8 @@ export function copyAt(commit, prefix = "tree") {
         cwd: repo,
         encoding: "utf8",
     }).trim();
-    const dir = join(tmpdir(), `${prefix}-${basename(repo)}-at-${short}`);
+    const base = process.env["TREES_DIR"] || tmpdir();
+    const dir = join(base, `${prefix}-${basename(repo)}-at-${short}`);
     if (existsSync(join(dir, "node_modules", ".package-lock.json"))) {
         console.log(`reusing ${dir}`);
         return dir;

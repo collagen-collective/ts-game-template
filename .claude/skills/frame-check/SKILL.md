@@ -144,8 +144,9 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> --tree before=
 
 The same script runs on an older commit, exported with its own `node_modules`, and the sheet puts
 the two side by side, a row a shot. The first copy of a commit takes about a minute; later runs
-reuse it. The copy goes under the system's temp directory: set `TMPDIR` to a `scratch-*` folder to
-keep it inside the checkout.
+reuse it. The copy goes under the system's temp directory: set `TREES_DIR` to a `scratch-*` folder
+to keep it inside the checkout. Not `TMPDIR`, which moves Chromium's own files as well, and crashed
+it on launch from a long path.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
   in the before, or in this checkout with the fix taken out. A null result is not a result until

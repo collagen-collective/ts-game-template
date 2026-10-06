@@ -23,18 +23,33 @@ spectra and onsets), sandworm (its encounter rendered while the world steps, A-w
 and Kyle on Duty (its sound board's recipes rendered and measured against the original's sounds).
 What they found, and what the four had in common, is what this is made of.
 
+It was tried before it shipped. Two agents were given one report, *"The end-of-round sting doesn't
+ring out any more. The big hit at the end used to shimmer away for a few seconds, and now it just
+stops dead"*, on copies of Kyle on Duty in which the tam-tam under the sting's last hit had been
+stopped 0.65 s after it, with no history to diff against. One had this skill and `npm run takes`;
+the other was meant to have neither, found the skill in its session anyway, and used the game's own
+renderer and measurer with it. Both found the cut, fixed it and showed it fixed, in 11 and 12
+minutes. So the trial says little about speed; what it says is in this skill now, from what both
+found wrong with it: the comparison between trees, levelling a pair by its loudest three seconds,
+`TREES_DIR`, and the caveats on loudness, ring-out and repeats below.
+
 ## 1. Start with what they heard
 
 Ask what they heard, where in the game, at what moment, and what they expected to hear instead;
-and on what: headphones, laptop speakers, a television. A laptop's speakers play almost nothing
-under 150 Hz, so a sound that is *thin* there can be *boomy* on headphones. Their words are more
-exact than they sound: *muddy* is usually too much between 125 and 500 Hz, *harsh* or *tinny* too
-much between 2 and 6 kHz and little under it, *crackle* is clipping, *late* is a start time, and
+and on what: headphones, laptop speakers, a television. A laptop's speakers play little under 100
+to 150 Hz, so a sound that is *thin* there can be *boomy* on headphones. Their words are more exact
+than they sound: *muddy* is usually too much between 125 and 500 Hz, *harsh* or *tinny* too much
+between 2 and 6 kHz and little under it, *crackle* is clipping, *late* is a start time, and
 *drowned out* is two levels and an overlap.
 
 In a recreation, ask for a recording of the original before a description, and measure the two with
 the same instrument (Extra Sapien's Charter §5: *Ask the person for a recording of it before a
-description*).
+description*). If nobody is around to ask, write down the questions you would have asked, and bring
+them back with what you found.
+
+**If the game has no `npm run takes` yet,** it was made from the template before the harness: copy
+`scripts/takes.mjs` and `scripts/lib/` from the template, and add the npm script. Or render with the
+game's own tools, if it has some, and read what they give the way this skill reads its numbers.
 
 ## 2. Give the game a way to render, once
 
@@ -49,8 +64,10 @@ Audio graph builds into any `BaseAudioContext`. What that needs from the game:
   changed, and then measures nothing (Charter §5: *When two copies of one thing disagree, delete
   one*).
 - **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. Kyle on
-  Duty's renders came out identical, to the last digit of every measure, from two commits with the
-  same sound code; then a difference between two trees is the change and nothing else.
+  Duty's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
+  every sample and to the last digit of every measure; then a difference between two trees is the
+  change. Its game-over song did not: two renders of the same code parted from 10.8 s on, by about
+  -55 dBFS. Render a take twice before you read a difference between trees as the change.
 - **A way to reach a moment,** where the sound depends on the game: step the world to the round's
   turn, the window going down, the explosion, and render what the ears hear there.
 
@@ -110,10 +127,10 @@ npm run takes -- scratch-takes-<thing>.mjs scratch-sound-<thing> 2>&1 | tee scra
 
   | Number | What it says | What to look for |
   |---|---|---|
-  | LUFS | how loud, as the ear weighs it, silence gated out | sounds of one kind within a few LU of each other; a jump against the before |
+  | LUFS | how loud, as the ear weighs it, silence gated out | sounds of one kind within a few LU of each other. A tail restored can *lower* it: more quiet blocks pass the gate (the trial's fixed sting read 1.4 LU quieter). Read the loudest 3 s beside it |
   | loudest 3 s | the loudest three seconds | a sound that is quiet on average and loud in a burst |
   | peak dBFS, clipped | the largest sample, and how many reach 1.0 | clipped above 0 is crackle when played; a peak above -1 dBFS is close |
-  | starts, loudest at, rings | seconds: first within 40 dB of the loudest, the loudest, and how long it stays within 40 dB after | *late*, *cut off*, *rings on* |
+  | starts, loudest at, rings | seconds: first within 40 dB of the loudest, the loudest, and how long it stays within 40 dB after | *late*, *cut off*, *rings on*, for the whole take. A layer cut while another holds on barely moves it (the trial's cut tam-tam moved it 0.03 s): compare against a before (§5), or take the layer alone |
   | centroid, octaves | where the energy sits | *muddy* (125-500 Hz heavy), *thin* or *tinny* (little under 250, a high centroid) |
   | L/R | 1 is the same in both ears, 0 unrelated, below 0 one side inverted | a placed sound at 1 is not placed; below 0 cancels on a mono speaker |
 
@@ -131,8 +148,25 @@ npm run takes -- scratch-takes-<thing>.mjs scratch-sound-<thing> --tree before=@
 ```
 
 The same script renders an older commit's sound, exported with its own `node_modules` (the trees are
-`shots.mjs`'s), and the run prints each take's numbers side by side, a column a tree, and puts them
-side by side on the sheet.
+`shots.mjs`'s; `TREES_DIR` keeps the copies inside the checkout, and `TMPDIR` must not, since it
+moves Chromium's files too and crashed it in the trial). The run prints each take's numbers side by
+side, a column a tree, puts them side by side on the sheet, and says of each take against the
+first tree **from when it differs, and which octaves changed after that**:
+
+```
+end-sting
+  now against cut: differs from 3.00 s; after that, octaves in dB: 250 +9, 500 +12, 1k +11, 2k +10
+start-sting
+  now against cut: the same take (within -100 dBFS)
+```
+
+That line is the trial's defect and its control, found with no tool written for it: the cut
+tam-tam's partials between 300 Hz and 2 kHz, from where its oscillators had stopped.
+
+**When no commit has it right,** the last good record may be a number: a measurement in the design
+log, taken with the game's own tools. Render now with the same tools and compare with that. In the
+trial, the design log's table for the sting matched the fixed sting on every number the cut had
+moved, which showed the table had been taken before the cut came in.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show in
   the before, or in this checkout with the fix taken out. A take that comes back silent proves
@@ -147,9 +181,11 @@ side by side on the sheet.
 
 The numbers find defects; the person decides what sounds right.
 
-- **Match the level of a pair** they compare: `--match -20` writes each take again scaled to -20
-  LUFS, so the louder one does not win by being louder. Extra Sapien matched its listening pairs
-  so *"that the level does not decide"*.
+- **Match the level of a pair** they compare: `--match -20` writes each take again with its loudest
+  three seconds at -20 LUFS, so the louder one does not win by being louder. Extra Sapien matched
+  its listening pairs so *"that the level does not decide"*. Not by integrated loudness: a pair
+  that differs only in its tail would be levelled apart by the gate, and their identical starts
+  would play 1.4 dB apart.
 - **Ask for a comparison, not an absolute:** which of two is nearer what they remember or want,
   rather than whether one is good. Extra Sapien's first playtest learned to ask that way.
 - **Say what to listen for, and where:** the moment, the sound, what changed, what might be worth
@@ -174,5 +210,10 @@ The numbers find defects; the person decides what sounds right.
   the end.
 - **The mean of a mix.** One voice wrong under twenty right ones barely moves the mix's numbers.
   Take the voice alone as well.
-- **Laptop speakers.** Under about 150 Hz the person may hear nothing that the numbers show; ask
-  what they listened on before deciding their *thin* is the mix's.
+- **Laptop speakers.** A laptop plays little under 100 to 150 Hz, so the person may hear nothing
+  of what the numbers show there; ask what they listened on before deciding their *thin* is the
+  mix's.
+- **`TMPDIR` for the tree copies.** It moves Chromium's profile too, and from a long path Chromium
+  crashed on launch. `TREES_DIR` moves only the copies.
+- **A fix that reads quieter.** Restoring a tail lowered the sting's integrated loudness by 1.4 LU,
+  because the gate let more of its quiet blocks in. More sound, a smaller number.

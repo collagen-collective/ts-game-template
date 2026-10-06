@@ -16,6 +16,8 @@
  *   power-weighted mean frequency.
  * - Correlation is between the first two channels: 1 is the same signal in
  *   both, 0 unrelated, -1 one the other upside down.
+ * - Between two trees, `compare` says from when two takes of one sound
+ *   differ, and which octaves changed after that.
  */
 
 const dB = (x) => (x > 0 ? 10 * Math.log10(x) : -Infinity);
@@ -31,7 +33,11 @@ export function kWeighting(rate) {
     const Vb = Math.pow(Vh, 0.4996667741545416);
     let a0 = 1 + K / Q + K * K;
     const shelf = {
-        b: [(Vh + (Vb * K) / Q + K * K) / a0, (2 * (K * K - Vh)) / a0, (Vh - (Vb * K) / Q + K * K) / a0],
+        b: [
+            (Vh + (Vb * K) / Q + K * K) / a0,
+            (2 * (K * K - Vh)) / a0,
+            (Vh - (Vb * K) / Q + K * K) / a0,
+        ],
         a: [1, (2 * (K * K - 1)) / a0, (1 - K / Q + K * K) / a0],
     };
     // Stage 2, the RLB high-pass.
@@ -98,7 +104,9 @@ export function loudness(channels, rate) {
     const three = Math.round(3 * rate);
     let shortTerm = -Infinity;
     if (n <= three) shortTerm = lk(meanSquares(0, n));
-    else for (let at = 0; at + three <= n; at += step) shortTerm = Math.max(shortTerm, lk(meanSquares(at, three)));
+    else
+        for (let at = 0; at + three <= n; at += step)
+            shortTerm = Math.max(shortTerm, lk(meanSquares(at, three)));
     return { integrated, shortTerm };
 }
 
@@ -188,7 +196,10 @@ export function spectra(channels, rate, size = 4096) {
     const n = channels[0].length;
     const mono = new Float64Array(n);
     for (const c of channels) for (let i = 0; i < n; i++) mono[i] += c[i] / channels.length;
-    const hann = Float64Array.from({ length: size }, (_, i) => 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / size));
+    const hann = Float64Array.from(
+        { length: size },
+        (_, i) => 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / size),
+    );
     const frames = [];
     for (let at = 0; at === 0 || at + size <= n; at += size / 2) {
         const re = new Float64Array(size);
@@ -240,6 +251,58 @@ export function correlation(channels) {
     return ll > 0 && rr > 0 ? lr / Math.sqrt(ll * rr) : 1;
 }
 
+/** Each octave's level in dB, from the mean power spectrum. */
+function octaveLevels(channels, rate) {
+    const { frames, binHz } = spectra(channels, rate);
+    const level = BANDS.map(() => 0);
+    for (const f of frames)
+        for (let k = 1; k < f.length; k++) {
+            const hz = k * binHz;
+            const b = BANDS.findIndex((c) => hz >= c / Math.SQRT2 && hz < c * Math.SQRT2);
+            if (b >= 0) level[b] += f[k] / frames.length;
+        }
+    return level.map(dB);
+}
+
+/**
+ * Two takes of one sound, before and after: the second from which they differ
+ * by more than `floor` dBFS in any sample (null if never), and how much each
+ * octave changed from there to the end, in dB. Renders of the same code agree
+ * to about -117 dBFS, not to the bit, so -100 is the default floor. This is
+ * what both agents in the trial before this shipped worked out by hand: the
+ * cut tam-tam's renders matched to -130 dBFS until 3.00 s, where its
+ * oscillators had stopped, and after that six partials between 300 Hz and
+ * 2 kHz were 22 to 38 dB louder in the fixed one. A cut layer under another
+ * that holds on shows here, and in no number for the whole take: the mix's
+ * ring-out moved by 0.03 s.
+ */
+export function compare(before, after, rate, floor = -100) {
+    const n = Math.min(before[0].length, after[0].length);
+    const nc = Math.min(before.length, after.length);
+    const lim = Math.pow(10, floor / 20);
+    let from = -1;
+    for (let i = 0; i < n && from < 0; i++)
+        for (let c = 0; c < nc; c++)
+            if (Math.abs(before[c][i] - after[c][i]) > lim) {
+                from = i;
+                break;
+            }
+    if (from < 0 && before[0].length === after[0].length) return { from: null, octaves: [] };
+    if (from < 0) from = n;
+    const tail = (ch) => ch.map((c) => c.subarray(from));
+    if (Math.min(before[0].length, after[0].length) - from < 1024)
+        return { from: from / rate, octaves: [] };
+    const a = octaveLevels(tail(before), rate);
+    const b = octaveLevels(tail(after), rate);
+    return {
+        from: from / rate,
+        octaves: BANDS.map((band, i) => ({
+            band,
+            change: Number.isFinite(a[i]) && Number.isFinite(b[i]) ? b[i] - a[i] : 0,
+        })),
+    };
+}
+
 /** Everything above, for one take. */
 export function measure(channels, rate) {
     const { integrated, shortTerm } = loudness(channels, rate);
@@ -265,7 +328,10 @@ export function spectrogram(channels, rate, cols = 360, rows = 96) {
     const n = channels[0].length;
     const mono = new Float64Array(n);
     for (const c of channels) for (let i = 0; i < n; i++) mono[i] += c[i] / channels.length;
-    const hann = Float64Array.from({ length: size }, (_, i) => 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / size));
+    const hann = Float64Array.from(
+        { length: size },
+        (_, i) => 0.5 - 0.5 * Math.cos((2 * Math.PI * i) / size),
+    );
     const binHz = rate / size;
     const lo = Math.log(30);
     const hi = Math.log(16000);
@@ -317,10 +383,16 @@ export function wav(channels, rate) {
     return b;
 }
 
-/** The channels scaled so that the take measures `target` LUFS, for a listening pair. */
+/**
+ * The channels scaled so that the take's loudest three seconds measure
+ * `target` LUFS, for a listening pair. Not the integrated loudness: its gate
+ * lets more quiet blocks in when a tail grows, so a pair that differs only in
+ * its tail would be levelled apart, and the identical start of the two would
+ * play 1.4 dB apart (found in the trial before this shipped).
+ */
 export function matched(channels, rate, target) {
-    const { integrated } = loudness(channels, rate);
-    if (!Number.isFinite(integrated)) return channels;
-    const g = Math.pow(10, (target - integrated) / 20);
+    const { shortTerm } = loudness(channels, rate);
+    if (!Number.isFinite(shortTerm)) return channels;
+    const g = Math.pow(10, (target - shortTerm) / 20);
     return channels.map((c) => c.map((v) => v * g));
 }

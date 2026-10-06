@@ -3,6 +3,7 @@ import {
     bands,
     BANDS,
     correlation,
+    compare,
     kWeighting,
     loudness,
     matched,
@@ -12,7 +13,10 @@ import {
 
 const rate = 48000;
 const sine = (hz, amp, seconds, sr = rate) =>
-    Float32Array.from({ length: Math.round(seconds * sr) }, (_, i) => amp * Math.sin((2 * Math.PI * hz * i) / sr));
+    Float32Array.from(
+        { length: Math.round(seconds * sr) },
+        (_, i) => amp * Math.sin((2 * Math.PI * hz * i) / sr),
+    );
 
 describe("the measures takes.mjs reports", () => {
     it("derives BS.1770's own K-weighting coefficients at 48 kHz", () => {
@@ -64,7 +68,11 @@ describe("the measures takes.mjs reports", () => {
         expect(correlation([s, s])).toBeCloseTo(1, 6);
         expect(correlation([s, s.map((v) => -v)])).toBeCloseTo(-1, 6);
         let x = 1;
-        const noise = () => Float32Array.from({ length: rate }, () => ((x = (x * 16807) % 2147483647) / 2147483647) * 2 - 1);
+        const noise = () =>
+            Float32Array.from(
+                { length: rate },
+                () => ((x = (x * 16807) % 2147483647) / 2147483647) * 2 - 1,
+            );
         expect(Math.abs(correlation([noise(), noise()]))).toBeLessThan(0.05);
     });
 
@@ -84,8 +92,34 @@ describe("the measures takes.mjs reports", () => {
         expect(s.ringsFor).toBeLessThan(0.75);
     });
 
-    it("scales a take to a loudness for a listening pair", () => {
+    it("scales a take to a loudness for a listening pair, by its loudest three seconds", () => {
         const m = matched([sine(997, 0.1, 3)], rate, -20);
-        expect(loudness(m, rate).integrated).toBeCloseTo(-20, 1);
+        expect(loudness(m, rate).shortTerm).toBeCloseTo(-20, 1);
+        // Two takes that differ only in a quiet tail are scaled alike.
+        const head = sine(997, 0.1, 3);
+        const long = new Float32Array(rate * 8);
+        long.set(head);
+        for (let i = head.length; i < long.length; i++)
+            long[i] = 0.003 * Math.sin((2 * Math.PI * 997 * i) / rate);
+        const [a] = matched([head], rate, -20);
+        const [b] = matched([long], rate, -20);
+        expect(Math.abs(a[1000] - b[1000])).toBeLessThan(1e-3 * Math.abs(a[1000]) + 1e-9);
+    });
+
+    it("says from when two takes differ, and which octaves changed after", () => {
+        // A low hum all through; in the second, a 1 kHz ring goes on past 1 s, where the first cuts it.
+        const n = rate * 2;
+        const hum = (i) => 0.4 * Math.sin((2 * Math.PI * 60 * i) / rate);
+        const ring = (i) => 0.2 * Math.sin((2 * Math.PI * 1000 * i) / rate);
+        const cut = Float32Array.from({ length: n }, (_, i) => hum(i) + (i < rate ? ring(i) : 0));
+        const whole = Float32Array.from({ length: n }, (_, i) => hum(i) + ring(i));
+        const c = compare([cut], [whole], rate);
+        expect(c.from).toBeCloseTo(1.0, 2);
+        const at = (hz) => c.octaves.find((o) => o.band === hz).change;
+        expect(at(1000)).toBeGreaterThan(30);
+        expect(Math.abs(at(63))).toBeLessThan(0.5);
+        // The same take twice, and one moved by a hair under the floor, do not differ.
+        expect(compare([cut], [cut], rate).from).toBeNull();
+        expect(compare([cut], [cut.map((v) => v + 1e-6)], rate).from).toBeNull();
     });
 });
