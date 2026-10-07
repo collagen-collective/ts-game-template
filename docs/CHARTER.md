@@ -105,41 +105,34 @@ is a feature that wandered in.>`*
 
 ## 5. How to build anything here
 
-*The rules this project has learned about how to build it.*
+These are the rules for particular moments in the work. The rules for every session are in
+[`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
+evidence behind each, and *Working together*. Find the moment you are in below, and read its bold
+lines. In short:
 
-It starts with inherited rules, and none of them is this project's own finding yet. Four are the
-template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../README.md). The rest are
-below, grouped by the moment each one is for, with the rules for measuring and testing grouped under
-four principles within their moment. How agents work with the person in every session is in
-`CLAUDE.md` under *Working together*; the rules here are for particular moments.
+- **Asking the person something:** make their answer easy to give, and find out what it meant
+  before acting on it.
+- **Building something:** start from what the player will see, hear or do, and keep one way of
+  doing each thing.
+- **Measuring, testing or trusting a result:** the scientific method, applied to a game. Measure
+  the question, not a proxy for it; calibrate the instrument; observe before guessing again; and
+  test beyond what you checked.
+- **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
+  what is true now, and write for whoever picks the work up cold.
+- **Running several builders at once:** builders tangle over what they share (the machine, the
+  container, the files, the commit they start from), so name each shared thing and give each
+  builder its share.
+
+The rules under *Inherited* come from earlier games: defaults, not this project's findings. Keep
+them, prune them or argue with them, deliberately, and log it when you do. A rule this project
+learned outranks one it was handed. *Writing a rule*, at the end of this section, says how a rule
+is written and where it goes.
 
 A few words recur below. *The person* is the human designing this game, and *a designer* the person
 on another game, in an example. A *sitting* is one stretch of the person playing a build. An
 *instrument* is anything built to show or measure what the game is doing, such as a debug readout, a
 count or a screenshot. A *builder* is a sub-agent building one piece of the work alongside others.
 The README's *Words we use* has the rest.
-
-They are defaults, not findings. Keep them, prune them or argue with them, deliberately, and log it
-when you do. As this project learns rules of its own, write them under *This project's own*, in the
-same shape. A rule this project learned outranks one it was handed, and an inherited rule this
-project learns again for itself moves to *This project's own*, with its own *Why* and its
-design-log entry.
-
-Every rule has the same shape:
-
-- **The reason first**, in plain text: the failure the rule prevents, stated so that it holds in a
-  game nobody has built yet. A rule without its reason gets argued with the first time it is
-  inconvenient.
-- **Then the rule, in bold**: a trigger and an action, so that a reader skimming for what to do at
-  this moment reads only the bold. *After a scripted edit, grep for the new text* is something to
-  act on; *the instrument was missing what the question needed* is not, because nothing in it says
-  when, or what to do. A sentence or two on how may follow it.
-- **Last, where one helps, an example**, marked *For example:*: one concrete scene, for a rule whose
-  moment is hard to recognise from inside it. It shows what the moment looks like; it is not
-  evidence, so it carries no tally of how often or how badly. Leave it out when the rule is plain
-  without it.
-
-A rule under *This project's own* ends with the design-log entry it came from.
 
 ### Inherited
 
@@ -247,9 +240,8 @@ one game's design or technology.
 
 #### When you are about to measure, test or trust a result
 
-These rules are the scientific method, applied to a game. Each is an instance of one of four
-principles: measure the question, not a proxy for it; calibrate the instrument; observe before
-guessing again; and test beyond what you checked.
+These rules are the scientific method, applied to a game, and each is an instance of one of the four
+principles below.
 
 ##### Measure the question, not a proxy for it
 
@@ -306,8 +298,8 @@ An observation (a number, a pass or a fail, a count, a frame) is not yet a findi
 when it is read against its controls and the conditions it was taken under. Any instrument, whether
 a test, a check, a count or a readout, can be blind, or can report a signal that is not there, and
 its observation looks the same either way. So before trusting one, run the instrument on two cases
-whose answers you already know: a **negative control**, which should give no signal, and a
-**positive control**, which should give a clear one. Choose them on purpose, from what you know of
+whose answers you already know: a *negative control*, which should give no signal, and a
+*positive control*, which should give a clear one. Choose them on purpose, from what you know of
 the problem and of the instrument. A null observation means something only beside a positive control
 that came back non-null; a pass means something only beside a negative control that failed. And
 check that nothing around the instrument, its server, its machine or its timing, is deciding what it
@@ -528,8 +520,32 @@ are all outside that.
 
 ### This project's own
 
-*None yet. The first rule this project learns goes here, in the shape above, ending with the
+*None yet. The first rule this project learns goes here, in the shape below, ending with the
 design-log entry it came from.*
 
 Read this section, and the last three entries of [`DESIGN-LOG.md`](./DESIGN-LOG.md), before
 proposing a plan.
+
+### Writing a rule
+
+Every rule has the same shape:
+
+- **The reason first**, in plain text: the failure the rule prevents, stated so that it holds in a
+  game nobody has built yet. A rule without its reason gets argued with the first time it is
+  inconvenient.
+- **Then the rule, in bold**: a trigger and an action, so that a reader skimming for what to do at
+  this moment reads only the bold. *After a scripted edit, grep for the new text* is something to
+  act on; *the instrument was missing what the question needed* is not, because nothing in it says
+  when, or what to do. A sentence or two on how may follow it.
+- **Last, where one helps, an example**, marked *For example:*: one concrete scene, for a rule whose
+  moment is hard to recognise from inside it. It shows what the moment looks like; it is not
+  evidence, so it carries no tally of how often or how badly. Leave it out when the rule is plain
+  without it.
+
+An inherited rule goes under the moment it is for, and one about measuring or testing under the
+principle it is an instance of. Keep each moment's line in this section's opening true of every
+rule under it, and give a new moment a line of its own.
+
+A rule this project learns goes under *This project's own*, ending with the design-log entry it
+came from. An inherited rule this project learns again for itself moves there too, with its own
+reason and its design-log entry.
