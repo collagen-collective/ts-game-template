@@ -61,8 +61,8 @@ Audio graph builds into any `BaseAudioContext`. What that needs from the game:
   `AudioContext`. All four games' sound already did, or could, with a line changed.
 - **The game's own path, not a copy of it.** Render through the same mixer, buses, reverb and
   limiter that play uses. A copy made for measuring drifts from the game the first time either is
-  changed, and then measures nothing (Charter §5: *When two copies of one thing disagree, delete
-  one*).
+  changed, and then measures nothing (Charter §5: *When two tools, features or implementations
+  overlap, keep one*).
 - **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. Kyle on
   Duty's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
   every sample and to the last digit of every measure; then a difference between two trees is the
