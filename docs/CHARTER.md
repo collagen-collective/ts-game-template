@@ -178,8 +178,8 @@ one game's design or technology.
   small differences. **When only play can judge between options, build them into the game behind a
   switch (a URL parameter, say), and let them compare in one sitting.** Send each option as a whole
   link to open, not a parameter to add to one, and show on the readout which option is running, so
-  that a switch the game ignored is caught (*A null result is not a result…*, below). Once they have
-  chosen, delete the others or keep the switch as a debugging tool, and say which.
+  that a switch the game ignored is caught (*A null observation is not a finding…*, below). Once
+  they have chosen, delete the others or keep the switch as a debugging tool, and say which.
 
 - A tell is something a player does that was agreed in advance to be a signal to re-examine the
   design. But the person is both a designer and a player, and switches between the two while
@@ -253,8 +253,8 @@ guessing again; and test beyond what you checked.
 
 ##### Measure the question, not a proxy for it
 
-Every measurement stands in for a question. Before reading one, say what the question is, and check
-that the number answers it rather than an easier question beside it: the purpose someone had in
+Every observation stands in for a question. Before trusting one, say what the question is, and check
+that the observation answers it rather than an easier question beside it: the purpose someone had in
 mind, whether a thing gets where it is going, the property a test depends on, the shape a summary
 flattens.
 
@@ -302,27 +302,38 @@ flattens.
 
 ##### Calibrate the instrument
 
-An instrument, a test, a check or an edit of your own can be blind, contaminated, or set for other
-conditions, and its reading looks the same either way. Before trusting it, show that it can see what
-it is looking for, that it fails when the thing is absent, and that nothing around it is deciding
-the result.
+An observation (a number, a pass or a fail, a count, a frame) is not yet a finding. It becomes one
+when it is read against its controls and the conditions it was taken under. Any instrument, whether
+a test, a check, a count or a readout, can be blind, or can report a signal that is not there, and
+its observation looks the same either way. So before trusting one, run the instrument on two cases
+whose answers you already know: a **negative control**, which should give no signal, and a
+**positive control**, which should give a clear one. Choose them on purpose, from what you know of
+the problem and of the instrument. A null observation means something only beside a positive control
+that came back non-null; a pass means something only beside a negative control that failed. And
+check that nothing around the instrument, its server, its machine or its timing, is deciding what it
+reports.
 
-- A measurement cannot tell you it is blind, and a false *nothing happened* reads as *not enough*,
-  which pushes the design the wrong way. **A null result is not a result until something in the same
-  run has come back non-null.** Set the effect absurdly high, confirm the instrument sees it, then
-  dial back and read the real number. When the nothing comes from the person rather than an
-  instrument, walk it back with them (*When they report not finding, hearing or feeling something*,
-  above).
+- A blind instrument and a true *nothing happened* give the same observation, and a false *nothing
+  happened* reads as *not enough*, which pushes the design the wrong way. **A null observation is
+  not a finding until a positive control in the same run has come back non-null.** Set the effect
+  absurdly high and confirm the instrument sees it, and run the baseline with no effect and confirm
+  it reads zero; then dial back and read the real number. When the nothing comes from the person
+  rather than an instrument, walk it back with them (*When they report not finding, hearing or
+  feeling something*, above).
 
   *For example:* Two options sent to a designer to compare came back as identical. The switch
   between them had been added to an address the game did not read, so both had loaded the default,
   and the readout's line naming the option that was running was all that caught it.
 
-- A test that has never failed has not shown that it can, and one that fails only by timing out is
-  slow to go red and says nothing about why. A test named for a motion but asserted on an end state
-  passes every motion that ends there. **Show that each new test fails with the fix taken out, on an
-  assertion rather than a timeout.** Assert the relationship that has stopped changing, not the
-  number still being tuned, and a motion by its course as well as by where it ends.
+- A passing test is an observation; *the bug is fixed* is a finding. A test that has never failed
+  has not shown that it can, one that has never passed on known-good behaviour has not shown that it
+  passes for the right reason, and one that fails only by timing out is slow to go red and says
+  nothing about why. A test named for a motion but asserted on an end state passes every motion that
+  ends there. **Before trusting a new test, run it on both controls: with the fix taken out it
+  should fail, on an assertion rather than a timeout (the negative control); on a case already known
+  to be correct it should pass (the positive control).** Assert the relationship that has stopped
+  changing, not the number still being tuned, and a motion by its course as well as by where it
+  ends.
 
   *For example:* A game that crashed before its test hook was installed failed the boot test only at
   its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
@@ -331,7 +342,7 @@ the result.
 - One value often feeds both the part the person called right and the part they did not, so a fix to
   the wrong part can quietly break the right one, and nobody is watching the part that was right.
   **When the person says one part is right and another is not, keep the right part in the same run
-  as the control, and measure both before and after.**
+  as a positive control, and measure both before and after.**
 
   *For example:* A designer found the house *"pretty much spot on"* and the yard *"a little brighter
   than the original"*. The fog's colour also greys a room's far end, so lowering it for the yard
