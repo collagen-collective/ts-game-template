@@ -9,9 +9,9 @@
 > out. [`DESIGN-LOG.md`](./DESIGN-LOG.md) is what we tried and what happened.
 >
 > **Before proposing a plan,** read the opening of section 5, its rules for *When you are about to
-> plan, merge or hand over*, and its *This project's own*; then the last three entries of
-> [`DESIGN-LOG.md`](./DESIGN-LOG.md). Read the rest of section 5 a moment at a time, as you come to
-> each.
+> plan, merge or hand over*, its *This project's own*, and the last three entries of
+> [`DESIGN-LOG.md`](./DESIGN-LOG.md); then check the plan against sections 2 and 3. Read the rest of
+> section 5 a moment at a time: when you come to that moment, or when a plan does.
 >
 > Nothing here describes the game's code, and that is deliberate. A charter that describes the code
 > goes out of date the first time the code changes, and once readers know one section is out of
