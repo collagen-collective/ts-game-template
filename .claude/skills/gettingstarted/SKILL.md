@@ -41,7 +41,7 @@ decided.
 **Say it back before you write it.** Before a section goes into the Charter, tell them what you are
 about to write, in the words you will use, and let them correct it. Their answer leaves open exactly
 what the written version has to choose, and a read-back finds those places while they cost nothing.
-In dragon, a game built from this template, seven readings of one description were said back before
+In one game built from this template, seven readings of one description were said back before
 anything was built from it, and the build needed no changes the first time the person played it.
 
 ## Before you start
@@ -49,9 +49,9 @@ anything was built from it, and the build needed no changes the first time the p
 1. Read `README.md`, `CLAUDE.md`, `docs/CHARTER.md`, `docs/OPEN-QUESTIONS.md`, and
    `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
    *how*; you have to hold that line while transcribing. Its §5 is long, because it carries rules in
-   from dragon: read its opening, and skim the rules, since you will ask about them as a block at
-   the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself, and the
-   README's *Words we use* defines the shorthand these documents use.
+   from earlier games: read its opening, and skim the rules, since you will ask about them as a
+   block at the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself, and
+   the README's *Words we use* defines the shorthand these documents use.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
@@ -64,9 +64,9 @@ either/or claims the design space has two points in it, at the moment you know l
 
 ### If a written brief arrives instead of answers
 
-This is how dragon started: a working title, a ranked list of inspirations, a handful of words for
-the feeling, a list of things the player does, and a grant of creative freedom to decide anything
-the brief left unclear.
+This is how one earlier game started: a working title, a ranked list of inspirations, a handful of
+words for the feeling, a list of things the player does, and a grant of creative freedom to decide
+anything the brief left unclear.
 
 **Treat the brief as the interview.** Every noun in the Charter traces to a line of it, the same as
 it would to something said aloud. Ask about what it leaves open as you would in conversation, one
@@ -74,8 +74,8 @@ thing at a time, and file what stays open. Where they have granted you freedom a
 decision is yours, not theirs, and it has to stay visible as yours: **list every call you made in
 the first log entry, each with its reason, apart from what the brief said.** In a week nobody can
 tell which sentence in the Charter the brief said and which one an agent invented, and both read as
-settled; the Charter's authority depends on the difference. Dragon's first entry listed seven such
-calls, under a title that said why: *so they stay distinguishable*.
+settled; the Charter's authority depends on the difference. One earlier game's first entry listed
+seven such calls, under a title that said why: *so they stay distinguishable*.
 
 ---
 
@@ -217,11 +217,11 @@ Use `AskUserQuestion` for these; they are discrete choices.
   it, or delete it. The template's four are in `README.md`, with the evidence behind each, and in
   `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which the
   Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. The rest
-  are in two places: the Charter's §5, under *Inherited*, and `CLAUDE.md`'s *Working together*,
-  with the rules above it that name dragon. Both sets are explicitly defaults rather than
-  this project's findings, and the decision should be made deliberately. Pruning those is
-  expected over time, as this project learns which of them it needs; today, ask only whether any
-  group of them plainly does not fit this game. Whatever the answer, log it.
+  are in two places: the Charter's §5, under *Inherited*, and `CLAUDE.md`'s *Working together*, with
+  the rules above it. Both sets are explicitly defaults rather than this project's findings, and the
+  decision should be made deliberately. Pruning those is expected over time, as this project learns
+  which of them it needs; today, ask only whether any group of them plainly does not fit this game.
+  Whatever the answer, log it.
 - **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and
   how to remove it. Ask whether to keep or remove, then do it.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.

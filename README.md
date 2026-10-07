@@ -94,11 +94,9 @@ some shorthand of their own. In order of how soon you will meet it:
 - **Tell**: something a player does in play that was agreed in advance to mean something (opening
   the map often enough to mean *I'm lost*, say).
 - **Paid for**: learned at a cost. A rule a game *paid for* is one it wrote down after a mistake
-  cost it time, and each such rule says what it cost.
+  cost it time.
 - **Carried back**: sent from a game to the template, so that every game gets it. A rule that
   *comes home* is one this project sent that returns in a template update.
-- **Dragon, Extra Sapien, Kyle on Duty, sandworm**: earlier games built from this template, whose
-  lessons it carries. *The games named in these documents*, below, says what each was.
 
 ## What ships here, and what does not
 
@@ -143,7 +141,7 @@ making, where a session can read it. All of it ships here, and none of it knows 
   and `npm run feedback:check` drives the demo in a browser, on both devices and through a refusal.
 - **`feedback/handler.mjs`** is an AWS Lambda function, reached at its function URL. It holds the
   GitHub token, which a page must never hold, takes a report only with a key it knows, and commits
-  it to the inbox as one commit. It needs no packages, so it seldom changes: in Extra Sapien, a
+  it to the inbox as one commit. It needs no packages, so it seldom changes: in an earlier game, a
   marked copy of the frame and a ten-second trace came after it was written, as two more files, and
   it took them unchanged. Its tests are beside it and run with `npm test`.
 - **The dev server's inbox** (`vite.config.ts`) reads a report the same way and writes it to
@@ -216,7 +214,7 @@ the folder; a missing one takes the function's.
 2. **A token for it.** GitHub's *Settings*, *Developer settings*, *Fine-grained tokens*: access to
    the inbox repository only, and one permission, *Contents: Read and write*. An organization may
    ask an owner to approve it. Read the token's page once it is made: it should list *Contents:
-   Read and write* and not be waiting for approval. In Extra Sapien, a token that could read the
+   Read and write* and not be waiting for approval. In an earlier game, a token that could read the
    inbox but not write to it failed at the first write, and the send said *GitHub answered 403 to
    /git/blobs: Resource not accessible by personal access token*. A token expires on the date it is
    given; after that a send fails and says so.
@@ -237,7 +235,7 @@ the folder; a missing one takes the function's.
 
    The deploy makes `feedback/handler.mjs` alone the function's code, on Node 22, with 30 seconds
    and 256 MB; a function URL with auth type NONE, and CORS allowing the game's address and POST;
-   and its log, kept 90 days. Each of those was a console default in Extra Sapien that broke its
+   and its log, kept 90 days. Each of those was a console default in an earlier game that broke its
    first live send or nearly did: Lambda's 3-second timeout cut the send off partway, being ten
    calls to GitHub one after another, and a 1.1 MB report used 112 MB of the default 128. The
    address is open to anyone who has it, and the key is the lock: the function turns away a report
@@ -266,7 +264,7 @@ function made by hand in the console works too; `npm run secret -- keys` takes s
 `KEYS` all at once, so that links already given out keep working after a move to the stack.
 
 What a report is for is the project's to settle with the person: who triages the inbox, and what
-the game does about a report. Extra Sapien triaged its first reports with the person before
+the game does about a report. One earlier game triaged its first reports with its designer before
 writing down how, and only then let a scheduled agent sort what arrives.
 
 ## Where things live
@@ -274,8 +272,8 @@ writing down how, and only then let a scheduled agent sort what arrives.
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two
 (what lives where, and what may read or write what), and log why in the design log. Whatever the
 layout, one property is worth choosing on purpose: a way to step the game's state without drawing
-it, so that tests and traces can run the game in Node with no browser. Dragon's traces, and most
-of its tests, depended on that.*
+it, so that tests and traces can run the game in Node with no browser. In an earlier game, its
+traces and most of its tests depended on that.*
 
 ## Four inherited rules
 
@@ -311,11 +309,9 @@ check and do not add up to the thing you were asking about.
 **Test what has stopped changing.** Every test written against a system you are still tuning is a
 bet you will pay to unwind. About six thousand lines of that bet came due at once.
 
-Dragon, the first game built from this template, kept all four: its brief asked for the same things
-in its own words. In its first two weeks it learned more the hard way, and the lessons that apply to
-any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with a line of
-what it cost, beside those the games after it learned. They are inherited on the same terms as these
-four.
+The games built from this template since kept all four, and learned more. The lessons that apply to
+any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with its reason.
+They are inherited on the same terms as these four.
 
 ## Toolchain
 
@@ -348,18 +344,18 @@ tests are there. Adding the first source file and the first test is what makes t
 meaningful.
 
 The end-to-end tests are the ones that say a player can do a thing: they boot the real game in
-headless Chromium and drive it. Headless Chromium ran WebGL 2, drawing in software, in dragon's
-cloud sessions and its CI, and again in a cloud session when these files were written, so a 3D game
-can boot there. Check it where you work before planning on it, as dragon did: the whole test
-strategy turned on it, the check took two minutes, and it would have cost a day the other way. The
-first test to write is `tests/e2e/boot.spec.ts`, which boots the game, fails on any page or console
-error, draws one frame with everything that has a shader in it, and reads the GL error flag, since
-GL errors reach the console late and as warnings. `npm run verify:play` is the typecheck and that
-test, and a build pushed for a person to play waits only on that, not on the whole gate: dragon's
-gate took five minutes even after it had been cut from fifteen, and every time someone sat down to
-play, they used to wait for it. The full gate runs while they play; anything it finds is reported
-and fixed rather than left for the next push, and once there is code, nothing goes into a pull
-request without it.
+headless Chromium and drive it. Headless Chromium ran WebGL 2, drawing in software, in an earlier
+game's cloud sessions and its CI, and again in a cloud session when these files were written, so a
+3D game can boot there. Check it where you work before planning on it, as that game did: the whole
+test strategy turned on it, the check took two minutes, and it would have cost a day the other way.
+The first test to write is `tests/e2e/boot.spec.ts`, which boots the game, fails on any page or
+console error, draws one frame with everything that has a shader in it, and reads the GL error flag,
+since GL errors reach the console late and as warnings. `npm run verify:play` is the typecheck and
+that test, and a build pushed for a person to play waits only on that, not on the whole gate: one
+game's gate took five minutes even after it had been cut from fifteen, and every time someone sat
+down to play, they used to wait for it. The full gate runs while they play; anything it finds is
+reported and fixed rather than left for the next push, and once there is code, nothing goes into a
+pull request without it.
 
 Every end-to-end run starts its own Vite server, on a port taken from the checkout's path and off
 the dev server's 3000, so worktrees can each run the suite at once and a run never tests another
@@ -369,7 +365,7 @@ reload the page under whichever test is running: a run tests the code as it stoo
 `playwright.config.ts` says why each of these is so.
 
 CI's runner draws more slowly than a development machine, so a time limit that is comfortable
-locally can be too tight on CI. In Extra Sapien, a game built from this template, two tests
+locally can be too tight on CI. In one game built from this template, two tests
 passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
 `npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
 CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
@@ -382,9 +378,9 @@ port, reports anything that breaks in the page, and lays the frames out side by 
 the sheet. With `--tree before=@<commit>`, it puts an older commit's frames beside this checkout's,
 one row per shot, for a before-and-after. `scripts/shots.mjs` says what the game's script exports;
 what hooks the game offers it is the game's choice. The `frame-check` skill is how an agent uses it
-on a report of something that looks wrong. Dragon and Extra
-Sapien each built one of these before it shipped here, and in Extra Sapien a tour of the whole game
-in frames found 22 defects with every test green.
+on a report of something that looks wrong. Two games built one of these for themselves before it
+shipped here, and in one of them a tour of the whole game in frames found 22 defects with every test
+green.
 
 An agent cannot hear, so the sound gets the same treatment, from `npm run takes`. A script the game
 provides renders each sound worth hearing into an `OfflineAudioContext`, through the game's own
@@ -394,7 +390,7 @@ peak and clipping, when it starts and how long it rings, its energy by octave, i
 `scripts/lib/listen.mjs`), and lays the takes out on a sheet of waveforms and spectrograms. With
 `--tree before=@<commit>` it prints the numbers side by side, and `--match -20` writes copies of
 equal loudness for the person to compare by ear. The `sound-check` skill is how to use it on a
-report of something that sounds wrong. Dragon, Extra Sapien, sandworm and Kyle on Duty each built a
+report of something that sounds wrong. Four games built from this template each built a
 renderer and a measurer of their own before this one; it was tried on two of them before it shipped.
 
 A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the first source file
@@ -411,9 +407,9 @@ than skipped. Once there is source they run, and the end-to-end job fails until 
 exists.
 
 The three documents merge themselves where both sides only added to them. Every branch appends to
-the design log, so in dragon every merge of main into a branch conflicted there, seven of seven, and
-often in the Charter's §5 as well. `scripts/merge-docs.mjs` keeps both sides' additions, the log's
-entries in date order, and leaves anything else as an ordinary conflict: a passage both sides
+the design log, so in one game every merge of main into a branch conflicted there, seven of seven,
+and often in the Charter's §5 as well. `scripts/merge-docs.mjs` keeps both sides' additions, the
+log's entries in date order, and leaves anything else as an ordinary conflict: a passage both sides
 changed is still there to be read. `npm ci` registers it, through `prepare`. Where it is not
 registered, GitHub's merge button included, the documents merge as they always did.
 
@@ -455,19 +451,6 @@ The template's own repository is
 [`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
 `copier.yml` there says what is copied and what is not; projects never see it.
 
-## The games named in these documents
-
-Most of what ships here beyond the toolchain was sent back by games built from the template, and
-the stories behind its rules name them:
-
-- **Dragon**, the first: a 3D game in three.js on a generated island, in which the player is a
-  dragon and the island's villages react to it.
-- **Extra Sapien**, the second: a recreation of a slice of another game, built in two days with
-  several agents working side by side.
-- **Kyle on Duty**, the third: a recreation of *Nacht der Untoten*, the first zombies map from
-  *Call of Duty: World at War*, built in two days.
-- **Sandworm**: a game of a single encounter, which the sound tools were also tried against.
-
 ## Optional: the RTK agent tooling
 
 The scaffold carries a setup for [RTK](https://github.com/rtk-ai/rtk), a third-party CLI proxy that
@@ -482,8 +465,9 @@ It lives in three places, none of which is a document:
   instruction: no document has to tell an agent to type `rtk` in front of things, and an agent that
   never heard of RTK gets the benefit anyway. When `rtk` is not installed the hook exits silently
   and the command runs exactly as written, so a local checkout without RTK behaves normally. (The
-  template used to put a generated block of instructions in `CLAUDE.md` instead; dragon replaced it
-  with this hook, and an agent without RTK no longer reads an instruction it cannot follow.)
+  template used to put a generated block of instructions in `CLAUDE.md` instead; an earlier game
+  replaced it with this hook, and an agent without RTK no longer reads an instruction it cannot
+  follow.)
 - **`.rtk/filters.toml`** — project-local output filters. Ships with commented examples only.
 - **`.claude/hooks/cloud-session-start.sh`** — installs RTK in Claude Code Cloud sessions, building
   it from a tag-pinned git checkout (the vendor's install script cannot reach its own release

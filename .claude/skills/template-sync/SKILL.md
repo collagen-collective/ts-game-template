@@ -69,31 +69,29 @@ another game, it has paid for that rule again, so it moves to *This project's ow
 
 **What goes back.** A rule, a check, a script or a way of working that would have saved any game
 built from the template the same cost. Not what is about this game's design, and not what is about
-this game's technology: the template carried dragon's rules back and left its rules about three.js,
-terrain and sound behind. A rule that has been paid for once here is worth sending; one this
+this game's technology: one game's rules came back to the template, and its rules about three.js,
+terrain and sound stayed behind. A rule that has been paid for once here is worth sending; one this
 project only suspects is not yet.
 
 **Where it goes in the template.**
 
 - Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
-  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape, a trigger
-  and a verb, then a line of what it cost here, because a rule without its why gets argued with the
-  first time it is inconvenient.
+  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape: the rule in
+  bold, its *Why*, and a *For example* only if the moment is hard to recognise. Written for a game
+  that is not this one: the example names no game, and *the person* in it becomes *a designer*.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
 - How to do a recurring piece of work: a skill under `.claude/skills/`, or a change to one.
 - Tools: `scripts/`, with the reason each exists written beside it, and the README's *What ships
   here* and *Toolchain* told about it.
 - A fix to the template's own tooling, found in use here: the same file, fixed in place.
 
-Which game a rule came from belongs in the pull request and its commits, not in the documents. If
-the rule's story names this game, add a line saying what it is to the README's *The games named in
-these documents*.
+Which game a rule came from belongs in the pull request and its commits, not in the documents.
 
 **Write it into the project first.** Before a rule goes to the template, put it under *This
-project's own* in the project's Charter, with its story, and send that. A rule sent from the design
-log comes home with no copy of its own to keep: Kyle on Duty sent four rules to §5, three of them
-only ever written in its log, and its first update had to write all three into its Charter while
-resolving the conflicts.
+project's own* in the project's Charter, with its *Why* and its design-log entry, and send that
+without the entry. A rule sent from the design log comes home with no copy of its own to keep: one
+game sent four rules to §5, three of them only ever written in its log, and its first update had to
+write all three into its Charter while resolving the conflicts.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief
