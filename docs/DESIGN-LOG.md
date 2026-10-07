@@ -12,8 +12,10 @@ also where you see one decision quietly changing another, which is what the **Ch
 line on each entry is for — that line is the one people skip and the one that is worth most later.
 
 **Guidelines for this file.** Append only. Never edit an old entry to make it agree with current
-thinking, because an entry is a historical account and a historical account cannot go stale. Order
-is chronological rather than by system, deliberately: the chronology is the part that is hard to
+thinking, because an entry is a historical account and a historical account cannot go stale. It
+also keeps the log's cost flat: a record that is only ever added to never has to be reconciled
+with itself, and reconciliation is where earlier ways of tracking work broke down. Order is
+chronological rather than by system, deliberately: the chronology is the part that is hard to
 reconstruct, and grouping is the part a search recovers for free. Tags in brackets are for
 searching. Dates before the first commit are approximate.
 
