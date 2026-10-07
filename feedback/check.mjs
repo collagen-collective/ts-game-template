@@ -125,8 +125,13 @@ try {
     expect((await demo()).marks === 2, "a z typed in the box is a letter, not an undo");
     await page.click('.fb-part[data-part="browser"]');
     await page.waitForTimeout(50);
-    const ticks = await page.evaluate(() => [...document.querySelectorAll(".fb-part")].map((e) => e.getAttribute("aria-checked")));
-    expect(ticks.join() === "true,true,false", `a click unticks a part, and the box says so (${ticks.join()})`);
+    const ticks = await page.evaluate(() =>
+        [...document.querySelectorAll(".fb-part")].map((e) => e.getAttribute("aria-checked")),
+    );
+    expect(
+        ticks.join() === "true,true,false",
+        `a click unticks a part, and the box says so (${ticks.join()})`,
+    );
     await shot("3-tell");
     await key("Control+Enter");
     await page.waitForTimeout(500);
@@ -228,6 +233,37 @@ try {
     expect(
         !s.open && s.paused,
         "Escape from the frame puts the page away, and the game does not see it",
+    );
+
+    // Opened with the pad, the page names the pad's buttons before the pad is touched.
+    await page.evaluate(() => window.__feedbackDemo.feedback.open("pad"));
+    await page.waitForTimeout(100);
+    const named = await page.evaluate(() => document.querySelector(".fb-mhints").textContent);
+    expect(named.includes("Start"), `opened with "pad", it names the pad's buttons (${named})`);
+    await key("Escape");
+    await page.waitForTimeout(300);
+
+    // A key held into the page and let go on it is let go in the game; one pressed on it is not.
+    const ups = await page.evaluate(async () => {
+        const seen = [];
+        const hear = (e) => seen.push(e.code);
+        window.addEventListener("keyup", hear);
+        const fire = (type, code) =>
+            window.dispatchEvent(new KeyboardEvent(type, { code, key: code, bubbles: true }));
+        fire("keydown", "Space");
+        window.__feedbackDemo.feedback.open();
+        await new Promise((r) => requestAnimationFrame(r));
+        fire("keyup", "Space");
+        fire("keydown", "KeyZ");
+        fire("keyup", "KeyZ");
+        window.__feedbackDemo.feedback.close();
+        await new Promise((r) => setTimeout(r, 200));
+        window.removeEventListener("keyup", hear);
+        return seen.join();
+    });
+    expect(
+        ups === "Space",
+        `a key held into the page is let go in the game, one pressed on it is kept (${ups})`,
     );
     expect(
         errors.length === 0,

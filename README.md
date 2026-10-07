@@ -184,7 +184,8 @@ function pause(): void {
     }, hud);
     pauseMenu.open({ feedback: feedback.available });
 }
-// FEEDBACK in the pause menu: feedback.open(). While feedback.isOpen, the menu takes no input.
+// FEEDBACK in the pause menu: feedback.open("pad"), or "keys", whichever chose it, so the page
+// names that device's buttons from the start. While feedback.isOpen, the menu takes no input.
 ```
 
 Each part is a line on the page the player can untick, its `lines` go into `report.md`, its `data`

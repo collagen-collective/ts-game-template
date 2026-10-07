@@ -283,9 +283,16 @@ export class FeedbackPage {
         });
     }
 
-    open(): void {
+    /**
+     * Over the game, on the frame kept at the pause. `device` is what the
+     * player opened it with, so the page names its buttons from the start;
+     * unless it is said, the page names the keys until a pad is touched, and
+     * a player who opened it with a pad's A sees the keys' names first.
+     */
+    open(device?: Device): void {
         if (this.isOpen) return;
         this.isOpen = true;
+        if (device) this.device = device;
         this.leaving = null;
         this.stage = this.snap.frame ? "mark" : "tell";
         this.index = 0;
@@ -346,12 +353,18 @@ export class FeedbackPage {
 
     private readonly onResize = (): void => this.render();
 
-    /** The keys while the page is open: every one kept from the game, but what is typed in the box. */
+    /**
+     * The keys while the page is open: every one kept from the game, but what
+     * is typed in the box, and the letting go of a key pressed before it
+     * opened. That one the game saw go down, and must see come up, or a game
+     * that keeps the keys held thinks it held for ever: the Space that chose
+     * FEEDBACK, in Extra Sapien, left its hero jumping when play went on.
+     */
     private readonly onKey = (e: KeyboardEvent): void => {
         if (!this.isOpen && !this.leaving) return;
         if (e.type === "keyup") {
-            this.held.delete(e.code);
-            if (e.target !== this.box) e.stopImmediatePropagation();
+            const ours = this.held.delete(e.code);
+            if (ours && e.target !== this.box) e.stopImmediatePropagation();
             return;
         }
         if (this.leaving) return;
