@@ -56,8 +56,8 @@ the `design-log` skill gives a merge of main: what came in, what it made untrue 
 conflict decided, with whose decision it was. An update that brought only tooling fixes needs no
 entry.
 
-**When a finding this project sent comes home.** The update brings back, under *Inherited from
-<this game>*, rules this project already has under *This project's own*. Keep this project's own
+**When a finding this project sent comes home.** The update brings back, under *Inherited*, rules
+this project already has under *This project's own*. Keep this project's own
 copy, which carries its own story, and delete the inherited copy. The update remembers deletions,
 so it will not come back. If the template's wording is better, take the wording into the project's
 own copy first. A rule that was sent from the design log, and never written under *This project's
@@ -75,17 +75,19 @@ project only suspects is not yet.
 
 **Where it goes in the template.**
 
-- Rules for particular moments: the Charter's §5, under *Inherited from <this game>*, a heading
-  added if this game has none yet. In the §5 shape, a trigger and a verb, then a line of what it
-  cost here, because a rule without its why gets argued with the first time it is inconvenient.
+- Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
+  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape, a trigger
+  and a verb, then a line of what it cost here, because a rule without its why gets argued with the
+  first time it is inconvenient.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
 - How to do a recurring piece of work: a skill under `.claude/skills/`, or a change to one.
 - Tools: `scripts/`, with the reason each exists written beside it, and the README's *What ships
   here* and *Toolchain* told about it.
 - A fix to the template's own tooling, found in use here: the same file, fixed in place.
 
-Say in the README's *Where the inherited rules came from*, where the template keeps its record of
-what each game carried back, what this game is and what it brought.
+Which game a rule came from belongs in the pull request and its commits, not in the documents. If
+the rule's story names this game, add a line saying what it is to the README's *The games named in
+these documents*.
 
 **Write it into the project first.** Before a rule goes to the template, put it under *This
 project's own* in the project's Charter, with its story, and send that. A rule sent from the design

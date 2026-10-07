@@ -6,8 +6,8 @@ Throughout, *the person you're working with* (or *the person*) is the human desi
 They decide what the game is and judge how it feels; you build, measure and keep the record. These
 documents use some shorthand of their own (*sitting*, *the gate*, *instrument*, *builder*, *paid
 for*); the README's *Words we use* defines each. Dragon, Extra Sapien, Kyle on Duty and sandworm,
-named below, are earlier games built from this template; the README's *Where the inherited rules
-came from* says what each was.
+named below, are earlier games built from this template; the README's *The games named in these
+documents* says what each was.
 
 ## The project
 
@@ -203,7 +203,7 @@ pieces that each pass their check and do not add up.
 found is a bet you will pay to unwind.
 
 Dragon kept all four, and learned more of its own the hard way. The ones that apply to any game are
-in the Charter's §5, under *Inherited from dragon*, on the same terms: defaults to keep, prune or
+in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
 argue with, and read before proposing a plan.
 
 ## Verification

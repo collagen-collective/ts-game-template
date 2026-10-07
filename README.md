@@ -98,7 +98,7 @@ some shorthand of their own. In order of how soon you will meet it:
 - **Carried back**: sent from a game to the template, so that every game gets it. A rule that
   *comes home* is one this project sent that returns in a template update.
 - **Dragon, Extra Sapien, Kyle on Duty, sandworm**: earlier games built from this template, whose
-  lessons it carries. *Where the inherited rules came from*, below, says what each was.
+  lessons it carries. *The games named in these documents*, below, says what each was.
 
 ## What ships here, and what does not
 
@@ -313,9 +313,9 @@ bet you will pay to unwind. About six thousand lines of that bet came due at onc
 
 Dragon, the first game built from this template, kept all four: its brief asked for the same things
 in its own words. In its first two weeks it learned more the hard way, and the lessons that apply to
-any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited from dragon*, each with
-a line of what it cost. The games after it added theirs under their own headings there. They are
-inherited on the same terms as these four.
+any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with a line of
+what it cost, beside those the games after it learned. They are inherited on the same terms as these
+four.
 
 ## Toolchain
 
@@ -419,9 +419,9 @@ registered, GitHub's merge button included, the documents merge as they always d
 
 ## Staying in step with the template
 
-Several games are built from this template, and each finds things the others need: each of the
-games under *Where the inherited rules came from* sent rules and tools back to it. The template is
-how a lesson travels from one game to the others, and both directions are meant to be routine.
+Several games are built from this template, and each finds things the others need. The template is
+how a lesson travels from one game to the others, and both directions are meant to be routine. Which
+game sent what is in the template's own history: its pull requests and commit messages.
 
 **From the template to a project.** `npm run template:update` brings in what the template has
 gained since the project last did, as a three-way merge, file by file, through
@@ -455,11 +455,10 @@ The template's own repository is
 [`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
 `copier.yml` there says what is copied and what is not; projects never see it.
 
-## Where the inherited rules came from
+## The games named in these documents
 
-Most of what ships here beyond the toolchain was sent back by games built from the template, each
-time with the reason it exists written beside it. The games are named throughout these documents,
-so here is what each was:
+Most of what ships here beyond the toolchain was sent back by games built from the template, and
+the stories behind its rules name them:
 
 - **Dragon**, the first: a 3D game in three.js on a generated island, in which the player is a
   dragon and the island's villages react to it.
@@ -468,28 +467,6 @@ so here is what each was:
 - **Kyle on Duty**, the third: a recreation of *Nacht der Untoten*, the first zombies map from
   *Call of Duty: World at War*, built in two days.
 - **Sandworm**: a game of a single encounter, which the sound tools were also tried against.
-
-What each sent back:
-
-- **Dragon**, after its first two weeks: the rules in the Charter's §5 under *Inherited from
-  dragon*; what `CLAUDE.md` says about working with the person and with other agents; the
-  `design-log` skill, playtest entries above all; the end-to-end setup, the play gate, the
-  documents' merge driver and the pull-request template.
-- **Extra Sapien**, after its first two days: the screenshot tool, which it and dragon had each
-  built for themselves, and the `frame-check` skill; the slow end-to-end run; and §5's rules for
-  running builders side by side. Later, once its hosted game had a second player, its feedback
-  inbox: the page, the function, the dev server's inbox, and the CDK app that deploys the
-  function, which replaced a page of console steps after three of the console's defaults broke its
-  first live send.
-- **Kyle on Duty**, after its first two days and first sitting: the sound tool, `takes.mjs`, and
-  the `sound-check` skill, since all four games had each built their own; and §5's rules for
-  putting several questions to the person at once, checking a builder's worktree before it starts,
-  playing the whole game with a bot before looking at screenshots, and measuring the part the
-  person called right as a control. At its first template update, when those rules came back to
-  it, it added the `template-sync` skill's step of writing a rule into the project's own Charter
-  before sending it. And after that, `takes.mjs`'s `hrtf` option, for an offline render that
-  waits forever on Chromium's HRTF database, which cost it every full render of its sounds for a
-  day.
 
 ## Optional: the RTK agent tooling
 

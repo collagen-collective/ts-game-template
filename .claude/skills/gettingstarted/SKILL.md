@@ -216,10 +216,10 @@ Use `AskUserQuestion` for these; they are discrete choices.
 - **The inherited rules.** There are two sets, and each is asked about as a whole: keep it, prune
   it, or delete it. The template's four are in `README.md`, with the evidence behind each, and in
   `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which the
-  Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. Dragon's
-  are in two places: the Charter's §5, under *Inherited from dragon*, and `CLAUDE.md`'s *Working
-  together*, with the rules above it that name dragon. Both sets are explicitly defaults rather than
-  this project's findings, and the decision should be made deliberately. Pruning dragon's is
+  Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. The rest
+  are in two places: the Charter's §5, under *Inherited*, and `CLAUDE.md`'s *Working together*,
+  with the rules above it that name dragon. Both sets are explicitly defaults rather than
+  this project's findings, and the decision should be made deliberately. Pruning those is
   expected over time, as this project learns which of them it needs; today, ask only whether any
   group of them plainly does not fit this game. Whatever the answer, log it.
 - **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and

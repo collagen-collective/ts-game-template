@@ -109,13 +109,9 @@ is a feature that wandered in.>`*
 
 It starts with inherited rules, and none of them is this project's own finding yet. Four are the
 template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../README.md) with the
-evidence behind each. The rest are below, from earlier games built from this template (the README's
-*Where the inherited rules came from* says what each was). First, what dragon learned the hard way
-in its first two weeks, wherever the lesson applies to any game rather than to dragon's own
-technology; its rules about three.js, terrain generation and sound stayed in its own Charter. Then
-the few that Extra Sapien learned in its first two days, on the same terms, and then Kyle on
-Duty's, most of which the other games had learned too. Each rule keeps a line of what it cost
-there, because a rule without its reason gets argued with the first time it is inconvenient. How
+evidence behind each. The rest are below, grouped by the moment each one is for. Each rule keeps a
+line of what it cost, because a rule without its reason gets argued with the first time it is
+inconvenient. How
 agents work with the person in every session is in `CLAUDE.md` under *Working together*; the rules
 here are for particular moments.
 
@@ -136,7 +132,10 @@ lesson written three times as a retrospective never once acted on. *After a scri
 the new text* is something to follow; *the instrument was missing what the question needed* is
 not.
 
-### Inherited from dragon
+### Inherited
+
+From earlier games built from this template, wherever the lesson applies to any game rather than
+to one game's design or technology.
 
 #### When you are about to ask the person something
 
@@ -180,6 +179,16 @@ not.
   objection is a price, not a verdict. The opening an agent set aside for dragon's tutorial was the
   one the person chose, and both halves of its price turned out to be payable.
 
+- **When there are several questions only the person can answer, send them together: ranked by how
+  much each answer changes the game, each with your guess, and each naming the value it sets.**
+  Kyle on Duty put eight to the person at once, ranked out of the eighty-odd its research and its
+  builders had asked. They answered all eight in one message after a sitting, with more than was
+  asked, and every answer had set its value within the hour. Dragon sends three to six at a time
+  with a guess beside each (*"they took all four guesses"*), and Extra Sapien sends them with
+  options. One at a time is right for the founding interview (`gettingstarted`), where each answer
+  shapes the next question; questions the person answers from memory or from a sitting do not wait
+  on each other that way, and asked one by one they cost a message each.
+
 #### When you are about to build something
 
 - **Build from the player outward: a system earns its place by what the player will see, hear or
@@ -203,6 +212,27 @@ not.
   correct.** A second session that read dragon's whole log found that every tuned rule which gave
   way to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the
   agent's*.
+
+#### When you are about to tune how something plays
+
+- **Play the whole game with a bot in Node before looking at a screenshot of it.** Every beat of the
+  game is a wait on a condition, and a wait that can never come true is invisible until something
+  reaches it. Extra Sapien's first full run found a shut door that could be walked round, in under a
+  second. Kyle on Duty's first whole game found zombies standing still on a crate and on sandbags,
+  and a path field that could not climb a stair; later the same bot, run with each of two rule
+  changes undone in turn, said which of them had cost it three rounds. A game that cannot be lost
+  (sandworm's is one encounter) traces a whole sitting instead.
+
+#### When you are about to change how something looks or sounds
+
+- **When the person says one part is right and another is not, take the right part beside the wrong
+  one as the control, and measure both before and after.** One value often feeds both. Playing Kyle
+  on Duty, the person found the house *"pretty much spot on"* and the yard *"a little brighter than
+  the original"*; the fog's colour also greys a room's far end, and lowering it for the yard took 4
+  to 6 points off every room. The rooms were in the same run, so the numbers caught it before the
+  person was asked to approve the change. Dragon keeps *"the half that already reads as reasonable:
+  it is the part a fix can break"*, and Extra Sapien compared its great hall pixel by pixel while
+  changing what stood beside it; neither had written it down.
 
 #### When you are about to trust a measurement
 
@@ -269,6 +299,14 @@ not.
   it holds. After one such summary of an agent's context, it expected nine changed files and
   `git status` showed four.
 
+#### When you are about to set a test's time limit
+
+- **Set it from a run at CI's speed, not from a run here: `npm run test:e2e:slow`.** A development
+  machine draws faster than CI's runner. Extra Sapien's CI first ran 112 commits into a branch. Two
+  tests whose limits had been set in a four-core session failed there, on a runner that drew 2.8
+  times slower, with nothing wrong in the game. Pinned to one core, the session failed them the same
+  way.
+
 #### When you are about to plan, merge or hand over
 
 - **When you plan a round of work, read the parked questions as dependencies rather than as a
@@ -297,11 +335,10 @@ not.
   on a case it was blind to took 71 against 61, because the run believed it first. What the test
   runs built for themselves is what the skill should have shipped with, and a true negative is a
   claim like any other: the gulls it passed as healthy were spinning on the spot.
-
-### Inherited from Extra Sapien
-
-A recreation of a slice of another game, built in two days with agents working side by side. Most
-of what it learned was about that game and stayed behind. These apply to any game.
+- **Tour the whole game in frames on the merged head, and look at every sheet.** It is the seams
+  between branches that break, and no test sits on a seam. With every test green, Extra Sapien's
+  first tour after a merge found 22 defects where four places built apart had met. A second tour
+  found 10 more where their separate fixes met.
 
 #### When you are about to run several builders at once
 
@@ -320,69 +357,12 @@ of what it learned was about that game and stayed behind. These apply to any gam
 
   Builders split by what they read, each shared file with one owner, merged without a conflict.
 
-#### When you are about to set a test's time limit
-
-- **Set it from a run at CI's speed, not from a run here: `npm run test:e2e:slow`.** A development
-  machine draws faster than CI's runner. Extra Sapien's CI first ran 112 commits into a branch. Two
-  tests whose limits had been set in a four-core session failed there, on a runner that drew 2.8
-  times slower, with nothing wrong in the game. Pinned to one core, the session failed them the same
-  way.
-
-#### When you are about to merge branches built apart
-
-- **Tour the whole game in frames on the merged head, and look at every sheet.** It is the seams
-  between branches that break, and no test sits on a seam. With every test green, Extra Sapien's
-  first tour after a merge found 22 defects where four places built apart had met. A second tour
-  found 10 more where their separate fixes met.
-
-### Inherited from Kyle on Duty
-
-A recreation of *Nacht der Untoten*, the first zombies map from *Call of Duty: World at War*, built
-in two days by a session with builders beside it, and played once, to the eighth wave of zombies.
-Its rules about the original stayed behind. These four apply to any game, and three of them were
-paid for again, separately, by the games beside it, which are named.
-
-#### When you are about to ask the person something
-
-- **When there are several questions only the person can answer, send them together: ranked by how
-  much each answer changes the game, each with your guess, and each naming the value it sets.**
-  Kyle on Duty put eight to the person at once, ranked out of the eighty-odd its research and its
-  builders had asked. They answered all eight in one message after a sitting, with more than was
-  asked, and every answer had set its value within the hour. Dragon sends three to six at a time
-  with a guess beside each (*"they took all four guesses"*), and Extra Sapien sends them with
-  options. One at a time is right for the founding interview (`gettingstarted`), where each answer
-  shapes the next question; questions the person answers from memory or from a sitting do not wait
-  on each other that way, and asked one by one they cost a message each.
-
-#### When you are about to run several builders at once
-
 - **Before a builder starts in a worktree, have it check that the worktree holds your latest
   commits.** An agent's worktree is cut from the default branch, not from the branch the session is
   on. Every one of Kyle on Duty's builders started from the template's first commit, and had to
   move itself onto the session's branch; one move was refused by a permission check. Sandworm paid
   for it too and made it a rule of its own, and Extra Sapien's worktrees were cut from main twice in
   one day, so that one builder measured code that was no longer there.
-
-#### When you are about to tune how something plays
-
-- **Play the whole game with a bot in Node before looking at a screenshot of it.** Every beat of the
-  game is a wait on a condition, and a wait that can never come true is invisible until something
-  reaches it. Extra Sapien's first full run found a shut door that could be walked round, in under a
-  second. Kyle on Duty's first whole game found zombies standing still on a crate and on sandbags,
-  and a path field that could not climb a stair; later the same bot, run with each of two rule
-  changes undone in turn, said which of them had cost it three rounds. A game that cannot be lost
-  (sandworm's is one encounter) traces a whole sitting instead.
-
-#### When you are about to change how something looks or sounds
-
-- **When the person says one part is right and another is not, take the right part beside the wrong
-  one as the control, and measure both before and after.** One value often feeds both. Playing Kyle
-  on Duty, the person found the house *"pretty much spot on"* and the yard *"a little brighter than
-  the original"*; the fog's colour also greys a room's far end, and lowering it for the yard took 4
-  to 6 points off every room. The rooms were in the same run, so the numbers caught it before the
-  person was asked to approve the change. Dragon keeps *"the half that already reads as reasonable:
-  it is the part a fix can break"*, and Extra Sapien compared its great hall pixel by pixel while
-  changing what stood beside it; neither had written it down.
 
 ### This project's own
 
