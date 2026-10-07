@@ -38,7 +38,7 @@ They divide by tense, and that is the whole filing rule: anything you write eith
 or replaces one of them.
 
 - **[`docs/CHARTER.md`](./docs/CHARTER.md)** is present tense: what is settled. What the game wants
-  to be, what it has to be, the rules that hold everywhere, and the main systems. Each system
+  to be, what it has to be, the guidelines for the whole game, and the main systems. Each system
   states the problem it exists to solve before it states the answer. Its §5 says how we work.
 - **[`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md)** is future tense: what you still have to
   find out. Every entry says *how it gets answered*: by playing (PLAY), by discussion (DECIDE), or

@@ -162,11 +162,13 @@ another, that is a COLLISIONS entry, not something to reconcile quietly on their
 usually "nothing yet," and an empty section is correct. Ask whether they already have these; if they
 hesitate, skip the tier and move on.
 
-**§3, the laws.** Only rules that bind everywhere, with no exceptions anywhere. A rule that governs
-one system belongs with that system in §4, not here. Each law needs its *Why* — the failure it
-exists to prevent — because a law without one gets re-argued the first time it is inconvenient. If
-there is an operational test, some question easier to apply than the law itself, capture it; that is
-the part that actually gets used.
+**§3, guidelines for the whole game.** Only guidelines that hold across the whole game; one that
+governs a single system belongs with that system in §4, not here. They serve the vision in §1 and
+§2, and when one pulls against a criterion, that is talked through case by case, not settled by
+rank (§3's opening says how). Each guideline needs its *Why* — the failure it exists to prevent —
+so that when it is inconvenient, the argument starts from its reason instead of from scratch. If
+there is an operational test, some question easier to apply than the guideline itself, capture it;
+that is the part that actually gets used.
 
 **§4, the building blocks.** One block per system large enough that a decision about it constrains
 other systems. **The problem** before **The shape**, always, because the problem statement is how a

@@ -1,9 +1,8 @@
 # `<project>` Charter
 
 > **What we have figured out so far.** Present tense: the things that are settled, and the
-> constraints that settled them. Sections 1 to 4 say what the game is: when something is
-> contested, it settles in section 2 first, and the laws in section 3 bind everywhere. Section 5
-> says how we work.
+> constraints that settled them. Sections 1 to 4 say what the game is, and a contested proposal is
+> checked against section 2 first. Section 5 says how we work.
 >
 > Companion documents: [`OPEN-QUESTIONS.md`](./OPEN-QUESTIONS.md) is what we still have to find
 > out. [`DESIGN-LOG.md`](./DESIGN-LOG.md) is what we tried and what happened.
@@ -61,19 +60,23 @@ the cost is what makes it a criterion rather than a preference.>`*
 
 ---
 
-## 3. The laws
+## 3. Guidelines for the whole game
 
-*Rules that bind everywhere. The criteria above are about what the game is; a rule that governs one
-system lives with that system, down in section 4. This section is only for the ones with no
-exceptions anywhere.*
+A guideline here serves the game that sections 1 and 2 describe. When one pulls against a criterion
+in section 2, neither outranks the other: talk it through, case by case. Sometimes the vision is
+what matters, and the guideline gives way. Sometimes the pull points at a gap in the outline or the
+goals, and that goes to [`OPEN-QUESTIONS.md`](./OPEN-QUESTIONS.md) as a collision, to be worked on.
 
-*Each law states its why. A law without one gets argued with the first time it is inconvenient, and
-then the argument has to be re-won from scratch every time it comes up. Where a law has an
-operational test — some question that is easier to apply than the law itself — write that down too.
-The test is the part that actually gets used.*
+*Only guidelines that hold across the whole game go here: the criteria above are about what the
+game is, and a guideline that governs one system lives with that system, down in section 4.*
 
-**`<Law, stated as an imperative or a flat assertion.>`**
-*`<What it forbids or requires, in one or two sentences.>`*
+*Each guideline states its why, so that when it is inconvenient, the argument starts from its reason
+instead of from scratch. Where a guideline has an operational test — some question that is easier
+to apply than the guideline itself — write that down too. The test is the part that actually gets
+used.*
+
+**`<Guideline, stated as an imperative or a flat assertion.>`**
+*`<What it asks for or rules out, in one or two sentences.>`*
 
 *Why:* *`<The failure it exists to prevent, and the operational test if there is one.>`*
 
