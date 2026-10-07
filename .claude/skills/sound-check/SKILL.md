@@ -43,9 +43,9 @@ between 2 and 6 kHz and little under it, *crackle* is clipping, *late* is a star
 *drowned out* is two levels and an overlap.
 
 In a recreation, ask for a recording of the original before a description, and measure the two with
-the same instrument (one recreation made it a rule of its own: *Ask the person for a recording of it
-before a description*). If nobody is around to ask, write down the questions you would have asked,
-and bring them back with what you found.
+the same instrument (one recreation made it a guideline of its own: *Ask the person for a recording
+of it before a description*). If nobody is around to ask, write down the questions you would have
+asked, and bring them back with what you found.
 
 **If the game has no `npm run takes` yet,** it was made from the template before the harness: copy
 `scripts/takes.mjs` and `scripts/lib/` from the template, and add the npm script. Or render with the

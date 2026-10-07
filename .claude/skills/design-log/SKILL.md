@@ -34,7 +34,7 @@ placement". Two clauses is the house rhythm, and the second usually carries the 
 
 ## Tags
 
-Tags exist to be searched, so the rule is **reuse one rather than coining a synonym**. Before
+Tags exist to be searched, so the guideline is **reuse one rather than coining a synonym**. Before
 inventing a tag, grep the file for what is already in use:
 
 ```bash
@@ -72,9 +72,9 @@ Those are subject tags. Two more sit on a different axis and say what an entry *
   leave it off. The test is whether the earlier entry named something as open and this one closes
   it.
 
-**Both tags go on the new entry. Neither is ever added to an old one.** That is the append-only rule
-and it has no exception: a tag added to a prior entry is still an edit to a historical account, and
-the fact that it is only an index does not make it not an edit.
+**Both tags go on the new entry. Neither is ever added to an old one.** That is the append-only
+guideline and it has no exception: a tag added to a prior entry is still an edit to a historical
+account, and the fact that it is only an index does not make it not an edit.
 
 ## `Resolves`, and why entries need no ids
 
@@ -95,7 +95,7 @@ and cannot be inconsistent with what it names.
 Quote enough of the title to be unique and cite the date; a distinctive fragment is fine. An entry
 that closes only part of a question says **Partly resolves.** and names the part.
 
-**And because the id is the heading, granularity is free.** There is no rule of one entry per day
+**And because the id is the heading, granularity is free.** Nothing asks for one entry per day
 or per session: a date can carry as many entries as it needs and each is still addressable. Split
 when a session did things on different axes — a shape and the instrument that made the shape
 arguable are two subjects, not one — and keep it together when the parts only make sense in
@@ -114,8 +114,9 @@ Follow the shape of what happened rather than filling the boxes.
 
 When that second half is a decision made with the person, label it **The decision**, and give it in
 their own words where they gave them. A ruling is handed down by a judge; these are worked out
-together. One game's log called them *the ruling* for its first ten days, and nothing in its rules
-told an agent to treat the person as a judge: the label, copied from entry to entry, did it anyway.
+together. One game's log called them *the ruling* for its first ten days, and nothing in its
+guidelines told an agent to treat the person as a judge: the label, copied from entry to entry, did
+it anyway.
 
 Two beats are worth protecting:
 
@@ -129,17 +130,17 @@ Two beats are worth protecting:
   know the word to search for.
 - **Learned** is the transferable sentence, and it should still be true about the next problem
   nobody has thought of yet. If it only restates the outcome, the entry has not finished. **And if
-  it is really a rule, put it where rules are kept as well.** A Learned has a trigger and a verb or
-  it has neither — "after a scripted edit, grep for the new text" fires on its own, "the instrument
-  was missing what the question needed" cannot, because there is nothing in it to obey. When it
-  fires, it belongs in the Charter's §5, under *This project's own*, and the person and an agent
-  change §5 together: propose it to them, work out its wording with them, and write it there in
-  that list's shape (its reason, then the rule in bold, a *For example* only if the moment is hard
-  to recognise, and this entry's heading). Say so under **Changed elsewhere**. Read §5 first: a
-  rule already there wants a sharper reason or this entry's heading, not a second copy of itself,
-  and an inherited one this project has now learned for itself moves to *This project's own*. The
-  log is append-only and read backwards; a rule left only here has been filed where nobody looks
-  before acting, which is how the same lesson gets written three times.
+  it is really a guideline, put it where guidelines are kept as well.** A Learned has a trigger and
+  a verb or it has neither — "after a scripted edit, grep for the new text" fires on its own, "the
+  instrument was missing what the question needed" cannot, because there is nothing in it to obey.
+  When it fires, it belongs in the Charter's §5, under *This project's own*, and the person and an
+  agent change §5 together: propose it to them, work out its wording with them, and write it there
+  in that list's shape (its reason, then the guideline in bold, a *For example* only if the moment
+  is hard to recognise, and this entry's heading). Say so under **Changed elsewhere**. Read §5
+  first: a guideline already there wants a sharper reason or this entry's heading, not a second copy
+  of itself, and an inherited one this project has now learned for itself moves to *This project's
+  own*. The log is append-only and read backwards; a guideline left only here has been filed where
+  nobody looks before acting, which is how the same lesson gets written three times.
 
 ## Whose words are whose
 

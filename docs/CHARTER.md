@@ -7,8 +7,8 @@
 > Companion documents: [`OPEN-QUESTIONS.md`](./OPEN-QUESTIONS.md) is what we still have to find
 > out. [`DESIGN-LOG.md`](./DESIGN-LOG.md) is what we tried and what happened.
 >
-> **Before proposing a plan,** read the opening of section 5, its rules for *When you are about to
-> plan, merge or hand over*, its *This project's own*, and the last three entries of
+> **Before proposing a plan,** read the opening of section 5, its guidelines for *When you are about
+> to plan, merge or hand over*, its *This project's own*, and the last three entries of
 > [`DESIGN-LOG.md`](./DESIGN-LOG.md); then check the plan against sections 2 and 3. Read the rest of
 > section 5 a moment at a time: when you come to that moment, or when a plan does.
 >
@@ -115,7 +115,7 @@ is a feature that wandered in.>`*
 
 ## 5. How we work
 
-These are the rules for particular moments in the work. The rules for every session are in
+These are the guidelines for particular moments in the work. The guidelines for every session are in
 [`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
 evidence behind each, and *Working together*. Find the moment you are in below, and read its bold
 lines. In short:
@@ -133,11 +133,11 @@ lines. In short:
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
 
-The rules under *Inherited* come from earlier games: defaults, not this project's findings, and a
-rule this project learned outranks one it was handed. The person and an agent change this section
-together. Either may propose adding, rewording or pruning a rule; the change is made once both
-have worked it through, and the design log records it. *Writing a rule*, at the end of this
-section, says how a rule is written and where it goes.
+The guidelines under *Inherited* come from earlier games: defaults, not this project's findings, and
+a guideline this project learned outranks one it was handed. The person and an agent change this
+section together. Either may propose adding, rewording or pruning a guideline; the change is made
+once both have worked it through, and the design log records it. *Writing a guideline*, at the end
+of this section, says how a guideline is written and where it goes.
 
 A few words recur below. *The person* is the human designing this game, and *a designer* the person
 on another game, in an example. A *sitting* is one stretch of the person playing a build. An
@@ -251,8 +251,8 @@ one game's design or technology.
 
 #### When you are about to measure, test or trust a result
 
-These rules are the scientific method, applied to a game, and each is an instance of one of the four
-principles below.
+These guidelines are the scientific method, applied to a game, and each is an instance of one of the
+four principles below.
 
 ##### Measure the question, not a proxy for it
 
@@ -399,8 +399,9 @@ guess or another turn of the same dial.
   resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
   rule of thumb has failed, look for an algorithm that can be shown to be correct.**
 
-  *For example:* A session that read one game's whole log found that every tuned rule that gave way
-  to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the agent's*.
+  *For example:* A session that read one game's whole log found that every tuned rule of thumb that
+  gave way to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the
+  agent's*.
 
 ##### Test beyond what you checked
 
@@ -481,10 +482,10 @@ are all outside that.
   session's map knew about water. The merge fixed the two tests that failed and nothing that had
   only been written down, and a review found a town walking sixteen metres down a lake bed.
 
-- An agent takes the tone of its instructions along with their rules, and a single word can carry an
-  attitude that nobody wrote down. **When you write words an agent will read before it works with
-  someone, write them in the voice you want it to use with them, and say where the ideas in them
-  came from.**
+- An agent takes the tone of its instructions along with their guidelines, and a single word can
+  carry an attitude that nobody wrote down. **When you write words an agent will read before it
+  works with someone, write them in the voice you want it to use with them, and say where the ideas
+  in them came from.**
 
   *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
   ruling*, copied from entry to entry, did it anyway.
@@ -531,29 +532,29 @@ are all outside that.
 
 ### This project's own
 
-*None yet. The first rule this project learns goes here, in the shape below, ending with the
+*None yet. The first guideline this project learns goes here, in the shape below, ending with the
 design-log entry it came from.*
 
-### Writing a rule
+### Writing a guideline
 
-Every rule has the same shape:
+Every guideline has the same shape:
 
-- **The reason first**, in plain text: the failure the rule prevents, stated so that it holds in a
-  game nobody has built yet. A rule without its reason gets argued with the first time it is
-  inconvenient.
-- **Then the rule, in bold**: a trigger and an action, so that a reader skimming for what to do at
-  this moment reads only the bold. *After a scripted edit, grep for the new text* is something to
+- **The reason first**, in plain text: the failure the guideline prevents, stated so that it holds
+  in a game nobody has built yet, and so that when the guideline is inconvenient, the argument
+  starts from its reason instead of from scratch.
+- **Then the guideline, in bold**: a trigger and an action, so that a reader skimming for what to do
+  at this moment reads only the bold. *After a scripted edit, grep for the new text* is something to
   act on; *the instrument was missing what the question needed* is not, because nothing in it says
   when, or what to do. A sentence or two on how may follow it.
-- **Last, where one helps, an example**, marked *For example:*: one concrete scene, for a rule whose
-  moment is hard to recognise from inside it. It shows what the moment looks like; it is not
-  evidence, so it carries no tally of how often or how badly. Leave it out when the rule is plain
-  without it.
+- **Last, where one helps, an example**, marked *For example:*: one concrete scene, for a guideline
+  whose moment is hard to recognise from inside it. It shows what the moment looks like; it is not
+  evidence, so it carries no tally of how often or how badly. Leave it out when the guideline is
+  plain without it.
 
-An inherited rule goes under the moment it is for, and one about measuring or testing under the
+An inherited guideline goes under the moment it is for, and one about measuring or testing under the
 principle it is an instance of. Keep each moment's line in this section's opening true of every
-rule under it, and give a new moment a line of its own.
+guideline under it, and give a new moment a line of its own.
 
-A rule this project learns goes under *This project's own*, ending with the design-log entry it
-came from. An inherited rule this project learns again for itself moves there too, with its own
+A guideline this project learns goes under *This project's own*, ending with the design-log entry it
+came from. An inherited guideline this project learns again for itself moves there too, with its own
 reason and its design-log entry.
