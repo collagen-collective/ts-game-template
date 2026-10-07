@@ -84,8 +84,12 @@ some shorthand of their own. In order of how soon you will meet it:
   takes them and lays them out side by side on one image, the sheet.
 - **Takes**: the same for sound. `npm run takes` renders the game's sounds to audio files and
   measures them, since an agent cannot listen.
-- **The control**: the part of a scene or sound the person has said is right, measured beside the
-  change so that nobody breaks it by accident.
+- **Observation and finding**: an observation is what came back (a number, a pass or a fail, a
+  frame); a finding is what it means once it has been checked against its controls.
+- **Controls**: cases whose answer is already known, run beside a measurement. A negative control
+  should show nothing and a positive control a clear signal, so that a blind instrument, or one
+  that reports a signal that is not there, gets caught. The part of a scene or sound the person has
+  said is right, measured beside a change, is one.
 - **Seed**: the number a generated world is built from, so the same world can be built again.
 - **Builder**: a sub-agent a session starts to build one piece of the work alongside others, usually
   in a git worktree of its own. *Fanning out* is starting several at once.

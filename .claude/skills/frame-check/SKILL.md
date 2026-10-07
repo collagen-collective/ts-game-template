@@ -149,8 +149,9 @@ to keep it inside the checkout. Not `TMPDIR`, which moves Chromium's own files a
 it on launch from a long path.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
-  in the before, or in this checkout with the fix taken out. A null result is not a result until
-  something in the same run has come back non-null (Charter §5). If your frames do not show the
+  in the before, or in this checkout with the fix taken out: a positive control for the defect. A
+  null observation is not a finding until a positive control in the same run has come back non-null
+  (Charter §5). If your frames do not show the
   defect where it is known to be, they cannot see it: change the pose, not the conclusion.
 - **Match the pair on everything but the change.** Same seed, same moment, same camera. A pair
   that differs in anything else is not evidence until you know what that difference did.
@@ -163,11 +164,11 @@ it on launch from a long path.
 
 ## 6. After merging branches built apart, tour the whole game
 
-It is the seams between branches that break, and no test sits on a seam (Charter §5, *When you are
-about to plan, merge or hand over*). A tour is a script that plays the game through, with a bot or a
-held input, and shoots each arrival, each scene, and the middle of each fight, with any cutscenes
-played rather than skipped. Look at every sheet. Commit the tour once it proves itself
-(`scripts/shots/`), so the next merge can be toured the same way.
+It is the seams between branches that break, and no test sits on a seam (Charter §5, *Test beyond
+what you checked*). A tour is a script that plays the game through, with a bot or a held input, and
+shoots each arrival, each scene, and the middle of each fight, with any cutscenes played rather than
+skipped. Look at every sheet. Commit the tour once it proves itself (`scripts/shots/`), so the next
+merge can be toured the same way.
 
 ## 7. Show them, and write it down
 
