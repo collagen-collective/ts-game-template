@@ -108,9 +108,10 @@ is a feature that wandered in.>`*
 *The rules this project has learned about how to build it.*
 
 It starts with inherited rules, and none of them is this project's own finding yet. Four are the
-template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../README.md). The rest
-are below, grouped by the moment each one is for. How agents work with the person in every session
-is in `CLAUDE.md` under *Working together*; the rules here are for particular moments.
+template's, stated in [`../CLAUDE.md`](../CLAUDE.md) and in the [README](../README.md). The rest are
+below, grouped by the moment each one is for, with the rules for measuring and testing grouped under
+four principles within their moment. How agents work with the person in every session is in
+`CLAUDE.md` under *Working together*; the rules here are for particular moments.
 
 A few words recur below. *The person* is the human designing this game, and *a designer* the person
 on another game, in an example. A *sitting* is one stretch of the person playing a build. An
@@ -205,15 +206,6 @@ one game's design or technology.
   something you come across by chance. *Easier to see* would have solved a problem that did not
   exist.
 
-- A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
-  **When you measure the effect of their suggestion, measure it against the purpose they gave, not
-  one you supplied.**
-
-  *For example:* A designer asked for denser forest so that a player flying overhead would lose
-  sight of fleeing villagers. A script ranked candidate changes by whether villagers had a covered
-  escape route, an agent's idea of what forest was for, and put denser forest last. It had measured
-  a purpose the designer never had.
-
 - Every option has costs, there is usually more than one way to pay them, and what something costs
   changes as the game does. **When you set an option aside for what it costs, ask first what else
   could pay that cost.**
@@ -244,19 +236,6 @@ one game's design or technology.
   *For example:* A designer, on what *not a simulation* meant for their game: *"we specifically
   should not put that first, then figure out how to bolt being a dragon on top of that."*
 
-- Old code was built against the design and constraints of its day, and even forward-looking code
-  can only account for so much. Building on top of it, or running it in a context it was never
-  written for, produces interactions nobody planned for, and it answers there as confidently as
-  ever. **When new work puts old code in a new context (a new action, a new place, a new state of
-  the player), put the old code through its paces again there, and treat it as open to tuning
-  along with the new.** Where the new work holds the player still, decide what every other action
-  does meanwhile.
-
-  *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
-  in two old places, its lift and its thrust, neither of them in the new code. An action that held
-  the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
-  designer roared instead, and watched the dragon's head go up.
-
 - Two sources of truth, or two ways of doing one thing, are a maintenance burden, extra to hold in
   mind, and more surface for defects, which collect at the seam between them. **When two tools,
   features or implementations overlap, keep one, and extend it to cover what only the other did.**
@@ -266,38 +245,67 @@ one game's design or technology.
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
 
-- Tuning a rule of thumb moves its failures around rather than removing them, and a problem that has
-  resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
-  rule of thumb has failed, look for an algorithm that can be shown to be correct.**
+#### When you are about to measure, test or trust a result
 
-  *For example:* A session that read one game's whole log found that every tuned rule that gave way
-  to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the agent's*.
+These rules are the scientific method, applied to a game. Each is an instance of one of four
+principles: measure the question, not a proxy for it; calibrate the instrument; observe before
+guessing again; and test beyond what you checked.
 
-#### When you are about to tune how something plays
+##### Measure the question, not a proxy for it
 
-- Every beat of a game waits on some condition, and a wait that can never come true is invisible
-  until something reaches it. A bot reaches them all in seconds; a screenshot shows one moment.
-  **Before looking at screenshots of a game, play the whole of it with a bot in Node.** A game that
-  cannot be lost, or has no end, traces a whole sitting instead.
+Every measurement stands in for a question. Before reading one, say what the question is, and check
+that the number answers it rather than an easier question beside it: the purpose someone had in
+mind, whether a thing gets where it is going, the property a test depends on, the shape a summary
+flattens.
 
-  *For example:* A bot's first full run found a shut door that could be walked round, in under a
-  second. Another's found enemies standing still on a crate, and a path that could not climb a
-  stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
-  had made it lose sooner.
+- A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
+  **When you measure the effect of their suggestion, measure it against the purpose they gave, not
+  one you supplied.**
 
-#### When you are about to change how something looks or sounds
+  *For example:* A designer asked for denser forest so that a player flying overhead would lose
+  sight of fleeing villagers. A script ranked candidate changes by whether villagers had a covered
+  escape route, an agent's idea of what forest was for, and put denser forest last. It had measured
+  a purpose the designer never had.
 
-- One value often feeds both the part the person called right and the part they did not, so a fix to
-  the wrong part can quietly break the right one, and nobody is watching the part that was right.
-  **When the person says one part is right and another is not, keep the right part in the same run
-  as the control, and measure both before and after.**
+- A state says what a thing means to do; the distance says whether it is getting there. Something
+  stuck reports the right state for ever. **When a thing has a destination, measure the distance
+  left to it, not the state it is in.**
 
-  *For example:* A designer found the house *"pretty much spot on"* and the yard *"a little brighter
-  than the original"*. The fog's colour also greys a room's far end, so lowering it for the yard
-  darkened every room; the rooms were measured in the same run, and the numbers showed it before the
-  change went back to the designer.
+  *For example:* A count by state said every fleeing villager was correctly *leaving*; the distance
+  left said two of them had dithered 350 m short of shelter for eleven minutes.
 
-#### When you are about to trust a measurement
+- A test that asks for a particular thing relies, silently, on that thing having the property it
+  needs. When the world changes, it fails on an assertion about something else, and looks like a
+  real defect. **When a test needs a thing from the world, ask for it by the property it needs, and
+  fail with that property's name when there is none.**
+
+  *For example:* *The first village* stood in for people in their yards, on level ground. When the
+  world changed, the test failed on an assertion about something else.
+
+- A summary number is a projection, and the defect is usually in the dimension it threw away. A
+  frame that differs is not evidence until you know what else in it could have made the difference.
+  **Draw anything with a shape before you tune it, and reduce the scene before you read the frame.**
+  Take the frame from the camera the player has, reach a posed state by a second route before
+  trusting it, and judge anything with a front while it moves.
+
+  *For example:* A river 12.5 km long and a river going round in circles are the same number. Every
+  animal in one game ran tail first from the day it was drawn, through a sequence of stills that
+  never showed it.
+
+- How the picture looks is judged at the game, and a test checks state. Tests that draw are the
+  slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
+  second of play. **Before a test draws a frame, ask whether it could fail with nothing wrong on the
+  screen.** Draw only for what a playtest cannot see: a shader that fails to compile, a GL error.
+
+  *For example:* A designer put it this way: *"we only need a test to draw something when we need to
+  check 'does this look correct?' … that's what our playtest sessions are for."*
+
+##### Calibrate the instrument
+
+An instrument, a test, a check or an edit of your own can be blind, contaminated, or set for other
+conditions, and its reading looks the same either way. Before trusting it, show that it can see what
+it is looking for, that it fails when the thing is absent, and that nothing around it is deciding
+the result.
 
 - A measurement cannot tell you it is blind, and a false *nothing happened* reads as *not enough*,
   which pushes the design the wrong way. **A null result is not a result until something in the same
@@ -309,6 +317,57 @@ one game's design or technology.
   *For example:* Two options sent to a designer to compare came back as identical. The switch
   between them had been added to an address the game did not read, so both had loaded the default,
   and the readout's line naming the option that was running was all that caught it.
+
+- A test that has never failed has not shown that it can, and one that fails only by timing out is
+  slow to go red and says nothing about why. A test named for a motion but asserted on an end state
+  passes every motion that ends there. **Show that each new test fails with the fix taken out, on an
+  assertion rather than a timeout.** Assert the relationship that has stopped changing, not the
+  number still being tuned, and a motion by its course as well as by where it ends.
+
+  *For example:* A game that crashed before its test hook was installed failed the boot test only at
+  its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
+  red.
+
+- One value often feeds both the part the person called right and the part they did not, so a fix to
+  the wrong part can quietly break the right one, and nobody is watching the part that was right.
+  **When the person says one part is right and another is not, keep the right part in the same run
+  as the control, and measure both before and after.**
+
+  *For example:* A designer found the house *"pretty much spot on"* and the yard *"a little brighter
+  than the original"*. The fog's colour also greys a room's far end, so lowering it for the yard
+  darkened every room; the rooms were measured in the same run, and the numbers showed it before the
+  change went back to the designer.
+
+- A check that depends on its surroundings can fail because of them, or pass because of them, and
+  running it again leaves that in place. **When a check fails for a reason outside the code under
+  test, change the check so that reason cannot affect it, rather than running it again.** And before
+  calling a timeout a flake, time it on both commits: a slowdown your change caused looks exactly
+  like one.
+
+  *For example:* A suite lost runs to a dev server reloading pages under it, and passed a checkout
+  with a bug in it because another checkout's server answered on the port; the end-to-end setup that
+  ships here carries both fixes. A timeout put down as a flake ran 48 s before a fix and 66 s after
+  it.
+
+- A development machine draws faster than CI's runner, so a limit set locally can fail on CI with
+  nothing wrong in the game. **When you set a test's time limit, set it from a run at CI's speed,
+  not from a run here:** `npm run test:e2e:slow`.
+
+  *For example:* Two tests whose limits were set in a four-core session failed on a CI runner that
+  drew 2.8 times slower. Pinned to one core, the session failed them the same way.
+
+- An edit that silently matches nothing is worse than one that fails, a command reported as stopped
+  may have run partway, and a summary of a session is a memory of the files, not the files. **Grep
+  for the new text after a scripted edit, after one that was reported as stopped, and after the
+  context has been summarised.** Read the file before saying what it holds.
+
+  *For example:* After one such summary, an agent expected nine changed files, and `git status`
+  showed four.
+
+##### Observe before guessing again
+
+When an approach keeps missing, the next attempt should come from new information, not from another
+guess or another turn of the same dial.
 
 - When two fixes in a row have missed, the cause is somewhere nobody can see yet, and a third fix
   would be one more guess from the same blind spot. A way to watch what is actually happening
@@ -322,47 +381,32 @@ one game's design or technology.
   *For example:* Three approaches to one problem, tried in turn, all missed; a readout built
   afterwards answered it in one run.
 
-- A summary number is a projection, and the defect is usually in the dimension it threw away. A
-  frame that differs is not evidence until you know what else in it could have made the difference.
-  **Draw anything with a shape before you tune it, and reduce the scene before you read the frame.**
-  Take the frame from the camera the player has, reach a posed state by a second route before
-  trusting it, and judge anything with a front while it moves.
+- Tuning a rule of thumb moves its failures around rather than removing them, and a problem that has
+  resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
+  rule of thumb has failed, look for an algorithm that can be shown to be correct.**
 
-  *For example:* A river 12.5 km long and a river going round in circles are the same number. Every
-  animal in one game ran tail first from the day it was drawn, through a sequence of stills that
-  never showed it.
+  *For example:* A session that read one game's whole log found that every tuned rule that gave way
+  to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the agent's*.
 
-- A state says what a thing means to do; the distance says whether it is getting there. Something
-  stuck reports the right state for ever. **When a thing has a destination, measure the distance
-  left to it, not the state it is in.**
+##### Test beyond what you checked
 
-  *For example:* A count by state said every fleeing villager was correctly *leaving*; the distance
-  left said two of them had dithered 350 m short of shelter for eleven minutes.
+Code is known to work only where it has been checked: on the cases it was developed against, in the
+context it was written for, in the states and moments someone reached. New contexts, new states,
+untried cases, idle time, the parts of the game nobody has reached, and the seams between branches
+are all outside that.
 
-- No test waits twenty minutes, and nobody spends a sitting staying away, so what happens while the
-  player is idle is the part nothing checks. **When the design promises what happens if the player
-  does nothing, trace the nothing, for longer than anything else waits.**
+- Old code was built against the design and constraints of its day, and even forward-looking code
+  can only account for so much. Building on top of it, or running it in a context it was never
+  written for, produces interactions nobody planned for, and it answers there as confidently as
+  ever. **When new work puts old code in a new context (a new action, a new place, a new state of
+  the player), put the old code through its paces again there, and treat it as open to tuning
+  along with the new.** Where the new work holds the player still, decide what every other action
+  does meanwhile.
 
-  *For example:* A world left alone for twenty minutes broke two of the promises its design made
-  about it.
-
-- The cases a change is traced on become the cases it is right about. **Try a change on cases it was
-  not developed against.**
-
-  *For example:* Routes fixed and checked on four seeds left, on a fifth that nobody had checked, a
-  whole town standing at a wall 85 m from home.
-
-#### When you are about to trust a test or a check
-
-- A test that has never failed has not shown that it can, and one that fails only by timing out is
-  slow to go red and says nothing about why. A test named for a motion but asserted on an end state
-  passes every motion that ends there. **Show that each new test fails with the fix taken out, on an
-  assertion rather than a timeout.** Assert the relationship that has stopped changing, not the
-  number still being tuned, and a motion by its course as well as by where it ends.
-
-  *For example:* A game that crashed before its test hook was installed failed the boot test only at
-  its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
-  red.
+  *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
+  in two old places, its lift and its thrust, neither of them in the new code. An action that held
+  the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
+  designer roared instead, and watched the dragon's head go up.
 
 - The tests written beside a new state all ask whether the new thing works. None of them asks
   whether the old things still do. **After adding a state to something other features already read,
@@ -371,49 +415,37 @@ one game's design or technology.
   *For example:* Villagers given a new sheltering state walked calmly indoors past the dragon, with
   every new test green. An older test of the villagers caught it.
 
-- How the picture looks is judged at the game, and a test checks state. Tests that draw are the
-  slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
-  second of play. **Before a test draws a frame, ask whether it could fail with nothing wrong on the
-  screen.** Draw only for what a playtest cannot see: a shader that fails to compile, a GL error.
+- The cases a change is traced on become the cases it is right about. **Try a change on cases it was
+  not developed against.**
 
-  *For example:* A designer put it this way: *"we only need a test to draw something when we need to
-  check 'does this look correct?' … that's what our playtest sessions are for."*
+  *For example:* Routes fixed and checked on four seeds left, on a fifth that nobody had checked, a
+  whole town standing at a wall 85 m from home.
 
-- A test that asks for a particular thing relies, silently, on that thing having the property it
-  needs. When the world changes, it fails on an assertion about something else, and looks like a
-  real defect. **When a test needs a thing from the world, ask for it by the property it needs, and
-  fail with that property's name when there is none.**
+- No test waits twenty minutes, and nobody spends a sitting staying away, so what happens while the
+  player is idle is the part nothing checks. **When the design promises what happens if the player
+  does nothing, trace the nothing, for longer than anything else waits.**
 
-  *For example:* *The first village* stood in for people in their yards, on level ground. When the
-  world changed, the test failed on an assertion about something else.
+  *For example:* A world left alone for twenty minutes broke two of the promises its design made
+  about it.
 
-- Running a check again untouched turns it green and leaves the trap for the next run, and a check
-  that borrows a server already running can end up testing someone else's code. **When a failure has
-  been put down to whoever ran the check, change the check so that it cannot happen, and make a
-  check that could borrow something already running start its own.** Nor is a timeout a flake until
-  it has been timed on both commits.
+- A game is a chain of conditions: the door opens once the key is held, the next wave starts once
+  this one is cleared. One that can never come true stalls the game silently, in a place nothing
+  reaches until a full playthrough does; a test of one system will not see it, and neither will a
+  screenshot. **Before tuning a game or posing frames of it, check that it can be finished: script a
+  bot that plays it from start to end in Node, and have it report where it stalls.** Once the bot
+  exists, run it with each of several changes undone in turn to learn which one made the difference.
+  A game with no ending traces a whole sitting instead.
 
-  *For example:* A suite lost runs to a dev server reloading pages under it, and passed a checkout
-  with a bug in it because another checkout's server answered on the port; the end-to-end setup that
-  ships here carries both fixes. A timeout put down as a flake ran 48 s before a fix and 66 s after
-  it.
+  *For example:* A bot's first full run found a shut door that could be walked round, in under a
+  second. Another's found enemies standing still on a crate, and a path that could not climb a
+  stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
+  had made it lose sooner.
 
-- An edit that silently matches nothing is worse than one that fails, a command reported as stopped
-  may have run partway, and a summary of a session is a memory of the files, not the files. **Grep
-  for the new text after a scripted edit, after one that was reported as stopped, and after the
-  context has been summarised.** Read the file before saying what it holds.
+- It is the seams between branches that break, and no test sits on a seam. **After merging branches
+  built apart, tour the whole game in frames on the merged head, and look at every sheet.**
 
-  *For example:* After one such summary, an agent expected nine changed files, and `git status`
-  showed four.
-
-#### When you are about to set a test's time limit
-
-- A development machine draws faster than CI's runner, so a limit set locally can fail on CI with
-  nothing wrong in the game. **Set it from a run at CI's speed, not from a run here:
-  `npm run test:e2e:slow`.**
-
-  *For example:* Two tests whose limits were set in a four-core session failed on a CI runner that
-  drew 2.8 times slower. Pinned to one core, the session failed them the same way.
+  *For example:* With every test green, a tour after a merge found defects wherever separately built
+  places met, and a second tour found more where their separate fixes met.
 
 #### When you are about to plan, merge or hand over
 
@@ -453,12 +485,6 @@ one game's design or technology.
   *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
   it was slower than no skill at all, because the agent believed it first. The gulls it passed as
   healthy were spinning on the spot.
-
-- It is the seams between branches that break, and no test sits on a seam. **After merging branches
-  built apart, tour the whole game in frames on the merged head, and look at every sheet.**
-
-  *For example:* With every test green, a tour after a merge found defects wherever separately built
-  places met, and a second tour found more where their separate fixes met.
 
 #### When you are about to run several builders at once
 

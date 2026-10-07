@@ -76,9 +76,10 @@ project only suspects is not yet.
 **Where it goes in the template.**
 
 - Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
-  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape: its reason,
-  then the rule in bold, and a *For example* only if the moment is hard to recognise. Written for a
-  game that is not this one: the example names no game, and *the person* in it becomes *a designer*.
+  rule is for (for a rule about measuring or testing, under the principle it is an instance of), or
+  a new *When you are about to…* heading if none fits. In the §5 shape: its reason, then the rule in
+  bold, and a *For example* only if the moment is hard to recognise. Written for a game that is not
+  this one: the example names no game, and *the person* in it becomes *a designer*.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
 - How to do a recurring piece of work: a skill under `.claude/skills/`, or a change to one.
 - Tools: `scripts/`, with the reason each exists written beside it, and the README's *What ships
