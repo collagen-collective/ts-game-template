@@ -76,9 +76,9 @@ project only suspects is not yet.
 **Where it goes in the template.**
 
 - Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
-  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape: the rule in
-  bold, its *Why*, and a *For example* only if the moment is hard to recognise. Written for a game
-  that is not this one: the example names no game, and *the person* in it becomes *a designer*.
+  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape: its reason,
+  then the rule in bold, and a *For example* only if the moment is hard to recognise. Written for a
+  game that is not this one: the example names no game, and *the person* in it becomes *a designer*.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
 - How to do a recurring piece of work: a skill under `.claude/skills/`, or a change to one.
 - Tools: `scripts/`, with the reason each exists written beside it, and the README's *What ships
@@ -88,7 +88,7 @@ project only suspects is not yet.
 Which game a rule came from belongs in the pull request and its commits, not in the documents.
 
 **Write it into the project first.** Before a rule goes to the template, put it under *This
-project's own* in the project's Charter, with its *Why* and its design-log entry, and send that
+project's own* in the project's Charter, with its reason and its design-log entry, and send that
 without the entry. A rule sent from the design log comes home with no copy of its own to keep: one
 game sent four rules to §5, three of them only ever written in its log, and its first update had to
 write all three into its Charter while resolving the conflicts.
