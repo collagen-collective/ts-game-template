@@ -10,7 +10,8 @@ Several games are built from one template, and a rule one of them paid for is us
 others will pay for too, unless it reaches them first. The template is how it travels. This skill
 is the two directions: bringing the template's findings in, and sending this project's out. The
 README's *Staying in step with the template* is the overview; `scripts/template.mjs` is the
-mechanism, and its header says exactly what it does.
+mechanism, and its header says exactly what it does. Wherever it has you add or reword a rule in
+the Charter's §5, do it with the person: §5 is changed by the person and an agent together.
 
 ## Bringing the template in
 

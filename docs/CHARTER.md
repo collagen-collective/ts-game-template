@@ -130,10 +130,11 @@ lines. In short:
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
 
-The rules under *Inherited* come from earlier games: defaults, not this project's findings. Keep
-them, prune them or argue with them, deliberately, and log it when you do. A rule this project
-learned outranks one it was handed. *Writing a rule*, at the end of this section, says how a rule
-is written and where it goes.
+The rules under *Inherited* come from earlier games: defaults, not this project's findings, and a
+rule this project learned outranks one it was handed. The person and an agent change this section
+together. Either may propose adding, rewording or pruning a rule; the change is made once both
+have worked it through, and the design log records it. *Writing a rule*, at the end of this
+section, says how a rule is written and where it goes.
 
 A few words recur below. *The person* is the human designing this game, and *a designer* the person
 on another game, in an example. A *sitting* is one stretch of the person playing a build. An

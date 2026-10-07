@@ -132,13 +132,14 @@ Two beats are worth protecting:
   it is really a rule, put it where rules are kept as well.** A Learned has a trigger and a verb or
   it has neither — "after a scripted edit, grep for the new text" fires on its own, "the instrument
   was missing what the question needed" cannot, because there is nothing in it to obey. When it
-  fires, add it to the Charter's §5, under *This project's own*, in that list's shape (its reason,
-  then the rule in bold, a *For example* only if the moment is hard to recognise, and this entry's
-  heading), and say so under **Changed elsewhere**. Read §5 first: a rule already there wants a
-  sharper reason or this entry's heading, not a second copy of itself, and an inherited one this
-  project has now learned for itself moves to *This project's own*. The log is append-only and read
-  backwards; a rule left only here has been filed where nobody looks before acting, which is how the
-  same lesson gets written three times.
+  fires, it belongs in the Charter's §5, under *This project's own*, and the person and an agent
+  change §5 together: propose it to them, work out its wording with them, and write it there in
+  that list's shape (its reason, then the rule in bold, a *For example* only if the moment is hard
+  to recognise, and this entry's heading). Say so under **Changed elsewhere**. Read §5 first: a
+  rule already there wants a sharper reason or this entry's heading, not a second copy of itself,
+  and an inherited one this project has now learned for itself moves to *This project's own*. The
+  log is append-only and read backwards; a rule left only here has been filed where nobody looks
+  before acting, which is how the same lesson gets written three times.
 
 ## Whose words are whose
 
