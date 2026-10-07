@@ -84,8 +84,8 @@ project only suspects is not yet.
   here* and *Toolchain* told about it.
 - A fix to the template's own tooling, found in use here: the same file, fixed in place.
 
-Say in the README, where the template keeps its record of what each game carried back, what this
-game brought.
+Say in the README's *Where the inherited rules came from*, where the template keeps its record of
+what each game carried back, what this game is and what it brought.
 
 **Write it into the project first.** Before a rule goes to the template, put it under *This
 project's own* in the project's Charter, with its story, and send that. A rule sent from the design

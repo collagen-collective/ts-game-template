@@ -7,9 +7,9 @@
 
 **Why this file exists.** A charter states conclusions. It cannot hold the reasoning that produced
 them, or the dead ends, or the places where solving one problem quietly changed the answer to
-another one upstream. Read end to end, this is the problem-solving narrative. It is also where the
-non-obvious feedback loops become visible, which is what the **Changed elsewhere** line on each
-entry is for — that line is the one people skip and the one that pays.
+another one upstream. Read end to end, this is the story of how the design got where it is. It is
+also where you see one decision quietly changing another, which is what the **Changed elsewhere**
+line on each entry is for — that line is the one people skip and the one that is worth most later.
 
 **Rules for this file.** Append only. Never edit an old entry to make it agree with current
 thinking, because an entry is a historical account and a historical account cannot go stale. Order
@@ -25,9 +25,9 @@ are the Charter's business.
 **A playtest's entry says so in its title, and carries the date it was played.** Not because a tag
 is not enough, but because the headings are the index, and a playtest titled by the conclusion it
 reached disappears into it. In dragon, a game built from this template, eleven entries in two days
-carried `[play]`, every one titled by what its sitting concluded, and a reader of the headings came
-away thinking the game had gone unplayed for three days. It had been played repeatedly. The data was
-there and the index was not, and the index is what a person reads.
+carried `[play]`, every one titled by what that stretch of play concluded, and a reader of the
+headings came away thinking the game had gone unplayed for three days. It had been played
+repeatedly. The data was there and the index was not, and the index is what a person reads.
 
 The `design-log` skill has the rest: the tags, the shape a playtest's entry has grown into, and how
 an entry that closes an earlier question says so.
