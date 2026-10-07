@@ -162,8 +162,9 @@ one game's design or technology.
   one thing at a time, and match a compared pair on everything but the thing being compared.** Show
   each option at the same moments, so that the moment is not what differs.
 
-  *For example:* Amber and violet were put side by side at different brightness, and the choice went
-  by the brightness.
+  *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
+  should look like; one drawing settled it in a look. Separately, two colours were shown side by side
+  at different brightness, and the choice followed the brightness rather than the colour.
 
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
   every distance and adds up across the whole world. **When they choose from close-ups, show them
@@ -243,21 +244,24 @@ one game's design or technology.
   *For example:* A designer, on what *not a simulation* meant for their game: *"we specifically
   should not put that first, then figure out how to bolt being a dragon on top of that."*
 
-- Old code gives confident answers in places nothing reached before, and nobody has checked them.
-  And an action that holds the player still changes what every other action can do there. **When a
-  new action or motion reaches where nothing went before, trace the old systems there, and decide
-  what every other action does while one holds the player still.**
+- Old code was built against the design and constraints of its day, and even forward-looking code
+  can only account for so much. Building on top of it, or running it in a context it was never
+  written for, produces interactions nobody planned for, and it answers there as confidently as
+  ever. **When new work puts old code in a new context (a new action, a new place, a new state of
+  the player), put the old code through its paces again there, and treat it as open to tuning
+  along with the new.** Where the new work holds the player still, decide what every other action
+  does meanwhile.
 
   *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
   in two old places, its lift and its thrust, neither of them in the new code. An action that held
   the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
   designer roared instead, and watched the dragon's head go up.
 
-- Two copies of one thing have to be kept in step for ever, and the seam between them keeps
-  producing defects. With one copy, what the game shows is what the code says, and a change has one
-  place to go. **When two copies of one thing disagree, delete one rather than keep them in step.**
-  Ask it of a library before adopting one, too: a library that brings its own copy of something adds
-  a pair.
+- Two sources of truth, or two ways of doing one thing, are a maintenance burden, extra to hold in
+  mind, and more surface for defects, which collect at the seam between them. **When two tools,
+  features or implementations overlap, keep one, and extend it to cover what only the other did.**
+  Ask it of a library before adopting one, too: one that brings its own copy of something adds a
+  pair.
 
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
@@ -306,12 +310,14 @@ one game's design or technology.
   between them had been added to an address the game did not read, so both had loaded the default,
   and the readout's line naming the option that was running was all that caught it.
 
-- A third guess made without seeing the thing comes from the same blind spot as the first two, and a
-  way to see it usually answers in one run. **After two wrong guesses, build a way to see the thing,
-  a readout, a count, a distance, before a third fix.** Two right guesses that turn out not to be
-  the cause mean the same. When a stage produces too few of something, count what exists before
-  tuning what rejects it. And after two wrong guesses at a design, ask for their picture, or for how
-  other games, old or new, have done it.
+- When two fixes in a row have missed, the cause is somewhere nobody can see yet, and a third fix
+  would be one more guess from the same blind spot. A way to watch what is actually happening
+  usually answers in one run. **After two fixes have missed, stop fixing, and build a way to see
+  what the code is actually doing at the failure, such as a readout, a count or a distance, before
+  trying a third.** Two plausible causes that both turn out not to be it mean the same. When a stage
+  produces too few of something, count what exists before tuning what rejects it. And after two
+  wrong guesses at a design, ask for their picture, or for how other games, old or new, have done
+  it.
 
   *For example:* Three approaches to one problem, tried in turn, all missed; a readout built
   afterwards answered it in one run.
