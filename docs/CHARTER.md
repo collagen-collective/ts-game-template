@@ -1,14 +1,21 @@
 # `<project>` Charter
 
 > **What we have figured out so far.** Present tense: the things that are settled, and the
-> constraints that settled them.
+> constraints that settled them. Sections 1 to 4 say what the game is: when something is
+> contested, it settles in section 2 first, and the laws in section 3 bind everywhere. Section 5
+> says how we work.
 >
 > Companion documents: [`OPEN-QUESTIONS.md`](./OPEN-QUESTIONS.md) is what we still have to find
 > out. [`DESIGN-LOG.md`](./DESIGN-LOG.md) is what we tried and what happened.
 >
-> Almost nothing here says *how* to build anything, and that is deliberate. A charter that
-> describes the code goes out of date the first time the code changes, and once readers know one
-> section is out of date, they stop trusting the important ones along with it.
+> **Before proposing a plan,** read the opening of section 5, its rules for *When you are about to
+> plan, merge or hand over*, and its *This project's own*; then the last three entries of
+> [`DESIGN-LOG.md`](./DESIGN-LOG.md). Read the rest of section 5 a moment at a time, as you come to
+> each.
+>
+> Nothing here describes the game's code, and that is deliberate. A charter that describes the code
+> goes out of date the first time the code changes, and once readers know one section is out of
+> date, they stop trusting the important ones along with it.
 
 *This file arrived as a template. Italic text is a prompt to you; anything in angle brackets is a
 placeholder. Answer a prompt and delete it. A section you cannot fill in is not a blank to leave
@@ -83,7 +90,7 @@ headings, in this order. The problem statement is the part that gets skipped and
 most later: it is how a reader six months from now can tell whether a proposed change is a better
 answer or a different question.*
 
-*None of them says how to build it. Keep it that way — see the note at the top of this file.*
+*None of them describes the code. Keep it that way — see the note at the top of this file.*
 
 ### 4.1 `<Block name>`
 
@@ -103,7 +110,7 @@ is a feature that wandered in.>`*
 
 ---
 
-## 5. How to build anything here
+## 5. How we work
 
 These are the rules for particular moments in the work. The rules for every session are in
 [`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
@@ -522,9 +529,6 @@ are all outside that.
 
 *None yet. The first rule this project learns goes here, in the shape below, ending with the
 design-log entry it came from.*
-
-Read this section, and the last three entries of [`DESIGN-LOG.md`](./DESIGN-LOG.md), before
-proposing a plan.
 
 ### Writing a rule
 

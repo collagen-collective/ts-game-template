@@ -24,8 +24,8 @@ They divide by tense, and that is the filing rule. Anything new either fits one 
   Append only. Never edit an old entry to agree with current thinking. The `design-log` skill says
   how an entry is written.
 
-The Charter states *what* and *why*, never *how*. That is deliberate. Read the Charter's final
-section, and the last three log entries, before proposing a plan.
+The Charter states *what* and *why*, never *how* the game is built. That is deliberate. Its
+opening note says what to read before proposing a plan.
 
 ## How to work in this repo
 
@@ -202,7 +202,7 @@ found is a bet you will pay to unwind.
 
 The games built from this template since kept all four, and learned more. The ones that apply to
 any game are in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
-argue with, and read before proposing a plan.
+argue with.
 
 ## Verification
 

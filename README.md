@@ -39,7 +39,7 @@ or replaces one of them.
 
 - **[`docs/CHARTER.md`](./docs/CHARTER.md)** is present tense: what is settled. What the game wants
   to be, what it has to be, the rules that hold everywhere, and the main systems. Each system
-  states the problem it exists to solve before it states the answer.
+  states the problem it exists to solve before it states the answer. Its §5 says how we work.
 - **[`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md)** is future tense: what you still have to
   find out. Every entry says *how it gets answered*: by playing (PLAY), by discussion (DECIDE), or
   later (DEFER). That part matters most, because a question only playing can answer, such as
@@ -71,8 +71,7 @@ some shorthand of their own. In order of how soon you will meet it:
   tests that nothing in the game calls is not wired in.
 - **PLAY, DECIDE, COLLISIONS, DEFER**: the four kinds of entry in `OPEN-QUESTIONS.md`, by how each
   gets resolved. A *collision* is two decisions already made that contradict each other.
-- **§5**: section 5 of the Charter, *How to build anything here*, where the project's working rules
-  live.
+- **§5**: section 5 of the Charter, *How we work*, where the project's working rules live.
 - **Instrument**: anything built to show or measure what the game is doing, such as a debug
   overlay, a count, a trace or a screenshot script. *The instrument is missing* means nobody can
   yet see the thing being argued about.
