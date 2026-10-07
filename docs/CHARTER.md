@@ -126,14 +126,17 @@ design-log entry.
 
 Every rule has the same shape:
 
-- **What**, in bold: a trigger and an action, then a sentence on how where it needs one. *After a
-  scripted edit, grep for the new text* is something to act on; *the instrument was missing what the
-  question needed* is not, because nothing in it says when, or what to do.
-- *Why:* the failure the rule prevents, stated so that it holds in a game nobody has built yet.
-  Always there: a rule without its reason gets argued with the first time it is inconvenient.
-- *For example:* one concrete scene, where the moment a rule is for is hard to recognise from
-  inside it. It shows what the moment looks like; it is not evidence, so it carries no tally of how
-  often or how badly. Leave it out when the rule is plain without it.
+- **The reason first**, in plain text: the failure the rule prevents, stated so that it holds in a
+  game nobody has built yet. A rule without its reason gets argued with the first time it is
+  inconvenient.
+- **Then the rule, in bold**: a trigger and an action, so that a reader skimming for what to do at
+  this moment reads only the bold. *After a scripted edit, grep for the new text* is something to
+  act on; *the instrument was missing what the question needed* is not, because nothing in it says
+  when, or what to do. A sentence or two on how may follow it.
+- **Last, where one helps, an example**, marked *For example:*: one concrete scene, for a rule whose
+  moment is hard to recognise from inside it. It shows what the moment looks like; it is not
+  evidence, so it carries no tally of how often or how badly. Leave it out when the rule is plain
+  without it.
 
 A rule under *This project's own* ends with the design-log entry it came from.
 
@@ -144,89 +147,87 @@ one game's design or technology.
 
 #### When you are about to ask the person something
 
-- **Before putting a choice to them, ask whether both are wanted and what orders them, and leave
-  room for an answer on neither list.**
-
-  *Why:* An either/or claims the design space has two points in it, at the moment you know least,
-  and a list of three makes the same claim with one more point. The answer is often both, in some
-  order, or something nobody listed.
+- Design choices are rarely a clean multiple choice: the answer may be a combination, an order, or
+  something nobody listed, and a list of options claims to be complete at the moment you know least.
+  **When putting a choice before them, leave room for several selections, for what orders them, and
+  for an answer not on the list.**
 
   *For example:* Asked whether resistance to the player should read as antagonism or as
-  inconvenience, a designer answered both, as a ladder; a question that ended *or something else*
-  got the reading nobody had offered.
+  inconvenience, a designer answered both, as a ladder from one to the other. A question that ended
+  *or something else* got the reading nobody had offered.
 
-- **When the question is how something looks, moves or sounds, ask in that medium, and vary one
-  thing at a time.** Show every option at the same moments, match a compared pair on everything but
-  the thing compared, and when they choose from close-ups, show what they would notice in play as
-  well.
+- Whether something looks, moves or sounds right is hard to settle in words, which each reader
+  pictures differently, and the eye and ear compare whatever differs most, not what you meant them
+  to compare. **When the question is how something looks, moves or sounds, ask in that medium, vary
+  one thing at a time, and match a compared pair on everything but the thing being compared.** Show
+  each option at the same moments, so that the moment is not what differs.
 
-  *Why:* Words for a look mean something different to each reader, and an eye compares whatever
-  differs most, not what you meant it to compare. A close-up hides how a choice adds up across the
-  whole game.
+  *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
+  should look like; one drawing settled it in a look. Separately, two colours were shown side by side
+  at different brightness, and the choice followed the brightness rather than the colour.
 
-  *For example:* Amber and violet were shown side by side at different brightness, and the choice
-  went by the brightness. A ridge chosen from close frames of summits nearly doubled the high ground
-  once it was built; shown that, the designer chose again.
+- A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
+  every distance and adds up across the whole world. **When they choose from close-ups, show them
+  what the choice adds up to in play before building on it.**
 
-- **When only play can judge between options, build them into the game behind a switch (a URL
-  parameter, say), and let them compare in one sitting.** Give them the whole URL to open, not a
-  parameter to add to one, and show on the readout what the game actually read. Once they have
+  *For example:* Settings for mountain ridges were chosen from close frames that compared well. Seen
+  in play, they nearly doubled the high ground, and the designer chose again.
+
+- Options played in separate sittings are compared against a memory, and memory is a poor judge of
+  small differences. **When only play can judge between options, build them into the game behind a
+  switch (a URL parameter, say), and let them compare in one sitting.** Send each option as a whole
+  link to open, not a parameter to add to one, and show on the readout which option is running, so
+  that a switch the game ignored is caught (*A null result is not a result…*, below). Once they have
   chosen, delete the others or keep the switch as a debugging tool, and say which.
 
-  *Why:* Options played in separate sittings are compared against a memory. And a switch the game
-  silently ignores makes two options look identical; only the readout shows that it was ignored.
+- A tell is something a player does that was agreed in advance to be a signal to re-examine the
+  design. But the person is both a designer and a player, and switches between the two while
+  playing, so the same act can have another reason than the one agreed. **When a tell fires, ask
+  what they were trying to do before acting on it.**
 
-  *For example:* A comparison came back as two identical loads, because the switch had been added to
-  an address that did not read it, and the readout's line was all that caught it.
+  *For example:* A world map was built as a debug tool, and opening it often was agreed to mean the
+  world was hard to read. The designer did open it often: not to find their way, but to check
+  whether the rest of the world had been built yet. Half the land turned out to be empty.
 
-- **When a tell fires, ask what they were trying to do before acting on the answer filed with it.**
-  A tell is something a player does that was agreed beforehand to mean something when it happens in
-  play.
+- When something a player expected to find, hear or feel is not there, the cause can be anywhere
+  along the way: the directions they were given, where they went, what they did, as well as the
+  thing itself. Only the last is a design question, and the others are easy to mistake for it.
+  **When they report not finding, hearing or feeling something, walk back through what they did with
+  them before acting on it: rule out the route (could they get to it?) before asking about the thing
+  (once there, could they perceive it?).** Talking it through finds the cause much as explaining
+  code aloud does.
 
-  *Why:* One act has more than one possible reason, and a tell names only the reason guessed in
-  advance. Acting on it fixes that reason and leaves the real one.
+  *For example:* While ravens were being added to a game, a designer was asked to judge how hard
+  they were to spot from above, and was given coordinates for three places they spawned. They went
+  looking and found none, and the natural next question was whether to make ravens easier to see.
+  Talking it through showed that the coordinates were for something related but separate, and had
+  sent them to the wrong places. Given the right ones, they found the ravens, and said a raven is
+  something you come across by chance. *Easier to see* would have solved a problem that did not
+  exist.
 
-  *For example:* Opening the debug map was agreed to mean the world was hard to read. The designer
-  was opening it to find out whether the far side had been built at all, and half the land turned
-  out to be empty.
+- A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
+  **When you measure the effect of their suggestion, measure it against the purpose they gave, not
+  one you supplied.**
 
-- **When they cannot find something, find out whether they could not get there or could not see it
-  there, and fix the first before asking about the second.**
+  *For example:* A designer asked for denser forest so that a player flying overhead would lose
+  sight of fleeing villagers. A script ranked candidate changes by whether villagers had a covered
+  escape route, an agent's idea of what forest was for, and put denser forest last. It had measured
+  a purpose the designer never had.
 
-  *Why:* Not getting there is ours to fix, a wrong direction or a missing readout; not seeing it may
-  be the design. Treating the first as the second changes the design to make up for bad directions.
+- Every option has costs, there is usually more than one way to pay them, and what something costs
+  changes as the game does. **When you set an option aside for what it costs, ask first what else
+  could pay that cost.**
 
-  *For example:* A designer looked for ravens in three places and found none, and how hard a raven
-  is to see went to them as a question. They had never reached the right places: the numbers they
-  had been given were for something else. Given the right ones, they found the ravens, and said a
-  raven is something you come across by chance. *Easier to see* would have been a change nobody
-  wanted.
+  *For example:* While a tutorial was being designed, an agent set aside the strongest option
+  because of what it cost. The designer chose it anyway, and both halves of its price turned out to
+  be payable once framed differently.
 
-- **When you measure their suggestion, check that the quantity you measured is the one they proposed
-  it for.**
-
-  *Why:* A suggestion comes with a purpose. Measured against a different one, it fails a test it was
-  never meant to pass, and a table makes the wrong verdict look settled.
-
-  *For example:* A designer asked for denser forest so that a player would lose track of fleeing
-  villagers. A count measured whether a covered escape route existed, and ranked the forest last.
-
-- **When you set an option aside for what it costs, ask first what else could pay that cost.**
-
-  *Why:* An objection is a price, not a verdict. An option set aside for its cost may be the best
-  one once something else pays for it.
-
-  *For example:* The opening an agent set aside for a tutorial was the one the designer chose, and
-  both halves of its price turned out to be payable.
-
-- **When there are several questions only the person can answer, send them together: ranked by how
-  much each answer changes the game, each with your guess, and each naming the value it sets.** One
-  at a time is right for the founding interview (`gettingstarted`), where each answer shapes the
-  next question.
-
-  *Why:* Questions the person answers from memory or after a sitting do not depend on each other,
-  and asked one by one they cost a message each. A guess lets them answer with a yes, and naming the
-  value means each answer changes something straight away.
+- Questions the person answers from memory, or after a sitting, do not depend on each other, and
+  asked one by one they cost a message each. **When there are several questions only the person can
+  answer, send them together: ranked by how much each answer changes the game, each with your guess,
+  and each naming the value it sets.** A guess lets them answer with a yes, and a named value means
+  each answer changes something straight away. One at a time is right for the founding interview
+  (`gettingstarted`), where each answer shapes the next question.
 
   *For example:* Eight questions, ranked from the many that research and builders had raised, went
   to a designer at once. They answered all eight in one message after a sitting, with more than was
@@ -234,55 +235,50 @@ one game's design or technology.
 
 #### When you are about to build something
 
-- **Build from the player outward: a system earns its place by what the player will see, hear or
-  have to do differently because of it, and it is modelled that far and no further.** Simulating a
-  fair bit is fine; starting from the world's model and hanging the player on it is not.
-
-  *Why:* A model of the world built first sets the terms the player's experience then has to fit,
-  and the player ends up bolted on top of it.
+- A model of the world built first sets the terms the player's experience then has to fit, and the
+  player ends up bolted on top of it. **Build from the player outward: a system earns its place by
+  what the player will see, hear or have to do differently because of it, and is modelled that far
+  and no further.** Simulating a fair bit is fine; starting from the world's model and hanging the
+  player on it is not.
 
   *For example:* A designer, on what *not a simulation* meant for their game: *"we specifically
   should not put that first, then figure out how to bolt being a dragon on top of that."*
 
-- **When a new action or motion reaches where nothing went before, trace the old systems there, and
-  decide what every other action does wherever one holds the player still.**
-
-  *Why:* Old code gives confident answers in places nothing had reached before, and nobody has
-  checked them. An action that holds the player still changes what every other action can do, and
-  someone has to decide what that is.
+- Old code was built against the design and constraints of its day, and even forward-looking code
+  can only account for so much. Building on top of it, or running it in a context it was never
+  written for, produces interactions nobody planned for, and it answers there as confidently as
+  ever. **When new work puts old code in a new context (a new action, a new place, a new state of
+  the player), put the old code through its paces again there, and treat it as open to tuning
+  along with the new.** Where the new work holds the player still, decide what every other action
+  does meanwhile.
 
   *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
   in two old places, its lift and its thrust, neither of them in the new code. An action that held
   the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
   designer roared instead, and watched the dragon's head go up.
 
-- **When two copies of one thing disagree, delete one rather than keep them in step.** Ask it of a
-  library before adopting one, too: a library that brings its own copy adds a pair.
-
-  *Why:* A pair kept in step is a rule to learn again for the next pair, and the seam between two
-  copies keeps producing defects. With one copy, what the game shows is what the code says, and a
-  change has one place to go.
+- Two sources of truth, or two ways of doing one thing, are a maintenance burden, extra to hold in
+  mind, and more surface for defects, which collect at the seam between them. **When two tools,
+  features or implementations overlap, keep one, and extend it to cover what only the other did.**
+  Ask it of a library before adopting one, too: one that brings its own copy of something adds a
+  pair.
 
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
 
-- **When a third tuning of a rule of thumb has failed, look for an algorithm that can be shown to be
-  correct.**
-
-  *Why:* Tuning a rule of thumb moves its failures around rather than removing them, and a problem
-  that has resisted three tunings usually has a known algorithm that needs none.
+- Tuning a rule of thumb moves its failures around rather than removing them, and a problem that has
+  resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
+  rule of thumb has failed, look for an algorithm that can be shown to be correct.**
 
   *For example:* A session that read one game's whole log found that every tuned rule that gave way
   to a textbook algorithm had worked, and wrote that *the tuning that went nowhere was the agent's*.
 
 #### When you are about to tune how something plays
 
-- **Play the whole game with a bot in Node before looking at a screenshot of it.** A game that
+- Every beat of a game waits on some condition, and a wait that can never come true is invisible
+  until something reaches it. A bot reaches them all in seconds; a screenshot shows one moment.
+  **Before looking at screenshots of a game, play the whole of it with a bot in Node.** A game that
   cannot be lost, or has no end, traces a whole sitting instead.
-
-  *Why:* Every beat of a game waits on some condition, and a wait that can never come true is
-  invisible until something reaches it. A bot reaches all of them in seconds; a screenshot shows one
-  moment of one.
 
   *For example:* A bot's first full run found a shut door that could be walked round, in under a
   second. Another's found enemies standing still on a crate, and a path that could not climb a
@@ -291,11 +287,10 @@ one game's design or technology.
 
 #### When you are about to change how something looks or sounds
 
-- **When the person says one part is right and another is not, take the right part beside the wrong
-  one as the control, and measure both before and after.**
-
-  *Why:* One value often feeds both, so a fix to the wrong part can quietly break the right one, and
-  the part they called right is the part nobody is watching.
+- One value often feeds both the part the person called right and the part they did not, so a fix to
+  the wrong part can quietly break the right one, and nobody is watching the part that was right.
+  **When the person says one part is right and another is not, keep the right part in the same run
+  as the control, and measure both before and after.**
 
   *For example:* A designer found the house *"pretty much spot on"* and the yard *"a little brighter
   than the original"*. The fog's colour also greys a room's far end, so lowering it for the yard
@@ -304,218 +299,192 @@ one game's design or technology.
 
 #### When you are about to trust a measurement
 
-- **A null result is not a result until something in the same run has come back non-null.** Set the
-  effect absurdly high, confirm the instrument sees it, then dial back and read the real number.
+- A measurement cannot tell you it is blind, and a false *nothing happened* reads as *not enough*,
+  which pushes the design the wrong way. **A null result is not a result until something in the same
+  run has come back non-null.** Set the effect absurdly high, confirm the instrument sees it, then
+  dial back and read the real number. When the nothing comes from the person rather than an
+  instrument, walk it back with them (*When they report not finding, hearing or feeling something*,
+  above).
 
-  *Why:* A measurement cannot tell you it is blind, and a false *nothing happened* reads as *not
-  enough*, which pushes the design the wrong way as well as costing the time.
+  *For example:* Two options sent to a designer to compare came back as identical. The switch
+  between them had been added to an address the game did not read, so both had loaded the default,
+  and the readout's line naming the option that was running was all that caught it.
 
-- **Two wrong guesses mean the instrument is missing, not the answer.** Build a way to see the
-  thing, a readout, a count, a distance, before a third fix; two right guesses that turn out not to
-  be the cause mean the same. When a stage produces too few of something, count what exists before
-  tuning what rejects it. And after two wrong guesses at a design, ask for their picture, or for how
-  other games, old or new, have done it.
-
-  *Why:* A third guess made without seeing the thing comes from the same blind spot as the first
-  two. A way to see it usually answers in one run.
+- When two fixes in a row have missed, the cause is somewhere nobody can see yet, and a third fix
+  would be one more guess from the same blind spot. A way to watch what is actually happening
+  usually answers in one run. **After two fixes have missed, stop fixing, and build a way to see
+  what the code is actually doing at the failure, such as a readout, a count or a distance, before
+  trying a third.** Two plausible causes that both turn out not to be it mean the same. When a stage
+  produces too few of something, count what exists before tuning what rejects it. And after two
+  wrong guesses at a design, ask for their picture, or for how other games, old or new, have done
+  it.
 
   *For example:* Three approaches to one problem, tried in turn, all missed; a readout built
   afterwards answered it in one run.
 
-- **Draw anything with a shape before you tune it, and reduce the scene before you read the frame.**
+- A summary number is a projection, and the defect is usually in the dimension it threw away. A
+  frame that differs is not evidence until you know what else in it could have made the difference.
+  **Draw anything with a shape before you tune it, and reduce the scene before you read the frame.**
   Take the frame from the camera the player has, reach a posed state by a second route before
   trusting it, and judge anything with a front while it moves.
-
-  *Why:* A summary number is a projection, and the defect is usually in the dimension it threw away.
-  A frame that differs is not evidence until you know what else in it could have made the
-  difference.
 
   *For example:* A river 12.5 km long and a river going round in circles are the same number. Every
   animal in one game ran tail first from the day it was drawn, through a sequence of stills that
   never showed it.
 
-- **When a thing has a destination, measure the distance left to it, not the state it is in.**
-
-  *Why:* A state says what a thing means to do; the distance says whether it is getting there.
-  Something stuck reports the right state for ever.
+- A state says what a thing means to do; the distance says whether it is getting there. Something
+  stuck reports the right state for ever. **When a thing has a destination, measure the distance
+  left to it, not the state it is in.**
 
   *For example:* A count by state said every fleeing villager was correctly *leaving*; the distance
   left said two of them had dithered 350 m short of shelter for eleven minutes.
 
-- **When the design promises what happens if the player does nothing, trace the nothing, for longer
-  than anything else waits.**
-
-  *Why:* No test waits twenty minutes, and nobody spends a sitting staying away, so what happens
-  while the player is idle is the part nothing checks.
+- No test waits twenty minutes, and nobody spends a sitting staying away, so what happens while the
+  player is idle is the part nothing checks. **When the design promises what happens if the player
+  does nothing, trace the nothing, for longer than anything else waits.**
 
   *For example:* A world left alone for twenty minutes broke two of the promises its design made
   about it.
 
-- **Try a change on cases it was not developed against.**
-
-  *Why:* The cases a change is traced on become the cases it is right about.
+- The cases a change is traced on become the cases it is right about. **Try a change on cases it was
+  not developed against.**
 
   *For example:* Routes fixed and checked on four seeds left, on a fifth that nobody had checked, a
   whole town standing at a wall 85 m from home.
 
 #### When you are about to trust a test or a check
 
-- **A test earns trust by failing: show that each new one fails with the fix taken out, on an
+- A test that has never failed has not shown that it can, and one that fails only by timing out is
+  slow to go red and says nothing about why. A test named for a motion but asserted on an end state
+  passes every motion that ends there. **Show that each new test fails with the fix taken out, on an
   assertion rather than a timeout.** Assert the relationship that has stopped changing, not the
   number still being tuned, and a motion by its course as well as by where it ends.
-
-  *Why:* A test that has never failed has not shown that it can. One that fails only by timing out
-  is slow to go red and says nothing about why. And a test named for a motion but asserted on an end
-  state passes every motion that ends there.
 
   *For example:* A game that crashed before its test hook was installed failed the boot test only at
   its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
   red.
 
-- **After adding a state to something other features already read, run their tests, not only
-  yours.**
-
-  *Why:* The tests written beside a new state all ask whether the new thing works. None of them asks
-  whether the old things still do.
+- The tests written beside a new state all ask whether the new thing works. None of them asks
+  whether the old things still do. **After adding a state to something other features already read,
+  run their tests, not only yours.**
 
   *For example:* Villagers given a new sheltering state walked calmly indoors past the dragon, with
   every new test green. An older test of the villagers caught it.
 
-- **Booted is not drawn: before a test draws a frame, ask whether it could fail with nothing wrong
-  on the screen.** Draw only for what a playtest cannot see, a shader that fails to compile, a GL
-  error.
-
-  *Why:* How the picture looks is judged at the game, and a test checks state. Tests that draw are
-  the slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
-  second of play.
+- How the picture looks is judged at the game, and a test checks state. Tests that draw are the
+  slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
+  second of play. **Before a test draws a frame, ask whether it could fail with nothing wrong on the
+  screen.** Draw only for what a playtest cannot see: a shader that fails to compile, a GL error.
 
   *For example:* A designer put it this way: *"we only need a test to draw something when we need to
   check 'does this look correct?' … that's what our playtest sessions are for."*
 
-- **When a test needs a thing from the world, ask for it by the property it needs, and fail with
-  that property's name when there is none.**
-
-  *Why:* A test that asks for a particular thing relies, silently, on that thing having the property
-  it needs. When the world changes, it fails on an assertion about something else, and looks like a
-  real defect.
+- A test that asks for a particular thing relies, silently, on that thing having the property it
+  needs. When the world changes, it fails on an assertion about something else, and looks like a
+  real defect. **When a test needs a thing from the world, ask for it by the property it needs, and
+  fail with that property's name when there is none.**
 
   *For example:* *The first village* stood in for people in their yards, on level ground. When the
   world changed, the test failed on an assertion about something else.
 
-- **When a failure has been put down to whoever ran the check, change the check so that it cannot
-  happen, and make a check that could borrow something already running start its own.** Nor is a
-  timeout a flake until it has been timed on both commits.
-
-  *Why:* Running it again untouched turns the checks green and leaves the trap for the next run. A
-  check that borrows a server already running can end up testing someone else's code.
+- Running a check again untouched turns it green and leaves the trap for the next run, and a check
+  that borrows a server already running can end up testing someone else's code. **When a failure has
+  been put down to whoever ran the check, change the check so that it cannot happen, and make a
+  check that could borrow something already running start its own.** Nor is a timeout a flake until
+  it has been timed on both commits.
 
   *For example:* A suite lost runs to a dev server reloading pages under it, and passed a checkout
   with a bug in it because another checkout's server answered on the port; the end-to-end setup that
   ships here carries both fixes. A timeout put down as a flake ran 48 s before a fix and 66 s after
   it.
 
-- **Grep for the new text after a scripted edit, after one that was reported as stopped, and after
-  the context has been summarised.** Read the file before saying what it holds.
-
-  *Why:* An edit that silently matches nothing is worse than one that fails, a command reported as
-  stopped may have run partway, and a summary of a session is a memory of the files, not the files.
+- An edit that silently matches nothing is worse than one that fails, a command reported as stopped
+  may have run partway, and a summary of a session is a memory of the files, not the files. **Grep
+  for the new text after a scripted edit, after one that was reported as stopped, and after the
+  context has been summarised.** Read the file before saying what it holds.
 
   *For example:* After one such summary, an agent expected nine changed files, and `git status`
   showed four.
 
 #### When you are about to set a test's time limit
 
-- **Set it from a run at CI's speed, not from a run here: `npm run test:e2e:slow`.**
-
-  *Why:* A development machine draws faster than CI's runner, so a limit set locally can fail on CI
-  with nothing wrong in the game.
+- A development machine draws faster than CI's runner, so a limit set locally can fail on CI with
+  nothing wrong in the game. **Set it from a run at CI's speed, not from a run here:
+  `npm run test:e2e:slow`.**
 
   *For example:* Two tests whose limits were set in a four-core session failed on a CI runner that
   drew 2.8 times slower. Pinned to one core, the session failed them the same way.
 
 #### When you are about to plan, merge or hand over
 
-- **When you plan a round of work, read the parked questions as dependencies rather than as a
-  backlog.** They are in two places: `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged
-  `[later]` (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it
-  blocking.
-
-  *Why:* A parking note is a photograph of the day it was written. What makes it stale is usually
-  work planned afterwards, and nothing goes back to edit it.
+- A parking note is a photograph of the day it was written. What makes it stale is usually work
+  planned afterwards, and nothing goes back to edit it. **When you plan a round of work, read the
+  parked questions as dependencies rather than as a backlog.** They are in two places:
+  `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
+  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it blocking.
 
   *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
   anything else, one session before a plan that needed the dragon to land on a ledge.
 
-- **When two branches meet, read each side's log for what it said the other would need, and read
+- A note in one side's *Changed elsewhere* about the other side's work is a task with no owner, and
+  a merge fixes only what fails. And main's log may have recorded a finding while you were away from
+  it. **When two branches meet, read each side's log for what it said the other would need, and read
   main's log as it stands before writing that nothing has recorded something.**
-
-  *Why:* A note in one side's *Changed elsewhere* about the other side's work is a task with no
-  owner, and a merge fixes only what fails. And main's log may have recorded a finding while you
-  were away from it.
 
   *For example:* One session wrote that the other's villagers would walk along lake beds until that
   session's map knew about water. The merge fixed the two tests that failed and nothing that had
   only been written down, and a review found a town walking sixteen metres down a lake bed.
 
-- **When you write words an agent will read before it works with someone, write them in the voice
-  you want it to use with them, and say where the ideas in them came from.**
-
-  *Why:* An agent takes the tone of its instructions along with their rules, and a single word can
-  carry an attitude that nobody wrote down.
+- An agent takes the tone of its instructions along with their rules, and a single word can carry an
+  attitude that nobody wrote down. **When you write words an agent will read before it works with
+  someone, write them in the voice you want it to use with them, and say where the ideas in them
+  came from.**
 
   *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
   ruling*, copied from entry to entry, did it anyway.
 
-- **When the same tool has been built twice, make it a skill (an agent workflow in
+- A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
+  and without it shows which. What the trial runs build for themselves is what the skill was
+  missing. **When the same tool has been built twice, make it a skill (an agent workflow in
   `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
   the defect as a parentless commit so no history gives it away, and compare time as well as
-  verdicts.
-
-  *Why:* A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial
-  with and without it shows which. What the trial runs build for themselves is what the skill was
-  missing, and a skill's *nothing wrong* is a claim to check like any other.
+  verdicts. A skill's *nothing wrong* is a claim to check like any other.
 
   *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
   it was slower than no skill at all, because the agent believed it first. The gulls it passed as
   healthy were spinning on the spot.
 
-- **Tour the whole game in frames on the merged head, and look at every sheet.**
-
-  *Why:* It is the seams between branches that break, and no test sits on a seam.
+- It is the seams between branches that break, and no test sits on a seam. **After merging branches
+  built apart, tour the whole game in frames on the merged head, and look at every sheet.**
 
   *For example:* With every test green, a tour after a merge found defects wherever separately built
   places met, and a second tour found more where their separate fixes met.
 
 #### When you are about to run several builders at once
 
-- **Run no more at once than the machine can draw for: two, on four cores.**
+- Each builder boots its own browser for screenshots and for the suite. Past what the cores can
+  carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
+  later than smaller batches would have. **Run no more at once than the machine can draw for: two,
+  on four cores.**
 
-  *Why:* Each builder boots its own browser for screenshots and for the suite. Past what the cores
-  can carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
-  later than smaller batches would have.
-
-- **Have each builder commit as it goes, on a branch of its own.**
-
-  *Why:* A container restart takes uncommitted work with it.
+- A container restart takes uncommitted work with it. **Have each builder commit as it goes, on a
+  branch of its own.**
 
   *For example:* A restart stopped two builders with their work uncommitted, and it survived only
   because the disk did.
 
-- **Name every shared thing in the brief, and give each builder its share.** Split builders by what
-  they read, and give each shared file one owner.
-
-  *Why:* Agents working side by side tangle over what they share, not over what they build.
+- Agents working side by side tangle over what they share, not over what they build. **Name every
+  shared thing in the brief, and give each builder its share.** Split builders by what they read,
+  and give each shared file one owner.
 
   *For example:* Six researchers spent one search budget in the order they were launched; two
   prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
   running. Split by what they read, with one owner for each shared file, the builders after them
   merged without a conflict.
 
-- **Before a builder starts in a worktree, have it check that the worktree holds your latest
-  commits.**
-
-  *Why:* An agent's worktree is cut from the default branch, not from the branch the session is on,
-  so a builder can start from code the session has long since moved past.
+- An agent's worktree is cut from the default branch, not from the branch the session is on, so a
+  builder can start from code the session has long since moved past. **Before a builder starts in a
+  worktree, have it check that the worktree holds your latest commits.**
 
   *For example:* Every builder in one session started from the template's first commit, and in
   another, a builder measured code that was no longer there.
