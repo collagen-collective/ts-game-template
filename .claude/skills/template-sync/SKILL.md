@@ -56,8 +56,8 @@ the `design-log` skill gives a merge of main: what came in, what it made untrue 
 conflict decided, with whose decision it was. An update that brought only tooling fixes needs no
 entry.
 
-**When a finding this project sent comes home.** The update brings back, under *Inherited from
-<this game>*, rules this project already has under *This project's own*. Keep this project's own
+**When a finding this project sent comes home.** The update brings back, under *Inherited*, rules
+this project already has under *This project's own*. Keep this project's own
 copy, which carries its own story, and delete the inherited copy. The update remembers deletions,
 so it will not come back. If the template's wording is better, take the wording into the project's
 own copy first. A rule that was sent from the design log, and never written under *This project's
@@ -69,29 +69,29 @@ another game, it has paid for that rule again, so it moves to *This project's ow
 
 **What goes back.** A rule, a check, a script or a way of working that would have saved any game
 built from the template the same cost. Not what is about this game's design, and not what is about
-this game's technology: the template carried dragon's rules back and left its rules about three.js,
-terrain and sound behind. A rule that has been paid for once here is worth sending; one this
+this game's technology: one game's rules came back to the template, and its rules about three.js,
+terrain and sound stayed behind. A rule that has been paid for once here is worth sending; one this
 project only suspects is not yet.
 
 **Where it goes in the template.**
 
-- Rules for particular moments: the Charter's §5, under *Inherited from <this game>*, a heading
-  added if this game has none yet. In the §5 shape, a trigger and a verb, then a line of what it
-  cost here, because a rule without its why gets argued with the first time it is inconvenient.
+- Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
+  rule is for, or a new *When you are about to…* heading if none fits. In the §5 shape: the rule in
+  bold, its *Why*, and a *For example* only if the moment is hard to recognise. Written for a game
+  that is not this one: the example names no game, and *the person* in it becomes *a designer*.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
 - How to do a recurring piece of work: a skill under `.claude/skills/`, or a change to one.
 - Tools: `scripts/`, with the reason each exists written beside it, and the README's *What ships
   here* and *Toolchain* told about it.
 - A fix to the template's own tooling, found in use here: the same file, fixed in place.
 
-Say in the README's *Where the inherited rules came from*, where the template keeps its record of
-what each game carried back, what this game is and what it brought.
+Which game a rule came from belongs in the pull request and its commits, not in the documents.
 
 **Write it into the project first.** Before a rule goes to the template, put it under *This
-project's own* in the project's Charter, with its story, and send that. A rule sent from the design
-log comes home with no copy of its own to keep: Kyle on Duty sent four rules to §5, three of them
-only ever written in its log, and its first update had to write all three into its Charter while
-resolving the conflicts.
+project's own* in the project's Charter, with its *Why* and its design-log entry, and send that
+without the entry. A rule sent from the design log comes home with no copy of its own to keep: one
+game sent four rules to §5, three of them only ever written in its log, and its first update had to
+write all three into its Charter while resolving the conflicts.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief

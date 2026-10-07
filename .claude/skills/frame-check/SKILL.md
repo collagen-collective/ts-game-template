@@ -5,7 +5,7 @@ description: Look at what the game actually shows on screen, find what is wrong 
 
 # Checking what the screen shows
 
-**Tests read the state, and the screen can disagree with it.** In Extra Sapien, a game built from
+**Tests read the state, and the screen can disagree with it.** In one game built from
 this template, a tour of the whole game in frames found six defects with every test green, three of
 them in the page's HTML drawn over the picture: the prologue and the ending under the black of the
 fade, a troll frozen under the floor through its own reveal, a lintel across half the screen. After
@@ -18,7 +18,7 @@ is showing, where the camera is) and **what the frame shows**. The instrument is
 `scratch-*` paths, which git ignores.
 
 It was tried before it shipped. Two agents were given one report, *"Riding the lift up out of the
-galleries, it looked like Baldur wasn't standing on anything"*, on copies of Extra Sapien in which
+galleries, it looked like Baldur wasn't standing on anything"*, on copies of that game in which
 a lift's deck had been drawn 1.1 m under him while it moved, with every test green. With this skill
 the defect was found, fixed and shown fixed in 16 minutes; without it, in 21. Both were right, and
 what both built for themselves is in it now.
@@ -49,7 +49,7 @@ choice, and the README's *Where things live* records it. What a script needs fro
 - **A frame:** a way to draw one on demand, if the game under test draws only when asked.
 - **A moment:** a way to reach a named place or beat by the game's own route, and to step time
   with an input held.
-- **A camera:** a way to place the camera for a frame, and to say where it is. The day dragon's
+- **A camera:** a way to place the camera for a frame, and to say where it is. The day one game's
   readout said where the camera was, *"this looks wrong from here"* became a frame anyone could
   take again.
 - **The state:** a way to read what the screen does not show, so each frame can be checked
@@ -61,10 +61,10 @@ choice, and the README's *Where things live* records it. What a script needs fro
 
 If the handle cannot do one of these, add it to the handle, once, rather than reaching into the
 game's state or the renderer from a script: the next script will need it too. The first agent to
-try this skill, on Extra Sapien, found no way to place the camera, wrote one into the game's state
+try this skill found no way to place the camera, wrote one into the game's state
 from its script, and read the camera back out of the renderer's internals.
 
-Watch for two drawing calls that undo each other. In dragon, placing the camera draws its own
+Watch for two drawing calls that undo each other. In one game, placing the camera draws its own
 frame, and the call that draws the play camera would have drawn over it: a script there leaves
 `draw` out and draws where it needs to.
 
@@ -99,9 +99,9 @@ The handle's names above are placeholders; use the game's. Then:
   depends on the view. Then a second view that shows the relation the first one hides: from the
   side, or from above.
 - **Take frames across the moment, not one.** Anything with a front, anything moving, and
-  anything that pops or flickers is judged over time: every animal on dragon's island ran tail
+  anything that pops or flickers is judged over time: every animal in one game ran tail
   first through a sequence of stills.
-- **Keep the HUD in at least one frame.** Half the defects in Extra Sapien's first tour were in the
+- **Keep the HUD in at least one frame.** Half the defects in one game's first tour were in the
   page's HTML over the picture, which a frame with the HUD hidden cannot show.
 - **Print the state beside each frame,** and say where the camera was. Return it from
   `page.evaluate` and print it in the script, as above: the harness passes on the page's errors,
@@ -127,7 +127,7 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> 2>&1 | tee scr
   - Is anything of the page over the picture where it should not be: text across the subject, a
     box cut off at the edge, a fade left black?
   - Is the camera inside geometry, or looking at the back of something?
-  - Is anything left over from before? In Extra Sapien, a second game in the same page drew the
+  - Is anything left over from before? In one game, a second game in the same page drew the
     first game's cart, because a kept place read the objects it was built from.
 - **Measure what you can before describing it.** If a thing looks out of place, read where it was
   drawn and where the state has it, and the camera's position, rather than guessing from the
@@ -155,19 +155,19 @@ it on launch from a long path.
 - **Match the pair on everything but the change.** Same seed, same moment, same camera. A pair
   that differs in anything else is not evidence until you know what that difference did.
 - **Keep what the person called right in the run.** When they say one part is right and another is
-  not, shoot the right part too, and check it did not move (Charter §5). In Kyle on Duty, darkening
-  the yard took 4 to 6 points off every room the person had called right, and only the rooms being
+  not, shoot the right part too, and check it did not move (Charter §5). In one game, darkening
+  the yard took 4 to 6 points off every room the designer had called right, and only the rooms being
   in the same run caught it.
 - **A commit older than the handle a script uses fails,** says why, and its column reads *no
   frame*.
 
 ## 6. After merging branches built apart, tour the whole game
 
-It is the seams between branches that break, and no test sits on a seam (Charter §5, *Inherited
-from Extra Sapien*). A tour is a script that plays the game through, with a bot or a held input,
-and shoots each arrival, each scene, and the middle of each fight, with any cutscenes played rather
-than skipped. Look at every sheet. Commit the tour once it proves itself (`scripts/shots/`), so the
-next merge can be toured the same way.
+It is the seams between branches that break, and no test sits on a seam (Charter §5, *When you are
+about to plan, merge or hand over*). A tour is a script that plays the game through, with a bot or a
+held input, and shoots each arrival, each scene, and the middle of each fight, with any cutscenes
+played rather than skipped. Look at every sheet. Commit the tour once it proves itself
+(`scripts/shots/`), so the next merge can be toured the same way.
 
 ## 7. Show them, and write it down
 
@@ -177,7 +177,7 @@ next merge can be toured the same way.
 - **Offer them a minute of play,** and say what might be worth a look: the place, the moment, the
   camera. A minute at the game can catch what a sheet missed.
 - **Keep a script that proved itself,** under `scripts/shots/`, with a header that says what it
-  shows and how it is run. In dragon, the person asked for one to be kept: *"At least if we have it
+  shows and how it is run. A designer asked for one to be kept: *"At least if we have it
   in a commit somewhere, we can easily go back to it as needed."*
 - **Log what the frames found** with the `design-log` skill, and say which of it was seen on a
   sheet and which was said by the person at the game.
@@ -191,7 +191,7 @@ next merge can be toured the same way.
   anyway.
 - **Every frame the same.** A game that draws only when asked, with no `draw` in the script, gives
   a sheet of the last frame it drew.
-- **Every pose the play camera.** In dragon, placing the camera draws a frame, and a `draw` that
+- **Every pose the play camera.** In one game, placing the camera draws a frame, and a `draw` that
   draws the play camera puts it straight back.
 - **Slow first loads.** The first load compiles every module, and a frame composited with bloom in
   software can take more than 30 s on a busy machine. The harness waits two minutes for each.

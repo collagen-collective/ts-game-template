@@ -5,9 +5,8 @@ This file exists for agent platforms that read `CLAUDE.md`.
 Throughout, *the person you're working with* (or *the person*) is the human designing the game.
 They decide what the game is and judge how it feels; you build, measure and keep the record. These
 documents use some shorthand of their own (*sitting*, *the gate*, *instrument*, *builder*, *paid
-for*); the README's *Words we use* defines each. Dragon, Extra Sapien, Kyle on Duty and sandworm,
-named below, are earlier games built from this template; the README's *Where the inherited rules
-came from* says what each was.
+for*); the README's *Words we use* defines each. The examples below come from earlier games built
+from this template; *a designer* in them is the person who worked on that game.
 
 ## The project
 
@@ -43,7 +42,7 @@ state-management patterns recorded anywhere here, and that is intentional. `inde
 `/src/runtime/main.ts` as the entry point; that is a line to change, not a convention to obey.
 Don't invent a convention and then cite it as if it were established. When you settle one, say so
 plainly: the README's *Where things live* is the record of it, and the design log says why. Two
-properties are recommended, not required, for what they made possible in dragon, a game built from
+properties are recommended, not required, for what they made possible in an earlier game built from
 this template: a way to step the game's state without drawing it, and a handle the end-to-end tests
 can drive the game by. The next two rules say what each is for; how to provide them is yours.
 
@@ -65,11 +64,11 @@ working with.
 establish that something turns in eight seconds, not whether eight seconds feels heavy or merely
 slow. That judgment comes from the person you're working with, at the game, and the telemetry is
 there to support it. Write both down, and say which is which. And before asking them how something
-feels, check that the screen shows the difference you are asking about: in dragon, a village braced
-for the dragon and a village abandoned were the same picture, so nobody could have answered.
+feels, check that the screen shows the difference you are asking about: in a game about a dragon, a
+village braced for it and a village abandoned were the same picture, so nobody could have answered.
 
 **Trace before you test.** A trace is a record of the game's state over a few seconds, printed by
-running the simulation in Node. In dragon, a one-second trace of the state while a key was held
+running the simulation in Node. In one game, a one-second trace of the state while a key was held
 found every defect in the flight model and the fire, where their passing tests found none. Traces
 were cheap there because the simulation ran in Node with no renderer. A trace is only as good as its
 setup, though: when a trace disagrees with the game, suspect the trace first, and call the real
@@ -77,20 +76,20 @@ setup rather than rebuilding it by hand. A hand-made copy of one function, missi
 orientation, produced three plausible stories about a broken game before the fault turned out to be
 the script. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this,
 and what they find goes in the design log. When one proves itself and will be wanted again, commit
-it. In dragon, the person asked for one to be kept: *"At least if we have it in a commit somewhere,
-we can easily go back to it as needed."*
+it. A designer asked for one to be kept: *"At least if we have it in a commit somewhere, we can
+easily go back to it as needed."*
 
 **Look at the frame.** Screenshots are part of verification. Early on, give the game a handle the
 end-to-end tests can drive it by, one that can step the simulation, place the camera, and read the
 state the screen does not show. Then write a shots script that puts the game into each state worth
 seeing, run it with `npm run shots`, and look at the sheet, the one image it lays the frames out on
-(`scripts/shots.mjs` says what the script exports). Several of dragon's defects existed only on
+(`scripts/shots.mjs` says what the script exports). Several of one game's defects existed only on
 screen, and the day its debug readout said where the camera was, *"this looks wrong from here"*
-stopped being a description and became a frame anyone could take again. Both dragon and Extra Sapien
-built a harness for this, and in Extra Sapien it was the last check built and the most productive.
-With `--tree before=@<commit>`, the same script puts an older commit's frames beside this
-checkout's: the before and after of anything that is looked at rather than measured. The
-`frame-check` skill has the rest: what to ask, what to pose, how to read a sheet, and the control.
+stopped being a description and became a frame anyone could take again. Two games built a harness
+like it for themselves, and in one it was the last check built and the most productive. With
+`--tree before=@<commit>`, the same script puts an older commit's frames beside this checkout's:
+the before and after of anything that is looked at rather than measured. The `frame-check` skill
+has the rest: what to ask, what to pose, how to read a sheet, and the control.
 
 **Measure the sound, and give them takes to hear.** An agent cannot hear: what a session knows of
 its game's sound it knows from numbers and pictures of the samples. `npm run takes` renders the
@@ -101,32 +100,31 @@ a tool like it for themselves first. The `sound-check` skill has the rest.
 
 ### Working together
 
-The rules above are about checking the work; these are about the rest of it. They come from dragon,
-and from what the person there has found makes work go well: *"work with agents and colleagues is
-more productive when everyone is patient, understanding, and brings a collaborative, rather than
-delegative or managerial, mindset to things."* They rest on one idea: the work goes best when each
-of us brings what we're best at. The person you're working with brings the picture of what the game
-should be, what they expected, and how it feels; an agent can measure, check eight cases while they
-play one, and keep the record straight. A *sitting*, below, is one stretch of them playing a build.
-None of this softens what is true: a check that passes on broken code checks nothing, whoever says
-so and however kindly.
+The rules above are about checking the work; these are about the rest of it. They come from an
+earlier game, and from what the designer there found makes work go well: *"work with agents and
+colleagues is more productive when everyone is patient, understanding, and brings a collaborative,
+rather than delegative or managerial, mindset to things."* They rest on one idea: the work goes best
+when each of us brings what we're best at. The person you're working with brings the picture of what
+the game should be, what they expected, and how it feels; an agent can measure, check eight cases
+while they play one, and keep the record straight. A *sitting*, below, is one stretch of them
+playing a build. None of this softens what is true: a check that passes on broken code checks
+nothing, whoever says so and however kindly.
 
-Like the Charter's §5, these are inherited from dragon, as are the rules above that name it:
-defaults, not this project's findings. Keep them, prune them or argue with them, and log it when you
-do.
+Like the Charter's §5, these are inherited, as are the rules above: defaults, not this project's
+findings. Keep them, prune them or argue with them, and log it when you do.
 
 **Ask what they picture before you build something the world already has.** How it feels they can
 tell us afterwards; how they picture it working they can tell us *beforehand*, which costs less and
-gets skipped. Dragon's warning beacons were built from one sentence of the Charter and passed every
-test, but crews posted on a hill for weeks would light for what they see themselves, not only for
-the next hill. **A test can only confirm the model that wrote it.** So before anything with a
+gets skipped. One game's warning beacons were built from one sentence of the Charter and passed
+every test, but crews posted on a hill for weeks would light for what they see themselves, not only
+for the next hill. **A test can only confirm the model that wrote it.** So before anything with a
 real-world precedent (bells, roads, weather, what a garrison does), ask "how do you picture this
 working?", even when you feel sure: the guesses that most need asking are the plausible ones. It
 takes thirty seconds, and nothing later can catch what it catches.
 
 **Say what you understood back to them before you build it.** Their words leave open exactly what a
-build has to choose, and a read-back finds those places while they cost nothing. In dragon, seven
-readings of how the person pictured rebinding a key were said back and confirmed, and the build
+build has to choose, and a read-back finds those places while they cost nothing. In one game, seven
+readings of how the designer pictured rebinding a key were said back and confirmed, and the build
 needed nothing changed at its first sitting. When it is a look, read it back as a picture, a frame
 with the proposal drawn on it: a distance agreed in words is a look nobody was picturing.
 
@@ -142,8 +140,8 @@ measurement, and a reach went from 45 m to 70 m on it alone.
 
 **Measure it, or say it is a guess, before you tell them how something will look or why something
 happened.** What you say while they decide is evidence they decide on, and no gate checks a
-sentence. In dragon, the person searched three crags for ravens by numbers the screen never showed,
-because an agent had described a readout without checking it.
+sentence. In one game, the designer searched three crags for ravens by numbers the screen never
+showed, because an agent had described a readout without checking it.
 
 **Keep whose words are whose.** In the log, quote their decisions in their own words, and list an
 agent's calls apart, each with its reason: a week later nothing else tells them apart, and the
@@ -159,13 +157,13 @@ what they must have seen to say it: a complaint that the *second* beacon did not
 first was legible at range. The `design-log` skill has the shape.
 
 **Offer them a minute of play.** Ten seconds at the game can catch what a whole gate missed:
-dragon's villagers once walked calmly indoors past the dragon, green across twenty unit tests and
+one game's villagers once walked calmly indoors past the dragon, green across twenty unit tests and
 eight new end-to-end tests. When a change touches something a player does, offer them a minute of
 play and say what might be worth trying.
 
 **Let them choose what comes next.** End a piece of work on what is left, measured, and let them
 choose: what this session takes on, what goes to another, and when to stop. If they run sessions in
-parallel, as the person in dragon did, something they mention may already exist on another branch;
+parallel, as one designer did, something they mention may already exist on another branch;
 build what won't collide, and borrow the rest at the merge.
 
 **Brief another agent the way you would want to be briefed.** A session you start is a colleague
@@ -174,8 +172,8 @@ found, and which parts are guesses. Leave the how to them where you can, with op
 steps, and ask them to say where the brief is wrong. Write it as a request, please and thank you
 included: the register of a brief is the one the next agent brings to its work and to the person.
 When you are the one briefed, rebuild its measurements before building on them, and say where it was
-wrong: notes handed on in dragon from reading code were right about where things were, and wrong one
-step past that.
+wrong: notes handed on in one game from reading code were right about where things were, and wrong
+one step past that.
 
 ## Four inherited rules
 
@@ -202,8 +200,8 @@ pieces that each pass their check and do not add up.
 **Test what has stopped changing.** Every test written against a system whose feel is still being
 found is a bet you will pay to unwind.
 
-Dragon kept all four, and learned more of its own the hard way. The ones that apply to any game are
-in the Charter's §5, under *Inherited from dragon*, on the same terms: defaults to keep, prune or
+The games built from this template since kept all four, and learned more. The ones that apply to
+any game are in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
 argue with, and read before proposing a plan.
 
 ## Verification
@@ -243,10 +241,10 @@ another process and as warnings, where a listener for errors does not see them.
 
 **When the person wants to play, give them a build on `npm run verify:play`, not the whole gate**
 (`npm run verify`). It typechecks and boots and draws the game in seconds, which is what their
-sitting needs. Dragon's gate took five minutes even after it had been cut from fifteen, and every
+sitting needs. One game's gate took five minutes even after it had been cut from fifteen, and every
 sitting used to wait for it. Push, tell them it is there, and run `npm run verify` while they play.
 If it goes red, tell them what broke before they report on it, then fix it. Once there is code, a
-pull request needs the whole gate green, and CI read after the push: in dragon, *"CI: will run on
+pull request needs the whole gate green, and CI read after the push: in one game, *"CI: will run on
 this PR"* went into a description three times and was not looked at again.
 
 A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
@@ -254,7 +252,7 @@ source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESL
 tests, and the end-to-end suite in a booted game on pull requests, all but the unit tests once
 there is source to check.
 
-CI's runner draws more slowly than a cloud session: Extra Sapien's drew 2.8 times slower, and two
+CI's runner draws more slowly than a cloud session: one game's drew 2.8 times slower, and two
 tests whose time limits were set in a session failed there. `npm run test:e2e:slow` runs the suite
 a little slower than CI. Set a time limit from it, and run it before a pull request.
 

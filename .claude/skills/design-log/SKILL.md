@@ -12,8 +12,8 @@ account cannot go stale. If today contradicts an old entry, that is a new entry.
 Entries are chronological, not grouped by system. Grouping is what a search recovers for free; the
 chronology is the part that is hard to reconstruct.
 
-This skill came from dragon, a game built from this template, whose log reached four hundred
-entries in its first two weeks. What it says was paid for there, and the examples are dragon's.
+This skill came from an earlier game built from this template, whose log reached four hundred
+entries in its first two weeks. What it says was learned there, and the examples are that game's.
 
 ## The heading
 
@@ -45,7 +45,7 @@ Four tags transfer to any project and are worth using from the first entry: `[pr
 work itself is done, `[build]` for tooling and pipeline, `[play]` for anything a person playing it
 told you, and `[feel]` for the texture of a system rather than its rules. The rest of the vocabulary
 is this project's own and accumulates one system at a time — coin a tag when a second entry wants
-it, not in advance. And when two that look alike mean different things, say so here: in dragon,
+it, not in advance. And when two that look alike mean different things, say so here: in one game,
 `[playtest]` marks a sitting, whose title begins *Playtest:*, and `[play]` anything a person
 playing it told you, in a sitting or out of one. Its log kept the two apart for a week before
 anything wrote down which was which.
@@ -114,7 +114,7 @@ Follow the shape of what happened rather than filling the boxes.
 
 When that second half is a decision made with the person, label it **The decision**, and give it in
 their own words where they gave them. A ruling is handed down by a judge; these are worked out
-together. Dragon's log called them *the ruling* for its first ten days, and nothing in its rules
+together. One game's log called them *the ruling* for its first ten days, and nothing in its rules
 told an agent to treat the person as a judge: the label, copied from entry to entry, did it anyway.
 
 Two beats are worth protecting:
@@ -128,15 +128,17 @@ Two beats are worth protecting:
   moment of the decision is the only cheap time to catch it, because it is the only time you still
   know the word to search for.
 - **Learned** is the transferable sentence, and it should still be true about the next problem
-  nobody has thought of yet. If it only restates the outcome, the entry has not finished.
-  **And if it is really a rule, put it where rules are kept as well.** A Learned has a trigger and
-  a verb or it has neither — "after a scripted edit, grep for the new text" fires on its own, "the
-  instrument was missing what the question needed" cannot, because there is nothing in it to obey.
-  When it fires, add it to the Charter's §5, under *This project's own*, in that list's shape, and
-  say so under **Changed elsewhere**. Read §5 first: a rule already there, inherited or not, wants
-  its new evidence rather than a second copy of itself. The log is append-only and read backwards; a
-  rule left only here has been filed where nobody looks before acting, which is how the same lesson
-  gets written three times.
+  nobody has thought of yet. If it only restates the outcome, the entry has not finished. **And if
+  it is really a rule, put it where rules are kept as well.** A Learned has a trigger and a verb or
+  it has neither — "after a scripted edit, grep for the new text" fires on its own, "the instrument
+  was missing what the question needed" cannot, because there is nothing in it to obey. When it
+  fires, add it to the Charter's §5, under *This project's own*, in that list's shape (the rule in
+  bold, its *Why*, a *For example* only if the moment is hard to recognise, and this entry's
+  heading), and say so under **Changed elsewhere**. Read §5 first: a rule already there wants a
+  sharper *Why* or this entry's heading, not a second copy of itself, and an inherited one this
+  project has now learned for itself moves to *This project's own*. The log is append-only and read
+  backwards; a rule left only here has been filed where nobody looks before acting, which is how the
+  same lesson gets written three times.
 
 ## Whose words are whose
 
@@ -146,9 +148,9 @@ are written:
 
 - **Their decisions, in their words.** Quote them. A paraphrase is your reading of what they said,
   and it is the reading that will be cited.
-- **An agent's own calls, listed as the agent's**, each with the reason it protects. As one of
-  dragon's entries learned, a call written down without its reason could only have been defended or
-  thrown out whole. Dragon's first entry listed seven of them under its title's own promise, *so
+- **An agent's own calls, listed as the agent's**, each with the reason it protects. As one game's
+  entries learned, a call written down without its reason could only have been defended or
+  thrown out whole. That game's first entry listed seven of them under its title's own promise, *so
   they stay distinguishable*.
 - **The build's readings**, where their words left an edge open and the build had to choose one.
   Say so, and name the value that decided it, so they can move it.
@@ -162,7 +164,8 @@ the entries spreads by imitation: an agent told to match the last few entries le
 happen to say, which is how *the ruling* travelled. Written down, a shape can be chosen rather than
 caught.
 
-**A playtest.** By its second week, dragon's playtests had settled into a shape worth starting from:
+**A playtest.** By its second week, one game's playtests had settled into a shape worth starting
+from:
 
 - **Resolves.**, first, when the sitting answers a question a build entry left for it.
 - **What they played.** When, which build (the commit), and where in the game.

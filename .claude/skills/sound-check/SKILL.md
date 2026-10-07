@@ -17,15 +17,15 @@ says what each number is and how it is computed. Outputs go to `scratch-*` paths
 ignores.
 
 Four games built from this template each built a renderer and a measurer of their own before this
-one existed: dragon (a hook that renders half a second of the island to two levels, and an in-game
-sound desk), Extra Sapien (its scores rendered in headless Chromium and measured for levels,
-spectra and onsets), sandworm (its encounter rendered while the world steps, A-weighted by band)
-and Kyle on Duty (its sound board's recipes rendered and measured against the original's sounds).
-What they found, and what the four had in common, is what this is made of.
+one existed: a hook that rendered half a second of the world at two levels, with an in-game sound
+desk; scores rendered in headless Chromium and measured for levels, spectra and onsets; an encounter
+rendered while the world stepped, A-weighted by band; and a sound board's recipes rendered and
+measured against the sounds of the game it recreated. What they found, and what the four had in
+common, is what this is made of.
 
 It was tried before it shipped. Two agents were given one report, *"The end-of-round sting doesn't
 ring out any more. The big hit at the end used to shimmer away for a few seconds, and now it just
-stops dead"*, on copies of Kyle on Duty in which the tam-tam under the sting's last hit had been
+stops dead"*, on copies of a game in which the tam-tam under the sting's last hit had been
 stopped 0.65 s after it, with no history to diff against. One had this skill and `npm run takes`;
 the other was meant to have neither, found the skill in its session anyway, and used the game's own
 renderer and measurer with it. Both found the cut, fixed it and showed it fixed, in 11 and 12
@@ -43,9 +43,9 @@ between 2 and 6 kHz and little under it, *crackle* is clipping, *late* is a star
 *drowned out* is two levels and an overlap.
 
 In a recreation, ask for a recording of the original before a description, and measure the two with
-the same instrument (Extra Sapien's Charter §5: *Ask the person for a recording of it before a
-description*). If nobody is around to ask, write down the questions you would have asked, and bring
-them back with what you found.
+the same instrument (one recreation made it a rule of its own: *Ask the person for a recording of it
+before a description*). If nobody is around to ask, write down the questions you would have asked,
+and bring them back with what you found.
 
 **If the game has no `npm run takes` yet,** it was made from the template before the harness: copy
 `scripts/takes.mjs` and `scripts/lib/` from the template, and add the npm script. Or render with the
@@ -74,10 +74,10 @@ Audio graph builds into any `BaseAudioContext`. What that needs from the game:
 Two ways in, either is fine:
 
 - **A handle** that renders: `window.__game.hear({ seconds, at })` returning an `AudioBuffer`, or a
-  sound board page, as Kyle on Duty's `lookdev/sounds.html` is.
+  sound board page, as one game's `lookdev/sounds.html` is.
 - **The game's modules, straight from the dev server.** Vite serves the source as modules, so a
   take can `await import("/src/audio/whatever.ts")` in the page and call it into its own
-  `OfflineAudioContext`. Dragon's birdsong was rendered this way with no handle at all.
+  `OfflineAudioContext`. One game's birdsong was rendered this way with no handle at all.
 
 ## 3. Write the script
 
@@ -185,12 +185,12 @@ moved, which showed the table had been taken before the cut came in.
 The numbers find defects; the person decides what sounds right.
 
 - **Match the level of a pair** they compare: `--match -20` writes each take again with its loudest
-  three seconds at -20 LUFS, so the louder one does not win by being louder. Extra Sapien matched
+  three seconds at -20 LUFS, so the louder one does not win by being louder. One game matched
   its listening pairs so *"that the level does not decide"*. Not by integrated loudness: a pair
   that differs only in its tail would be levelled apart by the gate, and their identical starts
   would play 1.4 dB apart.
 - **Ask for a comparison, not an absolute:** which of two is nearer what they remember or want,
-  rather than whether one is good. Extra Sapien's first playtest learned to ask that way.
+  rather than whether one is good. One game's first playtest learned to ask that way.
 - **Say what to listen for, and where:** the moment, the sound, what changed, what might be worth
   a second listen. And then the game: a sound heard in play, under everything else, is not the
   sound heard alone.
@@ -220,7 +220,7 @@ The numbers find defects; the person decides what sounds right.
   crashed on launch. `TREES_DIR` moves only the copies.
 - **An HRTF panner, offline.** A render that reaches its first `"HRTF"` panner waits for Chromium
   to load the HRTF database, and now and then the load never finishes: the render waits for ever,
-  with nothing said, and so does every later one on that page. In Kyle on Duty it stopped every
+  with nothing said, and so does every later one on that page. In one game it stopped every
   full render of its sound board at a different zombie voice; under load, every run stalled within
   four renders. It looked like the game's bug for a day, and three guesses were wrong before the
   renderer's threads named it (`OfflineAudioRender`, waiting, and `HRTF database loader`). A take
