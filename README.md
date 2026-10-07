@@ -373,8 +373,8 @@ locally can be too tight on CI. In one game built from this template, two tests
 passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
 `npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
 CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
-was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before
-setting a time limit, and before a pull request.
+was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before a pull
+request; setting a time limit from it is a guideline in the Charter's §5.
 
 Screenshots are part of verification, and `npm run shots` takes them. A script the game provides
 puts the game into each state worth seeing and names the frame. The tool serves the game on its own

@@ -115,20 +115,23 @@ is a feature that wandered in.>`*
 
 ## 5. How we work
 
-These are the guidelines for particular moments in the work. The guidelines for every session are in
+These are the guidelines for particular moments in the work. The guidelines for every moment are in
 [`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
-evidence behind each, and *Working together*. Find the moment you are in below, and read its bold
-lines. In short:
+evidence behind each, and *Working together*. `CLAUDE.md` also names each moment below, so that an
+agent has them in mind all session. Find the moment you are in, and read its bold lines. In short:
 
-- **Asking the person something:** make their answer easy to give, and find out what it meant
-  before acting on it.
-- **Building something:** start from what the player will see, hear or do, and keep one way of
-  doing each thing.
+- **Asking the person something:** ask them only what only they can answer, make their answer easy
+  to give, and find out what it meant before acting on it.
+- **Building something:** ask how they picture it and say it back before you build; start from what
+  the player will see, hear or do; and keep one way of doing each thing.
 - **Measuring, testing or trusting a result:** the scientific method, applied to a game. Measure
   the question, not a proxy for it; calibrate the instrument; observe before guessing again; and
   test beyond what you checked.
+- **Handing them a build, or writing up what they played:** their time at the game is the rarest
+  thing the project has, so make it easy to give, and keep what it found.
 - **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
-  what is true now, and write for whoever picks the work up cold.
+  what is true now, write for whoever picks the work up cold, and end on what is left, for the
+  person to choose from.
 - **Running several builders at once:** builders tangle over what they share (the machine, the
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
@@ -229,6 +232,15 @@ one game's design or technology.
   to a designer at once. They answered all eight in one message after a sitting, with more than was
   asked, and every answer had set its value within the hour.
 
+- Rates, ranges, coverage and how something holds up across seeds are where an agent is
+  strongest, and asking the person for them would cost a session each. Theirs are the numbers only
+  they can take: how the game runs on their machine, how they play, how much of what they expected
+  they got. **When the answer is a number you could measure, measure it, and ask them only for the
+  numbers only they can take.**
+
+  *For example:* *"I feel like I'm affecting about 40% of the trees I was expecting"* was a
+  measurement, and a reach went from 45 m to 70 m on it alone.
+
 #### When you are about to build something
 
 - A model of the world built first sets the terms the player's experience then has to fit, and the
@@ -248,6 +260,25 @@ one game's design or technology.
 
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
+
+- How it feels they can tell us afterwards; how they picture it working they can tell us
+  beforehand, which costs less and gets skipped. A test can only confirm the model that wrote it,
+  and the guesses that most need asking are the plausible ones. **Before you build anything with a
+  real-world precedent (bells, roads, weather, what a garrison does), ask them how they picture it
+  working, even when you feel sure.** It takes thirty seconds, and nothing later can catch what it
+  catches.
+
+  *For example:* One game's warning beacons were built from one sentence of the Charter and passed
+  every test, but crews posted on a hill for weeks would light for what they see themselves, not
+  only for the next hill.
+
+- Their words leave open exactly what a build has to choose, and a read-back finds those places
+  while they cost nothing; a distance agreed in words is a look nobody was picturing. **Before you
+  build what they described, say back what you understood, and when it is a look, read it back as
+  a picture: a frame with the proposal drawn on it.**
+
+  *For example:* In one game, seven readings of how the designer pictured rebinding a key were said
+  back and confirmed, and the build needed nothing changed at its first sitting.
 
 #### When you are about to measure, test or trust a result
 
@@ -462,6 +493,23 @@ are all outside that.
   *For example:* With every test green, a tour after a merge found defects wherever separately built
   places met, and a second tour found more where their separate fixes met.
 
+#### When you are about to hand them a build, or write up what they played
+
+- Ten seconds at the game can catch what a whole gate missed. **When a change touches something a
+  player does, offer them a minute of play, and say what might be worth trying.**
+
+  *For example:* One game's villagers once walked calmly indoors past the dragon, green across
+  twenty unit tests and eight new end-to-end tests.
+
+- Their time at the game is the rarest thing the project has: a finding folded into a commit
+  message is lost, and one titled by its conclusion hides that the game was played at all. **After
+  they play, write it down as a playtest, the same day, in an entry that says so in its title: what
+  they played, what they *expected*, and — the half that gets skipped — what worked.** Read the
+  report for what they must have seen to say it. The `design-log` skill has the shape.
+
+  *For example:* A complaint that the *second* beacon did not light said that the first was legible
+  at range.
+
 #### When you are about to plan, merge or hand over
 
 - A parking note is a photograph of the day it was written. What makes it stale is usually work
@@ -500,6 +548,22 @@ are all outside that.
   *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
   it was slower than no skill at all, because the agent believed it first. The gulls it passed as
   healthy were spinning on the spot.
+
+- What the work turns to next is the person's to choose: what this session takes on, what goes to
+  another, and when to stop. **When you finish a piece of work, end on what is left, measured, and
+  let them choose.** If they run sessions in parallel, as one designer did, something they mention
+  may already exist on another branch: build what won't collide, and borrow the rest at the merge.
+
+- A session you start is a colleague picking the work up cold, and the register of a brief is the
+  one the next agent brings to its work and to the person. **When you start another agent, brief it
+  the way you would want to be briefed: who asked and why it matters, what is known and how it was
+  found, and which parts are guesses.** Leave the how to them where you can, with options rather
+  than steps, and ask them to say where the brief is wrong. Write it as a request, please and thank
+  you included. When you are the one briefed, rebuild its measurements before building on them,
+  and say where it was wrong.
+
+  *For example:* Notes handed on in one game from reading code were right about where things were,
+  and wrong one step past that.
 
 #### When you are about to run several builders at once
 
@@ -553,7 +617,8 @@ Every guideline has the same shape:
 
 An inherited guideline goes under the moment it is for, and one about measuring or testing under the
 principle it is an instance of. Keep each moment's line in this section's opening true of every
-guideline under it, and give a new moment a line of its own.
+guideline under it, and give a new moment a line of its own and its name in `CLAUDE.md`'s list of
+moments.
 
 A guideline this project learns goes under *This project's own*, ending with the design-log entry it
 came from. An inherited guideline this project learns again for itself moves there too, with its own

@@ -50,8 +50,9 @@ anything was built from it, and the build needed no changes the first time the p
    `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
    *how*; you have to hold that line while transcribing. Its §5 is long, because it carries
    guidelines in from earlier games: read its opening, and skim the guidelines, since you will ask
-   about them as a block at the end. `CLAUDE.md`'s *Working together* is how to conduct the
-   interview itself, and the README's *Words we use* defines the shorthand these documents use.
+   about them as a block at the end. `CLAUDE.md`'s *Working together*, and §5's guidelines for
+   asking the person something, are how to conduct the interview itself, and the README's *Words
+   we use* defines the shorthand these documents use.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
