@@ -182,17 +182,16 @@ Several games are built from this template, and each finds things the others nee
 how a lesson travels from one game to the others, and both directions are meant to be routine. Which
 game sent what is in the template's own history: its pull requests and commit messages.
 
-**From the template to a project.** `npm run template:update` brings in what the template has
-gained since the project last did, as a three-way merge, file by file, through
-[Copier](https://copier.readthedocs.io) (the same idea as `cruft`, for templates that are themselves
-working repositories). What the project changed is kept; what the template changed comes in; where
-both changed the same lines, the file is left with conflict markers and marked unmerged, as after a
-`git merge`, to be read and resolved. A file or a passage the project deleted stays deleted. The
-three documents get their merge driver here too, so a guideline the template added beside one the
-project added keeps both. `package-lock.json` is never merged: `npm install` rebuilds it from the
-merged `package.json`. The update needs [uv](https://docs.astral.sh/uv/) or pipx to run Copier,
-and nothing else installed; it prints what came in, by the template's commit messages, and what is
-left to resolve.
+**From the template to a project.** `npm run template:update` brings in what the template has gained
+since the project last did, as a three-way merge, file by file, through
+[Copier](https://copier.readthedocs.io). What the project changed is kept; what the template changed
+comes in; where both changed the same lines, the file is left with conflict markers and marked
+unmerged, as after a `git merge`, to be read and resolved. A file or a passage the project deleted
+stays deleted. The three documents get their merge driver here too, so a guideline the template
+added beside one the project added keeps both. `package-lock.json` is never merged: `npm install`
+rebuilds it from the merged `package.json`. The update needs [uv](https://docs.astral.sh/uv/) or
+pipx (to run Copier). It prints what came in, by the template's commit messages, and what is left to
+resolve.
 
 `.copier-answers.yml` records the template commit the project was last brought up to. A project
 made with GitHub's *Use this template* button has none until `npm run template:link` writes it, by
@@ -305,17 +304,14 @@ It lives in three places, none of which is a document:
   rewrites each shell command to run under `rtk`. This is deliberately a mechanism rather than an
   instruction: no document has to tell an agent to type `rtk` in front of things, and an agent that
   never heard of RTK gets the benefit anyway. When `rtk` is not installed the hook exits silently
-  and the command runs exactly as written, so a local checkout without RTK behaves normally. (The
-  template used to put a generated block of instructions in `CLAUDE.md` instead; an earlier game
-  replaced it with this hook, and an agent without RTK no longer reads an instruction it cannot
-  follow.)
+  and the command runs exactly as written, so a local checkout without RTK behaves normally.
 - **`.rtk/filters.toml`** — project-local output filters. Ships with commented examples only.
 - **`.claude/hooks/cloud-session-start.sh`** — installs RTK in Claude Code Cloud sessions, building
   it from a tag-pinned git checkout (the vendor's install script cannot reach its own release
-  metadata from inside the sandbox; the script's comments explain why at length). It runs only when
+  metadata from inside the sandbox; the script's comments say why). It runs only when
   `CLAUDE_CODE_REMOTE=true`, so a local session never reaches it, and it needs `cargo` — without
   one it warns and continues without RTK. Once RTK is built, the script runs `rtk init -g`, which
-  writes a ten-line note about the hook into the container's own Claude config, outside the
+  writes a short note about the hook into the container's own Claude config, outside the
   repository.
 
 To remove it:
