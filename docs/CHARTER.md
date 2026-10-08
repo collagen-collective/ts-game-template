@@ -430,15 +430,16 @@ flattens, and what only the screen or the speakers can show.
   *For example:* A designer put it this way: *"we only need a test to draw something when we need to
   check 'does this look correct?' … that's what our playtest sessions are for."*
 
-- A test checks the end state it was written for; a trace, the game's state printed over a few
-  seconds of the simulation running in Node, shows the whole course. Traces are cheap where the
-  simulation runs in Node with no renderer. **Before you write or trust a test of how the game's
-  state behaves, trace it.** A trace is only as good as its setup, though: when a trace disagrees
-  with the game, suspect the trace first, and call the real setup rather than rebuilding it by
-  hand. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this, and
-  what they find goes in the design log. When one proves itself and will be wanted again, commit
-  it; as a designer put it, *"At least if we have it in a commit somewhere, we can easily go back
-  to it as needed."*
+- A test checks the end state it was written for, so a test of a motion passes every motion that
+  ends there; a trace, the game's state printed over a few seconds of the simulation running in
+  Node, shows the whole course. Traces are cheap where the simulation runs in Node with no renderer.
+  **Before you write or trust a test of how the game's state behaves, trace it.** When you do write
+  the test, assert a motion by its course as well as by where it ends. A trace is only as good as
+  its setup, though: when a trace disagrees with the game, suspect the trace first, and call the
+  real setup rather than rebuilding it by hand. Scratch scripts named `scratch-*` at the repo root
+  are ignored by git for exactly this, and what they find goes in the design log. When one proves
+  itself and will be wanted again, commit it; as a designer put it, *"At least if we have it in a
+  commit somewhere, we can easily go back to it as needed."*
 
   *For example:* In one game, a one-second trace of the state while a key was held found every
   defect in the flight model and the fire, where their passing tests found none. In another, a
@@ -480,12 +481,10 @@ reports.
 - A passing test is an observation; *the bug is fixed* is a finding. A test that has never failed
   has not shown that it can, one that has never passed on known-good behaviour has not shown that it
   passes for the right reason, and one that fails only by timing out is slow to go red and says
-  nothing about why. A test named for a motion but asserted on an end state passes every motion that
-  ends there. **Before trusting a new test, run it on both controls: with the fix taken out it
-  should fail, on an assertion rather than a timeout (the negative control); on a case already known
-  to be correct it should pass (the positive control).** Assert the relationship that has stopped
-  changing, not the number still being tuned, and a motion by its course as well as by where it
-  ends.
+  nothing about why. **Before trusting a new test, run it on both controls: with the fix taken out
+  it should fail, on an assertion rather than a timeout (the negative control); on a case already
+  known to be correct it should pass (the positive control).** Assert the relationship that has
+  stopped changing, not the number still being tuned.
 
   *For example:* A game that crashed before its test hook was installed failed the boot test only at
   its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
