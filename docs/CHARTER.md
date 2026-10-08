@@ -121,9 +121,9 @@ the evidence behind each, and *Working together*. `CLAUDE.md` also names each mo
 an agent has them in mind all session. Find the moment you are in, and read its bold lines.
 In short:
 
-- **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
-  what is true now, write for whoever picks the work up cold, and end on what is left, for the
-  person to choose from.
+- **Planning, merging or handing over:** a note is a snapshot of its day, and a merge fixes only
+  what fails. Read old notes against what is true now, check the seams when branches meet, write for
+  whoever picks the work up cold, and end on what is left, for the person to choose from.
 - **Asking the person something:** ask them only what only they can answer, make their answer easy
   to give, and find out what it meant before acting on it.
 - **Building something:** ask how they picture it and say it back before you build; start from what
@@ -166,14 +166,18 @@ one game's design or technology.
   *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
   anything else, one session before a plan that needed the dragon to land on a ledge.
 
-- A note in one side's *Changed elsewhere* about the other side's work is a task with no owner, and
-  a merge fixes only what fails. And main's log may have recorded a finding while you were away from
-  it. **When two branches meet, read each side's log for what it said the other would need, and read
-  main's log as it stands before writing that nothing has recorded something.**
+- A merge fixes only what fails, and it is the seams between branches that break, where no test
+  sits. A note in one side's *Changed elsewhere* about the other side's work is a task with no
+  owner, and main's log may have recorded a finding while you were away from it. **When branches
+  built apart meet, read each side's log for what it said the other would need, read main's log as
+  it stands before writing that nothing has recorded something, and tour the whole game in frames on
+  the merged head.** Look at every sheet; the `frame-check` skill says how to build a tour.
 
   *For example:* One session wrote that the other's villagers would walk along lake beds until that
   session's map knew about water. The merge fixed the two tests that failed and nothing that had
-  only been written down, and a review found a town walking sixteen metres down a lake bed.
+  only been written down, and a review found a town walking sixteen metres down a lake bed. And with
+  every test green, a tour after a merge found defects wherever separately built places met, and a
+  second tour found more where their separate fixes met.
 
 - A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
   and without it shows which. What the trial runs build for themselves is what the skill was
@@ -556,7 +560,8 @@ guess or another turn of the same dial.
 Code is known to work only where it has been checked: on the cases it was developed against, in the
 context it was written for, in the states and moments someone reached. New contexts, new states,
 untried cases, idle time, the parts of the game nobody has reached, and the seams between branches
-are all outside that.
+are all outside that. The seams are checked when branches meet (*When you are about to plan, merge
+or hand over*, above).
 
 - Old code was built against the design and constraints of its day, and even forward-looking code
   can only account for so much. Building on top of it, or running it in a context it was never
@@ -603,12 +608,6 @@ are all outside that.
   second. Another's found enemies standing still on a crate, and a path that could not climb a
   stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
   had made it lose sooner.
-
-- It is the seams between branches that break, and no test sits on a seam. **After merging branches
-  built apart, tour the whole game in frames on the merged head, and look at every sheet.**
-
-  *For example:* With every test green, a tour after a merge found defects wherever separately built
-  places met, and a second tour found more where their separate fixes met.
 
 #### When you are about to hand them a build, or write up what they played
 
