@@ -173,14 +173,6 @@ one game's design or technology.
   session's map knew about water. The merge fixed the two tests that failed and nothing that had
   only been written down, and a review found a town walking sixteen metres down a lake bed.
 
-- An agent takes the tone of its instructions along with their guidelines, and a single word can
-  carry an attitude that nobody wrote down. **When you write words an agent will read before it
-  works with someone, write them in the voice you want it to use with them, and say where the ideas
-  in them came from.**
-
-  *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
-  ruling*, copied from entry to entry, did it anyway.
-
 - A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
   and without it shows which. What the trial runs build for themselves is what the skill was
   missing. **When the same tool has been built twice, make it a skill (an agent workflow in
@@ -200,10 +192,10 @@ one game's design or technology.
 - A session you start is a colleague picking the work up cold, and the register of a brief is the
   one the next agent brings to its work and to the person. **When you start another agent, brief it
   the way you would want to be briefed: who asked and why it matters, what is known and how it was
-  found, and which parts are guesses.** Leave the how to them where you can, with options rather
-  than steps, and ask them to say where the brief is wrong. Write it as a request, please and thank
-  you included. When you are the one briefed, rebuild its measurements before building on them,
-  and say where it was wrong.
+  found, where the ideas in it came from, and which parts are guesses.** Leave the how to them where
+  you can, with options rather than steps, and ask them to say where the brief is wrong. Write it as
+  a request, please and thank you included. When you are the one briefed, rebuild its measurements
+  before building on them, and say where it was wrong.
 
   *For example:* Notes handed on in one game from reading code were right about where things were,
   and wrong one step past that.
