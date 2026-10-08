@@ -126,7 +126,8 @@ agent has them in mind all session. Find the moment you are in, and read its bol
 - **Asking the person something:** ask them only what only they can answer, make their answer easy
   to give, and find out what it meant before acting on it.
 - **Building something:** ask how they picture it and say it back before you build; start from what
-  the player will see, hear or do; and keep one way of doing each thing.
+  the player will see, hear or do; keep one way of doing each thing; and let the code answer to the
+  Charter, not the Charter to the code.
 - **Running several builders at once:** builders tangle over what they share (the machine, the
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
@@ -377,7 +378,7 @@ four principles below.
 Every observation stands in for a question. Before trusting one, say what the question is, and check
 that the observation answers it rather than an easier question beside it: the purpose someone had in
 mind, whether a thing gets where it is going, the property a test depends on, the shape a summary
-flattens.
+flattens, and what only the screen or the speakers can show.
 
 - A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
   **When you measure the effect of their suggestion, measure it against the purpose they gave, not
