@@ -203,81 +203,68 @@ npm run template:update  # bring in what the template has gained since
 cd infra && npm ci && npm run typecheck && npm test  # the feedback function's AWS side, as code
 ```
 
-`npm run verify` is the gate: every check a change passes before it goes into a pull request. With
-`src/` and `tests/` empty it does not pass yet: most steps have nothing to act on, and several tools
-treat "no input files" as an error. The unit tests pass from the start, because the merge driver's
-tests are there. Adding the first source file and the first test is what makes the rest of it
+When to reach for each of these is in the Charter's §5, under the moment it is for. This section
+says what each one does.
+
+**The gate.** `npm run verify` is every check a change passes before it goes into a pull request.
+With `src/` and `tests/` empty, most of it has nothing to act on, and several tools exit non-zero
+on "no input files" when run by hand; only the unit tests pass from the start, because the merge
+driver's tests are there. The first source file and the first test are what make the rest of it
 meaningful.
 
-The end-to-end tests are the ones that say a player can do a thing: they boot the real game in
-headless Chromium and drive it. Headless Chromium ran WebGL 2, drawing in software, in an earlier
-game's cloud sessions and its CI, and again in a cloud session when these files were written, so a
-3D game can boot there. Check it where you work before planning on it, as that game did: the whole
-test strategy turned on it, the check took two minutes, and it would have cost a day the other way.
-The first test to write is `tests/e2e/boot.spec.ts`, which boots the game, fails on any page or
-console error, draws one frame with everything that has a shader in it, and reads the GL error flag,
-since GL errors reach the console late and as warnings. `npm run verify:play` is the typecheck and
-that test, and a build pushed for a person to play waits only on that, not on the whole gate: one
-game's gate took five minutes even after it had been cut from fifteen, and every time someone sat
-down to play, they used to wait for it. The full gate runs while they play; anything it finds is
-reported and fixed rather than left for the next push, and once there is code, nothing goes into a
-pull request without it.
+**The boot test and the play gate.** The first end-to-end test to write is
+`tests/e2e/boot.spec.ts`. It boots the game, fails on any page or console error, draws one frame
+with everything that has a shader in it, and then reads the GL error flag in the page: a shader
+that fails to compile is logged rather than thrown, and GL errors reach the console late, from
+another process and as warnings, where a listener for errors does not see them.
+`npm run verify:play` is the typecheck and that test, a few seconds against the full gate's
+minutes, and it is all a build needs before someone plays it.
 
-Every end-to-end run starts its own Vite server, on a port taken from the checkout's path and off
-the dev server's 3000, so worktrees can each run the suite at once and a run never tests another
-checkout's server. `E2E_PORT` chooses the port; two runs in one checkout need one each. That server
-watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved while the suite runs does not
-reload the page under whichever test is running: a run tests the code as it stood when it began.
-`playwright.config.ts` says why each of these is so.
+**The end-to-end tests** boot the real game in headless Chromium and drive it. Headless Chromium
+can usually run WebGL 2 in software, so a 3D game can boot in CI and in a cloud session; check that
+it does where you work before you plan on it. Every run starts its own Vite server on a port taken
+from the checkout's path, off the dev server's 3000, so worktrees can each run the suite at once and
+a run never tests another checkout's server. `E2E_PORT` chooses the port; two runs in one checkout
+need one each. That server watches nothing (`E2E_SERVER`, in `vite.config.ts`), so a file saved
+while the suite runs does not reload the page under a test: a run tests the code as it stood when it
+began. `playwright.config.ts` says why each of these is so.
 
-CI's runner draws more slowly than a development machine, so a time limit that is comfortable
-locally can be too tight on CI. In one game built from this template, two tests
-passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
-`npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
-CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
-was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before a pull
-request; setting a time limit from it is a guideline in the Charter's §5.
+**`npm run test:e2e:slow`** runs the suite on two workers sharing one core, about 1.3 times slower
+than CI's runner, which draws more slowly than a development machine. Run it before a pull request,
+and set a test's time limit from it.
 
-Screenshots are part of verification, and `npm run shots` takes them. A script the game provides
-puts the game into each state worth seeing and names the frame. The tool serves the game on its own
-port, reports anything that breaks in the page, and lays the frames out side by side on one image,
-the sheet. With `--tree before=@<commit>`, it puts an older commit's frames beside this checkout's,
-one row per shot, for a before-and-after. `scripts/shots.mjs` says what the game's script exports;
-what hooks the game offers it is the game's choice. The `frame-check` skill is how an agent uses it
-on a report of something that looks wrong. Two games built one of these for themselves before it
-shipped here, and in one of them a tour of the whole game in frames found 22 defects with every test
-green.
+**`npm run shots`** takes screenshots. A script the game provides puts the game into each state
+worth seeing and names the frame; the tool serves the game on its own port, reports anything that
+breaks in the page, and lays the frames out side by side on one image, the sheet. With
+`--tree before=@<commit>`, it puts an older commit's frames beside this checkout's, one row per
+shot. `scripts/shots.mjs` says what the game's script exports. The `frame-check` skill is how an
+agent uses it.
 
-An agent cannot hear, so the sound gets the same treatment, from `npm run takes`. A script the game
-provides renders each sound worth hearing into an `OfflineAudioContext`, through the game's own
-audio code, and names the recording, the take. The tool serves the game as `shots.mjs` does (the two
-share `scripts/lib/trees.mjs`), writes each take as a WAV, measures it (loudness by ITU-R BS.1770,
-peak and clipping, when it starts and how long it rings, its energy by octave, its stereo width:
-`scripts/lib/listen.mjs`), and lays the takes out on a sheet of waveforms and spectrograms. With
-`--tree before=@<commit>` it prints the numbers side by side, and `--match -20` writes copies of
-equal loudness for the person to compare by ear. The `sound-check` skill is how to use it on a
-report of something that sounds wrong. Four games built from this template each built a
-renderer and a measurer of their own before this one; it was tried on two of them before it shipped.
+**`npm run takes`** does the same for sound, since an agent cannot hear. A script the game provides
+renders each sound worth hearing into an `OfflineAudioContext`, through the game's own audio code,
+and names the recording, the take. The tool writes each take as a WAV, measures it (loudness by
+ITU-R BS.1770, peak and clipping, when it starts and how long it rings, its energy by octave, its
+stereo width: `scripts/lib/listen.mjs`), and lays the takes out on a sheet of waveforms and
+spectrograms. With `--tree before=@<commit>` it prints an older commit's numbers beside these, and
+`--match -20` writes copies of equal loudness for the person to compare by ear. The `sound-check`
+skill is how an agent uses it.
 
-A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`. Before the first source file
-exists, tsc has nothing to check and reports that as an error; the hook lets a commit through when
-that is all tsc has to say, so a new project can commit its documents from the first day. CI
-(`.github/workflows/ci.yml`) runs typecheck, a Prettier check, ESLint, the unit tests, and the
-end-to-end suite on pull requests, and keeps what a failed end-to-end run left in `test-results/`
-for a week. It runs on pull requests only, since every push in a session is already checked with
-`npm run verify`; on GitHub it is the check before a merge. CI makes the same allowance as the hook,
-and shows it: until the repository has TypeScript besides its root config files, its
-typecheck-and-lint job and its end-to-end job are skipped, and show as skipped rather than passed.
-TypeScript in any folder counts, so a project that moves its code out of `src/` is checked rather
-than skipped. Once there is source they run, and the end-to-end job fails until the boot test
-exists.
+**The pre-commit hook and CI.** A husky `pre-commit` hook runs `tsc --noEmit` and `lint-staged`.
+Before the first source file exists, tsc has nothing to check and reports that as an error; the hook
+lets a commit through when that is all tsc has to say, so a new project can commit its documents
+from the first day. CI (`.github/workflows/ci.yml`) runs on pull requests: typecheck, a Prettier
+check, ESLint, the unit tests, and the end-to-end suite, keeping what a failed end-to-end run left
+in `test-results/` for a week. It makes the same allowance as the hook, and shows it: until the
+repository has TypeScript besides its root config files, in any folder, its typecheck-and-lint job
+and its end-to-end job show as skipped rather than passed. Once there is source they run, and the
+end-to-end job fails until the boot test exists.
 
-The three documents merge themselves where both sides only added to them. Every branch appends to
-the design log, so in one game every merge of main into a branch conflicted there, seven of seven,
-and often in the Charter's §5 as well. `scripts/merge-docs.mjs` keeps both sides' additions, the
-log's entries in date order, and leaves anything else as an ordinary conflict: a passage both sides
-changed is still there to be read. `npm ci` registers it, through `prepare`. Where it is not
-registered, GitHub's merge button included, the documents merge as they always did.
+**The documents' merge driver.** Every branch appends to the design log, so without help nearly
+every merge of main conflicts there, and often in the Charter's §5 too. `scripts/merge-docs.mjs`
+keeps both sides' additions, the log's entries in date order, and leaves anything else as an
+ordinary conflict: a passage both sides changed is still there to be read. `npm ci` registers it,
+through `prepare`. Where it is not registered, GitHub's merge button included, the documents merge
+as they always did.
 
 ## Staying in step with the template
 

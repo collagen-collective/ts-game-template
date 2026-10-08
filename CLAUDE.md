@@ -136,58 +136,21 @@ argue with.
 
 ## Verification
 
-Node 22+. `npm ci` first.
+Node 22+. `npm ci` first. The README's *Toolchain* lists every command and says what each one
+does, what the boot test checks, and what the hook and CI let through while `src/` is empty.
 
-```bash
-npm run typecheck   # tsc --noEmit
-npm run lint        # eslint src tests
-npm run format      # prettier --write src tests
-npm test            # vitest run
-npm run test:e2e    # playwright test (boots the real game in headless Chromium)
-npm run verify      # typecheck + lint + unit + e2e
-npm run verify:play # typecheck + the boot test (a build a person can sit down to)
-npm run test:e2e:slow  # the end-to-end suite a little slower than CI (Linux)
-npm run shots -- <shots.mjs> <out-dir>  # posed frames, and a sheet of them
-npm run takes -- <takes.mjs> <out-dir>  # the game's own sound, rendered and measured
-npm run feedback:check [-- <out-dir>]  # the feedback page, driven in a browser
-npm run template:update  # bring in what the template has gained (`template-sync` skill)
-cd infra && npm ci && npm run typecheck && npm test  # the feedback function's AWS side, as code
-```
+`tests/e2e/boot.spec.ts` is the first end-to-end test to write, and `verify:play` names it. Once
+there is source, CI's end-to-end job fails until it exists; a stub test written to turn it green is
+not the fix.
 
-With `src/` and `tests/` empty, most of these have nothing to act on, and several exit non-zero on
-"no input files" when run by hand. Neither the pre-commit hook nor CI holds that against a new
-project. The hook lets a commit through while tsc has no source file to check, and refuses on
-anything else tsc reports. CI skips its typecheck-and-lint job and its end-to-end job until the
-repository has TypeScript besides its root config files, and shows them as skipped, not passed.
-The unit tests run from the start, because the merge driver's tests are there. Once there is
-source, everything runs, and the end-to-end job fails until the boot test exists; a stub test
-written to turn it green is not the fix.
+Once there is code, a pull request needs the whole gate (`npm run verify`) green, and CI read after
+the push: in one game, *"CI: will run on this PR"* went into a description three times and was not
+looked at again. Run `npm run test:e2e:slow` before a pull request; setting a test's time limit
+from it is in the Charter's §5.
 
-The Playwright config is ready, and the first end-to-end test to write is `tests/e2e/boot.spec.ts`,
-which `verify:play` names. It boots the game, fails on any page or console error, draws one frame
-with everything that has a shader in it, and then reads the GL error flag in the page: a shader
-that fails to compile is logged rather than thrown, and GL errors reach the console late, from
-another process and as warnings, where a listener for errors does not see them.
-
-Once there is code, a pull request needs the whole gate green, and CI read after the push: in one
-game, *"CI: will run on this PR"* went into a description three times and was not looked at again.
-
-A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
-source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
-tests, and the end-to-end suite in a booted game on pull requests, all but the unit tests once
-there is source to check.
-
-Run `npm run test:e2e:slow` before a pull request: CI's runner draws more slowly than a cloud
-session, and it runs the suite a little slower than CI. Setting a test's time limit from it is in
-the Charter's §5.
-
-When you merge main, the three documents resolve themselves where both sides only added text
-(`scripts/merge-docs.mjs`, registered by `npm ci`). A conflict left in one of them is a real
-collision, two edits to one passage, so read both sides rather than taking one.
-
-The template this repo was made from keeps learning from the other games built from it, and
-`npm run template:update` brings that in: a three-way merge that keeps this project's changes and
-leaves conflict markers where both changed one passage. A weekly workflow opens it as a pull
-request. Resolve it as you would a merge of main, read both sides, and log what it changed about how
-this project works. A finding of this project's that would serve any game goes back to the template
-as a pull request there. The `template-sync` skill has both directions.
+When you merge main, the three documents resolve themselves where both sides only added text. A
+conflict left in one of them is a real collision, two edits to one passage, so read both sides
+rather than taking one. Resolve a template update (`npm run template:update`, or the weekly pull
+request) the same way, and log what it changed about how this project works. A finding of this
+project's that would serve any game goes back to the template as a pull request there. The
+`template-sync` skill has both directions.
