@@ -78,8 +78,10 @@ ever. *An enemy's damage event that nothing subscribed to left the player
 invulnerable in every green build for weeks.*
 
 *Looks like:*
-- A change to something that other parts read, such as a new state or a new look: find every part
-  that reads it, and run their tests.
+- A change to something that other parts read, such as a new state: find every part that reads it,
+  and run their tests.
+- A new look: keep what the thing does, and what a player would read from it, where it was; name any
+  difference as a value the person can change.
 - A game is a chain of conditions: script a bot that plays it from start to end and reports where
   it gets stuck, and another that holds down the laziest input that might win.
 - A merge of branches built separately: read what each side's log said the other would need, and
@@ -92,8 +94,7 @@ the thing still be wrong.** A count, a state, a summary number, a passing test a
 criteria all stand in for something, and the defect is usually in what they leave out: *a river
 12.5 km long and a river going round in circles are the same number.* When the question is how
 something feels, the only check is the person playing it. So while a system's feel is still being
-found, put it in front of them rather than under tests, and keep tests that draw a frame for what
-play cannot see, such as a shader that fails to compile. Every test written against a system still
+found, put it in front of them rather than under tests. Every test written against a system still
 being tuned is a bet you will pay to unwind, and a question about feel that is split into tasks
 comes back as pieces that each pass their check and do not add up.
 
@@ -105,6 +106,11 @@ comes back as pieces that each pass their check and do not add up.
   it ends.
 - What a player sees or hears: look at the frame, or listen to the take, from the player's camera
   and at the moment it matters (the `frame-check` and `sound-check` skills).
+- Before a test draws a frame, ask whether it could fail with nothing wrong on screen. Keep such
+  tests for what play cannot see, such as a shader that fails to compile, and compare a look by eye
+  with posed frames, even once it is approved.
+- A test that needs something from the game world: ask for it by the property it needs, and fail
+  with that property's name when there is none.
 
 ### 3. The person judges; you measure
 
@@ -135,10 +141,11 @@ worth checking are the plausible ones: ask how they picture anything with a real
 such as bells, roads or weather, even when you feel sure, and get a recording where one exists.
 
 *Looks like:*
-- A look, a motion or a sound: ask with a picture or a sound rather than in words, and show only
-  the difference you mean. (Two colours shown at different brightness were chosen for their
-  brightness.) Show what a choice made from close-ups, or a rule they agreed to, adds up to in play,
-  and where only play can judge between options, put them behind a switch to compare in one sitting.
+- A look, a motion or a sound: ask with a picture or a sound rather than in words, and show only the
+  difference you mean. (Two colours shown at different brightness were chosen for their brightness.)
+  Show what a choice made from close-ups, or a rule they agreed to, adds up to in play, and where
+  only play can judge between options, put them behind a switch to compare in one sitting. Leave
+  room for neither, both, or something else.
 - Something they report missing, or a signal you agreed on in advance: go back through what they
   did before you treat it as a design problem. Could they get to it? Were they trying to?
   (*Coordinates for the wrong thing sent a designer searching three crags for ravens. "Make ravens
@@ -204,9 +211,10 @@ words left open, make it one value they can change. Silence is not a decision.
   on from reading code were right about where things were, and wrong one step past that.*)
 - A parked note records the day it was written. When you plan, read the parked questions (DEFER and
   `[later]`) as things the new work may depend on, not as a backlog.
-- Sub-agents working in parallel get tangled in what they share: the machine, the files, the commit
-  they start from. Name each shared thing, give each sub-agent its share, and have each one commit
-  as it goes.
+- Sub-agents working in parallel get tangled in what they share: the machine (each one running a
+  browser wants about two cores), the files, and the commit they start from (a worktree is cut from
+  the default branch, not yours, so have each check that it holds your latest commit). Name each
+  shared thing, give each sub-agent its share, and have each one commit as it goes.
 
 ### This project's own
 
