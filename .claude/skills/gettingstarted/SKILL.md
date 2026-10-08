@@ -48,11 +48,10 @@ anything was built from it, and the build needed no changes the first time the p
 
 1. Read `README.md`, `CLAUDE.md`, `docs/CHARTER.md`, `docs/OPEN-QUESTIONS.md`, and
    `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
-   *how*; you have to hold that line while transcribing. Its §5 is long, because it carries
-   guidelines in from earlier games: read its opening, and skim the guidelines, since you will ask
-   about them as a block at the end. `CLAUDE.md`'s *Working together*, and §5's guidelines for
-   asking the person something, are how to conduct the interview itself, and the README's *Words
-   we use* defines the shorthand these documents use.
+   *how*; you have to hold that line while transcribing. `CLAUDE.md`'s principles came in from
+   earlier games, and you will ask about them as a block at the end. Two of them, *The person
+   judges; you measure* and *Find out what they picture before you build*, are how to conduct the
+   interview itself, and the README's *Words we use* defines the shorthand these documents use.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
@@ -214,17 +213,12 @@ Use `AskUserQuestion` for these; they are discrete choices.
 - **The template banners.** Delete the `> **Made from a shared TypeScript game-project
   template.**` block in `README.md`, and the `*This file arrived as a template…*` note in each of
   the three docs — each one as its file gets real content. In `CLAUDE.md`, delete the **This repo
-  was scaffolded from a template** paragraph once the placeholders it refers to are gone. Leave the
+  was made from a template** paragraph once the placeholders it refers to are gone. Leave the
   README's *Where things live* prompt where it is: it is for the first session that writes code.
-- **The inherited guidelines.** There are two sets, and each is asked about as a whole: keep it,
-  prune it, or delete it. The template's three are in `README.md`, with the evidence behind each,
-  and in `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which
-  the Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. The
-  rest are in two places: the Charter's §5, under *Inherited*, and `CLAUDE.md`'s *Working together*,
-  with the guidelines above it. Both sets are explicitly defaults rather than this project's
-  findings, and the decision should be made deliberately. Pruning those is expected over time, as
-  this project learns which of them it needs; today, ask only whether any group of them plainly does
-  not fit this game. Whatever the answer, log it.
+- **The principles.** `CLAUDE.md`'s *How we work* came in from earlier games. The principles are
+  defaults rather than this project's findings, and the decision about them should be made
+  deliberately. Pruning them is expected over time, as this project learns which of them it needs;
+  today, ask only whether any of them plainly does not fit this game. Whatever the answer, log it.
 - **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and
   how to remove it. Ask whether to keep or remove, then do it.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
@@ -250,7 +244,7 @@ nothing transferable under **Learned** yet, write that there isn't, rather than 
 lesson. If any commitment was a working title, an agent-drafted line, or a tension they chose to
 leave standing, this entry is where it gets recorded. If a brief stood in for the interview, this
 is where every call you made under its grant of freedom is listed, as yours, with its reason. And
-record what was decided about the inherited guidelines.
+record what was decided about the principles.
 
 ### Verify
 

@@ -130,18 +130,16 @@ Two beats are worth protecting:
   know the word to search for.
 - **Learned** is the transferable sentence, and it should still be true about the next problem
   nobody has thought of yet. If it only restates the outcome, the entry has not finished. **And if
-  it is really a guideline, put it where guidelines are kept as well.** A Learned has a trigger and
-  a verb or it has neither — "after a scripted edit, grep for the new text" fires on its own, "the
-  instrument was missing what the question needed" cannot, because there is nothing in it to obey.
-  When it fires, it belongs in the Charter's §5, under *This project's own*, and the person and an
-  agent change §5 together: propose it to them, work out its wording with them, and write it there
-  in that list's shape (its reason, then the guideline in bold, a *For example* only if the moment
-  is hard to recognise, and this entry's heading). Say so under **Changed elsewhere**. Read §5
-  first: a guideline already there wants a sharper reason or this entry's heading, not a second copy
-  of itself, and an inherited one this project has now learned for itself is reconciled with it as
-  §5's *Writing a guideline* says, not copied. The log is append-only and read backwards; a
-  guideline left only here has been filed where nobody looks before acting, which is how the same
-  lesson gets written three times.
+  it is really a lesson about how to work, put it where the principles are kept as well.** A
+  Learned has a trigger and a verb or it has neither — "after a scripted edit, grep for the new
+  text" fires on its own, "the instrument was missing what the question needed" cannot, because
+  there is nothing in it to obey. When it fires, find the principle in `CLAUDE.md` it is an
+  instance of, and write it under *This project's own* there, as its *When you learn something*
+  says: the person and an agent change the principles together, so propose it to them, work out
+  its wording with them, and end it with this entry's heading. Say so under **Changed elsewhere**.
+  A lesson a principle already says wants this entry's heading, not a second copy of itself. The
+  log is append-only and read backwards; a lesson left only here has been filed where nobody looks
+  before acting, which is how the same lesson gets written three times.
 
 ## Whose words are whose
 

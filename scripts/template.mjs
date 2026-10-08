@@ -20,11 +20,11 @@
  * project's recorded commit is applied over what the project changed since
  * then. Where both changed the same lines, the file is left with conflict
  * markers and marked unmerged, as after a `git merge`. The three documents
- * then get their own merge driver, as they do on a merge of main, which keeps
- * both sides' additions where that is all either side made. The lockfile is
- * the project's own and is never merged: `npm install` brings it into line
- * with whatever package.json now says (`--lock-only` touches only the
- * lockfile, for CI). `--summary` writes what came in, and what is left to
+ * and CLAUDE.md then get their own merge driver, as on a merge of main, which
+ * keeps both sides' additions where that is all either side made. The
+ * lockfile is the project's own and is never merged: `npm install` brings it
+ * into line with whatever package.json now says (`--lock-only` touches only
+ * the lockfile, for CI). `--summary` writes what came in, and what is left to
  * resolve, as Markdown, for the body of a pull request.
  */
 import { execFileSync, spawnSync } from "node:child_process";

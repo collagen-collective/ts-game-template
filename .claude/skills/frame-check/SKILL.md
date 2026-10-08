@@ -36,8 +36,8 @@ the build it was taken from. If nobody is around to ask, write down the question
 asked, and bring them back with what you found.
 
 **Then rule the state in or out.** If the game's state runs without a browser, a trace of it in
-Node says in a minute whether the fault is in the state or in the drawing (`CLAUDE.md`, *Trace
-before you test*). The agent without this skill did that first, and knew within a minute that the
+Node says in a minute whether the fault is in the state or in the drawing (`CLAUDE.md`, *Check the
+thing itself*). The agent without this skill did that first, and knew within a minute that the
 game had Baldur on the deck and only the picture did not.
 
 ## 2. Give the game a handle, once
@@ -94,7 +94,7 @@ The handle's names above are placeholders; use the game's. Then:
 
 - **Reach the moment by the game's own route** where you can: start the level and play or step
   to it. A state set by hand can show a defect the game never has, and hide one it does, so reach
-  a posed state by a second route before trusting it (Charter §5).
+  a posed state by a second route before trusting it.
 - **Take the player's camera first.** It is the view a player has, and how legible anything is
   depends on the view. Then a second view that shows the relation the first one hides: from the
   side, or from above.
@@ -151,24 +151,24 @@ it on launch from a long path.
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
   in the before, or in this checkout with the fix taken out: a positive control for the defect. A
   null observation is not a finding until a positive control in the same run has come back non-null
-  (Charter §5). If your frames do not show the
-  defect where it is known to be, they cannot see it: change the pose, not the conclusion.
+  (`CLAUDE.md`, *An observation is not a finding…*). If your frames do not show the defect where it
+  is known to be, they cannot see it: change the pose, not the conclusion.
 - **Match the pair on everything but the change.** Same seed, same moment, same camera. A pair
   that differs in anything else is not evidence until you know what that difference did.
 - **Keep what the person called right in the run.** When they say one part is right and another is
-  not, shoot the right part too, and check it did not move (Charter §5). In one game, darkening
-  the yard took 4 to 6 points off every room the designer had called right, and only the rooms being
-  in the same run caught it.
+  not, shoot the right part too, and check it did not move. In one game, darkening the yard took 4
+  to 6 points off every room the designer had called right, and only the rooms being in the same run
+  caught it.
 - **A commit older than the handle a script uses fails,** says why, and its column reads *no
   frame*.
 
 ## 6. After merging branches built apart, tour the whole game
 
-It is the seams between branches that break, and no test sits on a seam (Charter §5, *When you are
-about to plan, merge or hand over*). A tour is a script that plays the game through, with a bot or a
-held input, and shoots each arrival, each scene, and the middle of each fight, with any cutscenes
-played rather than skipped. Look at every sheet. Commit the tour once it proves itself
-(`scripts/shots/`), so the next merge can be toured the same way.
+It is the seams between branches that break, and no test sits on a seam (`CLAUDE.md`, *Done means
+wired in*). A tour is a script that plays the game through, with a bot or a held input, and shoots
+each arrival, each scene, and the middle of each fight, with any cutscenes played rather than
+skipped. Look at every sheet. Commit the tour once it proves itself (`scripts/shots/`), so the next
+merge can be toured the same way.
 
 ## 7. Show them, and write it down
 
@@ -197,6 +197,6 @@ played rather than skipped. Look at every sheet. Commit the tour once it proves 
 - **Slow first loads.** The first load compiles every module, and a frame composited with bloom in
   software can take more than 30 s on a busy machine. The harness waits two minutes for each.
 - **Too many at once.** Each run is a browser drawing in software. Two at once on four cores is
-  the most that helps (Charter §5).
+  the most that helps.
 - **A still for a motion.** Direction, stepping, spinning and popping are judged over time, across
   frames taken a fraction of a second apart.

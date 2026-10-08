@@ -97,7 +97,7 @@ for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => process.exit(130)
 /**
  * A server for one tree, and its port. Every tree gets a server of its own,
  * and never borrows one: a run that borrows a server photographs whatever that
- * server serves (Charter §5). It watches nothing (E2E_SERVER, in
+ * server serves. It watches nothing (E2E_SERVER, in
  * vite.config.ts), so a file saved during the run does not reload the page
  * under it. One at a time: a second call stops the first.
  */

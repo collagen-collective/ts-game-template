@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 /**
- * The merge driver for the three documents. `.gitattributes` names it for
- * them, and `npm install` registers it with git (`prepare` runs this with
- * `--install`).
+ * The merge driver for the three documents and CLAUDE.md. `.gitattributes`
+ * names it for them, and `npm install` registers it with git (`prepare` runs
+ * this with `--install`).
  *
- * Every branch appends to the design log, and many add a guideline to the end of
- * the Charter's §5, so any two branches open at once conflict there. In
- * dragon, the game built from this template that this driver was written for,
- * every merge of main into a branch in its first week did, seven of seven. In
- * all of those, both sides had added text at the same place and neither had
- * changed anything that was there. That case, and only that one, is resolved
- * here.
+ * Every branch appends to the design log, and many add a lesson to the end of
+ * the list that holds this project's own (CLAUDE.md's *This project's own*;
+ * the Charter's §5, when this was written), so any two branches open at once
+ * conflict there. In dragon, the game built from this template that this
+ * driver was written for, every merge of main into a branch in its first week
+ * did, seven of seven. In all of those, both sides had added text at the same
+ * place and neither had changed anything that was there. That case, and only
+ * that one, is resolved here.
  *
  * Both sides' additions are kept, theirs first: on a merge of main into a
  * branch, that is what landed first. In the design log the added entries are
