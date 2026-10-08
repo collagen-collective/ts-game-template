@@ -50,7 +50,7 @@ holds the documents' merge driver, the template's update script (`template.mjs`)
 that work with any game (`shots.mjs`, `takes.mjs` and `e2e-slow.mjs`). `feedback/` and `infra/` are
 an in-game feedback page that also works with any game (the game mounts it and hands it its canvas),
 the function that commits a player's report to a private repository, and that function's AWS setup
-as code (README, *Feedback from inside the game*). Do not assume a missing module was deleted by
+as code (`feedback/README.md`). Do not assume a missing module was deleted by
 mistake, and do not go looking for prior art in the tree.
 
 **Architecture is yours to choose.** There are no file-layout guidelines, module conventions, or

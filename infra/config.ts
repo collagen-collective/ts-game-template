@@ -1,7 +1,7 @@
 /**
  * What this game's feedback function is called and where it sends reports:
  * the only part of `infra/` a project fills in for itself. Everything else
- * here is the same for every game (README, *Feedback from inside the game*).
+ * here is the same for every game (`feedback/README.md`).
  * A synth refuses the placeholders, so nothing is deployed with one left in.
  */
 export const config = {
