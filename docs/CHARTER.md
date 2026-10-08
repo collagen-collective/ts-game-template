@@ -315,24 +315,20 @@ one game's design or technology.
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
 
-- How it feels they can tell us afterwards; how they picture it working they can tell us
-  beforehand, which costs less and gets skipped. A test can only confirm the model that wrote it,
-  and the guesses that most need asking are the plausible ones. **Before you build anything with a
-  real-world precedent (bells, roads, weather, what a garrison does), ask them how they picture it
-  working, even when you feel sure.** It takes thirty seconds, and nothing later can catch what it
-  catches.
+- How it feels they can tell us afterwards; how they picture it working they can tell us beforehand,
+  which costs less and gets skipped. A test can only confirm the model that wrote it, and the
+  guesses that most need asking are the plausible ones. Their words also leave open exactly what a
+  build has to choose, and a read-back finds those places while they cost nothing: a distance agreed
+  in words is a look nobody was picturing. **Before you build, ask how they picture anything with a
+  real-world precedent, even when you feel sure, and say back what you understood of what they
+  described, as a picture when it is a look.** A precedent is anything like bells, roads, weather or
+  what a garrison does, and a picture is a frame with the proposal drawn on it. Asking takes thirty
+  seconds, and nothing later can catch what it catches.
 
   *For example:* One game's warning beacons were built from one sentence of the Charter and passed
   every test, but crews posted on a hill for weeks would light for what they see themselves, not
-  only for the next hill.
-
-- Their words leave open exactly what a build has to choose, and a read-back finds those places
-  while they cost nothing; a distance agreed in words is a look nobody was picturing. **Before you
-  build what they described, say back what you understood, and when it is a look, read it back as
-  a picture: a frame with the proposal drawn on it.**
-
-  *For example:* In one game, seven readings of how the designer pictured rebinding a key were said
-  back and confirmed, and the build needed nothing changed at its first sitting.
+  only for the next hill. In another, seven readings of how the designer pictured rebinding a key
+  were said back and confirmed, and the build needed nothing changed at its first sitting.
 
 - The Charter is upstream of the implementation, so the code answers to it, not the other way
   round. **When the code you have just written disagrees with the Charter, don't rewrite the
