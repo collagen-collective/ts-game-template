@@ -178,9 +178,7 @@ one game's design or technology.
 
   *For example:* One session wrote that the other's villagers would walk along lake beds until that
   session's map knew about water. The merge fixed the two tests that failed and nothing that had
-  only been written down, and a review found a town walking sixteen metres down a lake bed. And with
-  every test green, a tour after a merge found defects wherever separately built places met, and a
-  second tour found more where their separate fixes met.
+  only been written down, and a review found a town walking down a lake bed.
 
 - A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
   and without it shows which. What the trial runs build for themselves is what the skill was
@@ -220,8 +218,7 @@ one game's design or technology.
   for an answer not on the list.**
 
   *For example:* Asked whether resistance to the player should read as antagonism or as
-  inconvenience, a designer answered both, as a ladder from one to the other. A question that ended
-  *or something else* got the reading nobody had offered.
+  inconvenience, a designer answered both, as a ladder from one to the other.
 
 - Whether something looks, moves or sounds right is hard to settle in words, which each reader
   pictures differently. Shown instead, the question can still go wrong two ways: nobody can judge a
@@ -232,11 +229,8 @@ one game's design or technology.
   in everything else, down to the moment each is shown at.** Draw shapes at one scale, beside what
   is already there, and mark what is drawn from a description rather than from the game.
 
-  *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
-  should look like; one drawing settled it in a look. In a game about a dragon, a village braced for
-  it and a village abandoned were the same picture, so nobody could have answered. Two colours were
-  shown side by side at different brightness, and the choice followed the brightness rather than the
-  colour. And three plans for a layout, drawn at one scale, settled it in one reply.
+  *For example:* Two colours were shown side by side at different brightness, and the choice
+  followed the brightness rather than the colour.
 
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
   every distance and adds up across the whole world. A check, a rule or a guess is agreed to the
@@ -246,9 +240,7 @@ one game's design or technology.
   check a guess against what the design says the player can and cannot undo.
 
   *For example:* Settings for mountain ridges were chosen from close frames that compared well. Seen
-  in play, they nearly doubled the high ground, and the designer chose again. In the same game, a
-  check to re-roll bad islands caught 24, and 19 of them were islets the designer wanted kept; and a
-  guess agreed as *"Correct on all counts"* turned out, once built, to empty an islet in one visit.
+  in play, they nearly doubled the high ground, and the designer chose again.
 
 - Options played in separate sittings are compared against a memory, and memory is a poor judge of
   small differences. **When only play can judge between options, build them into the game behind a
@@ -312,6 +304,28 @@ one game's design or technology.
 
 #### When you are about to build something
 
+- How it feels they can tell us afterwards; how they picture it working they can tell us beforehand,
+  which costs less and gets skipped. A test can only confirm the model that wrote it, and the
+  guesses that most need asking are the plausible ones. **Before you build, ask how they picture
+  anything with a real-world precedent, even when you feel sure.** A precedent is anything like
+  bells, roads, weather or what a garrison does. Asking takes thirty seconds, and nothing later can
+  catch what it catches. Where the precedent exists to be recorded, get the recording, from them or
+  from research, and measure it: a description is a reading of it.
+
+  *For example:* One game's warning beacons were built from one sentence of the Charter and passed
+  every test, but crews posted on a hill for weeks would light for what they see themselves, not
+  only for the next hill.
+
+- Their words leave open exactly what a build has to choose, and a read-back finds those places
+  while they cost nothing: a distance agreed in words is a look nobody was picturing. A guard
+  written against a word is a reading of the word too, and a mockup fixes more than it means to.
+  **Before you build, say back what you understood of what they described, as a picture when it is a
+  look, with your guards along with it, and ask which details of their picture are the point.** A
+  picture is a frame with the proposal drawn on it.
+
+  *For example:* Seven readings of how a designer pictured rebinding a key were said back and
+  confirmed, and the build needed nothing changed at its first sitting.
+
 - A model of the world built first sets the terms the player's experience then has to fit, and the
   player ends up bolted on top of it. **Build from the player outward: a system earns its place by
   what the player will see, hear or have to do differently because of it, and is modelled that far
@@ -322,20 +336,16 @@ one game's design or technology.
   should not put that first, then figure out how to bolt being a dragon on top of that."*
 
 - Two sources of truth, or two ways of doing one thing, are a maintenance burden, extra to hold in
-  mind, and more surface for defects, which collect at the seam between them. **When two tools,
-  features or implementations overlap, keep one, and extend it to cover what only the other did.**
-  Ask it of a library before adopting one, too: one that brings its own copy of something adds a
-  pair. Where two parts must each hold a copy, check at the handoff that everything the first leaves
-  is somewhere the second can start, and that both read the shared words the same way.
-
-  *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
-  needed that to change, we would know exactly where to go."* Where two copies stayed, three things
-  taking a direction from one input pointed 74°, 90° and 120° round.
-
-- One number that serves two decisions is pulled both ways by them, and every tuning trades one
-  against the other. It is the converse of the guideline above: one value with two meanings is two
-  things done one way. **When two decisions pull one number opposite ways, find what tells their
-  situations apart and give each its own number.**
+  mind, and more surface for defects, which collect at the seam between them. Keeping one, as a
+  designer put it, *"you keep the game WYSIWYG and honest. And if we needed that to change, we would
+  know exactly where to go."* The converse fails the same way: one number serving two decisions is
+  pulled both ways, and every tuning trades one against the other. **Keep one way of doing each
+  thing, and one number for each decision. When two tools, features or implementations overlap, keep
+  one, and extend it to cover what only the other did; when two decisions pull one number opposite
+  ways, find what tells their situations apart and give each its own number.** Ask it of a library
+  before adopting one, too: one that brings its own copy of something adds a pair. Where two parts
+  must each hold a copy, check at the handoff that everything the first leaves is somewhere the
+  second can start, and that both read the shared words the same way.
 
   *For example:* One chance of catching fire set both how much of a field a burning village took and
   whether a field fire reached the town.
@@ -355,33 +365,7 @@ one game's design or technology.
 
   *For example:* Containers were built as a boss fight's healing, as the designer remembered it.
   Counted, the boss's drones already gave a novice two bars of health a fight, and the containers a
-  fraction of one. In the same game, an original's three-second stun was scarce because its meter
-  filled only on kills; on a meter that filled on every blow, the same stun held the boss for more
-  than half its fight.
-
-- How it feels they can tell us afterwards; how they picture it working they can tell us beforehand,
-  which costs less and gets skipped. A test can only confirm the model that wrote it, and the
-  guesses that most need asking are the plausible ones. Their words also leave open exactly what a
-  build has to choose, and a read-back finds those places while they cost nothing: a distance agreed
-  in words is a look nobody was picturing. **Before you build, ask how they picture anything with a
-  real-world precedent, even when you feel sure, and say back what you understood of what they
-  described, as a picture when it is a look.** A precedent is anything like bells, roads, weather or
-  what a garrison does, and a picture is a frame with the proposal drawn on it. Asking takes thirty
-  seconds, and nothing later can catch what it catches. Say back your guards as well as your build:
-  a guard written against a word is a reading of the word. Ask which details of a mockup or a
-  description are the point, because a picture fixes more than it means to. And where the precedent
-  exists to be recorded, get the recording, from them or from research, and measure it: a
-  description, even one you said back, is a reading of it.
-
-  *For example:* One game's warning beacons were built from one sentence of the Charter and passed
-  every test, but crews posted on a hill for weeks would light for what they see themselves, not
-  only for the next hill. In another, seven readings of how the designer pictured rebinding a key
-  were said back and confirmed, and the build needed nothing changed at its first sitting. A rule of
-  *no helicopter* was guarded as *no parachute aloft*, which broke one of the designer's own rules;
-  they meant only that no input keeps you in place. And in a recreation, a dark grey night already
-  matched the original footage's mean brightness, and had three times its colour, half its contrast
-  and no highlights: a description of it as dark would have passed it, and the measured statistics
-  did not.
+  fraction of one.
 
 - The Charter is upstream of the implementation, so the code answers to it, not the other way
   round. **When the code you have just written disagrees with the Charter, don't rewrite the
@@ -404,17 +388,13 @@ one game's design or technology.
   shared thing in the brief, and give each builder its share.** Split builders by what they read,
   and give each shared file one owner.
 
-  *For example:* Six researchers spent one search budget in the order they were launched; two
-  prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
-  running. Split by what they read, with one owner for each shared file, the builders after them
-  merged without a conflict.
+  *For example:* Six researchers spent one search budget in the order they were launched.
 
 - An agent's worktree is cut from the default branch, not from the branch the session is on, so a
   builder can start from code the session has long since moved past. **Before a builder starts in a
   worktree, have it check that the worktree holds your latest commits.**
 
-  *For example:* Every builder in one session started from the template's first commit, and in
-  another, a builder measured code that was no longer there.
+  *For example:* A builder measured code that was no longer there.
 
 #### When you are about to measure, test or trust a result
 
@@ -436,9 +416,7 @@ flattens, and what only the screen or the speakers can show.
   *For example:* A designer asked for denser forest so that a player flying overhead would lose
   sight of fleeing villagers. A script ranked candidate changes by whether villagers had a covered
   escape route, an agent's idea of what forest was for, and put denser forest last. It had measured
-  a purpose the designer never had. In another game, *"attack roughly 1.6x as often"* asked for a
-  rate the player feels; a cycle 1.6 times shorter moved that rate only 1.38 to 1.51 times, because
-  the time spent out of range did not shrink, and the cycle had to halve.
+  a purpose the designer never had.
 
 - A state says what a thing means to do; the distance says whether it is getting there. Something
   stuck reports the right state for ever. **When a thing has a destination, measure the distance
@@ -461,12 +439,10 @@ flattens, and what only the screen or the speakers can show.
   Take the frame from the camera the player has, reach a posed state by a second route before
   trusting it, and judge anything with a front while it moves. Measure a thing where it shows: a
   surface along its edge, an effect at the place it acts, the frames a count promised. And when the
-  parts do not add up to the whole, find the remainder before reading the parts.
+  parts do not add up to the whole, find the remainder before reading the parts; when a whole will
+  not move, measure each part alone (*Observe before guessing again*, below).
 
-  *For example:* A river 12.5 km long and a river going round in circles are the same number. Every
-  animal in one game ran tail first from the day it was drawn, through a sequence of stills that
-  never showed it. And a boot's named stages left 2.6 s unaccounted for, which turned out to be one
-  frame.
+  *For example:* A river 12.5 km long and a river going round in circles are the same number.
 
 - Some defects exist only on screen, where a test that checks state cannot see them. **When you
   check anything a player sees, look at the frame: pose each state worth seeing with a shots
@@ -493,17 +469,15 @@ flattens, and what only the screen or the speakers can show.
   ends there; a trace, the game's state printed over a few seconds of the simulation running in
   Node, shows the whole course. Traces are cheap where the simulation runs in Node with no renderer.
   **Before you write or trust a test of how the game's state behaves, trace it.** When you do write
-  the test, assert a motion by its course as well as by where it ends. A trace is only as good as
-  its setup, though: when a trace disagrees with the game, suspect the trace first, and call the
-  real setup rather than rebuilding it by hand. Scratch scripts named `scratch-*` at the repo root
-  are ignored by git for exactly this, and what they find goes in the design log. When one proves
-  itself and will be wanted again, commit it; as a designer put it, *"At least if we have it in a
-  commit somewhere, we can easily go back to it as needed."*
+  the test, assert a motion by its course as well as by where it ends. A trace is an instrument like
+  any other: when it disagrees with the game, suspect the trace first (*An instrument is code*,
+  below). Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this,
+  and what they find goes in the design log. When one proves itself and will be wanted again, commit
+  it; as a designer put it, *"At least if we have it in a commit somewhere, we can easily go back to
+  it as needed."*
 
   *For example:* In one game, a one-second trace of the state while a key was held found every
-  defect in the flight model and the fire, where their passing tests found none. In another, a
-  hand-made copy of one function, missing the body's orientation, produced three plausible stories
-  about a broken game before the fault turned out to be the script.
+  defect in the flight model and the fire, where their passing tests found none.
 
 - An agent cannot hear: what a session knows of its game's sound it knows from numbers and
   pictures of the samples. **When you change a sound, or one is reported wrong, render it with
@@ -526,8 +500,9 @@ whose answers you already know: a *negative control*, which should give no signa
 *positive control*, which should give a clear one. Choose them on purpose, from what you know of
 the problem and of the instrument. A null observation means something only beside a positive control
 that came back non-null; a pass means something only beside a negative control that failed. And
-check that nothing around the instrument, its server, its machine or its timing, is deciding what it
-reports.
+check that nothing around the instrument, its server, its machine, its timing or what its setup
+switched off, is deciding what it reports. An instrument is code, too, and can be wrong the way any
+code can.
 
 - A blind instrument and a true *nothing happened* give the same observation, and a false *nothing
   happened* reads as *not enough*, which pushes the design the wrong way. **A null observation is
@@ -541,27 +516,27 @@ reports.
   between them had been added to an address the game did not read, so both had loaded the default,
   and the readout's line naming the option that was running was all that caught it.
 
-- A method that reports a rate or a measure (a traversal, a success rate, a margin) can give the
-  same number whether the effect is there or not, and a generated thing measured alone has nothing
-  to be read against. **Before you read a method's number, ask what it would have given where the
-  effect was absent; before you tune a generated thing, measure a real one with the same instrument,
-  through the same renderer.**
+- The converse holds for a number. A method that reports a rate or a measure (a traversal, a success
+  rate, a margin) can give the same number whether the effect is there or not, and a number tuned
+  toward has to be one the instrument reads correctly. **A number is not a finding until you know
+  what the method gives where the effect is absent: run that negative control before reading it.**
+  Before you tune a generated thing, measure a real one with the same instrument, through the same
+  renderer, as the positive control for what you are tuning toward.
 
-  *For example:* A circuit flown past villages found 73% of them warned, and would have found the
-  same against a warning network half as strong; a success rate turned out to be a watchdog's
-  rescues. Generated mountains measured 66° at the median, which meant nothing until a real range,
-  measured the same way, stood beside them at 32°.
+  *For example:* A circuit flown past villages found most of them warned, and would have found the
+  same against a warning network half as strong.
 
-- An instrument is code, and a copy of the game's code made by hand for it is missing whatever its
-  maker did not think of, and reports just as confidently. **When an instrument reports a value the
-  game's code also computes, such as where something falls on screen, have it call that code, and
-  check a few of its numbers against the game's own before reading the rest.** When an instrument
-  turns out to do other than its documentation says, change one of the two in the same session.
+- An instrument is code, and a copy of the game's code made by hand for it, in a trace, a script or
+  a readout, is missing whatever its maker did not think of, and reports just as confidently. **When
+  an instrument needs a value the game's code also computes, such as where something falls on
+  screen, have it call that code rather than rebuilding it, and check a few of its numbers against
+  the game's own before reading the rest.** When an instrument turns out to do other than its
+  documentation says, change one of the two in the same session.
 
-  *For example:* A script that placed enemies on screen by its own projection put a boss 2.5 m under
-  the floor, and two log entries explained a boss lost off the bottom of the screen that was really
-  off its side and top; calling the renderer's own projection, it agreed to a hundredth. In another
-  game, a readout and the camera hook disagreed for eleven days and were worked round three times.
+  *For example:* A script that placed enemies on screen by a projection of its own put a boss under
+  the floor, and the log explained a boss lost off the bottom of the screen that was really off its
+  side and top. Changed to call the renderer's own projection, it agreed with the game to a
+  hundredth.
 
 - A passing test is an observation; *the bug is fixed* is a finding. A test that has never failed
   has not shown that it can, one that has never passed on known-good behaviour has not shown that it
@@ -593,10 +568,15 @@ reports.
   failures before its exit code; and when CI fails where a local run passed, find what CI runs
   differently.
 
-  *For example:* A suite lost runs to a dev server reloading pages under it, and passed a checkout
-  with a bug in it because another checkout's server answered on the port; the end-to-end setup that
-  ships here carries both fixes. A timeout put down as a flake ran 48 s before a fix and 66 s after
-  it.
+  *For example:* A suite passed a checkout with a bug in it because another checkout's server
+  answered on the port; the end-to-end setup that ships here carries the fix.
+
+- A suite that switches a whole subsystem off, such as audio, has decided by its setup that nothing
+  in that subsystem can fail it. **When a subsystem is switched off under test, boot the game once
+  with it on and read the page's errors.**
+
+  *For example:* With audio off in tests, a sound threw on every strike while the suites stayed
+  green.
 
 - A development machine draws faster than CI's runner, so a limit set locally can fail on CI with
   nothing wrong in the game. **When you set a test's time limit, set it from a run at CI's speed,
@@ -608,11 +588,10 @@ reports.
 - An edit that silently matches nothing is worse than one that fails, a command reported as stopped
   may have run partway, and a summary of a session is a memory of the files, not the files. **Grep
   for the new text after a scripted edit, after one that was reported as stopped, and after the
-  context has been summarised.** Read the file before saying what it holds. For anything drawn, find
-  the line that adds it to the scene: a probe can show a thing alive that nothing draws.
+  context has been summarised.** Read the file before saying what it holds.
 
   *For example:* After one such summary, an agent expected nine changed files, and `git status`
-  showed four. A probe showed a new object alive, and it had never been added to the scene.
+  showed four.
 
 ##### Observe before guessing again
 
@@ -624,15 +603,14 @@ guess or another turn of the same dial.
   usually answers in one run. **After two fixes have missed, stop fixing, and build a way to see
   what the code is actually doing at the failure, such as a readout, a count or a distance, before
   trying a third.** Two plausible causes that both turn out not to be it mean the same. When a stage
-  produces too few of something, count what exists before tuning what rejects it, and when a
-  measure of a whole, such as a mix, will not move, measure each part alone. And after two
+  produces too few of something, count what exists before tuning what rejects it, and when a measure
+  of a whole, such as a mix, will not move, measure each part alone, and where the parts do not add
+  up to the whole, find the remainder (*A summary number is a projection*, above). And after two
   wrong guesses at a design, ask for their picture, or for how other games, old or new, have done
   it.
 
   *For example:* Three approaches to one problem, tried in turn, all missed; a readout built
-  afterwards answered it in one run. Two changes to a boss's music left its low end at 46% and 47%;
-  its instruments, rendered one at a time, showed a choir loudest, and under the drum the low end
-  went to 72%.
+  afterwards answered it in one run.
 
 - Tuning a rule of thumb moves its failures around rather than removing them, and a problem that has
   resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
@@ -646,9 +624,9 @@ guess or another turn of the same dial.
 
 Code is known to work only where it has been checked: on the cases it was developed against, in the
 context it was written for, in the states and moments someone reached. New contexts, new states,
-untried cases, idle time, the parts of the game nobody has reached, and the seams between branches
-are all outside that. The seams are checked when branches meet (*When you are about to plan, merge
-or hand over*, above).
+untried cases, idle time, a threat that keeps coming, the parts of the game nobody has reached, and
+the seams between branches are all outside that. The seams are checked when branches meet (*When
+you are about to plan, merge or hand over*, above).
 
 - Old code was built against the design and constraints of its day, and even forward-looking code
   can only account for so much. Building on top of it, or running it in a context it was never
@@ -660,10 +638,7 @@ or hand over*, above).
   removal leaves exposed, a fix for a failure that was the test's own.
 
   *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
-  in two old places, its lift and its thrust, neither of them in the new code. An action that held
-  the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
-  designer roared instead, and watched the dragon's head go up. A tolerance at a wall was fine until
-  fire could cross it.
+  in two old places, its lift and its thrust, neither of them in the new code.
 
 - The tests written beside a new state all ask whether the new thing works. None of them asks
   whether the old things still do, and each part that reads the thing reads it its own way. **When
@@ -671,8 +646,7 @@ or hand over*, above).
   reads it, read how each one reads it, and run their tests, not only yours.**
 
   *For example:* Villagers given a new sheltering state walked calmly indoors past the dragon, with
-  every new test green. An older test of the villagers caught it. In the same game, a heading read
-  as (cos, sin) in one part and (sin, cos) in another stood houses askew.
+  every new test green. An older test of the villagers caught it.
 
 - The cases a change is traced on become the cases it is right about. **Try a change on cases it was
   not developed against.**
@@ -686,15 +660,7 @@ or hand over*, above).
   anything else waits; when something runs from a thing, trace it with the thing still coming.**
 
   *For example:* A world left alone for twenty minutes broke two of the promises its design made
-  about it. With the threat left on top of them, birds took off 1,800 times in 30 s, and fleeing
-  people climbed into burning boats.
-
-- A suite that switches a whole subsystem off, such as audio, cannot see what that subsystem throws.
-  **When a subsystem is switched off under test, boot the game once with it on and read the page's
-  errors.**
-
-  *For example:* With audio off in tests, a sound threw on every strike for five days of green
-  suites.
+  about it.
 
 - A game is a chain of conditions: the door opens once the key is held, the next wave starts once
   this one is cleared. One that can never come true stalls the game silently, in a place nothing
@@ -709,10 +675,7 @@ or hand over*, above).
   sitting instead.
 
   *For example:* A bot's first full run found a shut door that could be walked round, in under a
-  second. Another's found enemies standing still on a crate, and a path that could not climb a
-  stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
-  had made it lose sooner. And a trace of one held stick cleared five enemies in 2 s, untouched,
-  because every swing's splash staggered the whole crowd.
+  second.
 
 #### When you are about to hand them a build, or write up what they played
 
@@ -725,11 +688,9 @@ or hand over*, above).
   the whole gate while they play.** Do the same whenever they want to play. If the gate goes red,
   tell them what broke before they report on it, then fix it.
 
-  *For example:* One game's villagers once walked calmly indoors past the dragon, green across
-  twenty unit tests and eight new end-to-end tests. Another's gate took five minutes even after it
-  had been cut from fifteen, and every sitting used to wait for it. And a build offered *"hold the
-  triggers on a goblin, then push the right stick at another"*; the designer did, and the push swung
-  the sword, because the stick aimed the pistols at only one kind of enemy.
+  *For example:* A build offered *"hold the triggers on a goblin, then push the right stick at
+  another"*; the designer did, and the push swung the sword, because the stick aimed the pistols at
+  only one kind of enemy.
 
 - Their time at the game is the rarest thing the project has: a finding folded into a commit
   message is lost, and one titled by its conclusion hides that the game was played at all. And a
@@ -741,8 +702,7 @@ or hand over*, above).
   shape.
 
   *For example:* A complaint that the *second* beacon did not light said that the first was legible
-  at range. A change asked for in two halves was logged as one half played, and the other half was
-  *"a key part"* of it.
+  at range.
 
 ### This project's own
 
