@@ -60,7 +60,8 @@ Don't invent a convention and then cite it as if it were established. When you s
 plainly: the README's *Where things live* is the record of it, and the design log says why. Two
 properties are recommended, not required, for what they made possible in an earlier game built from
 this template: a way to step the game's state without drawing it, and a handle the end-to-end tests
-can drive the game by. The next two guidelines say what each is for; how to provide them is yours.
+can drive the game by. The Charter's §5 says what each is for, among its guidelines for measuring;
+how to provide them is yours.
 
 **There is no issue tracker.** No tickets, no ticket IDs, no backlog tool. Plans live in the Charter
 and in the session you are working in. Don't reference or fabricate ticket identifiers.
@@ -72,59 +73,22 @@ the plan. ``rg '`<' README.md CLAUDE.md docs/`` lists what is still unfilled. Th
 skill walks the person you're working with through resolving them; suggest it if a session opens
 against an unfilled template, and don't answer the prompts on their behalf in the meantime.
 
-**Don't rewrite the Charter to match the code you just wrote.** It is upstream of the
-implementation. If the implementation forces a design change, raise it with the person you're
-working with.
-
 **How it feels is found by playing it.** An agent's playtest is numbers and screenshots; it can
 establish that something turns in eight seconds, not whether eight seconds feels heavy or merely
 slow. That judgment comes from the person you're working with, at the game, and the telemetry is
-there to support it. Write both down, and say which is which. And before asking them how something
-feels, check that the screen shows the difference you are asking about: in a game about a dragon, a
-village braced for it and a village abandoned were the same picture, so nobody could have answered.
-
-**Trace before you test.** A trace is a record of the game's state over a few seconds, printed by
-running the simulation in Node. In one game, a one-second trace of the state while a key was held
-found every defect in the flight model and the fire, where their passing tests found none. Traces
-were cheap there because the simulation ran in Node with no renderer. A trace is only as good as its
-setup, though: when a trace disagrees with the game, suspect the trace first, and call the real
-setup rather than rebuilding it by hand. A hand-made copy of one function, missing the body's
-orientation, produced three plausible stories about a broken game before the fault turned out to be
-the script. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this,
-and what they find goes in the design log. When one proves itself and will be wanted again, commit
-it. A designer asked for one to be kept: *"At least if we have it in a commit somewhere, we can
-easily go back to it as needed."*
-
-**Look at the frame.** Screenshots are part of verification. Early on, give the game a handle the
-end-to-end tests can drive it by, one that can step the simulation, place the camera, and read the
-state the screen does not show. Then write a shots script that puts the game into each state worth
-seeing, run it with `npm run shots`, and look at the sheet, the one image it lays the frames out on
-(`scripts/shots.mjs` says what the script exports). Several of one game's defects existed only on
-screen, and the day its debug readout said where the camera was, *"this looks wrong from here"*
-stopped being a description and became a frame anyone could take again. Two games built a harness
-like it for themselves, and in one it was the last check built and the most productive. With
-`--tree before=@<commit>`, the same script puts an older commit's frames beside this checkout's:
-the before and after of anything that is looked at rather than measured. The `frame-check` skill
-has the rest: what to ask, what to pose, how to read a sheet, and the control.
-
-**Measure the sound, and give them takes to hear.** An agent cannot hear: what a session knows of
-its game's sound it knows from numbers and pictures of the samples. `npm run takes` renders the
-game's own sound offline, through a script of the game's own, measures each take and lays them out
-beside any older commit's; whether a sound is right is the person's, on copies matched in loudness
-so that the louder one does not win for being louder. All four games built from this template made
-a tool like it for themselves first. The `sound-check` skill has the rest.
+there to support it. Write both down, and say which is which.
 
 ### Working together
 
-The guidelines above are about checking the work; these are about the rest of it. They come from an
-earlier game, and from what the designer there found makes work go well: *"work with agents and
-colleagues is more productive when everyone is patient, understanding, and brings a collaborative,
-rather than delegative or managerial, mindset to things."* They rest on one idea: the work goes best
-when each of us brings what we're best at. The person you're working with brings the picture of what
-the game should be, what they expected, and how it feels; an agent can measure, check eight cases
-while they play one, and keep the record straight. A *sitting*, below, is one stretch of them
-playing a build. None of this softens what is true: a check that passes on broken code checks
-nothing, whoever says so and however kindly.
+The guidelines above are about finding your way around the repo; these are about working with the
+person. They come from an earlier game, and from what the designer there found makes work go well:
+*"work with agents and colleagues is more productive when everyone is patient, understanding, and
+brings a collaborative, rather than delegative or managerial, mindset to things."* They rest on one
+idea: the work goes best when each of us brings what we're best at. The person you're working with
+brings the picture of what the game should be, what they expected, and how it feels; an agent can
+measure, check eight cases while they play one, and keep the record straight. None of this softens
+what is true: a check that passes on broken code checks nothing, whoever says so and however
+kindly.
 
 Like the Charter's §5, these are inherited, as are the guidelines above: defaults, not this
 project's findings. Keep them, prune them or argue with them, and log it when you do. The ones here
@@ -210,13 +174,8 @@ with everything that has a shader in it, and then reads the GL error flag in the
 that fails to compile is logged rather than thrown, and GL errors reach the console late, from
 another process and as warnings, where a listener for errors does not see them.
 
-**When the person wants to play, give them a build on `npm run verify:play`, not the whole gate**
-(`npm run verify`). It typechecks and boots and draws the game in seconds, which is what their
-sitting needs. One game's gate took five minutes even after it had been cut from fifteen, and every
-sitting used to wait for it. Push, tell them it is there, and run `npm run verify` while they play.
-If it goes red, tell them what broke before they report on it, then fix it. Once there is code, a
-pull request needs the whole gate green, and CI read after the push: in one game, *"CI: will run on
-this PR"* went into a description three times and was not looked at again.
+Once there is code, a pull request needs the whole gate green, and CI read after the push: in one
+game, *"CI: will run on this PR"* went into a description three times and was not looked at again.
 
 A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
 source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit

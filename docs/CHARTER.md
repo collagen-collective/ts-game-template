@@ -221,6 +221,13 @@ one game's design or technology.
   should look like; one drawing settled it in a look. Separately, two colours were shown side by side
   at different brightness, and the choice followed the brightness rather than the colour.
 
+- A question about a difference the screen does not show cannot be answered, however it is put.
+  **Before asking them how something feels, check that the screen shows the difference you are
+  asking about.**
+
+  *For example:* In a game about a dragon, a village braced for it and a village abandoned were the
+  same picture, so nobody could have answered.
+
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
   every distance and adds up across the whole world. **When they choose from close-ups, show them
   what the choice adds up to in play before building on it.**
@@ -327,6 +334,10 @@ one game's design or technology.
   *For example:* In one game, seven readings of how the designer pictured rebinding a key were said
   back and confirmed, and the build needed nothing changed at its first sitting.
 
+- The Charter is upstream of the implementation, so the code answers to it, not the other way
+  round. **When the code you have just written disagrees with the Charter, don't rewrite the
+  Charter to match it; if the implementation forces a design change, raise it with the person.**
+
 #### When you are about to run several builders at once
 
 - Each builder boots its own browser for screenshots and for the suite. Past what the cores can
@@ -402,6 +413,34 @@ flattens.
   animal in one game ran tail first from the day it was drawn, through a sequence of stills that
   never showed it.
 
+- A test checks the end state it was written for; a trace, the game's state printed over a few
+  seconds of the simulation running in Node, shows the whole course. Traces are cheap where the
+  simulation runs in Node with no renderer. **Before you write or trust a test of how the game's
+  state behaves, trace it.** A trace is only as good as its setup, though: when a trace disagrees
+  with the game, suspect the trace first, and call the real setup rather than rebuilding it by
+  hand. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this, and
+  what they find goes in the design log. When one proves itself and will be wanted again, commit
+  it; as a designer put it, *"At least if we have it in a commit somewhere, we can easily go back
+  to it as needed."*
+
+  *For example:* In one game, a one-second trace of the state while a key was held found every
+  defect in the flight model and the fire, where their passing tests found none. In another, a
+  hand-made copy of one function, missing the body's orientation, produced three plausible stories
+  about a broken game before the fault turned out to be the script.
+
+- Some defects exist only on screen, where a test that checks state cannot see them. **When you
+  check anything a player sees, look at the frame: pose each state worth seeing with a shots
+  script, run `npm run shots`, and look at the sheet it lays the frames out on.** Early on, give the
+  game a handle the end-to-end tests can drive it by, one that can step the simulation, place the
+  camera, and read the state the screen does not show; `scripts/shots.mjs` says what the script
+  exports. With `--tree before=@<commit>`, the same script puts an older commit's frames beside
+  this checkout's: the before and after of anything that is looked at rather than measured. The
+  `frame-check` skill has the rest: what to ask, what to pose, how to read a sheet, and the
+  control.
+
+  *For example:* The day one game's debug readout said where the camera was, *"this looks wrong
+  from here"* stopped being a description and became a frame anyone could take again.
+
 - How the picture looks is judged at the game, and a test checks state. Tests that draw are the
   slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
   second of play. **Before a test draws a frame, ask whether it could fail with nothing wrong on the
@@ -409,6 +448,13 @@ flattens.
 
   *For example:* A designer put it this way: *"we only need a test to draw something when we need to
   check 'does this look correct?' … that's what our playtest sessions are for."*
+
+- An agent cannot hear: what a session knows of its game's sound it knows from numbers and
+  pictures of the samples. **When you change a sound, or one is reported wrong, render it with
+  `npm run takes`, measure each take, and give the person copies matched in loudness to judge, so
+  that the louder one does not win for being louder.** It renders the game's own sound offline,
+  through a script of the game's own, and lays the takes out beside any older commit's. The
+  `sound-check` skill has the rest.
 
 ##### Calibrate the instrument
 
@@ -576,6 +622,15 @@ are all outside that.
 
   *For example:* One game's villagers once walked calmly indoors past the dragon, green across
   twenty unit tests and eight new end-to-end tests.
+
+- `npm run verify:play` typechecks, boots and draws the game in seconds, which is what a sitting
+  needs; the whole gate (`npm run verify`) takes minutes. **When they want to play, give them a
+  build on `npm run verify:play`, not the whole gate: push, tell them it is there, and run
+  `npm run verify` while they play.** If it goes red, tell them what broke before they report on
+  it, then fix it.
+
+  *For example:* One game's gate took five minutes even after it had been cut from fifteen, and
+  every sitting used to wait for it.
 
 - Their time at the game is the rarest thing the project has: a finding folded into a commit
   message is lost, and one titled by its conclusion hides that the game was played at all. **After
