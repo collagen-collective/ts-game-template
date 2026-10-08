@@ -58,13 +58,14 @@ conflict decided, with whose decision it was. An update that brought only toolin
 entry.
 
 **When a finding this project sent comes home.** The update brings back, under *Inherited*,
-guidelines this project already has under *This project's own*. Keep this project's own copy, which
-carries its own story, and delete the inherited copy. The update remembers deletions, so it will not
-come back. If the template's wording is better, take the wording into the project's own copy first.
-A guideline that was sent from the design log, and never written under *This project's own*, has no
-copy to keep: write it there now, in the project's words and citing the entry that paid for it, and
-then delete the inherited copy. If the project also holds it inherited from another game, it has
-paid for that guideline again, so it moves to *This project's own* too.
+guidelines this project already has under *This project's own*. Reconcile each pair as the
+Charter's §5 says under *Writing a guideline*, the way you would your own code against a shared
+package's: compare the two, show the person the comparison, and say which of its three cases each
+pair is. Usually the project's copy says nothing the inherited one does not, and is deleted; what it
+says that would hold for any game goes back to the template (*Sending a finding to the template*,
+below); and what only this game could use stays, with the inherited guideline moved under *This
+project's own* to carry it. The same goes for a guideline of this project's own that turns out to
+overlap one another game sent. The update's log entry says which way each pair went.
 
 ## Sending a finding to the template
 
@@ -92,9 +93,9 @@ Which game a guideline came from belongs in the pull request and its commits, no
 
 **Write it into the project first.** Before a guideline goes to the template, put it under *This
 project's own* in the project's Charter, with its reason and its design-log entry, and send that
-without the entry. A guideline sent from the design log comes home with no copy of its own to keep:
-one game sent four guidelines to §5, three of them only ever written in its log, and its first
-update had to write all three into its Charter while resolving the conflicts.
+without the entry. The project needs the guideline while the pull request is open, and one left
+only in the design log is filed where nobody looks before acting. When the template's copy comes
+home, the two are reconciled as *When a finding this project sent comes home* says.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief
