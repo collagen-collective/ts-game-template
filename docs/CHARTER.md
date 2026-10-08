@@ -413,21 +413,6 @@ flattens.
   animal in one game ran tail first from the day it was drawn, through a sequence of stills that
   never showed it.
 
-- A test checks the end state it was written for; a trace, the game's state printed over a few
-  seconds of the simulation running in Node, shows the whole course. Traces are cheap where the
-  simulation runs in Node with no renderer. **Before you write or trust a test of how the game's
-  state behaves, trace it.** A trace is only as good as its setup, though: when a trace disagrees
-  with the game, suspect the trace first, and call the real setup rather than rebuilding it by
-  hand. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this, and
-  what they find goes in the design log. When one proves itself and will be wanted again, commit
-  it; as a designer put it, *"At least if we have it in a commit somewhere, we can easily go back
-  to it as needed."*
-
-  *For example:* In one game, a one-second trace of the state while a key was held found every
-  defect in the flight model and the fire, where their passing tests found none. In another, a
-  hand-made copy of one function, missing the body's orientation, produced three plausible stories
-  about a broken game before the fault turned out to be the script.
-
 - Some defects exist only on screen, where a test that checks state cannot see them. **When you
   check anything a player sees, look at the frame: pose each state worth seeing with a shots
   script, run `npm run shots`, and look at the sheet it lays the frames out on.** Early on, give the
@@ -448,6 +433,21 @@ flattens.
 
   *For example:* A designer put it this way: *"we only need a test to draw something when we need to
   check 'does this look correct?' … that's what our playtest sessions are for."*
+
+- A test checks the end state it was written for; a trace, the game's state printed over a few
+  seconds of the simulation running in Node, shows the whole course. Traces are cheap where the
+  simulation runs in Node with no renderer. **Before you write or trust a test of how the game's
+  state behaves, trace it.** A trace is only as good as its setup, though: when a trace disagrees
+  with the game, suspect the trace first, and call the real setup rather than rebuilding it by
+  hand. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this, and
+  what they find goes in the design log. When one proves itself and will be wanted again, commit
+  it; as a designer put it, *"At least if we have it in a commit somewhere, we can easily go back
+  to it as needed."*
+
+  *For example:* In one game, a one-second trace of the state while a key was held found every
+  defect in the flight model and the fire, where their passing tests found none. In another, a
+  hand-made copy of one function, missing the body's orientation, produced three plausible stories
+  about a broken game before the fault turned out to be the script.
 
 - An agent cannot hear: what a session knows of its game's sound it knows from numbers and
   pictures of the samples. **When you change a sound, or one is reported wrong, render it with
@@ -617,20 +617,16 @@ are all outside that.
 
 #### When you are about to hand them a build, or write up what they played
 
-- Ten seconds at the game can catch what a whole gate missed. **When a change touches something a
-  player does, offer them a minute of play, and say what might be worth trying.**
+- Ten seconds at the game can catch what a whole gate missed, and a sitting needs a build in
+  seconds: `npm run verify:play` typechecks, boots and draws the game in that time, where the whole
+  gate (`npm run verify`) takes minutes. **When a change touches something a player does, offer
+  them a minute of play: push a build that passes `npm run verify:play`, tell them it is there and
+  what might be worth trying, and run the whole gate while they play.** Do the same whenever they
+  want to play. If the gate goes red, tell them what broke before they report on it, then fix it.
 
   *For example:* One game's villagers once walked calmly indoors past the dragon, green across
-  twenty unit tests and eight new end-to-end tests.
-
-- `npm run verify:play` typechecks, boots and draws the game in seconds, which is what a sitting
-  needs; the whole gate (`npm run verify`) takes minutes. **When they want to play, give them a
-  build on `npm run verify:play`, not the whole gate: push, tell them it is there, and run
-  `npm run verify` while they play.** If it goes red, tell them what broke before they report on
-  it, then fix it.
-
-  *For example:* One game's gate took five minutes even after it had been cut from fifteen, and
-  every sitting used to wait for it.
+  twenty unit tests and eight new end-to-end tests. Another's gate took five minutes even after it
+  had been cut from fifteen, and every sitting used to wait for it.
 
 - Their time at the game is the rarest thing the project has: a finding folded into a commit
   message is lost, and one titled by its conclusion hides that the game was played at all. **After
