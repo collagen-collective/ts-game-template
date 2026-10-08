@@ -215,21 +215,18 @@ one game's design or technology.
   *or something else* got the reading nobody had offered.
 
 - Whether something looks, moves or sounds right is hard to settle in words, which each reader
-  pictures differently, and the eye and ear compare whatever differs most, not what you meant them
-  to compare. **When the question is how something looks, moves or sounds, ask in that medium, vary
-  one thing at a time, and match a compared pair on everything but the thing being compared.** Show
-  each option at the same moments, so that the moment is not what differs.
+  pictures differently. Shown instead, the question can still go wrong two ways: nobody can judge a
+  difference the screen does not show, however it is asked, and the eye and ear compare whatever
+  differs most, not what you meant them to compare. **When the question is how something looks,
+  moves, sounds or feels, ask in that medium, and show them the difference you are asking about and
+  only that difference: check that what they will see or hear shows it, and keep the options alike
+  in everything else, down to the moment each is shown at.**
 
   *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
-  should look like; one drawing settled it in a look. Separately, two colours were shown side by side
-  at different brightness, and the choice followed the brightness rather than the colour.
-
-- A question about a difference the screen does not show cannot be answered, however it is put.
-  **Before asking them how something feels, check that the screen shows the difference you are
-  asking about.**
-
-  *For example:* In a game about a dragon, a village braced for it and a village abandoned were the
-  same picture, so nobody could have answered.
+  should look like; one drawing settled it in a look. In a game about a dragon, a village braced for
+  it and a village abandoned were the same picture, so nobody could have answered. And two colours
+  were shown side by side at different brightness, and the choice followed the brightness rather
+  than the colour.
 
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
   every distance and adds up across the whole world. **When they choose from close-ups, show them
