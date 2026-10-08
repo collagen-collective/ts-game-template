@@ -117,7 +117,8 @@ deliberately or keep them, but don't ignore them silently.
 thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
 the type-checker can tell you so: unit tests import modules directly, so a module keeps a green
 test long after nothing in the running game reaches it. This is the specific way the previous
-attempt failed, repeatedly.
+attempt failed, repeatedly. The same holds for anything drawn: a probe can show a thing alive that
+was never added to the scene, so find the line that adds it.
 
 **Play it, and test only what has stopped changing.** While a system's feel is still being found,
 it needs playing, not tests or documents: every test written against it is a bet you will pay to
