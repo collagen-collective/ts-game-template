@@ -2,7 +2,7 @@ name: Template update
 
 # Once a week, brings in what the template has gained since this project was last brought up to it,
 # and opens a pull request with it: `npm run template:update`, run where nobody has to remember to.
-# README.md, under *Staying in step with the template*, says how it works and what it needs.
+# README.md, under *Staying in step with the template*, says how it fits together.
 #
 # Where both this project and the template changed the same lines, the pull request carries the
 # conflict markers, and its description lists the files: resolve them on the branch, as after any

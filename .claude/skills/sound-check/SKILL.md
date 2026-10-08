@@ -61,8 +61,7 @@ Audio graph builds into any `BaseAudioContext`. What that needs from the game:
   `AudioContext`. All four games' sound already did, or could, with a line changed.
 - **The game's own path, not a copy of it.** Render through the same mixer, buses, reverb and
   limiter that play uses. A copy made for measuring drifts from the game the first time either is
-  changed, and then measures nothing (Charter §5: *When two tools, features or implementations
-  overlap, keep one*).
+  changed, and then measures nothing (`CLAUDE.md`: *keep one of each thing*).
 - **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. Kyle on
   Duty's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
   every sample and to the last digit of every measure; then a difference between two trees is the
@@ -175,7 +174,8 @@ moved, which showed the table had been taken before the cut came in.
   the before, or in this checkout with the fix taken out. A take that comes back silent proves
   nothing about a sound being right.
 - **Keep what the person called right in the same run.** When they say one sound is right and
-  another is not, take both, and check the right one did not move (Charter §5).
+  another is not, take both, and check the right one did not move (`CLAUDE.md`, *An observation is
+  not a finding…*).
 - **Match the pair on everything but the change.** Same seed, same moment, same length, same
   distance. Takes repeat exactly, so a difference in an unchanged take means the pair is not
   matched.

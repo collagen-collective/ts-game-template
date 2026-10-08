@@ -1,5 +1,7 @@
-# The three documents merge through scripts/merge-docs.mjs, which keeps what
-# both sides added where that is all they did. `npm install` registers it.
+# The three documents and CLAUDE.md merge through scripts/merge-docs.mjs, which
+# keeps what both sides added where that is all they did. `npm install`
+# registers it.
 docs/DESIGN-LOG.md merge=docs
 docs/CHARTER.md merge=docs
 docs/OPEN-QUESTIONS.md merge=docs
+CLAUDE.md merge=docs
