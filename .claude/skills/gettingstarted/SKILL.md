@@ -39,10 +39,8 @@ do what they asked — and log in `docs/DESIGN-LOG.md` that the entry was agent-
 decided.
 
 **Say it back before you write it.** Before a section goes into the Charter, tell them what you are
-about to write, in the words you will use, and let them correct it. Their answer leaves open exactly
-what the written version has to choose, and a read-back finds those places while they cost nothing.
-In one game built from this template, seven readings of one description were said back before
-anything was built from it, and the build needed no changes the first time the person played it.
+about to write, in the words you will use, and let them correct it (`CLAUDE.md`, *Find out what
+they picture before you build*).
 
 ## Before you start
 
@@ -74,8 +72,7 @@ thing at a time, and file what stays open. Where they have granted you freedom a
 decision is yours, not theirs, and it has to stay visible as yours: **list every call you made in
 the first log entry, each with its reason, apart from what the brief said.** In a week nobody can
 tell which sentence in the Charter the brief said and which one an agent invented, and both read as
-settled; the Charter's authority depends on the difference. One earlier game's first entry listed
-seven such calls, under a title that said why: *so they stay distinguishable*.
+settled; the Charter's authority depends on the difference.
 
 ---
 

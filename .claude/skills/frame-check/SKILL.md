@@ -5,31 +5,22 @@ description: Look at what the game actually shows on screen, find what is wrong 
 
 # Checking what the screen shows
 
-**Tests read the state, and the screen can disagree with it.** In one game built from
-this template, a tour of the whole game in frames found six defects with every test green, three of
-them in the page's HTML drawn over the picture: the prologue and the ending under the black of the
-fade, a troll frozen under the floor through its own reveal, a lintel across half the screen. After
-four places built apart were merged, a later tour found 22 more where they met, and the next found
-10 where their fixes met. Nothing that reads the simulation could have seen any of them.
+**Tests read the state, and the screen can disagree with it.** In one game, a tour of the whole
+game in frames found six defects with every test green, and after four places built apart were
+merged, the next tour found 22 more where they met. Nothing that reads the simulation could have
+seen any of them.
 
 So this compares two things, and assumes neither: **what the state says** (where things are, what
 is showing, where the camera is) and **what the frame shows**. The instrument is
 `scripts/shots.mjs`; its header has every option and the reason for each choice. Outputs go to
 `scratch-*` paths, which git ignores.
 
-It was tried before it shipped. Two agents were given one report, *"Riding the lift up out of the
-galleries, it looked like Baldur wasn't standing on anything"*, on copies of that game in which
-a lift's deck had been drawn 1.1 m under him while it moved, with every test green. With this skill
-the defect was found, fixed and shown fixed in 16 minutes; without it, in 21. Both were right, and
-what both built for themselves is in it now.
-
 ## 1. Start with what they saw
 
 Before the code, the report. Ask the person you're working with what they saw, where they were,
 through which camera, at what moment, and what they expected to see instead. Their words are
 usually more exact than they sound: *"this looks wrong from here"* is a place and a camera, and the
-frame you need is taken from there. What they expected is worth more than what they saw. A defect
-is something an agent can also find, and an expectation is not.
+frame you need is taken from there.
 
 If a frame disagrees with what they saw, suspect the frame: the pose, the camera, the moment, or
 the build it was taken from. If nobody is around to ask, write down the questions you would have
@@ -37,8 +28,7 @@ asked, and bring them back with what you found.
 
 **Then rule the state in or out.** If the game's state runs without a browser, a trace of it in
 Node says in a minute whether the fault is in the state or in the drawing (`CLAUDE.md`, *Check the
-thing itself*). The agent without this skill did that first, and knew within a minute that the
-game had Baldur on the deck and only the picture did not.
+thing itself*).
 
 ## 2. Give the game a handle, once
 
@@ -55,14 +45,12 @@ choice, and the README's *Where things live* records it. What a script needs fro
 - **The state:** a way to read what the screen does not show, so each frame can be checked
   against it.
 - **What was drawn:** where the renderer put a thing, not only where the state has it. The gap
-  between the two is the measurement a report like *"he wasn't standing on anything"* asks for:
-  1.10 m on every frame of the ride, and 0 at rest. Both agents in the trial had to read
-  it out of the renderer's private fields.
+  between the two is the measurement a report like *"he wasn't standing on anything"* asks for: in
+  one game, a lift's deck drawn 1.10 m under him on every frame of the ride, and 0 at rest. Without
+  it, a script has to read the renderer's private fields.
 
 If the handle cannot do one of these, add it to the handle, once, rather than reaching into the
-game's state or the renderer from a script: the next script will need it too. The first agent to
-try this skill found no way to place the camera, wrote one into the game's state
-from its script, and read the camera back out of the renderer's internals.
+game's state or the renderer from a script: the next script will need it too.
 
 Watch for two drawing calls that undo each other. In one game, placing the camera draws its own
 frame, and the call that draws the play camera would have drawn over it: a script there leaves
@@ -113,8 +101,7 @@ The handle's names above are placeholders; use the game's. Then:
 npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> 2>&1 | tee scratch-frames-<thing>.log
 ```
 
-- **Keep the whole output.** Page errors come first, and a `tail` drops them: the first agent to
-  try this skill lost them that way on its first run.
+- **Keep the whole output.** Page errors come first, and a `tail` drops them.
 - **Read the run's output before any frame.** A frame of a broken game looks like a frame. Page
   errors, console errors, and *THE PAGE RELOADED* are printed as they happen, and a reload means
   every frame after it is of a fresh game.
@@ -133,8 +120,7 @@ npm run shots -- scratch-shots-<thing>.mjs scratch-frames-<thing> 2>&1 | tee scr
   drawn and where the state has it, and the camera's position, rather than guessing from the
   picture.
 - **Then sweep for every other place the same code draws.** A report names the one moment the
-  person saw. Both agents found the planted defect on four other rides besides the one reported,
-  and one found it under the Wolves riding a lift down as well.
+  person saw: in one game, the lift drawn under one character was wrong on four other rides too.
 
 ## 5. Before and after, and the control
 
@@ -149,10 +135,9 @@ to keep it inside the checkout. Not `TMPDIR`, which moves Chromium's own files a
 it on launch from a long path.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show
-  in the before, or in this checkout with the fix taken out: a positive control for the defect. A
-  null observation is not a finding until a positive control in the same run has come back non-null
-  (`CLAUDE.md`, *An observation is not a finding…*). If your frames do not show the defect where it
-  is known to be, they cannot see it: change the pose, not the conclusion.
+  in the before, or in this checkout with the fix taken out (`CLAUDE.md`, *An observation is not a
+  finding…*). If your frames do not show the defect where it is known to be, they cannot see it:
+  change the pose, not the conclusion.
 - **Match the pair on everything but the change.** Same seed, same moment, same camera. A pair
   that differs in anything else is not evidence until you know what that difference did.
 - **Keep what the person called right in the run.** When they say one part is right and another is
@@ -178,8 +163,7 @@ merge can be toured the same way.
 - **Offer them a minute of play,** and say what might be worth a look: the place, the moment, the
   camera. A minute at the game can catch what a sheet missed.
 - **Keep a script that proved itself,** under `scripts/shots/`, with a header that says what it
-  shows and how it is run. A designer asked for one to be kept: *"At least if we have it
-  in a commit somewhere, we can easily go back to it as needed."*
+  shows and how it is run.
 - **Log what the frames found** with the `design-log` skill, and say which of it was seen on a
   sheet and which was said by the person at the game.
 

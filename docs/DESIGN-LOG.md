@@ -24,15 +24,10 @@ was built and then deleted. A playtest. And any moment where solving one problem
 somewhere else. Not routine implementation, and not decisions nobody has ever questioned — those
 are the Charter's business.
 
-**A playtest's entry says so in its title, and carries the date it was played.** Not because a tag
-is not enough, but because the headings are the index, and a playtest titled by the conclusion it
-reached disappears into it. In one game built from this template, eleven entries in two days
-carried `[play]`, every one titled by what that stretch of play concluded, and a reader of the
-headings came away thinking the game had gone unplayed for three days. It had been played
-repeatedly. The data was there and the index was not, and the index is what a person reads.
-
-The `design-log` skill has the rest: the tags, the shape a playtest's entry has grown into, and how
-an entry that closes an earlier question says so.
+**A playtest's entry says so in its title, and carries the date it was played.** A tag is not
+enough: the headings are the index, and a playtest titled by the conclusion it reached disappears
+into it. The `design-log` skill has the rest: the tags, the shape a playtest's entry has grown
+into, and how an entry that closes an earlier question says so.
 
 *This file arrived as a template with no entries, which is correct: a design log cannot be
 inherited. The block below is the entry form. Delete it once there is a real first entry. A good
