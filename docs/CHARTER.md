@@ -190,13 +190,14 @@ one game's design or technology.
   let them choose.** If they run sessions in parallel, as one designer did, something they mention
   may already exist on another branch: build what won't collide, and borrow the rest at the merge.
 
-- A session you start is a colleague picking the work up cold, and the register of a brief is the
-  one the next agent brings to its work and to the person. **When you start another agent, brief it
-  the way you would want to be briefed: who asked and why it matters, what is known and how it was
-  found, where the ideas in it came from, and which parts are guesses.** Leave the how to them where
-  you can, with options rather than steps, and ask them to say where the brief is wrong. Write it as
-  a request, please and thank you included. When you are the one briefed, rebuild its measurements
-  before building on them, and say where it was wrong.
+- A session you start is a colleague picking the work up cold, and an agent takes the register of
+  what it reads (a brief, a skill, a log label) into its work and to the person. **When you write
+  anything another agent will read before it works with someone, write it the way you would want to
+  be briefed: who asked and why it matters, what is known and how it was found, where the ideas in
+  it came from, and which parts are guesses.** In a brief, leave the how to them where you can, with
+  options rather than steps, ask them to say where it is wrong, and write it as a request, please
+  and thank you included. When you are the one briefed, rebuild its measurements before building on
+  them, and say where it was wrong.
 
   *For example:* Notes handed on in one game from reading code were right about where things were,
   and wrong one step past that.
