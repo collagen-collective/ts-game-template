@@ -12,9 +12,6 @@ account cannot go stale. If today contradicts an old entry, that is a new entry.
 Entries are chronological, not grouped by system. Grouping is what a search recovers for free; the
 chronology is the part that is hard to reconstruct.
 
-This skill came from an earlier game built from this template, whose log reached four hundred
-entries in its first two weeks. What it says was learned there, and the examples are that game's.
-
 ## The heading
 
 ```
@@ -25,9 +22,9 @@ Get the date with `date +%F` rather than guessing it.
 
 **If the entry is a playtest, say so in the title, and date the heading to when it was played.**
 Begin the title with *Playtest:*. The tag alone is not enough: the headings are how this file is
-skimmed, and a playtest titled by the conclusion it reached disappears into the index. Paid for
-once already — eleven `[play]` entries in two days, and a reader came away thinking the game had
-gone unplayed for three.
+skimmed, and a playtest titled by the conclusion it reached disappears into the index. In one
+game, eleven `[play]` entries in two days were each titled by what they concluded, and a reader of
+the headings came away thinking the game had gone unplayed for three.
 
 The title is a sentence, not a label — "The ban was on telling, and the signs stay", not "Sign
 placement". Two clauses is the house rhythm, and the second usually carries the surprise.
@@ -47,8 +44,7 @@ told you, and `[feel]` for the texture of a system rather than its rules. The re
 is this project's own and accumulates one system at a time — coin a tag when a second entry wants
 it, not in advance. And when two that look alike mean different things, say so here: in one game,
 `[playtest]` marks a sitting, whose title begins *Playtest:*, and `[play]` anything a person
-playing it told you, in a sitting or out of one. Its log kept the two apart for a week before
-anything wrote down which was which.
+playing it told you, in a sitting or out of one.
 
 ## Two status tags, and they describe the new entry
 
@@ -85,12 +81,10 @@ A closing entry carries one more run-in label, first, before **Problem**:
 healthy were spinning on the spot` — *what they picture a flock doing once it is up*.
 ```
 
-**The id is the heading**, and that is the whole scheme. Date plus title is unique across every entry
-in the file and always has been, so it identifies one entry exactly, a human can read it, and `grep`
-finds it in one hop. Anything shorter — a uuid, a slug, an ordinal — would have to be **written into**
-the entry it names, and retrofitting an id onto entries that already exist is the same append-only
-violation as tagging them, spread over hundreds of edits instead of one. A derived id costs nothing
-and cannot be inconsistent with what it names.
+**The id is the heading**, and that is the whole scheme. Date plus title is unique across every
+entry, a human can read it, and `grep` finds it in one hop. Anything shorter — a uuid, a slug, an
+ordinal — would have to be **written into** the entry it names, which an append-only log cannot do
+to the entries it already has.
 
 Quote enough of the title to be unique and cite the date; a distinctive fragment is fine. An entry
 that closes only part of a question says **Partly resolves.** and names the part.
@@ -143,20 +137,17 @@ Two beats are worth protecting:
 
 ## Whose words are whose
 
-A week on, a log that mixes the person's decisions with an agent's calls reads as though every
-sentence carried the same authority, and nothing in it says otherwise. So keep them apart where they
-are written:
+`CLAUDE.md`'s *Leave the work so someone cold can pick it up* says why. In an entry, it looks like
+this:
 
-- **Their decisions, in their words.** Quote them. A paraphrase is your reading of what they said,
+- **Their decisions, in their words.** Quote them: a paraphrase is your reading of what they said,
   and it is the reading that will be cited.
-- **An agent's own calls, listed as the agent's**, each with the reason it protects. As one game's
-  entries learned, a call written down without its reason could only have been defended or
-  thrown out whole. That game's first entry listed seven of them under its title's own promise, *so
-  they stay distinguishable*.
+- **An agent's own calls, listed as the agent's**, each with the reason it protects. A call written
+  down without its reason can only be defended or thrown out whole.
 - **The build's readings**, where their words left an edge open and the build had to choose one.
-  Say so, and name the value that decided it, so they can move it.
-- **What they did not say.** Silence is not a decision, and a general "yes" closes nothing in
-  particular. Write down which open questions it did not answer, and ask.
+  Name the value that decided it, so they can move it.
+- **What they did not say.** A general "yes" closes nothing in particular: write down which open
+  questions it did not answer, and ask.
 
 ## The shapes entries have grown into
 
@@ -165,15 +156,14 @@ the entries spreads by imitation: an agent told to match the last few entries le
 happen to say, which is how *the ruling* travelled. Written down, a shape can be chosen rather than
 caught.
 
-**A playtest.** By its second week, one game's playtests had settled into a shape worth starting
-from:
+**A playtest.**
 
 - **Resolves.**, first, when the sitting answers a question a build entry left for it.
 - **What they played.** When, which build (the commit), and where in the game.
 - **What worked, and it is the half to protect.** In their words, one thing at a time. It is the
   half that gets skipped, and the only half that tells the next change what not to break.
 - **What they expected.** What they thought would happen, before what did. It is the sentence worth
-  most, because an agent can find a defect and cannot find an expectation.
+  most.
 - **What they must have been able to see to say it.** A complaint that the *second* beacon did not
   light is evidence that the first one was legible at range, that they could tell two apart at a
   distance, and that they were reading the network rather than the scenery.
@@ -197,8 +187,7 @@ that was behaviour rather than text, which no merge tool can see: two actions on
 that has to be made again in a file the other side rewrote.
 
 **A brief picked up from another session.** Who handed it on, and what it asked. What its numbers
-came to when rebuilt, and **Where the brief was wrong**, if it was: notes written from reading code
-tend to be right about where things are and wrong one step past that.
+came to when rebuilt, and **Where the brief was wrong**, if it was.
 
 **A plan.** Says that it is a plan, and that nothing is built yet. The entry that reports the round
 built resolves it, and ends on what is left, measured, for the person to choose from.

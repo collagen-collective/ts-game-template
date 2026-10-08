@@ -16,23 +16,6 @@ The instrument is `scripts/takes.mjs`; its header has every option, and `scripts
 says what each number is and how it is computed. Outputs go to `scratch-*` paths, which git
 ignores.
 
-Four games built from this template each built a renderer and a measurer of their own before this
-one existed: a hook that rendered half a second of the world at two levels, with an in-game sound
-desk; scores rendered in headless Chromium and measured for levels, spectra and onsets; an encounter
-rendered while the world stepped, A-weighted by band; and a sound board's recipes rendered and
-measured against the sounds of the game it recreated. What they found, and what the four had in
-common, is what this is made of.
-
-It was tried before it shipped. Two agents were given one report, *"The end-of-round sting doesn't
-ring out any more. The big hit at the end used to shimmer away for a few seconds, and now it just
-stops dead"*, on copies of a game in which the tam-tam under the sting's last hit had been
-stopped 0.65 s after it, with no history to diff against. One had this skill and `npm run takes`;
-the other was meant to have neither, found the skill in its session anyway, and used the game's own
-renderer and measurer with it. Both found the cut, fixed it and showed it fixed, in 11 and 12
-minutes. So the trial says little about speed; what it says is in this skill now, from what both
-found wrong with it: the comparison between trees, levelling a pair by its loudest three seconds,
-`TREES_DIR`, and the caveats on loudness, ring-out and repeats below.
-
 ## 1. Start with what they heard
 
 Ask what they heard, where in the game, at what moment, and what they expected to hear instead;
@@ -58,12 +41,12 @@ allows, the same on every machine, with no speaker and no real-time clock. It wo
 Audio graph builds into any `BaseAudioContext`. What that needs from the game:
 
 - **Sound that takes its context as a parameter,** rather than reaching for a global
-  `AudioContext`. All four games' sound already did, or could, with a line changed.
+  `AudioContext`. Every game's sound so far already did, or could with a line changed.
 - **The game's own path, not a copy of it.** Render through the same mixer, buses, reverb and
   limiter that play uses. A copy made for measuring drifts from the game the first time either is
   changed, and then measures nothing (`CLAUDE.md`: *keep one of each thing*).
-- **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. Kyle on
-  Duty's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
+- **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. One
+  game's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
   every sample and to the last digit of every measure; then a difference between two trees is the
   change. Its game-over song did not: two renders of the same code parted from 10.8 s on, by about
   -55 dBFS. Render a take twice before you read a difference between trees as the change.
@@ -129,10 +112,10 @@ npm run takes -- scratch-takes-<thing>.mjs scratch-sound-<thing> 2>&1 | tee scra
 
   | Number | What it says | What to look for |
   |---|---|---|
-  | LUFS | how loud, as the ear weighs it, silence gated out | sounds of one kind within a few LU of each other. A tail restored can *lower* it: more quiet blocks pass the gate (the trial's fixed sting read 1.4 LU quieter). Read the loudest 3 s beside it |
+  | LUFS | how loud, as the ear weighs it, silence gated out | sounds of one kind within a few LU of each other. A tail restored can *lower* it: more quiet blocks pass the gate (a sting with its tail restored read 1.4 LU quieter). Read the loudest 3 s beside it |
   | loudest 3 s | the loudest three seconds | a sound that is quiet on average and loud in a burst |
   | peak dBFS, clipped | the largest sample, and how many reach 1.0 | clipped above 0 is crackle when played; a peak above -1 dBFS is close |
-  | starts, loudest at, rings | seconds: first within 40 dB of the loudest, the loudest, and how long it stays within 40 dB after | *late*, *cut off*, *rings on*, for the whole take. A layer cut while another holds on barely moves it (the trial's cut tam-tam moved it 0.03 s): compare against a before (§5), or take the layer alone |
+  | starts, loudest at, rings | seconds: first within 40 dB of the loudest, the loudest, and how long it stays within 40 dB after | *late*, *cut off*, *rings on*, for the whole take. A layer cut while another holds on barely moves it (a tam-tam cut 0.65 s after its hit moved it 0.03 s): compare against a before (§5), or take the layer alone |
   | centroid, octaves | where the energy sits | *muddy* (125-500 Hz heavy), *thin* or *tinny* (little under 250, a high centroid) |
   | L/R | 1 is the same in both ears, 0 unrelated, below 0 one side inverted | a placed sound at 1 is not placed; below 0 cancels on a mono speaker |
 
@@ -151,9 +134,10 @@ npm run takes -- scratch-takes-<thing>.mjs scratch-sound-<thing> --tree before=@
 
 The same script renders an older commit's sound, exported with its own `node_modules` (the trees are
 `shots.mjs`'s; `TREES_DIR` keeps the copies inside the checkout, and `TMPDIR` must not, since it
-moves Chromium's files too and crashed it in the trial). The run prints each take's numbers side by
-side, a column a tree, puts them side by side on the sheet, and says of each take against the
-first tree **from when it differs, and which octaves changed after that**:
+moves Chromium's files too and crashed it on launch from a long path). The run prints each take's
+numbers side by side, a column a tree, puts them side by side on the sheet, and says of each take
+against the first tree **from when it differs, and which octaves changed after that**. In one game,
+where the tam-tam under a sting's last hit had been cut short:
 
 ```
 end-sting
@@ -162,12 +146,12 @@ start-sting
   now against cut: the same take (within -100 dBFS)
 ```
 
-That line is the trial's defect and its control, found with no tool written for it: the cut
-tam-tam's partials between 300 Hz and 2 kHz, from where its oscillators had stopped.
+The first take is the defect, found with no tool written for it: the cut tam-tam's partials
+between 300 Hz and 2 kHz, from where its oscillators had stopped. The second is its control.
 
 **When no commit has it right,** the last good record may be a number: a measurement in the design
-log, taken with the game's own tools. Render now with the same tools and compare with that. In the
-trial, the design log's table for the sting matched the fixed sting on every number the cut had
+log, taken with the game's own tools. Render now with the same tools and compare with that. In
+that game, the design log's table for the sting matched the fixed sting on every number the cut had
 moved, which showed the table had been taken before the cut came in.
 
 - **The control comes first.** Before *gone in the after* means anything, the defect has to show in
@@ -185,12 +169,11 @@ moved, which showed the table had been taken before the cut came in.
 The numbers find defects; the person decides what sounds right.
 
 - **Match the level of a pair** they compare: `--match -20` writes each take again with its loudest
-  three seconds at -20 LUFS, so the louder one does not win by being louder. One game matched
-  its listening pairs so *"that the level does not decide"*. Not by integrated loudness: a pair
-  that differs only in its tail would be levelled apart by the gate, and their identical starts
-  would play 1.4 dB apart.
+  three seconds at -20 LUFS, so the louder one does not win by being louder. Not by integrated
+  loudness: a pair that differs only in its tail would be levelled apart by the gate, and their
+  identical starts would play 1.4 dB apart.
 - **Ask for a comparison, not an absolute:** which of two is nearer what they remember or want,
-  rather than whether one is good. One game's first playtest learned to ask that way.
+  rather than whether one is good.
 - **Say what to listen for, and where:** the moment, the sound, what changed, what might be worth
   a second listen. And then the game: a sound heard in play, under everything else, is not the
   sound heard alone.
