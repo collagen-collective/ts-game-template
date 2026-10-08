@@ -127,8 +127,9 @@ In short:
 - **Asking the person something:** ask them only what only they can answer, make their answer easy
   to give, and find out what it meant before acting on it.
 - **Building something:** ask how they picture it and say it back before you build; start from what
-  the player will see, hear or do; keep one way of doing each thing; and let the code answer to the
-  Charter, not the Charter to the code.
+  the player will see, hear or do; keep one way of doing each thing, and one number for each
+  decision; count what already feeds anything you tune; change a look without changing what it does;
+  and let the code answer to the Charter, not the Charter to the code.
 - **Running several builders at once:** builders tangle over what they share (the machine, the
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
@@ -186,7 +187,9 @@ one game's design or technology.
   missing. **When the same tool has been built twice, make it a skill (an agent workflow in
   `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
   the defect as a parentless commit so no history gives it away, and compare time as well as
-  verdicts. A skill's *nothing wrong* is a claim to check like any other.
+  verdicts. A skill's *nothing wrong* is a claim to check like any other. The same goes for a merge:
+  when the same conflict has been resolved by hand twice, teach the merge to resolve it, as
+  `scripts/merge-docs.mjs` does for the three documents.
 
   *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
   it was slower than no skill at all, because the agent believed it first. The gulls it passed as
@@ -226,20 +229,26 @@ one game's design or technology.
   differs most, not what you meant them to compare. **When the question is how something looks,
   moves, sounds or feels, ask in that medium, and show them the difference you are asking about and
   only that difference: check that what they will see or hear shows it, and keep the options alike
-  in everything else, down to the moment each is shown at.**
+  in everything else, down to the moment each is shown at.** Draw shapes at one scale, beside what
+  is already there, and mark what is drawn from a description rather than from the game.
 
   *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
   should look like; one drawing settled it in a look. In a game about a dragon, a village braced for
-  it and a village abandoned were the same picture, so nobody could have answered. And two colours
-  were shown side by side at different brightness, and the choice followed the brightness rather
-  than the colour.
+  it and a village abandoned were the same picture, so nobody could have answered. Two colours were
+  shown side by side at different brightness, and the choice followed the brightness rather than the
+  colour. And three plans for a layout, drawn at one scale, settled it in one reply.
 
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
-  every distance and adds up across the whole world. **When they choose from close-ups, show them
-  what the choice adds up to in play before building on it.**
+  every distance and adds up across the whole world. A check, a rule or a guess is agreed to the
+  same way: people agree to the picture they were shown, not to its consequences. **When they choose
+  from close-ups, or agree to a check, a rule or a guess, show them what it adds up to in play
+  before building on it.** Run a rule over the whole world and show them everything it catches, and
+  check a guess against what the design says the player can and cannot undo.
 
   *For example:* Settings for mountain ridges were chosen from close frames that compared well. Seen
-  in play, they nearly doubled the high ground, and the designer chose again.
+  in play, they nearly doubled the high ground, and the designer chose again. In the same game, a
+  check to re-roll bad islands caught 24, and 19 of them were islets the designer wanted kept; and a
+  guess agreed as *"Correct on all counts"* turned out, once built, to empty an islet in one visit.
 
 - Options played in separate sittings are compared against a memory, and memory is a poor judge of
   small differences. **When only play can judge between options, build them into the game behind a
@@ -316,10 +325,39 @@ one game's design or technology.
   mind, and more surface for defects, which collect at the seam between them. **When two tools,
   features or implementations overlap, keep one, and extend it to cover what only the other did.**
   Ask it of a library before adopting one, too: one that brings its own copy of something adds a
-  pair.
+  pair. Where two parts must each hold a copy, check at the handoff that everything the first leaves
+  is somewhere the second can start, and that both read the shared words the same way.
 
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
-  needed that to change, we would know exactly where to go."*
+  needed that to change, we would know exactly where to go."* Where two copies stayed, three things
+  taking a direction from one input pointed 74°, 90° and 120° round.
+
+- One number that serves two decisions is pulled both ways by them, and every tuning trades one
+  against the other. It is the converse of the guideline above: one value with two meanings is two
+  things done one way. **When two decisions pull one number opposite ways, find what tells their
+  situations apart and give each its own number.**
+
+  *For example:* One chance of catching fire set both how much of a field a burning village took and
+  whether a field fire reached the town.
+
+- What a thing does is often read from the same shape that draws it, so a new look can quietly
+  change the game. **When a change is to how something looks, keep what it does where it was, and
+  name any difference it does make as a value the person can change.**
+
+  *For example:* A tree's new look made it harder to set alight, at the edge of every wood.
+
+- A quantity the player gains or loses is set by everything that feeds and drains it. A new source
+  tuned on its own is tuned against a total nobody counted, and a rule borrowed from a precedent (an
+  original being recreated, another game) arrives without what rationed it there. **Before you tune
+  a new source or drain of something the player gains or loses, count every source and drain it
+  already has; and when you take a rule from a precedent, bring what rationed it there, or check
+  that something here rations it the same way.**
+
+  *For example:* Containers were built as a boss fight's healing, as the designer remembered it.
+  Counted, the boss's drones already gave a novice two bars of health a fight, and the containers a
+  fraction of one. In the same game, an original's three-second stun was scarce because its meter
+  filled only on kills; on a meter that filled on every blow, the same stun held the boss for more
+  than half its fight.
 
 - How it feels they can tell us afterwards; how they picture it working they can tell us beforehand,
   which costs less and gets skipped. A test can only confirm the model that wrote it, and the
@@ -329,12 +367,21 @@ one game's design or technology.
   real-world precedent, even when you feel sure, and say back what you understood of what they
   described, as a picture when it is a look.** A precedent is anything like bells, roads, weather or
   what a garrison does, and a picture is a frame with the proposal drawn on it. Asking takes thirty
-  seconds, and nothing later can catch what it catches.
+  seconds, and nothing later can catch what it catches. Say back your guards as well as your build:
+  a guard written against a word is a reading of the word. Ask which details of a mockup or a
+  description are the point, because a picture fixes more than it means to. And where the precedent
+  exists to be recorded, get the recording, from them or from research, and measure it: a
+  description, even one you said back, is a reading of it.
 
   *For example:* One game's warning beacons were built from one sentence of the Charter and passed
   every test, but crews posted on a hill for weeks would light for what they see themselves, not
   only for the next hill. In another, seven readings of how the designer pictured rebinding a key
-  were said back and confirmed, and the build needed nothing changed at its first sitting.
+  were said back and confirmed, and the build needed nothing changed at its first sitting. A rule of
+  *no helicopter* was guarded as *no parachute aloft*, which broke one of the designer's own rules;
+  they meant only that no input keeps you in place. And in a recreation, a dark grey night already
+  matched the original footage's mean brightness, and had three times its colour, half its contrast
+  and no highlights: a description of it as dark would have passed it, and the measured statistics
+  did not.
 
 - The Charter is upstream of the implementation, so the code answers to it, not the other way
   round. **When the code you have just written disagrees with the Charter, don't rewrite the
@@ -383,12 +430,15 @@ flattens, and what only the screen or the speakers can show.
 
 - A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
   **When you measure the effect of their suggestion, measure it against the purpose they gave, not
-  one you supplied.**
+  one you supplied.** The dial a change turns is not always the quantity they named: measure the
+  quantity they proposed it for, not the one you changed.
 
   *For example:* A designer asked for denser forest so that a player flying overhead would lose
   sight of fleeing villagers. A script ranked candidate changes by whether villagers had a covered
   escape route, an agent's idea of what forest was for, and put denser forest last. It had measured
-  a purpose the designer never had.
+  a purpose the designer never had. In another game, *"attack roughly 1.6x as often"* asked for a
+  rate the player feels; a cycle 1.6 times shorter moved that rate only 1.38 to 1.51 times, because
+  the time spent out of range did not shrink, and the cycle had to halve.
 
 - A state says what a thing means to do; the distance says whether it is getting there. Something
   stuck reports the right state for ever. **When a thing has a destination, measure the distance
@@ -409,11 +459,14 @@ flattens, and what only the screen or the speakers can show.
   frame that differs is not evidence until you know what else in it could have made the difference.
   **Draw anything with a shape before you tune it, and reduce the scene before you read the frame.**
   Take the frame from the camera the player has, reach a posed state by a second route before
-  trusting it, and judge anything with a front while it moves.
+  trusting it, and judge anything with a front while it moves. Measure a thing where it shows: a
+  surface along its edge, an effect at the place it acts, the frames a count promised. And when the
+  parts do not add up to the whole, find the remainder before reading the parts.
 
   *For example:* A river 12.5 km long and a river going round in circles are the same number. Every
   animal in one game ran tail first from the day it was drawn, through a sequence of stills that
-  never showed it.
+  never showed it. And a boot's named stages left 2.6 s unaccounted for, which turned out to be one
+  frame.
 
 - Some defects exist only on screen, where a test that checks state cannot see them. **When you
   check anything a player sees, look at the frame: pose each state worth seeing with a shots
@@ -456,8 +509,12 @@ flattens, and what only the screen or the speakers can show.
   pictures of the samples. **When you change a sound, or one is reported wrong, render it with
   `npm run takes`, measure each take, and give the person copies matched in loudness to judge, so
   that the louder one does not win for being louder.** It renders the game's own sound offline,
-  through a script of the game's own, and lays the takes out beside any older commit's. The
-  `sound-check` skill has the rest.
+  through a script of the game's own, and lays the takes out beside any older commit's. Render a
+  sound across its whole length, and together with the sounds it meets in play. The `sound-check`
+  skill has the rest.
+
+  *For example:* A bark carried a second of static before it, where a check of the bark alone would
+  not have looked.
 
 ##### Calibrate the instrument
 
@@ -483,6 +540,28 @@ reports.
   *For example:* Two options sent to a designer to compare came back as identical. The switch
   between them had been added to an address the game did not read, so both had loaded the default,
   and the readout's line naming the option that was running was all that caught it.
+
+- A method that reports a rate or a measure (a traversal, a success rate, a margin) can give the
+  same number whether the effect is there or not, and a generated thing measured alone has nothing
+  to be read against. **Before you read a method's number, ask what it would have given where the
+  effect was absent; before you tune a generated thing, measure a real one with the same instrument,
+  through the same renderer.**
+
+  *For example:* A circuit flown past villages found 73% of them warned, and would have found the
+  same against a warning network half as strong; a success rate turned out to be a watchdog's
+  rescues. Generated mountains measured 66° at the median, which meant nothing until a real range,
+  measured the same way, stood beside them at 32°.
+
+- An instrument is code, and a copy of the game's code made by hand for it is missing whatever its
+  maker did not think of, and reports just as confidently. **When an instrument reports a value the
+  game's code also computes, such as where something falls on screen, have it call that code, and
+  check a few of its numbers against the game's own before reading the rest.** When an instrument
+  turns out to do other than its documentation says, change one of the two in the same session.
+
+  *For example:* A script that placed enemies on screen by its own projection put a boss 2.5 m under
+  the floor, and two log entries explained a boss lost off the bottom of the screen that was really
+  off its side and top; calling the renderer's own projection, it agreed to a hundredth. In another
+  game, a readout and the camera hook disagreed for eleven days and were worked round three times.
 
 - A passing test is an observation; *the bug is fixed* is a finding. A test that has never failed
   has not shown that it can, one that has never passed on known-good behaviour has not shown that it
@@ -510,7 +589,9 @@ reports.
   running it again leaves that in place. **When a check fails for a reason outside the code under
   test, change the check so that reason cannot affect it, rather than running it again.** And before
   calling a timeout a flake, time it on both commits: a slowdown your change caused looks exactly
-  like one.
+  like one. Run the gate on a copy of the commit, so that nothing uncommitted decides it; read its
+  failures before its exit code; and when CI fails where a local run passed, find what CI runs
+  differently.
 
   *For example:* A suite lost runs to a dev server reloading pages under it, and passed a checkout
   with a bug in it because another checkout's server answered on the port; the end-to-end setup that
@@ -527,10 +608,11 @@ reports.
 - An edit that silently matches nothing is worse than one that fails, a command reported as stopped
   may have run partway, and a summary of a session is a memory of the files, not the files. **Grep
   for the new text after a scripted edit, after one that was reported as stopped, and after the
-  context has been summarised.** Read the file before saying what it holds.
+  context has been summarised.** Read the file before saying what it holds. For anything drawn, find
+  the line that adds it to the scene: a probe can show a thing alive that nothing draws.
 
   *For example:* After one such summary, an agent expected nine changed files, and `git status`
-  showed four.
+  showed four. A probe showed a new object alive, and it had never been added to the scene.
 
 ##### Observe before guessing again
 
@@ -542,12 +624,15 @@ guess or another turn of the same dial.
   usually answers in one run. **After two fixes have missed, stop fixing, and build a way to see
   what the code is actually doing at the failure, such as a readout, a count or a distance, before
   trying a third.** Two plausible causes that both turn out not to be it mean the same. When a stage
-  produces too few of something, count what exists before tuning what rejects it. And after two
+  produces too few of something, count what exists before tuning what rejects it, and when a
+  measure of a whole, such as a mix, will not move, measure each part alone. And after two
   wrong guesses at a design, ask for their picture, or for how other games, old or new, have done
   it.
 
   *For example:* Three approaches to one problem, tried in turn, all missed; a readout built
-  afterwards answered it in one run.
+  afterwards answered it in one run. Two changes to a boss's music left its low end at 46% and 47%;
+  its instruments, rendered one at a time, showed a choir loudest, and under the drum the low end
+  went to 72%.
 
 - Tuning a rule of thumb moves its failures around rather than removing them, and a problem that has
   resisted three tunings often has a known algorithm that needs none. **When a third tuning of a
@@ -571,19 +656,23 @@ or hand over*, above).
   ever. **When new work puts old code in a new context (a new action, a new place, a new state of
   the player), put the old code through its paces again there, and treat it as open to tuning
   along with the new.** Where the new work holds the player still, decide what every other action
-  does meanwhile.
+  does meanwhile. Re-read what was written on the grounds of the old state: a tolerance, what a
+  removal leaves exposed, a fix for a failure that was the test's own.
 
   *For example:* A dragon's new backward wingbeat was right the first time it was written, and wrong
   in two old places, its lift and its thrust, neither of them in the new code. An action that held
   the dragon at a cave's mouth was built around breathing fire; in the first sitting there, the
-  designer roared instead, and watched the dragon's head go up.
+  designer roared instead, and watched the dragon's head go up. A tolerance at a wall was fine until
+  fire could cross it.
 
 - The tests written beside a new state all ask whether the new thing works. None of them asks
-  whether the old things still do. **After adding a state to something other features already read,
-  run their tests, not only yours.**
+  whether the old things still do, and each part that reads the thing reads it its own way. **When
+  you add a state to something, or change something, that other parts read, find every part that
+  reads it, read how each one reads it, and run their tests, not only yours.**
 
   *For example:* Villagers given a new sheltering state walked calmly indoors past the dragon, with
-  every new test green. An older test of the villagers caught it.
+  every new test green. An older test of the villagers caught it. In the same game, a heading read
+  as (cos, sin) in one part and (sin, cos) in another stood houses askew.
 
 - The cases a change is traced on become the cases it is right about. **Try a change on cases it was
   not developed against.**
@@ -591,49 +680,69 @@ or hand over*, above).
   *For example:* Routes fixed and checked on four seeds left, on a fifth that nobody had checked, a
   whole town standing at a wall 85 m from home.
 
-- No test waits twenty minutes, and nobody spends a sitting staying away, so what happens while the
-  player is idle is the part nothing checks. **When the design promises what happens if the player
-  does nothing, trace the nothing, for longer than anything else waits.**
+- No test waits twenty minutes, nobody spends a sitting staying away, and no test keeps a threat on
+  top of what runs from it, so the moments nothing waits for are the parts nothing checks. **When
+  the design promises what happens if the player does nothing, trace the nothing, for longer than
+  anything else waits; when something runs from a thing, trace it with the thing still coming.**
 
   *For example:* A world left alone for twenty minutes broke two of the promises its design made
-  about it.
+  about it. With the threat left on top of them, birds took off 1,800 times in 30 s, and fleeing
+  people climbed into burning boats.
+
+- A suite that switches a whole subsystem off, such as audio, cannot see what that subsystem throws.
+  **When a subsystem is switched off under test, boot the game once with it on and read the page's
+  errors.**
+
+  *For example:* With audio off in tests, a sound threw on every strike for five days of green
+  suites.
 
 - A game is a chain of conditions: the door opens once the key is held, the next wave starts once
   this one is cleared. One that can never come true stalls the game silently, in a place nothing
   reaches until a full playthrough does; a test of one system will not see it, and neither will a
-  screenshot. **Before tuning a game or posing frames of it, check that it can be finished: script a
-  bot that plays it from start to end in Node, and have it report where it stalls.** Once the bot
-  exists, run it with each of several changes undone in turn to learn which one made the difference.
-  A game with no ending traces a whole sitting instead.
+  screenshot. And a player finds the input that wins without thinking, which no test of the moves as
+  designed goes looking for. **Before tuning a game or posing frames of it, check that it can be
+  finished and that it cannot be won lazily: script a bot that plays it from start to end in Node
+  and reports where it stalls, and one that holds the laziest input that might win.** Check the
+  converse of every way that should open as well: flood the reachable ground with each gate shut,
+  and confirm the far side is out of reach. Once the bot exists, run it with each of several changes
+  undone in turn to learn which one made the difference. A game with no ending traces a whole
+  sitting instead.
 
   *For example:* A bot's first full run found a shut door that could be walked round, in under a
   second. Another's found enemies standing still on a crate, and a path that could not climb a
   stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
-  had made it lose sooner.
+  had made it lose sooner. And a trace of one held stick cleared five enemies in 2 s, untouched,
+  because every swing's splash staggered the whole crowd.
 
 #### When you are about to hand them a build, or write up what they played
 
 - Ten seconds at the game can catch what a whole gate missed, and a sitting needs a build in
   seconds: `npm run verify:play` typechecks, boots and draws the game in that time, where the whole
-  gate (`npm run verify`) takes minutes. **When a change touches something a player does, offer
-  them a minute of play: push a build that passes `npm run verify:play`, tell them it is there and
-  what might be worth trying, and run the whole gate while they play.** Do the same whenever they
-  want to play. If the gate goes red, tell them what broke before they report on it, then fix it.
+  gate (`npm run verify`) takes minutes. The sentence that offers the minute says what the build
+  does, and the build may not do it. **When a change touches something a player does, offer them a
+  minute of play: play that minute yourself first, in a trace or posed frames, then push a build
+  that passes `npm run verify:play`, tell them it is there and what might be worth trying, and run
+  the whole gate while they play.** Do the same whenever they want to play. If the gate goes red,
+  tell them what broke before they report on it, then fix it.
 
   *For example:* One game's villagers once walked calmly indoors past the dragon, green across
   twenty unit tests and eight new end-to-end tests. Another's gate took five minutes even after it
-  had been cut from fifteen, and every sitting used to wait for it.
+  had been cut from fifteen, and every sitting used to wait for it. And a build offered *"hold the
+  triggers on a goblin, then push the right stick at another"*; the designer did, and the push swung
+  the sword, because the stick aimed the pistols at only one kind of enemy.
 
 - Their time at the game is the rarest thing the project has: a finding folded into a commit
   message is lost, and one titled by its conclusion hides that the game was played at all. And a
   defect list is the easy half of what they found: it is not the half that tells you what to
   protect. **After they play, write it down as a playtest, the same day, in an entry that says so
   in its title: what they played, what they *expected*, and — the half that gets skipped — what
-  worked.** Read the report for what they must have seen to say it. The `design-log` skill has the
+  worked.** Read the report for what they must have seen to say it, and when their notes do not say
+  whether something was played, ask before logging it as played. The `design-log` skill has the
   shape.
 
   *For example:* A complaint that the *second* beacon did not light said that the first was legible
-  at range.
+  at range. A change asked for in two halves was logged as one half played, and the other half was
+  *"a key part"* of it.
 
 ### This project's own
 
