@@ -279,7 +279,7 @@ layout, one property is worth choosing on purpose: a way to step the game's stat
 it, so that tests and traces can run the game in Node with no browser. In an earlier game, its
 traces and most of its tests depended on that.*
 
-## Four inherited guidelines
+## Three inherited guidelines
 
 *These came out of a previous project that reached a thousand commits and fifty thousand lines of
 production code, with as much again in tests, before anyone had checked whether it was fun. The
@@ -297,25 +297,23 @@ forty unreachable modules under six thousand lines of passing tests, a combat HU
 importers, and an enemy damage event nothing subscribed to — which had left the player invulnerable
 in every green build for weeks.
 
-**Play it.** While you are still finding out how a system should feel, it needs playing, not tests
-or documents. A
-throwaway prototype of under nine hundred lines, written in one pass and judged on nothing but
-whether it was fun, was a better game than the fifty thousand lines it was prototyping — it had no
-tickets, no tests, and no design docs to conform to. When you write down a playtest, write down
-what *worked*. Defect lists are the easy half, and they are not the half that tells you what to
-protect.
+**Play it, and test only what has stopped changing.** While you are still finding out how a system
+should feel, it needs playing, not tests or documents. An agent's playtest is numbers and
+screenshots: it can establish that something turns in eight seconds, not whether eight seconds
+feels heavy or merely slow, and that judgment is yours, at the game. A throwaway prototype of under
+nine hundred lines, written in one pass and judged on nothing but whether it was fun, was a better
+game than the fifty thousand lines it was prototyping — it had no tickets, no tests, and no design
+docs to conform to. And every test written against a system you are still tuning is a bet you will
+pay to unwind: about six thousand lines of that bet came due at once.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
 stand-in for a judgment, and it takes a person playing it to make that judgment. A question about
 how something feels, split into tasks and handed out, comes back as pieces that each pass their
 check and do not add up to the thing you were asking about.
 
-**Test what has stopped changing.** Every test written against a system you are still tuning is a
-bet you will pay to unwind. About six thousand lines of that bet came due at once.
-
-The games built from this template since kept all four, and learned more. The lessons that apply to
-any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with its reason.
-They are inherited on the same terms as these four.
+The games built from this template since kept all of these, and learned more. The lessons that
+apply to any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with its
+reason. They are inherited on the same terms as these three.
 
 ## Toolchain
 
@@ -373,8 +371,8 @@ locally can be too tight on CI. In one game built from this template, two tests
 passed every run in a four-core cloud session and failed on CI, whose runner drew 2.8 times slower.
 `npm run test:e2e:slow` runs the suite on two workers sharing one core, about 1.3 times slower than
 CI, and failed the same two tests the same way. With their limits raised, it found a third that CI
-was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before
-setting a time limit, and before a pull request.
+was passing with almost no margin: 1.5 minutes against a limit of 90 seconds. Run it before a pull
+request; setting a time limit from it is a guideline in the Charter's §5.
 
 Screenshots are part of verification, and `npm run shots` takes them. A script the game provides
 puts the game into each state worth seeing and names the frame. The tool serves the game on its own

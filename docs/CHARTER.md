@@ -115,23 +115,28 @@ is a feature that wandered in.>`*
 
 ## 5. How we work
 
-These are the guidelines for particular moments in the work. The guidelines for every session are in
-[`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
-evidence behind each, and *Working together*. Find the moment you are in below, and read its bold
-lines. In short:
+These are the guidelines for particular moments in the work. The guidelines for every moment are in
+[`../CLAUDE.md`](../CLAUDE.md): the template's three, which the [README](../README.md) gives with
+the evidence behind each, and *Working together*. `CLAUDE.md` also names each moment below, so that
+an agent has them in mind all session. Find the moment you are in, and read its bold lines.
+In short:
 
-- **Asking the person something:** make their answer easy to give, and find out what it meant
-  before acting on it.
-- **Building something:** start from what the player will see, hear or do, and keep one way of
-  doing each thing.
-- **Measuring, testing or trusting a result:** the scientific method, applied to a game. Measure
-  the question, not a proxy for it; calibrate the instrument; observe before guessing again; and
-  test beyond what you checked.
-- **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
-  what is true now, and write for whoever picks the work up cold.
+- **Planning, merging or handing over:** a note is a snapshot of its day, and a merge fixes only
+  what fails. Read old notes against what is true now, check the seams when branches meet, write for
+  whoever picks the work up cold, and end on what is left, for the person to choose from.
+- **Asking the person something:** ask them only what only they can answer, make their answer easy
+  to give, and find out what it meant before acting on it.
+- **Building something:** ask how they picture it and say it back before you build; start from what
+  the player will see, hear or do; keep one way of doing each thing; and let the code answer to the
+  Charter, not the Charter to the code.
 - **Running several builders at once:** builders tangle over what they share (the machine, the
   container, the files, the commit they start from), so name each shared thing and give each
   builder its share.
+- **Measuring, testing or trusting a result:** the scientific method, applied to a game. Measure
+  the question, not a proxy for it; calibrate the instrument; observe before guessing again; and
+  test beyond what you checked.
+- **Handing them a build, or writing up what they played:** their time at the game is the rarest
+  thing the project has, so make it easy to give, and keep what it found.
 
 The guidelines under *Inherited* come from earlier games: defaults, not this project's findings, and
 a guideline this project learned outranks one it was handed. The person and an agent change this
@@ -150,6 +155,58 @@ The README's *Words we use* has the rest.
 From earlier games built from this template, where the lesson applies to any game rather than to
 one game's design or technology.
 
+#### When you are about to plan, merge or hand over
+
+- A parking note is a photograph of the day it was written. What makes it stale is usually work
+  planned afterwards, and nothing goes back to edit it. **When you plan a round of work, read the
+  parked questions as dependencies rather than as a backlog.** They are in two places:
+  `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
+  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it blocking.
+
+  *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
+  anything else, one session before a plan that needed the dragon to land on a ledge.
+
+- A merge fixes only what fails, and it is the seams between branches that break, where no test
+  sits. A note in one side's *Changed elsewhere* about the other side's work is a task with no
+  owner, and main's log may have recorded a finding while you were away from it. **When branches
+  built apart meet, read each side's log for what it said the other would need, read main's log as
+  it stands before writing that nothing has recorded something, and tour the whole game in frames on
+  the merged head.** Look at every sheet; the `frame-check` skill says how to build a tour.
+
+  *For example:* One session wrote that the other's villagers would walk along lake beds until that
+  session's map knew about water. The merge fixed the two tests that failed and nothing that had
+  only been written down, and a review found a town walking sixteen metres down a lake bed. And with
+  every test green, a tour after a merge found defects wherever separately built places met, and a
+  second tour found more where their separate fixes met.
+
+- A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
+  and without it shows which. What the trial runs build for themselves is what the skill was
+  missing. **When the same tool has been built twice, make it a skill (an agent workflow in
+  `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
+  the defect as a parentless commit so no history gives it away, and compare time as well as
+  verdicts. A skill's *nothing wrong* is a claim to check like any other.
+
+  *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
+  it was slower than no skill at all, because the agent believed it first. The gulls it passed as
+  healthy were spinning on the spot.
+
+- What the work turns to next is the person's to choose: what this session takes on, what goes to
+  another, and when to stop. **When you finish a piece of work, end on what is left, measured, and
+  let them choose.** If they run sessions in parallel, as one designer did, something they mention
+  may already exist on another branch: build what won't collide, and borrow the rest at the merge.
+
+- A session you start is a colleague picking the work up cold, and an agent takes the register of
+  what it reads (a brief, a skill, a log label) into its work and to the person. **When you write
+  anything another agent will read before it works with someone, write it the way you would want to
+  be briefed: who asked and why it matters, what is known and how it was found, where the ideas in
+  it came from, and which parts are guesses.** In a brief, leave the how to them where you can, with
+  options rather than steps, ask them to say where it is wrong, and write it as a request, please
+  and thank you included. When you are the one briefed, rebuild its measurements before building on
+  them, and say where it was wrong.
+
+  *For example:* Notes handed on in one game from reading code were right about where things were,
+  and wrong one step past that.
+
 #### When you are about to ask the person something
 
 - Design choices are rarely a clean multiple choice: the answer may be a combination, an order, or
@@ -162,14 +219,18 @@ one game's design or technology.
   *or something else* got the reading nobody had offered.
 
 - Whether something looks, moves or sounds right is hard to settle in words, which each reader
-  pictures differently, and the eye and ear compare whatever differs most, not what you meant them
-  to compare. **When the question is how something looks, moves or sounds, ask in that medium, vary
-  one thing at a time, and match a compared pair on everything but the thing being compared.** Show
-  each option at the same moments, so that the moment is not what differs.
+  pictures differently. Shown instead, the question can still go wrong two ways: nobody can judge a
+  difference the screen does not show, however it is asked, and the eye and ear compare whatever
+  differs most, not what you meant them to compare. **When the question is how something looks,
+  moves, sounds or feels, ask in that medium, and show them the difference you are asking about and
+  only that difference: check that what they will see or hear shows it, and keep the options alike
+  in everything else, down to the moment each is shown at.**
 
   *For example:* Two rounds of words, *bat*, *pterosaur*, *Smaug*, had not settled what a creature
-  should look like; one drawing settled it in a look. Separately, two colours were shown side by side
-  at different brightness, and the choice followed the brightness rather than the colour.
+  should look like; one drawing settled it in a look. In a game about a dragon, a village braced for
+  it and a village abandoned were the same picture, so nobody could have answered. And two colours
+  were shown side by side at different brightness, and the choice followed the brightness rather
+  than the colour.
 
 - A choice made from close-ups is a choice about the close-up. In play, the same setting is seen at
   every distance and adds up across the whole world. **When they choose from close-ups, show them
@@ -229,6 +290,15 @@ one game's design or technology.
   to a designer at once. They answered all eight in one message after a sitting, with more than was
   asked, and every answer had set its value within the hour.
 
+- Rates, ranges, coverage and how something holds up across seeds are where an agent is
+  strongest, and asking the person for them would cost a session each. Theirs are the numbers only
+  they can take: how the game runs on their machine, how they play, how much of what they expected
+  they got. **When the answer is a number you could measure, measure it, and ask them only for the
+  numbers only they can take.**
+
+  *For example:* *"I feel like I'm affecting about 40% of the trees I was expecting"* was a
+  measurement, and a reach went from 45 m to 70 m on it alone.
+
 #### When you are about to build something
 
 - A model of the world built first sets the terms the player's experience then has to fit, and the
@@ -249,6 +319,54 @@ one game's design or technology.
   *For example:* A designer's reason for it: *"you keep the game WYSIWYG and honest. And if we
   needed that to change, we would know exactly where to go."*
 
+- How it feels they can tell us afterwards; how they picture it working they can tell us beforehand,
+  which costs less and gets skipped. A test can only confirm the model that wrote it, and the
+  guesses that most need asking are the plausible ones. Their words also leave open exactly what a
+  build has to choose, and a read-back finds those places while they cost nothing: a distance agreed
+  in words is a look nobody was picturing. **Before you build, ask how they picture anything with a
+  real-world precedent, even when you feel sure, and say back what you understood of what they
+  described, as a picture when it is a look.** A precedent is anything like bells, roads, weather or
+  what a garrison does, and a picture is a frame with the proposal drawn on it. Asking takes thirty
+  seconds, and nothing later can catch what it catches.
+
+  *For example:* One game's warning beacons were built from one sentence of the Charter and passed
+  every test, but crews posted on a hill for weeks would light for what they see themselves, not
+  only for the next hill. In another, seven readings of how the designer pictured rebinding a key
+  were said back and confirmed, and the build needed nothing changed at its first sitting.
+
+- The Charter is upstream of the implementation, so the code answers to it, not the other way
+  round. **When the code you have just written disagrees with the Charter, don't rewrite the
+  Charter to match it; if the implementation forces a design change, raise it with the person.**
+
+#### When you are about to run several builders at once
+
+- Each builder boots its own browser for screenshots and for the suite. Past what the cores can
+  carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
+  later than smaller batches would have. **Run no more at once than the machine can draw for: two,
+  on four cores.**
+
+- A container restart takes uncommitted work with it. **Have each builder commit as it goes, on a
+  branch of its own.**
+
+  *For example:* A restart stopped two builders with their work uncommitted, and it survived only
+  because the disk did.
+
+- Agents working side by side tangle over what they share, not over what they build. **Name every
+  shared thing in the brief, and give each builder its share.** Split builders by what they read,
+  and give each shared file one owner.
+
+  *For example:* Six researchers spent one search budget in the order they were launched; two
+  prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
+  running. Split by what they read, with one owner for each shared file, the builders after them
+  merged without a conflict.
+
+- An agent's worktree is cut from the default branch, not from the branch the session is on, so a
+  builder can start from code the session has long since moved past. **Before a builder starts in a
+  worktree, have it check that the worktree holds your latest commits.**
+
+  *For example:* Every builder in one session started from the template's first commit, and in
+  another, a builder measured code that was no longer there.
+
 #### When you are about to measure, test or trust a result
 
 These guidelines are the scientific method, applied to a game, and each is an instance of one of the
@@ -259,7 +377,7 @@ four principles below.
 Every observation stands in for a question. Before trusting one, say what the question is, and check
 that the observation answers it rather than an easier question beside it: the purpose someone had in
 mind, whether a thing gets where it is going, the property a test depends on, the shape a summary
-flattens.
+flattens, and what only the screen or the speakers can show.
 
 - A suggestion comes with a purpose, and a change can succeed at one purpose and fail at another.
   **When you measure the effect of their suggestion, measure it against the purpose they gave, not
@@ -295,6 +413,19 @@ flattens.
   animal in one game ran tail first from the day it was drawn, through a sequence of stills that
   never showed it.
 
+- Some defects exist only on screen, where a test that checks state cannot see them. **When you
+  check anything a player sees, look at the frame: pose each state worth seeing with a shots
+  script, run `npm run shots`, and look at the sheet it lays the frames out on.** Early on, give the
+  game a handle the end-to-end tests can drive it by, one that can step the simulation, place the
+  camera, and read the state the screen does not show; `scripts/shots.mjs` says what the script
+  exports. With `--tree before=@<commit>`, the same script puts an older commit's frames beside
+  this checkout's: the before and after of anything that is looked at rather than measured. The
+  `frame-check` skill has the rest: what to ask, what to pose, how to read a sheet, and the
+  control.
+
+  *For example:* The day one game's debug readout said where the camera was, *"this looks wrong
+  from here"* stopped being a description and became a frame anyone could take again.
+
 - How the picture looks is judged at the game, and a test checks state. Tests that draw are the
   slowest in a suite and the likeliest to time out on CI, and they check what a person sees in a
   second of play. **Before a test draws a frame, ask whether it could fail with nothing wrong on the
@@ -302,6 +433,29 @@ flattens.
 
   *For example:* A designer put it this way: *"we only need a test to draw something when we need to
   check 'does this look correct?' … that's what our playtest sessions are for."*
+
+- A test checks the end state it was written for, so a test of a motion passes every motion that
+  ends there; a trace, the game's state printed over a few seconds of the simulation running in
+  Node, shows the whole course. Traces are cheap where the simulation runs in Node with no renderer.
+  **Before you write or trust a test of how the game's state behaves, trace it.** When you do write
+  the test, assert a motion by its course as well as by where it ends. A trace is only as good as
+  its setup, though: when a trace disagrees with the game, suspect the trace first, and call the
+  real setup rather than rebuilding it by hand. Scratch scripts named `scratch-*` at the repo root
+  are ignored by git for exactly this, and what they find goes in the design log. When one proves
+  itself and will be wanted again, commit it; as a designer put it, *"At least if we have it in a
+  commit somewhere, we can easily go back to it as needed."*
+
+  *For example:* In one game, a one-second trace of the state while a key was held found every
+  defect in the flight model and the fire, where their passing tests found none. In another, a
+  hand-made copy of one function, missing the body's orientation, produced three plausible stories
+  about a broken game before the fault turned out to be the script.
+
+- An agent cannot hear: what a session knows of its game's sound it knows from numbers and
+  pictures of the samples. **When you change a sound, or one is reported wrong, render it with
+  `npm run takes`, measure each take, and give the person copies matched in loudness to judge, so
+  that the louder one does not win for being louder.** It renders the game's own sound offline,
+  through a script of the game's own, and lays the takes out beside any older commit's. The
+  `sound-check` skill has the rest.
 
 ##### Calibrate the instrument
 
@@ -331,12 +485,10 @@ reports.
 - A passing test is an observation; *the bug is fixed* is a finding. A test that has never failed
   has not shown that it can, one that has never passed on known-good behaviour has not shown that it
   passes for the right reason, and one that fails only by timing out is slow to go red and says
-  nothing about why. A test named for a motion but asserted on an end state passes every motion that
-  ends there. **Before trusting a new test, run it on both controls: with the fix taken out it
-  should fail, on an assertion rather than a timeout (the negative control); on a case already known
-  to be correct it should pass (the positive control).** Assert the relationship that has stopped
-  changing, not the number still being tuned, and a motion by its course as well as by where it
-  ends.
+  nothing about why. **Before trusting a new test, run it on both controls: with the fix taken out
+  it should fail, on an assertion rather than a timeout (the negative control); on a case already
+  known to be correct it should pass (the positive control).** Assert the relationship that has
+  stopped changing, not the number still being tuned.
 
   *For example:* A game that crashed before its test hook was installed failed the boot test only at
   its timeout, a minute and a half later; the whole suite would have taken about half an hour to go
@@ -408,7 +560,8 @@ guess or another turn of the same dial.
 Code is known to work only where it has been checked: on the cases it was developed against, in the
 context it was written for, in the states and moments someone reached. New contexts, new states,
 untried cases, idle time, the parts of the game nobody has reached, and the seams between branches
-are all outside that.
+are all outside that. The seams are checked when branches meet (*When you are about to plan, merge
+or hand over*, above).
 
 - Old code was built against the design and constraints of its day, and even forward-looking code
   can only account for so much. Building on top of it, or running it in a context it was never
@@ -456,79 +609,29 @@ are all outside that.
   stair; later, the same bot, run with each of two rule changes undone in turn, said which of them
   had made it lose sooner.
 
-- It is the seams between branches that break, and no test sits on a seam. **After merging branches
-  built apart, tour the whole game in frames on the merged head, and look at every sheet.**
+#### When you are about to hand them a build, or write up what they played
 
-  *For example:* With every test green, a tour after a merge found defects wherever separately built
-  places met, and a second tour found more where their separate fixes met.
+- Ten seconds at the game can catch what a whole gate missed, and a sitting needs a build in
+  seconds: `npm run verify:play` typechecks, boots and draws the game in that time, where the whole
+  gate (`npm run verify`) takes minutes. **When a change touches something a player does, offer
+  them a minute of play: push a build that passes `npm run verify:play`, tell them it is there and
+  what might be worth trying, and run the whole gate while they play.** Do the same whenever they
+  want to play. If the gate goes red, tell them what broke before they report on it, then fix it.
 
-#### When you are about to plan, merge or hand over
+  *For example:* One game's villagers once walked calmly indoors past the dragon, green across
+  twenty unit tests and eight new end-to-end tests. Another's gate took five minutes even after it
+  had been cut from fifteen, and every sitting used to wait for it.
 
-- A parking note is a photograph of the day it was written. What makes it stale is usually work
-  planned afterwards, and nothing goes back to edit it. **When you plan a round of work, read the
-  parked questions as dependencies rather than as a backlog.** They are in two places:
-  `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
-  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it blocking.
+- Their time at the game is the rarest thing the project has: a finding folded into a commit
+  message is lost, and one titled by its conclusion hides that the game was played at all. And a
+  defect list is the easy half of what they found: it is not the half that tells you what to
+  protect. **After they play, write it down as a playtest, the same day, in an entry that says so
+  in its title: what they played, what they *expected*, and — the half that gets skipped — what
+  worked.** Read the report for what they must have seen to say it. The `design-log` skill has the
+  shape.
 
-  *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
-  anything else, one session before a plan that needed the dragon to land on a ledge.
-
-- A note in one side's *Changed elsewhere* about the other side's work is a task with no owner, and
-  a merge fixes only what fails. And main's log may have recorded a finding while you were away from
-  it. **When two branches meet, read each side's log for what it said the other would need, and read
-  main's log as it stands before writing that nothing has recorded something.**
-
-  *For example:* One session wrote that the other's villagers would walk along lake beds until that
-  session's map knew about water. The merge fixed the two tests that failed and nothing that had
-  only been written down, and a review found a town walking sixteen metres down a lake bed.
-
-- An agent takes the tone of its instructions along with their guidelines, and a single word can
-  carry an attitude that nobody wrote down. **When you write words an agent will read before it
-  works with someone, write them in the voice you want it to use with them, and say where the ideas
-  in them came from.**
-
-  *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
-  ruling*, copied from entry to entry, did it anyway.
-
-- A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
-  and without it shows which. What the trial runs build for themselves is what the skill was
-  missing. **When the same tool has been built twice, make it a skill (an agent workflow in
-  `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
-  the defect as a parentless commit so no history gives it away, and compare time as well as
-  verdicts. A skill's *nothing wrong* is a claim to check like any other.
-
-  *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
-  it was slower than no skill at all, because the agent believed it first. The gulls it passed as
-  healthy were spinning on the spot.
-
-#### When you are about to run several builders at once
-
-- Each builder boots its own browser for screenshots and for the suite. Past what the cores can
-  carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
-  later than smaller batches would have. **Run no more at once than the machine can draw for: two,
-  on four cores.**
-
-- A container restart takes uncommitted work with it. **Have each builder commit as it goes, on a
-  branch of its own.**
-
-  *For example:* A restart stopped two builders with their work uncommitted, and it survived only
-  because the disk did.
-
-- Agents working side by side tangle over what they share, not over what they build. **Name every
-  shared thing in the brief, and give each builder its share.** Split builders by what they read,
-  and give each shared file one owner.
-
-  *For example:* Six researchers spent one search budget in the order they were launched; two
-  prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
-  running. Split by what they read, with one owner for each shared file, the builders after them
-  merged without a conflict.
-
-- An agent's worktree is cut from the default branch, not from the branch the session is on, so a
-  builder can start from code the session has long since moved past. **Before a builder starts in a
-  worktree, have it check that the worktree holds your latest commits.**
-
-  *For example:* Every builder in one session started from the template's first commit, and in
-  another, a builder measured code that was no longer there.
+  *For example:* A complaint that the *second* beacon did not light said that the first was legible
+  at range.
 
 ### This project's own
 
@@ -553,7 +656,8 @@ Every guideline has the same shape:
 
 An inherited guideline goes under the moment it is for, and one about measuring or testing under the
 principle it is an instance of. Keep each moment's line in this section's opening true of every
-guideline under it, and give a new moment a line of its own.
+guideline under it, and give a new moment a line of its own and its name in `CLAUDE.md`'s list of
+moments.
 
 A guideline this project learns goes under *This project's own*, ending with the design-log entry it
 came from. An inherited guideline this project learns again for itself moves there too, with its own

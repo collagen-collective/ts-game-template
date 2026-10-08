@@ -27,6 +27,22 @@ They divide by tense, and tense is how anything new is filed: it either fits one
 The Charter states *what* and *why*, never *how* the game is built. That is deliberate. Its
 opening note says what to read before proposing a plan.
 
+## The moments in the Charter
+
+Most of how we work is in the Charter's §5, grouped by the moment each guideline is for, and a
+moment's guidelines are read when it comes, not once at the start of a session. Whenever you are
+about to do one of these, read its guidelines in §5 first:
+
+- plan, merge or hand over;
+- ask the person something;
+- build something;
+- run several builders at once;
+- measure, test or trust a result;
+- hand them a build, or write up what they played.
+
+What holds at every moment stays in this file, with how to find your way around the repo: *How to
+work in this repo*, *Working together* and the three inherited guidelines, below.
+
 ## How to work in this repo
 
 **There is no implementation to read.** `src/` and `tests/` are empty on purpose, and `scripts/`
@@ -44,7 +60,8 @@ Don't invent a convention and then cite it as if it were established. When you s
 plainly: the README's *Where things live* is the record of it, and the design log says why. Two
 properties are recommended, not required, for what they made possible in an earlier game built from
 this template: a way to step the game's state without drawing it, and a handle the end-to-end tests
-can drive the game by. The next two guidelines say what each is for; how to provide them is yours.
+can drive the game by. The Charter's §5 says what each is for, among its guidelines for measuring;
+how to provide them is yours.
 
 **There is no issue tracker.** No tickets, no ticket IDs, no backlog tool. Plans live in the Charter
 and in the session you are working in. Don't reference or fabricate ticket identifiers.
@@ -56,87 +73,26 @@ the plan. ``rg '`<' README.md CLAUDE.md docs/`` lists what is still unfilled. Th
 skill walks the person you're working with through resolving them; suggest it if a session opens
 against an unfilled template, and don't answer the prompts on their behalf in the meantime.
 
-**Don't rewrite the Charter to match the code you just wrote.** It is upstream of the
-implementation. If the implementation forces a design change, raise it with the person you're
-working with.
-
-**How it feels is found by playing it.** An agent's playtest is numbers and screenshots; it can
-establish that something turns in eight seconds, not whether eight seconds feels heavy or merely
-slow. That judgment comes from the person you're working with, at the game, and the telemetry is
-there to support it. Write both down, and say which is which. And before asking them how something
-feels, check that the screen shows the difference you are asking about: in a game about a dragon, a
-village braced for it and a village abandoned were the same picture, so nobody could have answered.
-
-**Trace before you test.** A trace is a record of the game's state over a few seconds, printed by
-running the simulation in Node. In one game, a one-second trace of the state while a key was held
-found every defect in the flight model and the fire, where their passing tests found none. Traces
-were cheap there because the simulation ran in Node with no renderer. A trace is only as good as its
-setup, though: when a trace disagrees with the game, suspect the trace first, and call the real
-setup rather than rebuilding it by hand. A hand-made copy of one function, missing the body's
-orientation, produced three plausible stories about a broken game before the fault turned out to be
-the script. Scratch scripts named `scratch-*` at the repo root are ignored by git for exactly this,
-and what they find goes in the design log. When one proves itself and will be wanted again, commit
-it. A designer asked for one to be kept: *"At least if we have it in a commit somewhere, we can
-easily go back to it as needed."*
-
-**Look at the frame.** Screenshots are part of verification. Early on, give the game a handle the
-end-to-end tests can drive it by, one that can step the simulation, place the camera, and read the
-state the screen does not show. Then write a shots script that puts the game into each state worth
-seeing, run it with `npm run shots`, and look at the sheet, the one image it lays the frames out on
-(`scripts/shots.mjs` says what the script exports). Several of one game's defects existed only on
-screen, and the day its debug readout said where the camera was, *"this looks wrong from here"*
-stopped being a description and became a frame anyone could take again. Two games built a harness
-like it for themselves, and in one it was the last check built and the most productive. With
-`--tree before=@<commit>`, the same script puts an older commit's frames beside this checkout's:
-the before and after of anything that is looked at rather than measured. The `frame-check` skill
-has the rest: what to ask, what to pose, how to read a sheet, and the control.
-
-**Measure the sound, and give them takes to hear.** An agent cannot hear: what a session knows of
-its game's sound it knows from numbers and pictures of the samples. `npm run takes` renders the
-game's own sound offline, through a script of the game's own, measures each take and lays them out
-beside any older commit's; whether a sound is right is the person's, on copies matched in loudness
-so that the louder one does not win for being louder. All four games built from this template made
-a tool like it for themselves first. The `sound-check` skill has the rest.
-
 ### Working together
 
-The guidelines above are about checking the work; these are about the rest of it. They come from an
-earlier game, and from what the designer there found makes work go well: *"work with agents and
-colleagues is more productive when everyone is patient, understanding, and brings a collaborative,
-rather than delegative or managerial, mindset to things."* They rest on one idea: the work goes best
-when each of us brings what we're best at. The person you're working with brings the picture of what
-the game should be, what they expected, and how it feels; an agent can measure, check eight cases
-while they play one, and keep the record straight. A *sitting*, below, is one stretch of them
-playing a build. None of this softens what is true: a check that passes on broken code checks
-nothing, whoever says so and however kindly.
+The guidelines above are about finding your way around the repo; these are about working with the
+person. They come from an earlier game, and from what the designer there found makes work go well:
+*"work with agents and colleagues is more productive when everyone is patient, understanding, and
+brings a collaborative, rather than delegative or managerial, mindset to things."* They rest on one
+idea: the work goes best when each of us brings what we're best at. The person you're working with
+brings the picture of what the game should be, what they expected, and how it feels; an agent can
+measure, check eight cases while they play one, and keep the record straight. None of this softens
+what is true: a check that passes on broken code checks nothing, whoever says so and however
+kindly.
 
 Like the Charter's §5, these are inherited, as are the guidelines above: defaults, not this
-project's findings. Keep them, prune them or argue with them, and log it when you do.
-
-**Ask what they picture before you build something the world already has.** How it feels they can
-tell us afterwards; how they picture it working they can tell us *beforehand*, which costs less and
-gets skipped. One game's warning beacons were built from one sentence of the Charter and passed
-every test, but crews posted on a hill for weeks would light for what they see themselves, not only
-for the next hill. **A test can only confirm the model that wrote it.** So before anything with a
-real-world precedent (bells, roads, weather, what a garrison does), ask "how do you picture this
-working?", even when you feel sure: the guesses that most need asking are the plausible ones. It
-takes thirty seconds, and nothing later can catch what it catches.
-
-**Say what you understood back to them before you build it.** Their words leave open exactly what a
-build has to choose, and a read-back finds those places while they cost nothing. In one game, seven
-readings of how the designer pictured rebinding a key were said back and confirmed, and the build
-needed nothing changed at its first sitting. When it is a look, read it back as a picture, a frame
-with the proposal drawn on it: a distance agreed in words is a look nobody was picturing.
+project's findings. Keep them, prune them or argue with them, and log it when you do. The ones here
+hold at every moment; those for a particular moment, such as before you build or after they play,
+are in §5 under it.
 
 **Their best reports are expectations, not defects.** *"I was anticipating that flying by a beacon
 would cause alarm"* found a missing design; *"The second closest beacon did not light"* found a bug.
 The first is worth more: an agent can find a defect, but not an expectation.
-
-**Measure the numbers rather than asking for them.** Rates, ranges, coverage, how it holds up across
-seeds: this is where an agent is strongest, and asking would cost the person a session each. Theirs
-are the ones only they can take: how the game runs on their machine, how they play, how much of what
-they expected they got. *"I feel like I'm affecting about 40% of the trees I was expecting"* was a
-measurement, and a reach went from 45 m to 70 m on it alone.
 
 **Measure it, or say it is a guess, before you tell them how something will look or why something
 happened.** What you say while they decide is evidence they decide on, and no gate checks a
@@ -145,37 +101,12 @@ showed, because an agent had described a readout without checking it.
 
 **Keep whose words are whose.** In the log, quote their decisions in their own words, and list an
 agent's calls apart, each with its reason: a week later nothing else tells them apart, and the
-Charter's authority rests on the difference. Where a build had to read an edge their words left
+Charter's authority rests on the difference. Keep your numbers apart from their judgment the same
+way: write both down, and say which is which. Where a build had to read an edge their words left
 open, say so, and make it one value they can change. And silence is not a decision: a general "yes"
 closes nothing in particular, so write down what it did not answer, and ask.
 
-**Write their playtest down as a playtest, the same day, in an entry that says so in its title.**
-Their time at the game is the rarest thing the project has: a finding folded into a commit message
-is lost, and one titled by its conclusion hides that the game was played at all. Record what they
-played, what they *expected*, and — the half that gets skipped — what worked. Read the report for
-what they must have seen to say it: a complaint that the *second* beacon did not light says the
-first was legible at range. The `design-log` skill has the shape.
-
-**Offer them a minute of play.** Ten seconds at the game can catch what a whole gate missed:
-one game's villagers once walked calmly indoors past the dragon, green across twenty unit tests and
-eight new end-to-end tests. When a change touches something a player does, offer them a minute of
-play and say what might be worth trying.
-
-**Let them choose what comes next.** End a piece of work on what is left, measured, and let them
-choose: what this session takes on, what goes to another, and when to stop. If they run sessions in
-parallel, as one designer did, something they mention may already exist on another branch;
-build what won't collide, and borrow the rest at the merge.
-
-**Brief another agent the way you would want to be briefed.** A session you start is a colleague
-picking the work up cold. Tell them who asked and why it matters, what is known and how it was
-found, and which parts are guesses. Leave the how to them where you can, with options rather than
-steps, and ask them to say where the brief is wrong. Write it as a request, please and thank you
-included: the register of a brief is the one the next agent brings to its work and to the person.
-When you are the one briefed, rebuild its measurements before building on them, and say where it was
-wrong: notes handed on in one game from reading code were right about where things were, and wrong
-one step past that.
-
-## Four inherited guidelines
+## Three inherited guidelines
 
 Inherited from the template, out of a previous project that reached a thousand commits and fifty
 thousand lines before anyone had established whether it was fun. They are defaults rather than this
@@ -188,19 +119,18 @@ the type-checker can tell you so: unit tests import modules directly, so a modul
 test long after nothing in the running game reaches it. This is the specific way the previous
 attempt failed, repeatedly.
 
-**Play it.** While a system's feel is still being found, it needs playing, not tests or documents.
-When you write down a playtest, write down what *worked* — the defect list is the easy half, and it
-is not the half that tells you what to protect.
+**Play it, and test only what has stopped changing.** While a system's feel is still being found,
+it needs playing, not tests or documents: every test written against it is a bet you will pay to
+unwind. An agent's playtest is numbers and screenshots. It can establish that something turns in
+eight seconds, not whether eight seconds feels heavy or merely slow; that judgment is the person's,
+at the game, with the numbers there to support it.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
 stand-in for a judgment, and it takes the person you're working with, playing it, to make that
 judgment. A question about how something feels, split into tasks and handed out, comes back as
 pieces that each pass their check and do not add up.
 
-**Test what has stopped changing.** Every test written against a system whose feel is still being
-found is a bet you will pay to unwind.
-
-The games built from this template since kept all four, and learned more. The ones that apply to
+The games built from this template since kept all of these, and learned more. The ones that apply to
 any game are in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
 argue with.
 
@@ -239,22 +169,17 @@ with everything that has a shader in it, and then reads the GL error flag in the
 that fails to compile is logged rather than thrown, and GL errors reach the console late, from
 another process and as warnings, where a listener for errors does not see them.
 
-**When the person wants to play, give them a build on `npm run verify:play`, not the whole gate**
-(`npm run verify`). It typechecks and boots and draws the game in seconds, which is what their
-sitting needs. One game's gate took five minutes even after it had been cut from fifteen, and every
-sitting used to wait for it. Push, tell them it is there, and run `npm run verify` while they play.
-If it goes red, tell them what broke before they report on it, then fix it. Once there is code, a
-pull request needs the whole gate green, and CI read after the push: in one game, *"CI: will run on
-this PR"* went into a description three times and was not looked at again.
+Once there is code, a pull request needs the whole gate green, and CI read after the push: in one
+game, *"CI: will run on this PR"* went into a description three times and was not looked at again.
 
 A husky `pre-commit` hook runs `tsc --noEmit`, which lets a commit through only while there is no
 source file for it to check, and `lint-staged`; CI runs typecheck, Prettier, ESLint, the unit
 tests, and the end-to-end suite in a booted game on pull requests, all but the unit tests once
 there is source to check.
 
-CI's runner draws more slowly than a cloud session: one game's drew 2.8 times slower, and two
-tests whose time limits were set in a session failed there. `npm run test:e2e:slow` runs the suite
-a little slower than CI. Set a time limit from it, and run it before a pull request.
+Run `npm run test:e2e:slow` before a pull request: CI's runner draws more slowly than a cloud
+session, and it runs the suite a little slower than CI. Setting a test's time limit from it is in
+the Charter's §5.
 
 When you merge main, the three documents resolve themselves where both sides only added text
 (`scripts/merge-docs.mjs`, registered by `npm ci`). A conflict left in one of them is a real
