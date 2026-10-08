@@ -16,8 +16,7 @@ reading. If it needs a second paragraph, the premise is not settled yet — say 
 
 This template is a starting point for a browser game built with a coding agent, such as Claude
 Code, doing most of the typing and a person deciding what the game is and how it should feel. It
-ships no game code: it ships three design documents, a configured toolchain, a few game-agnostic
-tools, and the guidelines earlier games learned the hard way.
+ships no game code; *What ships here*, below, says what it does ship.
 
 1. **Make your repository** with GitHub's *Use this template* button, clone it, and run `npm ci`
    (Node 22 or later).
@@ -106,22 +105,18 @@ some shorthand of their own. In order of how soon you will meet it:
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
 and no issue tracker. That is the starting point, not an accident.
 
-- **`scripts/`** holds the merge driver for the three documents; `template.mjs`, which keeps the
-  project in step with the template; and three tools that work with any game: `shots.mjs`, which
-  takes posed screenshots, `takes.mjs`, which renders and measures the game's own sound, and
-  `e2e-slow.mjs`, which runs the end-to-end tests at about CI's speed. The game supplies a small
-  script for each that says what to capture.
-- **`feedback/` and `infra/`** are an in-game feedback page, the function that takes a player's
-  report from the hosted game and commits it to a private repository, a stand-in for that function
-  on the dev server, and the function's AWS setup as code (*Feedback from inside the game*,
-  below). They know nothing about any game either: the game hands the page its canvas and whatever
-  state it wants to send.
-- **`.claude/skills/`** holds the agent workflows: `gettingstarted`, `design-log`, `frame-check`,
+- **`docs/`**: the three documents, above.
+- **`scripts/`**: tools that work with any game. `shots.mjs`, `takes.mjs` and `e2e-slow.mjs` are
+  described under *Toolchain*; `merge-docs.mjs` is the documents' merge driver, also there; and
+  `template.mjs` keeps the project in step with the template (*Staying in step*).
+- **`feedback/` and `infra/`**: an in-game feedback page and the function that delivers its reports
+  (*Feedback from inside the game*).
+- **`.claude/skills/`**: the agent workflows, `gettingstarted`, `design-log`, `frame-check`,
   `sound-check` and `template-sync`. In Claude Code each runs as a slash command or when the
   situation calls for it.
 
 The build tooling is configured and installed: Vite, TypeScript, ESLint, Prettier, Vitest,
-Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point and that file does
+Playwright, husky. `index.html` names `/src/runtime/main.ts` as the entry point, and that file does
 not exist yet; the Playwright config looks for tests in `tests/e2e/`, and Vitest runs any
 `*.test.ts` under `src/` or `tests/` outside it. Those are the only assumptions the scaffold makes
 about file layout, and each is a line to change rather than a convention to obey.
@@ -139,9 +134,9 @@ how to remove it if you don't want it.
 
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two
 (what lives where, and what may read or write what), and log why in the design log. Whatever the
-layout, one property is worth choosing on purpose: a way to step the game's state without drawing
-it, so that tests and traces can run the game in Node with no browser. In an earlier game, its
-traces and most of its tests depended on that.*
+layout, two properties are worth choosing on purpose: a way to step the game's state without
+drawing it, so that tests and traces can run the game in Node with no browser, and a handle the
+end-to-end tests can drive the game by. The Charter's §5 says what each is for.*
 
 ## Three inherited guidelines
 
@@ -285,9 +280,8 @@ and nothing else installed; it prints what came in, by the template's commit mes
 left to resolve.
 
 `.copier-answers.yml` records the template commit the project was last brought up to. A project
-made with GitHub's "Use this template" button, or before the template could be updated from, has
-none: `npm run template:link` writes it, once, by finding the template commit the project's first
-commit was made from. Commit it, and every update after that is one command.
+made with GitHub's *Use this template* button has none until `npm run template:link` writes it, by
+finding the template commit the project's first commit was made from (*Getting started*, step 3).
 
 `.github/workflows/template-update.yml` runs the update once a week and opens a pull request with
 what came in, conflicts listed in its description, so a project hears of a finding without anyone
