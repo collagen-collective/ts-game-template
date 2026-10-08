@@ -51,55 +51,6 @@ The Charter says *what* and *why*, never *how* to build it. That is deliberate: 
 describes the code goes out of date the first time the code changes, and once readers know one
 section is out of date, they stop trusting the rest.
 
-## Words we use
-
-These documents were written over several games, mostly to be read by coding agents, and they use
-some shorthand of their own. In order of how soon you will meet it:
-
-- **The person** (or *the person you're working with*): the human designing the game, as against
-  the agents writing code. Instructions to agents call you this. How the game feels is yours to
-  judge; agents measure, and you decide.
-- **Session**: one working conversation with a coding agent. Not a stretch of playing the game,
-  which the Charter calls a *play session*.
-- **Sitting**: one stretch of the person playing a build. *The first sitting* is the first time
-  you played it. A sitting written up in the design log is a **playtest**.
-- **Build**: a version of the game pushed for the person to play.
-- **The gate**: `npm run verify`, everything a change must pass before a pull request. **The play
-  gate** is `npm run verify:play`, the few seconds of checks a build needs before someone plays it.
-- **Wired** (in *done means wired in*): reachable from the running game. A module with passing
-  tests that nothing in the game calls is not wired in.
-- **PLAY, DECIDE, COLLISIONS, DEFER**: the four kinds of entry in `OPEN-QUESTIONS.md`, by how each
-  gets resolved. A *collision* is two decisions already made that contradict each other.
-- **§5**: section 5 of the Charter, *How we work*, where the project's working guidelines live.
-- **Instrument**: anything built to show or measure what the game is doing, such as a debug
-  overlay, a count, a trace or a screenshot script. *The instrument is missing* means nobody can
-  yet see the thing being argued about.
-- **Readout**: an on-screen debug overlay that shows state the game otherwise doesn't (where the
-  camera is, the world's seed, the value being tuned).
-- **Trace**: a record of the game's state over a few seconds, made by running the simulation in
-  Node without drawing it.
-- **Frames, shots and the sheet**: screenshots of the game posed in a chosen state; `npm run shots`
-  takes them and lays them out side by side on one image, the sheet.
-- **Takes**: the same for sound. `npm run takes` renders the game's sounds to audio files and
-  measures them, since an agent cannot listen.
-- **Observation and finding**: an observation is what came back (a number, a pass or a fail, a
-  frame); a finding is what it means once it has been checked against its controls.
-- **Controls**: cases whose answer is already known, run beside a measurement. A negative control
-  should show nothing and a positive control a clear signal, so that a blind instrument, or one
-  that reports a signal that is not there, gets caught. The part of a scene or sound the person has
-  said is right, measured beside a change, is one.
-- **Seed**: the number a generated world is built from, so the same world can be built again.
-- **Builder**: a sub-agent a session starts to build one piece of the work alongside others, usually
-  in a git worktree of its own. *Fanning out* is starting several at once.
-- **Brief**: the written handover to another agent: what to do, why, and what is known.
-- **Round**: one cycle of plan, build and play.
-- **Tell**: something a player does in play that was agreed in advance to mean something (opening
-  the map often enough to mean *I'm lost*, say).
-- **Paid for**: learned at a cost. A guideline a game *paid for* is one it wrote down after a
-  mistake cost it time.
-- **Carried back**: sent from a game to the template, so that every game gets it. A guideline that
-  *comes home* is one this project sent that returns in a template update.
-
 ## What ships here, and what does not
 
 `src/` and `tests/` are empty. There is no implementation to read, no architecture to conform to,
@@ -121,15 +72,6 @@ not exist yet; the Playwright config looks for tests in `tests/e2e/`, and Vitest
 `*.test.ts` under `src/` or `tests/` outside it. Those are the only assumptions the scaffold makes
 about file layout, and each is a line to change rather than a convention to obey.
 
-## Feedback from inside the game
-
-A player at the hosted game can send a report from inside it: their words, the frame they were
-looking at, and whatever of the world's state the game chooses to send. Each report lands as a
-folder in a private repository you create, where a session can read it. The page, the AWS function
-that commits a report, and the function's setup as code all ship here and work with any game.
-[`feedback/README.md`](./feedback/README.md) says how to put it in a game, how to set it up, and
-how to remove it if you don't want it.
-
 ## Where things live
 
 *Empty until there is code. When a session settles a layout, record it here in a paragraph or two
@@ -137,42 +79,6 @@ how to remove it if you don't want it.
 layout, two properties are worth choosing on purpose: a way to step the game's state without
 drawing it, so that tests and traces can run the game in Node with no browser, and a handle the
 end-to-end tests can drive the game by. The Charter's §5 says what each is for.*
-
-## Three inherited guidelines
-
-*These came out of a previous project that reached a thousand commits and fifty thousand lines of
-production code, with as much again in tests, before anyone had checked whether it was fun. The
-build at the end booted into two zones and one quest that was already complete when it loaded.
-Every automated check passed throughout.*
-
-*They are inherited defaults, not this project's findings. Keep them, argue with them, or delete
-this section — but do it deliberately, and log the decision.*
-
-**Done means wired in, not written.** A feature is finished when a booted game lets a player do the
-thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
-the type-checker can tell you so: unit tests import modules directly, so a module keeps a green test
-long after nothing in the running game reaches it. The audit that produced this guideline found
-forty unreachable modules under six thousand lines of passing tests, a combat HUD with zero
-importers, and an enemy damage event nothing subscribed to — which had left the player invulnerable
-in every green build for weeks.
-
-**Play it, and test only what has stopped changing.** While you are still finding out how a system
-should feel, it needs playing, not tests or documents. An agent's playtest is numbers and
-screenshots: it can establish that something turns in eight seconds, not whether eight seconds
-feels heavy or merely slow, and that judgment is yours, at the game. A throwaway prototype of under
-nine hundred lines, written in one pass and judged on nothing but whether it was fun, was a better
-game than the fifty thousand lines it was prototyping — it had no tickets, no tests, and no design
-docs to conform to. And every test written against a system you are still tuning is a bet you will
-pay to unwind: about six thousand lines of that bet came due at once.
-
-**Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
-stand-in for a judgment, and it takes a person playing it to make that judgment. A question about
-how something feels, split into tasks and handed out, comes back as pieces that each pass their
-check and do not add up to the thing you were asking about.
-
-The games built from this template since kept all of these, and learned more. The lessons that
-apply to any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with its
-reason. They are inherited on the same terms as these three.
 
 ## Toolchain
 
@@ -261,6 +167,15 @@ ordinary conflict: a passage both sides changed is still there to be read. `npm 
 through `prepare`. Where it is not registered, GitHub's merge button included, the documents merge
 as they always did.
 
+## Feedback from inside the game
+
+A player at the hosted game can send a report from inside it: their words, the frame they were
+looking at, and whatever of the world's state the game chooses to send. Each report lands as a
+folder in a private repository you create, where a session can read it. The page, the AWS function
+that commits a report, and the function's setup as code all ship here and work with any game.
+[`feedback/README.md`](./feedback/README.md) says how to put it in a game, how to set it up, and
+how to remove it if you don't want it.
+
 ## Staying in step with the template
 
 Several games are built from this template, and each finds things the others need. The template is
@@ -298,6 +213,84 @@ it.
 The template's own repository is
 [`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
 `copier.yml` there says what is copied and what is not; projects never see it.
+
+## Three inherited guidelines
+
+*These came out of a previous project that reached a thousand commits and fifty thousand lines of
+production code, with as much again in tests, before anyone had checked whether it was fun. The
+build at the end booted into two zones and one quest that was already complete when it loaded.
+Every automated check passed throughout.*
+
+*They are inherited defaults, not this project's findings. Keep them, argue with them, or delete
+this section — but do it deliberately, and log the decision.*
+
+**Done means wired in, not written.** A feature is finished when a booted game lets a player do the
+thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
+the type-checker can tell you so: unit tests import modules directly, so a module keeps a green test
+long after nothing in the running game reaches it. The audit that produced this guideline found
+forty unreachable modules under six thousand lines of passing tests, a combat HUD with zero
+importers, and an enemy damage event nothing subscribed to — which had left the player invulnerable
+in every green build for weeks.
+
+**Play it, and test only what has stopped changing.** While you are still finding out how a system
+should feel, it needs playing, not tests or documents. An agent's playtest is numbers and
+screenshots: it can establish that something turns in eight seconds, not whether eight seconds
+feels heavy or merely slow, and that judgment is yours, at the game. A throwaway prototype of under
+nine hundred lines, written in one pass and judged on nothing but whether it was fun, was a better
+game than the fifty thousand lines it was prototyping — it had no tickets, no tests, and no design
+docs to conform to. And every test written against a system you are still tuning is a bet you will
+pay to unwind: about six thousand lines of that bet came due at once.
+
+**Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
+stand-in for a judgment, and it takes a person playing it to make that judgment. A question about
+how something feels, split into tasks and handed out, comes back as pieces that each pass their
+check and do not add up to the thing you were asking about.
+
+The games built from this template since kept all of these, and learned more. The lessons that
+apply to any game are in [`docs/CHARTER.md`](./docs/CHARTER.md) §5, under *Inherited*, each with its
+reason. They are inherited on the same terms as these three.
+
+## Words we use
+
+These documents were written over several games, mostly to be read by coding agents, and they use
+some shorthand of their own:
+
+- **The person** (or *the person you're working with*): the human designing the game, as against
+  the agents writing code. Instructions to agents call you this. How the game feels is yours to
+  judge; agents measure, and you decide.
+- **Session**: one working conversation with a coding agent. Not a stretch of playing the game,
+  which the Charter calls a *play session*.
+- **Sitting**: one stretch of the person playing a build. *The first sitting* is the first time
+  you played it. A sitting written up in the design log is a **playtest**.
+- **Build**: a version of the game pushed for the person to play.
+- **The gate**: `npm run verify`, everything a change must pass before a pull request.
+- **Wired** (in *done means wired in*): reachable from the running game. A module with passing
+  tests that nothing in the game calls is not wired in.
+- **PLAY, DECIDE, COLLISIONS, DEFER**: the four kinds of entry in `OPEN-QUESTIONS.md`, by how each
+  gets resolved. A *collision* is two decisions already made that contradict each other.
+- **§5**: section 5 of the Charter, *How we work*, where the project's working guidelines live.
+- **Instrument**: anything built to show or measure what the game is doing. *The instrument is
+  missing* means nobody can yet see the thing being argued about. The usual ones are a **readout**,
+  an on-screen debug overlay of state the game otherwise doesn't show (where the camera is, the
+  value being tuned); a **trace**, the game's state over a few seconds, made by running the
+  simulation in Node without drawing it; **frames** or **shots**, screenshots of the game posed in
+  a chosen state, laid out on one image, **the sheet**; and **takes**, the same for sound.
+- **Observation, finding and controls**: an observation is what came back (a number, a pass or a
+  fail, a frame); a finding is what it means once it has been checked against its controls.
+  Controls are cases whose answer is already known, run beside a measurement: a negative control
+  should show nothing and a positive control a clear signal, so that an instrument that is blind,
+  or that reports a signal that is not there, gets caught. The part of a scene or sound the person
+  has said is right, measured beside a change, is one.
+- **Builder**: a sub-agent a session starts to build one piece of the work alongside others, usually
+  in a git worktree of its own.
+- **Brief**: the written handover to another agent: what to do, why, and what is known.
+- **Round**: one cycle of plan, build and play.
+- **Tell**: something a player does in play that was agreed in advance to mean something (opening
+  the map often enough to mean *I'm lost*, say).
+- **Paid for**: learned at a cost. A guideline a game *paid for* is one it wrote down after a
+  mistake cost it time.
+- **Carried back**: sent from a game to the template, so that every game gets it. A guideline that
+  *comes home* is one this project sent that returns in a template update.
 
 ## Optional: the RTK agent tooling
 
