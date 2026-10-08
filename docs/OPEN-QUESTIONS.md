@@ -5,10 +5,10 @@
 > Companions: [`CHARTER.md`](./CHARTER.md) is what is settled. [`DESIGN-LOG.md`](./DESIGN-LOG.md)
 > is what we tried and what happened.
 
-**Rules for this file.** Keep it to about a page. If it runs longer, we are collecting questions
-instead of answering them. Every entry carries **how it gets resolved**, because the most expensive
-process mistake available to a game project is treating a question about how something feels as a
-task, to be done by someone who cannot play it:
+**Guidelines for this file.** Keep it to about a page. If it runs longer, we are collecting
+questions instead of answering them. Every entry carries **how it gets resolved**, because the most
+expensive process mistake available to a game project is treating a question about how something
+feels as a task, to be done by someone who cannot play it:
 
 - **PLAY**: only a person playing it can settle this. Do not decide it by argument, and do not
   break it down into tasks.

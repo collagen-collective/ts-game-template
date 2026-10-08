@@ -15,7 +15,7 @@ prompt.>`*
 
 ## The three documents
 
-They divide by tense, and that is the filing rule. Anything new either fits one or replaces one.
+They divide by tense, and tense is how anything new is filed: it either fits one or replaces one.
 
 - **[`docs/CHARTER.md`](./docs/CHARTER.md)**: present tense, what is settled. Read this first.
 - **[`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md)**: future tense, what is unresolved.
@@ -24,8 +24,8 @@ They divide by tense, and that is the filing rule. Anything new either fits one 
   Append only. Never edit an old entry to agree with current thinking. The `design-log` skill says
   how an entry is written.
 
-The Charter states *what* and *why*, never *how*. That is deliberate. Read the Charter's final
-section, and the last three log entries, before proposing a plan.
+The Charter states *what* and *why*, never *how* the game is built. That is deliberate. Its
+opening note says what to read before proposing a plan.
 
 ## How to work in this repo
 
@@ -37,14 +37,14 @@ the function that commits a player's report to a private repository, and that fu
 as code (README, *Feedback from inside the game*). Do not assume a missing module was deleted by
 mistake, and do not go looking for prior art in the tree.
 
-**Architecture is yours to choose.** There are no file-layout rules, module conventions, or
+**Architecture is yours to choose.** There are no file-layout guidelines, module conventions, or
 state-management patterns recorded anywhere here, and that is intentional. `index.html` names
 `/src/runtime/main.ts` as the entry point; that is a line to change, not a convention to obey.
 Don't invent a convention and then cite it as if it were established. When you settle one, say so
 plainly: the README's *Where things live* is the record of it, and the design log says why. Two
 properties are recommended, not required, for what they made possible in an earlier game built from
 this template: a way to step the game's state without drawing it, and a handle the end-to-end tests
-can drive the game by. The next two rules say what each is for; how to provide them is yours.
+can drive the game by. The next two guidelines say what each is for; how to provide them is yours.
 
 **There is no issue tracker.** No tickets, no ticket IDs, no backlog tool. Plans live in the Charter
 and in the session you are working in. Don't reference or fabricate ticket identifiers.
@@ -100,7 +100,7 @@ a tool like it for themselves first. The `sound-check` skill has the rest.
 
 ### Working together
 
-The rules above are about checking the work; these are about the rest of it. They come from an
+The guidelines above are about checking the work; these are about the rest of it. They come from an
 earlier game, and from what the designer there found makes work go well: *"work with agents and
 colleagues is more productive when everyone is patient, understanding, and brings a collaborative,
 rather than delegative or managerial, mindset to things."* They rest on one idea: the work goes best
@@ -110,8 +110,8 @@ while they play one, and keep the record straight. A *sitting*, below, is one st
 playing a build. None of this softens what is true: a check that passes on broken code checks
 nothing, whoever says so and however kindly.
 
-Like the Charter's §5, these are inherited, as are the rules above: defaults, not this project's
-findings. Keep them, prune them or argue with them, and log it when you do.
+Like the Charter's §5, these are inherited, as are the guidelines above: defaults, not this
+project's findings. Keep them, prune them or argue with them, and log it when you do.
 
 **Ask what they picture before you build something the world already has.** How it feels they can
 tell us afterwards; how they picture it working they can tell us *beforehand*, which costs less and
@@ -175,7 +175,7 @@ When you are the one briefed, rebuild its measurements before building on them, 
 wrong: notes handed on in one game from reading code were right about where things were, and wrong
 one step past that.
 
-## Four inherited rules
+## Four inherited guidelines
 
 Inherited from the template, out of a previous project that reached a thousand commits and fifty
 thousand lines before anyone had established whether it was fun. They are defaults rather than this
@@ -202,7 +202,7 @@ found is a bet you will pay to unwind.
 
 The games built from this template since kept all four, and learned more. The ones that apply to
 any game are in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
-argue with, and read before proposing a plan.
+argue with.
 
 ## Verification
 

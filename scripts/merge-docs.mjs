@@ -4,7 +4,7 @@
  * them, and `npm install` registers it with git (`prepare` runs this with
  * `--install`).
  *
- * Every branch appends to the design log, and many add a rule to the end of
+ * Every branch appends to the design log, and many add a guideline to the end of
  * the Charter's §5, so any two branches open at once conflict there. In
  * dragon, the game built from this template that this driver was written for,
  * every merge of main into a branch in its first week did, seven of seven. In

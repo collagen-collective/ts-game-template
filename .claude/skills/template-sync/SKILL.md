@@ -6,11 +6,12 @@ user-invocable: true
 
 # Staying in step with the template
 
-Several games are built from one template, and a rule one of them paid for is usually one the
+Several games are built from one template, and a guideline one of them paid for is usually one the
 others will pay for too, unless it reaches them first. The template is how it travels. This skill
 is the two directions: bringing the template's findings in, and sending this project's out. The
 README's *Staying in step with the template* is the overview; `scripts/template.mjs` is the
-mechanism, and its header says exactly what it does.
+mechanism, and its header says exactly what it does. Wherever it has you add or reword a guideline
+in the Charter's §5, do it with the person: §5 is changed by the person and an agent together.
 
 ## Bringing the template in
 
@@ -26,9 +27,9 @@ The weekly workflow does the same and opens a pull request on the `template-upda
 branch the work is the same as here, except that the markers are already committed.
 
 **Read what came in before resolving anything.** The template's commit messages say what each
-change is and where it came from. An update that brings a rule into the Charter's §5, a paragraph
-into `CLAUDE.md`, or a skill, changes how sessions here work from now on, so read those as you
-would a colleague's proposal, not as a dependency bump.
+change is and where it came from. An update that brings a guideline into the Charter's §5, a
+paragraph into `CLAUDE.md`, or a skill, changes how sessions here work from now on, so read those as
+you would a colleague's proposal, not as a dependency bump.
 
 **Resolve conflicts as after a merge of main: read both sides.** In each conflicted file, the
 project's version is under `<<<<<<< before updating`, the template's under `>>>>>>> after
@@ -38,7 +39,7 @@ cases:
 - **The project filled in a prompt the template has since reworded.** Keep the project's answer.
   If the new wording asks something the old one did not, say so to the person; do not answer it
   for them.
-- **The project changed an inherited rule, and the template changed it too.** The project's
+- **The project changed an inherited guideline, and the template changed it too.** The project's
   version is a decision someone made here; the template's is what another game learned since. Show
   the person both, and log which way it went.
 - **Code, config or a script both changed.** Merge them as code, and run what the file is for:
@@ -56,28 +57,29 @@ the `design-log` skill gives a merge of main: what came in, what it made untrue 
 conflict decided, with whose decision it was. An update that brought only tooling fixes needs no
 entry.
 
-**When a finding this project sent comes home.** The update brings back, under *Inherited*, rules
-this project already has under *This project's own*. Keep this project's own
-copy, which carries its own story, and delete the inherited copy. The update remembers deletions,
-so it will not come back. If the template's wording is better, take the wording into the project's
-own copy first. A rule that was sent from the design log, and never written under *This project's
-own*, has no copy to keep: write it there now, in the project's words and citing the entry that
-paid for it, and then delete the inherited copy. If the project also holds it inherited from
-another game, it has paid for that rule again, so it moves to *This project's own* too.
+**When a finding this project sent comes home.** The update brings back, under *Inherited*,
+guidelines this project already has under *This project's own*. Keep this project's own copy, which
+carries its own story, and delete the inherited copy. The update remembers deletions, so it will not
+come back. If the template's wording is better, take the wording into the project's own copy first.
+A guideline that was sent from the design log, and never written under *This project's own*, has no
+copy to keep: write it there now, in the project's words and citing the entry that paid for it, and
+then delete the inherited copy. If the project also holds it inherited from another game, it has
+paid for that guideline again, so it moves to *This project's own* too.
 
 ## Sending a finding to the template
 
-**What goes back.** A rule, a check, a script or a way of working that would have saved any game
-built from the template the same cost. Not what is about this game's design, and not what is about
-this game's technology: one game's rules came back to the template, and its rules about three.js,
-terrain and sound stayed behind. A rule that has been paid for once here is worth sending; one this
-project only suspects is not yet.
+**What goes back.** A guideline, a check, a script or a way of working that would have saved any
+game built from the template the same cost. Not what is about this game's design, and not what is
+about this game's technology: one game's guidelines came back to the template, and its guidelines
+about three.js, terrain and sound stayed behind. A guideline that has been paid for once here is
+worth sending; one this project only suspects is not yet.
 
 **Where it goes in the template.**
 
-- Rules for particular moments: the Charter's §5, under *Inherited*, in the list for the moment the
-  rule is for (for a rule about measuring or testing, under the principle it is an instance of), or
-  a new *When you are about to…* heading if none fits. In the §5 shape: its reason, then the rule in
+- Guidelines for particular moments: the Charter's §5, under *Inherited*, in the list for the moment
+  the guideline is for (for a guideline about measuring or testing, under the principle it is an
+  instance of), or a new *When you are about to…* heading if none fits, with a line of its own in
+  §5's opening. In the shape §5's *Writing a guideline* gives: its reason, then the guideline in
   bold, and a *For example* only if the moment is hard to recognise. Written for a game that is not
   this one: the example names no game, and *the person* in it becomes *a designer*.
 - How sessions work with the person, every session: `CLAUDE.md`, *Working together*.
@@ -86,20 +88,20 @@ project only suspects is not yet.
   here* and *Toolchain* told about it.
 - A fix to the template's own tooling, found in use here: the same file, fixed in place.
 
-Which game a rule came from belongs in the pull request and its commits, not in the documents.
+Which game a guideline came from belongs in the pull request and its commits, not in the documents.
 
-**Write it into the project first.** Before a rule goes to the template, put it under *This
+**Write it into the project first.** Before a guideline goes to the template, put it under *This
 project's own* in the project's Charter, with its reason and its design-log entry, and send that
-without the entry. A rule sent from the design log comes home with no copy of its own to keep: one
-game sent four rules to §5, three of them only ever written in its log, and its first update had to
-write all three into its Charter while resolving the conflicts.
+without the entry. A guideline sent from the design log comes home with no copy of its own to keep:
+one game sent four guidelines to §5, three of them only ever written in its log, and its first
+update had to write all three into its Charter while resolving the conflicts.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief
 another agent: which game it came from, what it cost there, what is measured and what is a guess.
 Write it for a game that is not this one: names of this game's systems, files and people come out,
 or become the example. Ask the person before sending anything: what leaves this project is theirs
-to decide, and a rule they decided here may not be one they want stated for every game.
+to decide, and a guideline they decided here may not be one they want stated for every game.
 
 **Then bring it home.** Once the template has merged it, `npm run template:update` here, and handle
 it as *When a finding this project sent comes home* says above.

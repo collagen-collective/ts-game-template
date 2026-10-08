@@ -43,9 +43,9 @@ between 2 and 6 kHz and little under it, *crackle* is clipping, *late* is a star
 *drowned out* is two levels and an overlap.
 
 In a recreation, ask for a recording of the original before a description, and measure the two with
-the same instrument (one recreation made it a rule of its own: *Ask the person for a recording of it
-before a description*). If nobody is around to ask, write down the questions you would have asked,
-and bring them back with what you found.
+the same instrument (one recreation made it a guideline of its own: *Ask the person for a recording
+of it before a description*). If nobody is around to ask, write down the questions you would have
+asked, and bring them back with what you found.
 
 **If the game has no `npm run takes` yet,** it was made from the template before the harness: copy
 `scripts/takes.mjs` and `scripts/lib/` from the template, and add the npm script. Or render with the
@@ -61,8 +61,8 @@ Audio graph builds into any `BaseAudioContext`. What that needs from the game:
   `AudioContext`. All four games' sound already did, or could, with a line changed.
 - **The game's own path, not a copy of it.** Render through the same mixer, buses, reverb and
   limiter that play uses. A copy made for measuring drifts from the game the first time either is
-  changed, and then measures nothing (Charter §5: *When two copies of one thing disagree, delete
-  one*).
+  changed, and then measures nothing (Charter §5: *When two tools, features or implementations
+  overlap, keep one*).
 - **The same take twice.** Seed whatever is random in the synthesis, so that a take repeats. Kyle on
   Duty's stings rendered alike from two commits with the same sound code, to about -117 dBFS in
   every sample and to the last digit of every measure; then a difference between two trees is the

@@ -11,9 +11,11 @@ another one upstream. Read end to end, this is the story of how the design got w
 also where you see one decision quietly changing another, which is what the **Changed elsewhere**
 line on each entry is for — that line is the one people skip and the one that is worth most later.
 
-**Rules for this file.** Append only. Never edit an old entry to make it agree with current
-thinking, because an entry is a historical account and a historical account cannot go stale. Order
-is chronological rather than by system, deliberately: the chronology is the part that is hard to
+**Guidelines for this file.** Append only. Never edit an old entry to make it agree with current
+thinking, because an entry is a historical account and a historical account cannot go stale. It
+also keeps the log's cost flat: a record that is only ever added to never has to be reconciled
+with itself, and reconciliation is where earlier ways of tracking work broke down. Order is
+chronological rather than by system, deliberately: the chronology is the part that is hard to
 reconstruct, and grouping is the part a search recovers for free. Tags in brackets are for
 searching. Dates before the first commit are approximate.
 
@@ -51,7 +53,7 @@ write down that it failed — a log that only records successes is advertising, 
 advertising.>`*
 
 **Learned.** *`<The transferable part, stated so it can be applied to something else. If there is a
-rule in here, state it as a rule.>`*
+guideline in here, state it as a guideline.>`*
 
 **Changed elsewhere.** *`<What this forced, allowed, or invalidated somewhere else in the design.
 If the honest answer is "nothing", write nothing — but check twice, because this is where the

@@ -40,8 +40,9 @@ function merge(path, base, ours, theirs) {
 const entry = (date, title, body = `${title}, in full.`) =>
     `\n---\n\n### ${date} · ${title} \`[build]\`\n\n${body}\n`;
 const LOG = "# Design Log\n" + entry("2026-09-20", "Where it starts");
-const CHARTER = "## 5\n\n- **Rule one.** Text.\n\nRead this section.\n";
-const withRule = (rule) => CHARTER.replace("Read this", `- **${rule}** Text.\n\nRead this`);
+const CHARTER = "## 5\n\n- **Guideline one.** Text.\n\nRead this section.\n";
+const withGuideline = (guideline) =>
+    CHARTER.replace("Read this", `- **${guideline}** Text.\n\nRead this`);
 
 describe("the docs' merge driver", () => {
     it("keeps both sides' log entries, oldest first, each side's run together", () => {
@@ -53,11 +54,16 @@ describe("the docs' merge driver", () => {
         expect(r.text).toBe(LOG + m23 + b23 + b24 + m24);
     });
 
-    it("keeps both sides' rules at the end of a list, theirs first", () => {
-        const r = merge("docs/CHARTER.md", CHARTER, withRule("Mine."), withRule("Theirs."));
+    it("keeps both sides' guidelines at the end of a list, theirs first", () => {
+        const r = merge(
+            "docs/CHARTER.md",
+            CHARTER,
+            withGuideline("Mine."),
+            withGuideline("Theirs."),
+        );
         expect(r.done).toBe(true);
         expect(r.text).toBe(
-            "## 5\n\n- **Rule one.** Text.\n\n- **Theirs.** Text.\n\n- **Mine.** Text.\n\nRead this section.\n",
+            "## 5\n\n- **Guideline one.** Text.\n\n- **Theirs.** Text.\n\n- **Mine.** Text.\n\nRead this section.\n",
         );
     });
 
@@ -85,7 +91,7 @@ describe("the docs' merge driver", () => {
             theirs: LOG + entry("2026-09-24", "Same", "Another way."),
         },
         {
-            what: "a rule both sides changed",
+            what: "a guideline both sides changed",
             path: "docs/CHARTER.md",
             base: CHARTER,
             ours: CHARTER.replace("Text.", "Mine."),
@@ -95,8 +101,8 @@ describe("the docs' merge driver", () => {
             what: "two additions that share a line",
             path: "docs/OPEN-QUESTIONS.md",
             base: CHARTER,
-            ours: withRule("Mine.").replace("Read this", "## DECIDE\n\nRead this"),
-            theirs: withRule("Theirs.").replace("Read this", "## DECIDE\n\nRead this"),
+            ours: withGuideline("Mine.").replace("Read this", "## DECIDE\n\nRead this"),
+            theirs: withGuideline("Theirs.").replace("Read this", "## DECIDE\n\nRead this"),
         },
         {
             // The markers come back with CRLF endings and are not read as markers,

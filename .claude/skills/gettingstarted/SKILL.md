@@ -21,7 +21,7 @@ This walks the person you're working with through turning the scaffold into thei
 output is documents: a named repo, a Charter holding only what is genuinely settled, an
 OPEN-QUESTIONS file holding everything that is not, and a first design-log entry. No code.
 
-## The rule that governs everything below
+## The guideline behind everything below
 
 **You are interviewing, not designing.** Every noun in the finished Charter should be traceable to
 something they said out loud. You may tighten their prose, cut a hedge, or ask them to say it again
@@ -48,10 +48,10 @@ anything was built from it, and the build needed no changes the first time the p
 
 1. Read `README.md`, `CLAUDE.md`, `docs/CHARTER.md`, `docs/OPEN-QUESTIONS.md`, and
    `docs/DESIGN-LOG.md`. The Charter's framing notes explain why it says *what* and *why* but never
-   *how*; you have to hold that line while transcribing. Its §5 is long, because it carries rules in
-   from earlier games: read its opening, and skim the rules, since you will ask about them as a
-   block at the end. `CLAUDE.md`'s *Working together* is how to conduct the interview itself, and
-   the README's *Words we use* defines the shorthand these documents use.
+   *how*; you have to hold that line while transcribing. Its §5 is long, because it carries
+   guidelines in from earlier games: read its opening, and skim the guidelines, since you will ask
+   about them as a block at the end. `CLAUDE.md`'s *Working together* is how to conduct the
+   interview itself, and the README's *Words we use* defines the shorthand these documents use.
 2. Take inventory: ``rg '`<' README.md CLAUDE.md docs/``. That lists every unfilled placeholder.
 3. **Check whether this has been run before.** If placeholders are already gone or
    `docs/DESIGN-LOG.md` has real entries, this is a resume. Do not re-ask what is answered — say
@@ -162,11 +162,13 @@ another, that is a COLLISIONS entry, not something to reconcile quietly on their
 usually "nothing yet," and an empty section is correct. Ask whether they already have these; if they
 hesitate, skip the tier and move on.
 
-**§3, the laws.** Only rules that bind everywhere, with no exceptions anywhere. A rule that governs
-one system belongs with that system in §4, not here. Each law needs its *Why* — the failure it
-exists to prevent — because a law without one gets re-argued the first time it is inconvenient. If
-there is an operational test, some question easier to apply than the law itself, capture it; that is
-the part that actually gets used.
+**§3, guidelines for the whole game.** Only guidelines that hold across the whole game; one that
+governs a single system belongs with that system in §4, not here. They serve the vision in §1 and
+§2, and when one pulls against a criterion, that is talked through case by case, not settled by
+rank (§3's opening says how). Each guideline needs its *Why* — the failure it exists to prevent —
+so that when it is inconvenient, the argument starts from its reason instead of from scratch. If
+there is an operational test, some question easier to apply than the guideline itself, capture it;
+that is the part that actually gets used.
 
 **§4, the building blocks.** One block per system large enough that a decision about it constrains
 other systems. **The problem** before **The shape**, always, because the problem statement is how a
@@ -213,15 +215,15 @@ Use `AskUserQuestion` for these; they are discrete choices.
   the three docs — each one as its file gets real content. In `CLAUDE.md`, delete the **This repo
   was scaffolded from a template** paragraph once the placeholders it refers to are gone. Leave the
   README's *Where things live* prompt where it is: it is for the first session that writes code.
-- **The inherited rules.** There are two sets, and each is asked about as a whole: keep it, prune
-  it, or delete it. The template's four are in `README.md`, with the evidence behind each, and in
-  `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which the
+- **The inherited guidelines.** There are two sets, and each is asked about as a whole: keep it,
+  prune it, or delete it. The template's four are in `README.md`, with the evidence behind each, and
+  in `CLAUDE.md`, where an agent reads them every session. That is a pair kept in step, which the
   Charter's §5 advises against, so whatever is decided is made in both, or one copy goes. The rest
   are in two places: the Charter's §5, under *Inherited*, and `CLAUDE.md`'s *Working together*, with
-  the rules above it. Both sets are explicitly defaults rather than this project's findings, and the
-  decision should be made deliberately. Pruning those is expected over time, as this project learns
-  which of them it needs; today, ask only whether any group of them plainly does not fit this game.
-  Whatever the answer, log it.
+  the guidelines above it. Both sets are explicitly defaults rather than this project's findings,
+  and the decision should be made deliberately. Pruning those is expected over time, as this project
+  learns which of them it needs; today, ask only whether any group of them plainly does not fit this
+  game. Whatever the answer, log it.
 - **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and
   how to remove it. Ask whether to keep or remove, then do it.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
@@ -247,7 +249,7 @@ nothing transferable under **Learned** yet, write that there isn't, rather than 
 lesson. If any commitment was a working title, an agent-drafted line, or a tension they chose to
 leave standing, this entry is where it gets recorded. If a brief stood in for the interview, this
 is where every call you made under its grant of freedom is listed, as yours, with its reason. And
-record what was decided about the inherited rules.
+record what was decided about the inherited guidelines.
 
 ### Verify
 

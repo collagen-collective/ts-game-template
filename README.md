@@ -17,7 +17,7 @@ reading. If it needs a second paragraph, the premise is not settled yet — say 
 This template is a starting point for a browser game built with a coding agent, such as Claude
 Code, doing most of the typing and a person deciding what the game is and how it should feel. It
 ships no game code: it ships three design documents, a configured toolchain, a few game-agnostic
-tools, and the rules earlier games learned the hard way.
+tools, and the guidelines earlier games learned the hard way.
 
 1. **Make your repository** with GitHub's *Use this template* button, clone it, and run `npm ci`
    (Node 22 or later).
@@ -34,12 +34,12 @@ tools, and the rules earlier games learned the hard way.
 
 ## The three documents
 
-They divide by tense, and that is the whole filing rule: anything you write either fits one of them
+They divide by tense, and that is all there is to filing: anything you write either fits one of them
 or replaces one of them.
 
 - **[`docs/CHARTER.md`](./docs/CHARTER.md)** is present tense: what is settled. What the game wants
-  to be, what it has to be, the rules that hold everywhere, and the main systems. Each system
-  states the problem it exists to solve before it states the answer.
+  to be, what it has to be, the guidelines for the whole game, and the main systems. Each system
+  states the problem it exists to solve before it states the answer. Its §5 says how we work.
 - **[`docs/OPEN-QUESTIONS.md`](./docs/OPEN-QUESTIONS.md)** is future tense: what you still have to
   find out. Every entry says *how it gets answered*: by playing (PLAY), by discussion (DECIDE), or
   later (DEFER). That part matters most, because a question only playing can answer, such as
@@ -71,8 +71,7 @@ some shorthand of their own. In order of how soon you will meet it:
   tests that nothing in the game calls is not wired in.
 - **PLAY, DECIDE, COLLISIONS, DEFER**: the four kinds of entry in `OPEN-QUESTIONS.md`, by how each
   gets resolved. A *collision* is two decisions already made that contradict each other.
-- **§5**: section 5 of the Charter, *How to build anything here*, where the project's working rules
-  live.
+- **§5**: section 5 of the Charter, *How we work*, where the project's working guidelines live.
 - **Instrument**: anything built to show or measure what the game is doing, such as a debug
   overlay, a count, a trace or a screenshot script. *The instrument is missing* means nobody can
   yet see the thing being argued about.
@@ -97,9 +96,9 @@ some shorthand of their own. In order of how soon you will meet it:
 - **Round**: one cycle of plan, build and play.
 - **Tell**: something a player does in play that was agreed in advance to mean something (opening
   the map often enough to mean *I'm lost*, say).
-- **Paid for**: learned at a cost. A rule a game *paid for* is one it wrote down after a mistake
-  cost it time.
-- **Carried back**: sent from a game to the template, so that every game gets it. A rule that
+- **Paid for**: learned at a cost. A guideline a game *paid for* is one it wrote down after a
+  mistake cost it time.
+- **Carried back**: sent from a game to the template, so that every game gets it. A guideline that
   *comes home* is one this project sent that returns in a template update.
 
 ## What ships here, and what does not
@@ -280,7 +279,7 @@ layout, one property is worth choosing on purpose: a way to step the game's stat
 it, so that tests and traces can run the game in Node with no browser. In an earlier game, its
 traces and most of its tests depended on that.*
 
-## Four inherited rules
+## Four inherited guidelines
 
 *These came out of a previous project that reached a thousand commits and fifty thousand lines of
 production code, with as much again in tests, before anyone had checked whether it was fun. The
@@ -293,10 +292,10 @@ this section — but do it deliberately, and log the decision.*
 **Done means wired in, not written.** A feature is finished when a booted game lets a player do the
 thing. A system with a passing test and no caller is not delivered, and neither the test suite nor
 the type-checker can tell you so: unit tests import modules directly, so a module keeps a green test
-long after nothing in the running game reaches it. The audit that produced this rule found forty
-unreachable modules under six thousand lines of passing tests, a combat HUD with zero importers, and
-an enemy damage event nothing subscribed to — which had left the player invulnerable in every green
-build for weeks.
+long after nothing in the running game reaches it. The audit that produced this guideline found
+forty unreachable modules under six thousand lines of passing tests, a combat HUD with zero
+importers, and an enemy damage event nothing subscribed to — which had left the player invulnerable
+in every green build for weeks.
 
 **Play it.** While you are still finding out how a system should feel, it needs playing, not tests
 or documents. A
@@ -430,7 +429,7 @@ gained since the project last did, as a three-way merge, file by file, through
 working repositories). What the project changed is kept; what the template changed comes in; where
 both changed the same lines, the file is left with conflict markers and marked unmerged, as after a
 `git merge`, to be read and resolved. A file or a passage the project deleted stays deleted. The
-three documents get their merge driver here too, so a rule the template added beside one the
+three documents get their merge driver here too, so a guideline the template added beside one the
 project added keeps both. `package-lock.json` is never merged: `npm install` rebuilds it from the
 merged `package.json`. The update needs [uv](https://docs.astral.sh/uv/) or pipx to run Copier,
 and nothing else installed; it prints what came in, by the template's commit messages, and what is
@@ -447,10 +446,11 @@ remembering to look. It needs a repository setting and, for CI to run on that pu
 token; the workflow's header says which.
 
 **From a project to the template.** A lesson goes back as a pull request to the template, written
-the way the rules already there are: only what applies to any game, under the name of the game that
-learned it, with what it cost there, and without that game's own engine or libraries. Once merged,
-every other project receives it at its next update. The `template-sync` skill has both directions in
-detail, including what to do when the update brings a project's own rule back to it.
+the way the guidelines already there are: only what applies to any game, under the name of the game
+that learned it, with what it cost there, and without that game's own engine or libraries. Once
+merged, every other project receives it at its next update. The `template-sync` skill has both
+directions in detail, including what to do when the update brings a project's own guideline back to
+it.
 
 The template's own repository is
 [`collagen-collective/ts-game-template`](https://github.com/collagen-collective/ts-game-template).
