@@ -116,9 +116,10 @@ is a feature that wandered in.>`*
 ## 5. How we work
 
 These are the guidelines for particular moments in the work. The guidelines for every moment are in
-[`../CLAUDE.md`](../CLAUDE.md): the template's four, which the [README](../README.md) gives with the
-evidence behind each, and *Working together*. `CLAUDE.md` also names each moment below, so that an
-agent has them in mind all session. Find the moment you are in, and read its bold lines. In short:
+[`../CLAUDE.md`](../CLAUDE.md): the template's three, which the [README](../README.md) gives with
+the evidence behind each, and *Working together*. `CLAUDE.md` also names each moment below, so that
+an agent has them in mind all session. Find the moment you are in, and read its bold lines.
+In short:
 
 - **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
   what is true now, write for whoever picks the work up cold, and end on what is left, for the

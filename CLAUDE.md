@@ -41,7 +41,7 @@ about to do one of these, read its guidelines in §5 first:
 - hand them a build, or write up what they played.
 
 What holds at every moment stays in this file, with how to find your way around the repo: *How to
-work in this repo*, *Working together* and the four inherited guidelines, below.
+work in this repo*, *Working together* and the three inherited guidelines, below.
 
 ## How to work in this repo
 
@@ -73,11 +73,6 @@ the plan. ``rg '`<' README.md CLAUDE.md docs/`` lists what is still unfilled. Th
 skill walks the person you're working with through resolving them; suggest it if a session opens
 against an unfilled template, and don't answer the prompts on their behalf in the meantime.
 
-**How it feels is found by playing it.** An agent's playtest is numbers and screenshots; it can
-establish that something turns in eight seconds, not whether eight seconds feels heavy or merely
-slow. That judgment comes from the person you're working with, at the game, and the telemetry is
-there to support it. Write both down, and say which is which.
-
 ### Working together
 
 The guidelines above are about finding your way around the repo; these are about working with the
@@ -106,11 +101,12 @@ showed, because an agent had described a readout without checking it.
 
 **Keep whose words are whose.** In the log, quote their decisions in their own words, and list an
 agent's calls apart, each with its reason: a week later nothing else tells them apart, and the
-Charter's authority rests on the difference. Where a build had to read an edge their words left
+Charter's authority rests on the difference. Keep your numbers apart from their judgment the same
+way: write both down, and say which is which. Where a build had to read an edge their words left
 open, say so, and make it one value they can change. And silence is not a decision: a general "yes"
 closes nothing in particular, so write down what it did not answer, and ask.
 
-## Four inherited guidelines
+## Three inherited guidelines
 
 Inherited from the template, out of a previous project that reached a thousand commits and fifty
 thousand lines before anyone had established whether it was fun. They are defaults rather than this
@@ -123,17 +119,18 @@ the type-checker can tell you so: unit tests import modules directly, so a modul
 test long after nothing in the running game reaches it. This is the specific way the previous
 attempt failed, repeatedly.
 
-**Play it.** While a system's feel is still being found, it needs playing, not tests or documents.
+**Play it, and test only what has stopped changing.** While a system's feel is still being found,
+it needs playing, not tests or documents: every test written against it is a bet you will pay to
+unwind. An agent's playtest is numbers and screenshots. It can establish that something turns in
+eight seconds, not whether eight seconds feels heavy or merely slow; that judgment is the person's,
+at the game, with the numbers there to support it.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
 stand-in for a judgment, and it takes the person you're working with, playing it, to make that
 judgment. A question about how something feels, split into tasks and handed out, comes back as
 pieces that each pass their check and do not add up.
 
-**Test what has stopped changing.** Every test written against a system whose feel is still being
-found is a bet you will pay to unwind.
-
-The games built from this template since kept all four, and learned more. The ones that apply to
+The games built from this template since kept all of these, and learned more. The ones that apply to
 any game are in the Charter's §5, under *Inherited*, on the same terms: defaults to keep, prune or
 argue with.
 
