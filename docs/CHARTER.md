@@ -350,9 +350,12 @@ one game's design or technology.
   *For example:* One chance of catching fire set both how much of a field a burning village took and
   whether a field fire reached the town.
 
-- What a thing does is often read from the same shape that draws it, so a new look can quietly
-  change the game. **When a change is to how something looks, keep what it does where it was, and
-  name any difference it does make as a value the person can change.**
+- Form suggests function, to the code and to the player alike: what a thing does is often computed
+  from the shape that draws it, and a player reads what it does from how it looks, so a new look can
+  quietly change the game either way. **When a change is to how something looks, keep what it does
+  where it was, and what a player would expect it to do; name any difference as a value the person
+  can change.** For the code that reads the shape, find every part that reads it (*When you add a
+  state to something, or change something, that other parts read*, below).
 
   *For example:* A tree's new look made it harder to set alight, at the edge of every wood.
 
