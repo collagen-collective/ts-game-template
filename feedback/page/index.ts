@@ -7,7 +7,7 @@
  *   // From the pause menu, offered only when `feedback.available`:
  *   feedback.open();
  *
- * README, *Feedback from inside the game*, has the rest.
+ * `feedback/README.md` has the rest.
  */
 export { FeedbackPage, browserPart, PROMPT, type FeedbackOptions } from "./page.ts";
 export { captureFrame, CAPTURE, type CaptureOptions, type Frame } from "./capture.ts";

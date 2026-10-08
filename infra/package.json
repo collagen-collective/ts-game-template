@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "The feedback function's AWS side, as code: the function, its address, and the secret it reads (README, Feedback from inside the game).",
+  "description": "The feedback function's AWS side, as code: the function, its address, and the secret it reads (feedback/README.md).",
   "engines": {
     "node": ">=22.18"
   },

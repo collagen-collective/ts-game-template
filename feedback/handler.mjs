@@ -3,7 +3,7 @@
  * The feedback inbox's door: an AWS Lambda function, reached at its function
  * URL, that takes a report from the game and commits it to the inbox
  * repository as one folder, `inbox/<when>_<who>/`. The game makes the report
- * (README, *Feedback from inside the game*, says what it sends); this checks it
+ * (`feedback/README.md` says what it sends); this checks it
  * and writes it, and nothing else, so that what changes is in the game and this
  * file seldom changes. `infra/` deploys it. It needs nothing but Node 22's own `fetch`
  * and `crypto`, and, when its settings are in a secret, the AWS SDK that
