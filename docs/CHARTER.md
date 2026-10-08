@@ -629,10 +629,12 @@ are all outside that.
   had been cut from fifteen, and every sitting used to wait for it.
 
 - Their time at the game is the rarest thing the project has: a finding folded into a commit
-  message is lost, and one titled by its conclusion hides that the game was played at all. **After
-  they play, write it down as a playtest, the same day, in an entry that says so in its title: what
-  they played, what they *expected*, and — the half that gets skipped — what worked.** Read the
-  report for what they must have seen to say it. The `design-log` skill has the shape.
+  message is lost, and one titled by its conclusion hides that the game was played at all. And a
+  defect list is the easy half of what they found: it is not the half that tells you what to
+  protect. **After they play, write it down as a playtest, the same day, in an entry that says so
+  in its title: what they played, what they *expected*, and — the half that gets skipped — what
+  worked.** Read the report for what they must have seen to say it. The `design-log` skill has the
+  shape.
 
   *For example:* A complaint that the *second* beacon did not light said that the first was legible
   at range.

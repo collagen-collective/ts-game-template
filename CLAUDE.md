@@ -124,8 +124,6 @@ test long after nothing in the running game reaches it. This is the specific way
 attempt failed, repeatedly.
 
 **Play it.** While a system's feel is still being found, it needs playing, not tests or documents.
-When you write down a playtest, write down what *worked* — the defect list is the easy half, and it
-is not the half that tells you what to protect.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
 stand-in for a judgment, and it takes the person you're working with, playing it, to make that

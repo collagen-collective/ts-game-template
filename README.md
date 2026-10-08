@@ -298,12 +298,9 @@ importers, and an enemy damage event nothing subscribed to — which had left th
 in every green build for weeks.
 
 **Play it.** While you are still finding out how a system should feel, it needs playing, not tests
-or documents. A
-throwaway prototype of under nine hundred lines, written in one pass and judged on nothing but
-whether it was fun, was a better game than the fifty thousand lines it was prototyping — it had no
-tickets, no tests, and no design docs to conform to. When you write down a playtest, write down
-what *worked*. Defect lists are the easy half, and they are not the half that tells you what to
-protect.
+or documents. A throwaway prototype of under nine hundred lines, written in one pass and judged on
+nothing but whether it was fun, was a better game than the fifty thousand lines it was
+prototyping — it had no tickets, no tests, and no design docs to conform to.
 
 **Ask whether every criterion could pass and the thing still be wrong.** If yes, the criteria are a
 stand-in for a judgment, and it takes a person playing it to make that judgment. A question about
