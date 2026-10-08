@@ -173,7 +173,8 @@ The numbers find defects; the person decides what sounds right.
   loudness: a pair that differs only in its tail would be levelled apart by the gate, and their
   identical starts would play 1.4 dB apart.
 - **Ask for a comparison, not an absolute:** which of two is nearer what they remember or want,
-  rather than whether one is good.
+  rather than whether one is good. Leave room for neither, both, or something else (`CLAUDE.md`,
+  *Find out what they picture before you build*).
 - **Say what to listen for, and where:** the moment, the sound, what changed, what might be worth
   a second listen. And then the game: a sound heard in play, under everything else, is not the
   sound heard alone.
