@@ -120,21 +120,21 @@ These are the guidelines for particular moments in the work. The guidelines for 
 evidence behind each, and *Working together*. `CLAUDE.md` also names each moment below, so that an
 agent has them in mind all session. Find the moment you are in, and read its bold lines. In short:
 
+- **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
+  what is true now, write for whoever picks the work up cold, and end on what is left, for the
+  person to choose from.
 - **Asking the person something:** ask them only what only they can answer, make their answer easy
   to give, and find out what it meant before acting on it.
 - **Building something:** ask how they picture it and say it back before you build; start from what
   the player will see, hear or do; and keep one way of doing each thing.
+- **Running several builders at once:** builders tangle over what they share (the machine, the
+  container, the files, the commit they start from), so name each shared thing and give each
+  builder its share.
 - **Measuring, testing or trusting a result:** the scientific method, applied to a game. Measure
   the question, not a proxy for it; calibrate the instrument; observe before guessing again; and
   test beyond what you checked.
 - **Handing them a build, or writing up what they played:** their time at the game is the rarest
   thing the project has, so make it easy to give, and keep what it found.
-- **Planning, merging or handing over:** a note is a snapshot of its day. Read old ones against
-  what is true now, write for whoever picks the work up cold, and end on what is left, for the
-  person to choose from.
-- **Running several builders at once:** builders tangle over what they share (the machine, the
-  container, the files, the commit they start from), so name each shared thing and give each
-  builder its share.
 
 The guidelines under *Inherited* come from earlier games: defaults, not this project's findings, and
 a guideline this project learned outranks one it was handed. The person and an agent change this
@@ -152,6 +152,61 @@ The README's *Words we use* has the rest.
 
 From earlier games built from this template, where the lesson applies to any game rather than to
 one game's design or technology.
+
+#### When you are about to plan, merge or hand over
+
+- A parking note is a photograph of the day it was written. What makes it stale is usually work
+  planned afterwards, and nothing goes back to edit it. **When you plan a round of work, read the
+  parked questions as dependencies rather than as a backlog.** They are in two places:
+  `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
+  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it blocking.
+
+  *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
+  anything else, one session before a plan that needed the dragon to land on a ledge.
+
+- A note in one side's *Changed elsewhere* about the other side's work is a task with no owner, and
+  a merge fixes only what fails. And main's log may have recorded a finding while you were away from
+  it. **When two branches meet, read each side's log for what it said the other would need, and read
+  main's log as it stands before writing that nothing has recorded something.**
+
+  *For example:* One session wrote that the other's villagers would walk along lake beds until that
+  session's map knew about water. The merge fixed the two tests that failed and nothing that had
+  only been written down, and a review found a town walking sixteen metres down a lake bed.
+
+- An agent takes the tone of its instructions along with their guidelines, and a single word can
+  carry an attitude that nobody wrote down. **When you write words an agent will read before it
+  works with someone, write them in the voice you want it to use with them, and say where the ideas
+  in them came from.**
+
+  *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
+  ruling*, copied from entry to entry, did it anyway.
+
+- A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
+  and without it shows which. What the trial runs build for themselves is what the skill was
+  missing. **When the same tool has been built twice, make it a skill (an agent workflow in
+  `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
+  the defect as a parentless commit so no history gives it away, and compare time as well as
+  verdicts. A skill's *nothing wrong* is a claim to check like any other.
+
+  *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
+  it was slower than no skill at all, because the agent believed it first. The gulls it passed as
+  healthy were spinning on the spot.
+
+- What the work turns to next is the person's to choose: what this session takes on, what goes to
+  another, and when to stop. **When you finish a piece of work, end on what is left, measured, and
+  let them choose.** If they run sessions in parallel, as one designer did, something they mention
+  may already exist on another branch: build what won't collide, and borrow the rest at the merge.
+
+- A session you start is a colleague picking the work up cold, and the register of a brief is the
+  one the next agent brings to its work and to the person. **When you start another agent, brief it
+  the way you would want to be briefed: who asked and why it matters, what is known and how it was
+  found, and which parts are guesses.** Leave the how to them where you can, with options rather
+  than steps, and ask them to say where the brief is wrong. Write it as a request, please and thank
+  you included. When you are the one briefed, rebuild its measurements before building on them,
+  and say where it was wrong.
+
+  *For example:* Notes handed on in one game from reading code were right about where things were,
+  and wrong one step past that.
 
 #### When you are about to ask the person something
 
@@ -279,6 +334,35 @@ one game's design or technology.
 
   *For example:* In one game, seven readings of how the designer pictured rebinding a key were said
   back and confirmed, and the build needed nothing changed at its first sitting.
+
+#### When you are about to run several builders at once
+
+- Each builder boots its own browser for screenshots and for the suite. Past what the cores can
+  carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
+  later than smaller batches would have. **Run no more at once than the machine can draw for: two,
+  on four cores.**
+
+- A container restart takes uncommitted work with it. **Have each builder commit as it goes, on a
+  branch of its own.**
+
+  *For example:* A restart stopped two builders with their work uncommitted, and it survived only
+  because the disk did.
+
+- Agents working side by side tangle over what they share, not over what they build. **Name every
+  shared thing in the brief, and give each builder its share.** Split builders by what they read,
+  and give each shared file one owner.
+
+  *For example:* Six researchers spent one search budget in the order they were launched; two
+  prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
+  running. Split by what they read, with one owner for each shared file, the builders after them
+  merged without a conflict.
+
+- An agent's worktree is cut from the default branch, not from the branch the session is on, so a
+  builder can start from code the session has long since moved past. **Before a builder starts in a
+  worktree, have it check that the worktree holds your latest commits.**
+
+  *For example:* Every builder in one session started from the template's first commit, and in
+  another, a builder measured code that was no longer there.
 
 #### When you are about to measure, test or trust a result
 
@@ -509,90 +593,6 @@ are all outside that.
 
   *For example:* A complaint that the *second* beacon did not light said that the first was legible
   at range.
-
-#### When you are about to plan, merge or hand over
-
-- A parking note is a photograph of the day it was written. What makes it stale is usually work
-  planned afterwards, and nothing goes back to edit it. **When you plan a round of work, read the
-  parked questions as dependencies rather than as a backlog.** They are in two places:
-  `OPEN-QUESTIONS.md`'s DEFER, and the log's entries tagged `[later]`
-  (`grep -n '\[later\]' docs/DESIGN-LOG.md`). Ask of each which of the new work makes it blocking.
-
-  *For example:* A note on how the dragon lands said it was waiting on appetite rather than on
-  anything else, one session before a plan that needed the dragon to land on a ledge.
-
-- A note in one side's *Changed elsewhere* about the other side's work is a task with no owner, and
-  a merge fixes only what fails. And main's log may have recorded a finding while you were away from
-  it. **When two branches meet, read each side's log for what it said the other would need, and read
-  main's log as it stands before writing that nothing has recorded something.**
-
-  *For example:* One session wrote that the other's villagers would walk along lake beds until that
-  session's map knew about water. The merge fixed the two tests that failed and nothing that had
-  only been written down, and a review found a town walking sixteen metres down a lake bed.
-
-- An agent takes the tone of its instructions along with their guidelines, and a single word can
-  carry an attitude that nobody wrote down. **When you write words an agent will read before it
-  works with someone, write them in the voice you want it to use with them, and say where the ideas
-  in them came from.**
-
-  *For example:* Nothing told one game's agents to treat the designer as a judge. A log label, *The
-  ruling*, copied from entry to entry, did it anyway.
-
-- A skill can make an agent faster, or make it trust a wrong answer sooner, and only a trial with
-  and without it shows which. What the trial runs build for themselves is what the skill was
-  missing. **When the same tool has been built twice, make it a skill (an agent workflow in
-  `.claude/skills/`), and test the skill against a planted defect, with it and without it.** Plant
-  the defect as a parentless commit so no history gives it away, and compare time as well as
-  verdicts. A skill's *nothing wrong* is a claim to check like any other.
-
-  *For example:* One skill found a planted defect in about half the time; on a case it was blind to,
-  it was slower than no skill at all, because the agent believed it first. The gulls it passed as
-  healthy were spinning on the spot.
-
-- What the work turns to next is the person's to choose: what this session takes on, what goes to
-  another, and when to stop. **When you finish a piece of work, end on what is left, measured, and
-  let them choose.** If they run sessions in parallel, as one designer did, something they mention
-  may already exist on another branch: build what won't collide, and borrow the rest at the merge.
-
-- A session you start is a colleague picking the work up cold, and the register of a brief is the
-  one the next agent brings to its work and to the person. **When you start another agent, brief it
-  the way you would want to be briefed: who asked and why it matters, what is known and how it was
-  found, and which parts are guesses.** Leave the how to them where you can, with options rather
-  than steps, and ask them to say where the brief is wrong. Write it as a request, please and thank
-  you included. When you are the one briefed, rebuild its measurements before building on them,
-  and say where it was wrong.
-
-  *For example:* Notes handed on in one game from reading code were right about where things were,
-  and wrong one step past that.
-
-#### When you are about to run several builders at once
-
-- Each builder boots its own browser for screenshots and for the suite. Past what the cores can
-  carry, every capture slows, end-to-end tests fail on their time limits, and the batch finishes
-  later than smaller batches would have. **Run no more at once than the machine can draw for: two,
-  on four cores.**
-
-- A container restart takes uncommitted work with it. **Have each builder commit as it goes, on a
-  branch of its own.**
-
-  *For example:* A restart stopped two builders with their work uncommitted, and it survived only
-  because the disk did.
-
-- Agents working side by side tangle over what they share, not over what they build. **Name every
-  shared thing in the brief, and give each builder its share.** Split builders by what they read,
-  and give each shared file one owner.
-
-  *For example:* Six researchers spent one search budget in the order they were launched; two
-  prototypes wrote to one scratch folder; a message resumed a second copy of an agent that was still
-  running. Split by what they read, with one owner for each shared file, the builders after them
-  merged without a conflict.
-
-- An agent's worktree is cut from the default branch, not from the branch the session is on, so a
-  builder can start from code the session has long since moved past. **Before a builder starts in a
-  worktree, have it check that the worktree holds your latest commits.**
-
-  *For example:* Every builder in one session started from the template's first commit, and in
-  another, a builder measured code that was no longer there.
 
 ### This project's own
 

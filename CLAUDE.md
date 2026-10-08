@@ -33,12 +33,12 @@ Most of how we work is in the Charter's §5, grouped by the moment each guidelin
 moment's guidelines are read when it comes, not once at the start of a session. Whenever you are
 about to do one of these, read its guidelines in §5 first:
 
+- plan, merge or hand over;
 - ask the person something;
 - build something;
+- run several builders at once;
 - measure, test or trust a result;
-- hand them a build, or write up what they played;
-- plan, merge or hand over;
-- run several builders at once.
+- hand them a build, or write up what they played.
 
 What holds at every moment stays in this file, with how to find your way around the repo: *How to
 work in this repo*, *Working together* and the four inherited guidelines, below.
