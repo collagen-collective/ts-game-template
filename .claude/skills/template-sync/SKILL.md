@@ -58,16 +58,14 @@ conflict decided, with whose decision it was. An update that brought only toolin
 entry.
 
 **When a finding this project sent comes home.** The update brings back, under *Inherited*,
-guidelines this project already has under *This project's own*. The template's §5 is a shared
-dependency that every game contributes to, so keep the inherited copy and delete the project's own,
-as you would delete your own copy of code once a package provides it. Before deleting, compare the
-two, and show the person the comparison: if the project's copy says something the inherited one
-lost, that goes back to the template as a pull request or an issue (*Sending a finding to the
-template*, below). A tally or a name dropped from an example does not count; the template leaves
-those out on purpose. Otherwise the overlap is looked at again when the inherited guideline next
-changes. The design-log entry that paid for the guideline stays in the log, and the update's entry
-says which copies were deleted. The same holds for a guideline of this project's own that turns out
-to overlap one another game sent: the inherited copy is kept.
+guidelines this project already has under *This project's own*. Reconcile each pair as the
+Charter's §5 says under *Writing a guideline*, the way you would your own code against a shared
+package's: compare the two, show the person the comparison, and say which of its three cases each
+pair is. Usually the project's copy says nothing the inherited one does not, and is deleted; what it
+says that would hold for any game goes back to the template (*Sending a finding to the template*,
+below); and what only this game could use stays, with the inherited guideline moved under *This
+project's own* to carry it. The same goes for a guideline of this project's own that turns out to
+overlap one another game sent. The update's log entry says which way each pair went.
 
 ## Sending a finding to the template
 
@@ -97,7 +95,7 @@ Which game a guideline came from belongs in the pull request and its commits, no
 project's own* in the project's Charter, with its reason and its design-log entry, and send that
 without the entry. The project needs the guideline while the pull request is open, and one left
 only in the design log is filed where nobody looks before acting. When the template's copy comes
-home, it replaces the project's.
+home, the two are reconciled as *When a finding this project sent comes home* says.
 
 **How it goes.** As a pull request on the template's repository (the README links it; in a cloud
 session, add that repository to the session first). Brief it the way `CLAUDE.md` says to brief

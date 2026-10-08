@@ -139,13 +139,12 @@ In short:
   thing the project has, so make it easy to give, and keep what it found.
 
 The guidelines under *Inherited* come from earlier games: defaults, not this project's findings,
-shared like a dependency that every game built from this template contributes to. Where one of this
-project's own covers the same ground as an inherited one, the inherited one is kept and this
-project's copy deleted, and anything the inherited one misses goes back to the template. The person
-and an agent change this section together. Either may propose adding, rewording or pruning a
-guideline; the change is made once both have worked it through, and the design log records it.
-*Writing a guideline*, at the end of this section, says how a guideline is written and where it
-goes.
+shared like a package that every game built from this template contributes to. Where one of this
+project's own covers the same ground as an inherited one, the two are reconciled as your own code is
+against a shared package's. The person and an agent change this section together. Either may
+propose adding, rewording or pruning a guideline; the change is made once both have worked it
+through, and the design log records it. *Writing a guideline*, at the end of this section, says how
+a guideline is written, where it goes, and how an overlap is reconciled.
 
 A few words recur below. *The person* is the human designing this game, and *a designer* the person
 on another game, in an example. A *sitting* is one stretch of the person playing a build. An
@@ -663,10 +662,22 @@ guideline under it, and give a new moment a line of its own and its name in `CLA
 moments.
 
 A guideline this project learns goes under *This project's own*, ending with the design-log entry it
-came from. Where it overlaps a guideline under *Inherited*, whether the inherited copy is one this
-project sent to the template or one another game did, keep the inherited one and delete this
-project's, as you would delete your own copy of code a shared package now provides: two copies have
-to be reconciled at every update, and what one game learned beyond the shared copy never reaches the
-others. If this project's copy says something the inherited one does not, send that to the template
-as a pull request or an issue; otherwise, look at the overlap again when the inherited guideline next
-changes. The design-log entry it came from stays in the log either way.
+came from.
+
+*Inherited* works like a shared package that every game built from this template contributes to.
+When one of this project's own overlaps an inherited guideline, whether one this project sent that
+came home or one another game sent, reconcile the two as you would your own code against the
+package's, by what this project's copy says that the inherited one does not:
+
+- **Nothing**, because it is the same guideline or a narrower one: delete this project's copy and
+  read the inherited one. A tally or a name that the inherited example leaves out does not count;
+  examples leave those out on purpose.
+- **More, and the more would hold for any game:** send the difference to the template as a pull
+  request or an issue, and keep this project's copy until the template's copy comes home with it.
+  Then it is the first case.
+- **More, but the more is about this game alone**, and no other game could use it: move the
+  inherited guideline under *This project's own*, deleting it from *Inherited*, and add this
+  project's specifics to it there.
+
+Whichever it is, the design-log entry the guideline came from stays in the log, and the log says
+which way the overlap went. Look at it again when the inherited guideline next changes.

@@ -138,10 +138,10 @@ Two beats are worth protecting:
   in that list's shape (its reason, then the guideline in bold, a *For example* only if the moment
   is hard to recognise, and this entry's heading). Say so under **Changed elsewhere**. Read §5
   first: a guideline already there wants a sharper reason or this entry's heading, not a second copy
-  of itself, and an inherited one this project has now learned for itself stays inherited: what this
-  project learned beyond it goes to the template (the `template-sync` skill). The log is append-only
-  and read backwards; a guideline left only here has been filed where nobody looks before acting,
-  which is how the same lesson gets written three times.
+  of itself, and an inherited one this project has now learned for itself is reconciled with it as
+  §5's *Writing a guideline* says, not copied. The log is append-only and read backwards; a
+  guideline left only here has been filed where nobody looks before acting, which is how the same
+  lesson gets written three times.
 
 ## Whose words are whose
 
