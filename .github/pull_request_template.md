@@ -2,11 +2,11 @@
 
 ## What changed
 
-<!-- Why this PR exists, which is most of this section: the goal it served and where the work started (a plan, a report, a playtest). Then, in a paragraph or two, what a player can now do that they could not (for tooling, what an agent session can), as they would notice it rather than how it works: "Shores slope more gently now, which moved a few docks", not "The shore uses a falloff curve (a1b2c3d), which moved seed 12's dock, so the dock tests moved to seed 30 (d4e5f6a)." A commit is named only where a reader may need to revert it. -->
+<!-- Why this PR exists, which is most of this section: the goal it served and where the work started (a plan, a report, a playtest). Then, in a paragraph or two, what a player can now do that they could not (for tooling, what an agent session can), as they would notice it rather than how it works: "Shores slope more gently now, which moved a few docks", not "The shore uses a falloff curve (a1b2c3d), which moved seed 12's dock, so the dock tests moved to seed 30 (d4e5f6a)." Things are called what a newcomer to the game would call them, not by the code's or the session's names for them. Merges of main, tests moved or mended, and calls made along the way are the logs'. A commit is named only where a reader may need to revert it. -->
 
 ## Needs a person
 
-<!-- Charter changes, questions of how something feels, and decisions this is waiting on, each as the question with only what it takes to answer it: "Night as the default came up but isn't done yet. Here, or in its own PR?" A decision already made is said with its reason ("`?fog=off` is gone, since fog on was chosen"), not with the history of how it was made. "Nothing" is an answer. -->
+<!-- Charter changes, questions of how something feels, and decisions this is waiting on, each in a sentence or two: the question, and only what it takes to answer it. "Night as the default came up but isn't done yet. Here, or in its own PR?" How a question came up, what doing it would cost, and where to look are the design log's, unless the answer turns on them. A decision already made is said with its reason ("`?fog=off` is gone, since fog on was chosen"), not with the history of how it was made. "Nothing" is an answer. -->
 
 ## Played
 
