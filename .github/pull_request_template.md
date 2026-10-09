@@ -14,7 +14,7 @@
 
 ## Measured
 
-<!-- Numbers before and after, and where they were taken. Telemetry, not how it feels. -->
+<!-- The few numbers a reader needs now: those an open question or a decision here rests on, and any cost the change brings, each with what it means and where it was taken: "An island takes 4 s to build, up from 2 s (Node, seeds 1–10): the price of the new shores", not a table of every count taken along the way. Settled checks are the design log's. Telemetry, not how it feels. "Nothing" is an answer. -->
 
 ## Verification
 
