@@ -219,8 +219,6 @@ Use `AskUserQuestion` for these; they are discrete choices.
   defaults rather than this project's findings, and the decision about them should be made
   deliberately. Pruning them is expected over time, as this project learns which of them it needs;
   today, ask only whether any of them plainly does not fit this game. Whatever the answer, log it.
-- **RTK.** `README.md` has an "Optional: the RTK agent tooling" section saying where it lives and
-  how to remove it. Ask whether to keep or remove, then do it.
 - **`.claude/settings.json`** sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Ask whether to keep it.
 - **The remote.** `git remote -v` should point at their own repo. If it still points at the
   template, they cloned instead of using "Use this template" — tell them, and let them decide.
