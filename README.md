@@ -191,13 +191,37 @@ The scaffold carries a setup for [RTK](https://github.com/rtk-ai/rtk), a third-p
 compresses command output to cut an agent's token use. Nothing here needs it, and without `rtk`
 installed it does nothing. It is a `PreToolUse` hook in `.claude/settings.json`
 (`.claude/hooks/rtk-rewrite.sh`), project filters in `.rtk/filters.toml`, and an install step in
-`.claude/hooks/cloud-session-start.sh`; each file's comments say how it works. To remove it:
+`.claude/hooks/cloud-session-start.sh`; each file's comments say how it works.
+
+**RTK approves commands as well as rewriting them.** When a command as typed matches
+`permissions.allow`, every part of a chain included, its hook returns "allow" with the rewrite
+(`git status` becomes `rtk git status`). It approves nothing with a redirect into a file or a
+`$(…)` in it, and it steps aside for anything a deny rule matches. It reads the rules on every
+call, from the nearest `.claude/` at or above its working directory and from `~/.claude`, and does
+not wait for the folder to be trusted, as Claude Code does for a project's allow rules. So a rule
+takes effect through RTK the moment it is written, and an agent in a worktree gets the rules its
+branch carries. Where RTK leaves the decision to Claude Code, Claude Code's docs say it matches its
+rules against the command the hook returns, so a rule meant for that case needs the `rtk` form too
+(`Bash(rtk git status *)`).
+
+**So an allow list grants every flag a listed command takes.** `git diff`, `git log` and `git show`
+take `--output=<file>`, which writes wherever it is told, `.claude/settings.json` included, so
+`.claude/settings.json` here denies it, as typed and rewritten. That deny also refuses any git
+command whose text contains ` --output`, a commit message among them, and `git commit -F <file>`
+gets round it. Leave `git apply` off a list, since a patch can rewrite any file in the checkout,
+and `git grep`, whose `-O` runs any program it is given. A rule for a test runner, the build, lint
+or a script runner runs code from the checkout, so an agent that has written code there can have it
+run without review, with RTK or without. And in auto mode a list spares the person few asks: in one
+game, every ask in a day of sub-agents came from a call that wrote code and ran it, and a list of
+their routine commands would have passed none of them (`CLAUDE.md`, principle 3).
+
+To remove RTK:
 
 ```bash
 rm -rf .rtk .claude/hooks/rtk-rewrite.sh
-# then delete the "PreToolUse" block from .claude/settings.json,
-# and the "Install rtk" block, with the `rtk init -g` block after it,
-# in .claude/hooks/cloud-session-start.sh
+# then delete the "PreToolUse" block from .claude/settings.json (keep "permissions":
+# its first rule is Claude Code's own), and the "Install rtk" block, with the
+# `rtk init -g` block after it, in .claude/hooks/cloud-session-start.sh
 ```
 
 Separately, `.claude/settings.json` sets `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, an unrelated

@@ -80,16 +80,20 @@ three.js, terrain and sound stayed behind.
 entry, as *When you learn something* there says. The project needs it while the template decides,
 and a lesson left only in the design log is filed where nobody looks before acting.
 
-**Then open an issue on the template's repository** (the README links it; in a cloud session, add
-that repository to the session first). Ask the person before sending anything: what leaves this
-project is theirs to decide, and a lesson they decided here may not be one they want stated for
-every game. Give each lesson its own issue, titled `Lesson:` and the lesson in a sentence, so that
-the template can find them all and see when two games raise the same one. Brief it the way
-`CLAUDE.md` says to brief another agent: which game it came from, what happened and what it cost
-there, which principle it extends or that none does, what is measured and what is a guess, and the
-design-log entry. A bug found in the template's own tooling goes the same way, with the fix if you
-have one. You don't need to check whether another game has raised it first: matching issues is the
-template's job.
+**Then open an issue on the template's repository** (the README links it). In a cloud session, add
+that repository to the session so that the GitHub tools can reach it, and stop there: an issue
+needs no clone. In one session, attaching, cloning and registering the template moved the session's
+working directory out of the project, and from the next restart the project's hooks and settings
+stopped loading, for the session and every agent it started, with nothing to say so. So afterwards,
+and after any restart, check that the session's primary working directory is still the project.
+Ask the person before sending anything: what leaves this project is theirs to decide, and a lesson
+they decided here may not be one they want stated for every game. Give each lesson its own issue,
+titled `Lesson:` and the lesson in a sentence, so that the template can find them all and see when
+two games raise the same one. Brief it the way `CLAUDE.md` says to brief another agent: which game
+it came from, what happened and what it cost there, which principle it extends or that none does,
+what is measured and what is a guess, and the design-log entry. A bug found in the template's own
+tooling goes the same way, with the fix if you have one. You don't need to check whether another
+game has raised it first: matching issues is the template's job.
 
 **What the template does with it.** It triages the issues, and takes a lesson in once it clears the
 bar: it has come up in more than one game, or it would be expensive to work out again. Most become
