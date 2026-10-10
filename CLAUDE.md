@@ -127,6 +127,10 @@ while they decide is evidence they decide on, so measure it first or say it is a
   45 m to 70 m.)
 - Several questions: send them together, ranked by how much each answer changes, each with your
   guess and the value its answer will set, and leave room for answers that are not on your list.
+- A call that writes code and runs it: make it two, and brief sub-agents to do the same. Write a
+  script with the Write tool and run it in a call of its own, change source with Edit, and undo
+  with git. In one call, the pair waits for the person's approval, which holds that agent, and any
+  stage waiting on it, until they are back.
 - A change they will touch: play its minute yourself first, push a build that passes
   `npm run verify:play`, and run the whole gate while they play. Write up what they played the same
   day, with what they *expected* and what *worked* (the `design-log` skill).
