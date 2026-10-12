@@ -106,6 +106,10 @@ comes back as pieces that each pass their check and do not add up.
   it ends.
 - What a player sees or hears: look at the frame, or listen to the take, from the player's camera
   and at the moment it matters (the `frame-check` and `sound-check` skills).
+- A new thing to find or do: find it from where a player stands, with only the screen and the
+  speakers, and press it through the device they play on (a fake pad through the input reader, not
+  the input set by name). A test or a pose knows where everything is and which input was meant, and
+  a player does not.
 - Before a test draws a frame, ask whether it could fail with nothing wrong on screen. Keep such
   tests for what play cannot see, such as a shader that fails to compile, and compare a look by eye
   with posed frames, even once it is approved.
