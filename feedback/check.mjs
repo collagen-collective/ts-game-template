@@ -9,7 +9,8 @@
 // end-to-end tests are the place to check the page as that game uses it. Run it after changing
 // anything in feedback/page/.
 import { chromium } from "@playwright/test";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { createServer as createHttpServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createServer } from "vite";
@@ -26,6 +27,14 @@ const server = await createServer({
 });
 await server.listen();
 const port = server.httpServer.address().port;
+// A different port is a different origin. Unlike fetch, a text/plain form
+// needs neither permission to read the reply nor a CORS preflight to write.
+const foreign = createHttpServer((_req, res) => {
+    res.setHeader("content-type", "text/html");
+    res.end("<!doctype html><title>A foreign page</title>");
+});
+await new Promise((resolve) => foreign.listen(0, "127.0.0.1", resolve));
+const foreignPort = foreign.address().port;
 
 const failures = [];
 const expect = (ok, what) => {
@@ -96,7 +105,52 @@ try {
         await page.keyboard.press(k);
         await page.waitForTimeout(50);
     };
-    const folders = () => readdirSync(join(root, "feedback-inbox")).sort();
+    const folders = () =>
+        existsSync(join(root, "feedback-inbox"))
+            ? readdirSync(join(root, "feedback-inbox")).sort()
+            : [];
+
+    // Try actual browser form submissions, including an opaque sandbox origin.
+    // The extra field absorbs the '=' text/plain forms put between name/value,
+    // leaving valid report JSON: a permissive inbox really would write it.
+    await page.goto(`http://127.0.0.1:${foreignPort}/`);
+    const target = `http://localhost:${port}/__feedback`;
+    const name = `{"files":{"report.md":"${Buffer.from("# A foreign form").toString("base64")}"},"padding":"`;
+    for (const opaque of [false, true]) {
+        const before = folders().join();
+        const received = page.waitForResponse(
+            (response) => response.url() === target && response.request().method() === "POST",
+        );
+        await page.evaluate(
+            ({ target, name, opaque }) => {
+                const frame = document.createElement("iframe");
+                if (opaque) frame.sandbox.add("allow-scripts", "allow-forms");
+                frame.srcdoc = `<!doctype html><body><script>
+                const form = document.createElement("form");
+                Object.assign(form, { method: "POST", action: ${JSON.stringify(target)}, enctype: "text/plain" });
+                const input = document.createElement("input");
+                input.name = ${JSON.stringify(name)};
+                input.value = '"}';
+                form.append(input);
+                document.body.append(form);
+                form.submit();
+            </script>`;
+                document.body.append(frame);
+            },
+            { target, name, opaque },
+        );
+        const response = await received;
+        await response.finished();
+        const sentOrigin = await response.request().headerValue("origin");
+        expect(
+            opaque ? sentOrigin === "null" : sentOrigin === `http://127.0.0.1:${foreignPort}`,
+            `the ${opaque ? "sandboxed" : "foreign"} browser form supplies its real Origin (${sentOrigin})`,
+        );
+        expect(
+            response.status() === 403 && folders().join() === before,
+            `a ${opaque ? "null-Origin" : "cross-origin"} browser form is refused before writing to disk`,
+        );
+    }
 
     await page.goto(`http://localhost:${port}/feedback/demo/`);
     await page.waitForTimeout(500);
@@ -271,6 +325,9 @@ try {
     );
 } finally {
     await browser.close();
+    await new Promise((resolve, reject) =>
+        foreign.close((error) => (error ? reject(error) : resolve())),
+    );
     await server.close();
     rmSync(root, { recursive: true, force: true });
 }

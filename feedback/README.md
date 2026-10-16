@@ -24,6 +24,12 @@ state it wants to send.
 - **The dev server's inbox** (`vite.config.ts`) reads a report the same way and writes it to
   `feedback-inbox/`, which git ignores. The page can be played and its end-to-end tests can send
   before any of the AWS side exists, and nothing a session tries reaches the real inbox.
+  It runs only on the dev server, keeping Vite's default loopback listener and Host checks.
+  Before reading a report, it requires an `Origin` matching the request's exact scheme and Host;
+  foreign, opaque (`null`), and missing origins receive 403. Local automation must explicitly send
+  that same origin, for example `Origin: http://localhost:3000` when posting to
+  `http://localhost:3000/__feedback`. The inbox refuses a declared body above 5,000,000 bytes before
+  receiving it, and closes a streaming upload as soon as it crosses that limit.
 - **`infra/`** is the function's AWS side as code, an [AWS CDK](https://docs.aws.amazon.com/cdk/)
   app: the function, its address, its log, and the secret it reads. It is a package of its own, so
   that only it installs the CDK (about 250 MB). CI typechecks it and the handler, and synthesizes
@@ -140,6 +146,14 @@ The first two steps are done by hand in GitHub; the rest is code.
    deploy. A key is 32 letters and digits, which a link carries whole, and the name it is given is
    the end of the folder each of their reports lands in. `key` again for the same name retires the
    old key. To try it first, make a key for yourself and send a report from your own link.
+
+   Credential commands reject a save if another command changed the secret after it was read,
+   including while a token prompt was open. Rerun the rejected command to use the current settings;
+   it has not replaced the other command's change. The operator needs
+   `secretsmanager:UpdateSecretVersionStage` on this secret as well as
+   `secretsmanager:GetSecretValue` and `secretsmanager:PutSecretValue`. A candidate version stays
+   inactive until AWS accepts its conditional move to `AWSCURRENT`; the function only reads that
+   current version.
 5. **The game.** Commit `.env.production`: Vite reads it when it builds the hosted game, and the
    dev server does not, so `npm run dev` keeps its own inbox. An environment variable of the same
    name where the game is built would win over the file.
