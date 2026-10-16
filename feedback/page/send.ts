@@ -26,12 +26,13 @@ export const isDev = (): boolean => env()["DEV"] === true;
 export function takeKey(storageKey: string): string | null {
     const given = new URLSearchParams(location.search).get("key");
     try {
-        if (given) {
-            localStorage.setItem(storageKey, given);
+        if (given !== null) {
             const url = new URL(location.href);
             url.searchParams.delete("key");
+            // Remove the key before touching storage: even its getter can throw.
             history.replaceState(history.state, "", url.toString());
         }
+        if (given) localStorage.setItem(storageKey, given);
         return given ?? localStorage.getItem(storageKey);
     } catch {
         // A browser that refuses storage keeps it for this visit.
