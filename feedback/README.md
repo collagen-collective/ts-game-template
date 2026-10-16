@@ -140,6 +140,14 @@ The first two steps are done by hand in GitHub; the rest is code.
    deploy. A key is 32 letters and digits, which a link carries whole, and the name it is given is
    the end of the folder each of their reports lands in. `key` again for the same name retires the
    old key. To try it first, make a key for yourself and send a report from your own link.
+
+   Credential commands reject a save if another command changed the secret after it was read,
+   including while a token prompt was open. Rerun the rejected command to use the current settings;
+   it has not replaced the other command's change. The operator needs
+   `secretsmanager:UpdateSecretVersionStage` on this secret as well as
+   `secretsmanager:GetSecretValue` and `secretsmanager:PutSecretValue`. A candidate version stays
+   inactive until AWS accepts its conditional move to `AWSCURRENT`; the function only reads that
+   current version.
 5. **The game.** Commit `.env.production`: Vite reads it when it builds the hosted game, and the
    dev server does not, so `npm run dev` keeps its own inbox. An environment variable of the same
    name where the game is built would win over the file.

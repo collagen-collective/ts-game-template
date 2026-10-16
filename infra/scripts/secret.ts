@@ -14,13 +14,10 @@
  */
 import { randomInt } from "node:crypto";
 import { createInterface } from "node:readline/promises";
-import {
-    GetSecretValueCommand,
-    PutSecretValueCommand,
-    SecretsManagerClient,
-} from "@aws-sdk/client-secrets-manager";
+import { GetSecretValueCommand, SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
 import { config } from "../config.ts";
 import { outputs } from "./stack.ts";
+import { replaceSecret } from "./secret-update.ts";
 
 type Settings = { GITHUB_TOKEN: string; KEYS: string };
 
@@ -78,7 +75,9 @@ async function main(args: string[]): Promise<void> {
     const [command, name] = args;
     const { SecretName, GameOrigin } = await outputs();
     const sm = new SecretsManagerClient({ region: config.region });
-    const got = await sm.send(new GetSecretValueCommand({ SecretId: SecretName }));
+    const got = await sm.send(
+        new GetSecretValueCommand({ SecretId: SecretName, VersionStage: "AWSCURRENT" }),
+    );
     const settings: Settings = {
         GITHUB_TOKEN: "",
         KEYS: "",
@@ -86,11 +85,11 @@ async function main(args: string[]): Promise<void> {
     };
     const keys = parseKeys(settings.KEYS);
     const save = () =>
-        sm.send(
-            new PutSecretValueCommand({
-                SecretId: SecretName,
-                SecretString: JSON.stringify({ ...settings, KEYS: formatKeys(keys) }),
-            }),
+        replaceSecret(
+            sm,
+            SecretName,
+            got.VersionId,
+            JSON.stringify({ ...settings, KEYS: formatKeys(keys) }),
         );
 
     switch (command) {
