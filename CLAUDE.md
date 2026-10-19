@@ -89,10 +89,16 @@ invulnerable in every green build for weeks.*
 
 ### 2. Check the thing itself, not a stand-in for it
 
-**Before you trust a check, name the question it stands in for, and ask whether it could pass and
-the thing still be wrong.** A count, a state, a summary number, a passing test and a list of
-criteria all stand in for something, and the defect is usually in what they leave out: *a river
-12.5 km long and a river going round in circles are the same number.* When the question is how
+**Before you trust a reading, from a test, a trace or a value the code itself decides by, ask what
+you are trying to measure, what data you have, and what that data looks like. Then ask how it could
+read right with the thing still wrong.** A count, a state, a summary number, a passing test and a
+list of criteria all stand in for something, and the defect is usually in what they leave out: *a
+river 12.5 km long and a river going round in circles are the same number.* Code that branches on
+a value is taking a reading too, and its stand-in is as easy to miss as a test's. Name the kind of
+data, since a kind brings its known traps: data in time, such as an event, a log line or a report,
+has two times, when the thing happened and when it was read, and what is true when it is read may
+be later than what it describes. *A pause menu took the browser's late report of the mouse being
+taken for its own release of it, and opened itself over play.* When the question is how
 something feels, the only check is the person playing it. So while a system's feel is still being
 found, put it in front of them rather than under tests. Every test written against a system still
 being tuned is a bet you will pay to unwind, and a question about feel that is split into tasks
@@ -104,6 +110,8 @@ comes back as pieces that each pass their check and do not add up.
 - Behaviour over time: trace it, with a `scratch-*` script (git ignores them) that prints the state
   over a few seconds of the simulation running in Node, and assert the whole course, not only where
   it ends.
+- Data in time: say which time you need, when the thing happened or when it was read, and whether
+  the record carries it. In a trace, print both.
 - What a player sees or hears: look at the frame, or listen to the take, from the player's camera
   and at the moment it matters (the `frame-check` and `sound-check` skills).
 - A new thing to find or do: find it from where a player stands, with only the screen and the
@@ -196,9 +204,15 @@ read, and only the readout's line naming the running option caught it.*
 
 ### 7. When guesses keep missing, get new information
 
-**After two fixes have missed, stop fixing, and build a way to see what is actually happening (a
-readout, a count, a distance) before you try a third.** A third fix is another guess from the same
-blind spot, and seeing usually answers the question in one run.
+**After two fixes have missed, or when the numbers you usually take will not show what is wrong,
+stop fixing and build a way to see what is actually happening before you try again.** A third fix
+is another guess from the same blind spot, and more of the same reading gives the same answer, so
+change what you collect: from a summary, such as a median or a pass rate, to the records it sums,
+in order; from the middle of a spread to its edges; from what the data looks like to how it is
+made, what each record carries and what it leaves out; and from waiting for a rare case to making
+it happen, beside a control that should not show it. Seeing usually answers the question in one
+run. *A pause menu that reopened itself once in a dozen runs passed seventy-six more, then failed
+three times in three once the late report it needed was made to come every time.*
 
 *Looks like:* a rule of thumb that three rounds of tuning have not fixed: look for a known algorithm
 that can be shown to be correct. A total that will not move: measure each part on its own. Two
