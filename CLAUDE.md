@@ -110,6 +110,8 @@ comes back as pieces that each pass their check and do not add up.
 - Behaviour over time: trace it, with a `scratch-*` script (git ignores them) that prints the state
   over a few seconds of the simulation running in Node, and assert the whole course, not only where
   it ends.
+- When reducing or counting an instrument's output, work from its records or change how it prints.
+  Any reader you add is another instrument and needs its own controls.
 - Data in time: say which time you need, when the thing happened or when it was read, and whether
   the record carries it. In a trace, print both.
 - What a player sees or hears: look at the frame, or listen to the take, from the player's camera
